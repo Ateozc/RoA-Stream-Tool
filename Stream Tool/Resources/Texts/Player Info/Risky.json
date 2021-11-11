@@ -6,7 +6,7 @@
   "characters": [
     {
       "character": "Shovel Knight",
-      "skin": "Default"
+      "skin": "Grey"
     },
     {
       "character": "Etalus",
@@ -15,6 +15,10 @@
     {
       "character": "Zetterburn",
       "skin": "Purple"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Halloween"
     }
   ]
 }

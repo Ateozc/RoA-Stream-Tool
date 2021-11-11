@@ -1,11 +1,16 @@
 {
-    "name": "Sparx21",
-    "twitter": "@Sparx21RoA",
-    "tag": "",
-    "characters": [
-        {
-            "character": "Elliana",
-            "skin": "Blue"
-        }
-    ]
+  "name": "Sparx21",
+  "twitter": "@Sparx21RoA",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Elliana",
+      "skin": "Blue"
+    },
+    {
+      "character": "Maypul",
+      "skin": "Custom 1"
+    }
+  ],
+  "pronouns": "He/Him"
 }

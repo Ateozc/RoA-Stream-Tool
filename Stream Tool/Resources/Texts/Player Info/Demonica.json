@@ -1,12 +1,12 @@
 {
-  "name": "CrashGear",
-  "twitter": "@FSCrashGear",
+  "name": "Demonica",
+  "twitter": "@Demonica_FGC",
   "pronouns": "He/Him",
-  "tag": "FS",
+  "tag": "",
   "characters": [
     {
       "character": "Clairen",
-      "skin": "Blue"
+      "skin": "Default"
     }
   ]
 }

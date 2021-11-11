@@ -1,0 +1,20 @@
+{
+  "name": "aeon",
+  "twitter": "@SpadeLoK",
+  "pronouns": "He/Him",
+  "tag": "DPU",
+  "characters": [
+    {
+      "character": "Sylvanos",
+      "skin": "White"
+    },
+    {
+      "character": "Wrastor",
+      "skin": "Red"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Orange"
+    }
+  ]
+}

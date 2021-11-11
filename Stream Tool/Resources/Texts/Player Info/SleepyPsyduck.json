@@ -5,12 +5,12 @@
   "characters": [
     {
       "character": "Zetterburn",
-      "skin": "Default"
+      "skin": "LoA"
     },
     {
       "character": "Absa",
       "skin": "LoA"
     }
   ],
-  "pronouns": "They/Them"
+  "pronouns": "He/They"
 }

@@ -1,11 +1,16 @@
 {
-    "name": "Adi",
-    "twitter": "@adi_roa",
-    "tag": "",
-    "characters": [
-        {
-            "character": "Zetterburn",
-            "skin": "Default"
-        }
-    ]
+  "name": "Adi",
+  "twitter": "@adi_roa",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Zetterburn",
+      "skin": "Default"
+    },
+    {
+      "character": "Shovel Knight",
+      "skin": "Champion"
+    }
+  ],
+  "pronouns": "He/Him"
 }
