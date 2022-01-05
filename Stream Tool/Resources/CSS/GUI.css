@@ -552,6 +552,7 @@ input[type="text"] {
 #roundNumber, #onDeckRoundNumber {
   text-align: center;
   margin-right: 4px;
+  min-width: 20px;
   width: 15%;
   display: none;
 }
