@@ -547,11 +547,7 @@ function charImgChange(charImg, charName, skinName) {
     if (charName == "Random") {
         charImg.setAttribute('src', charPath + '/' + charName + '/P2.png');
     } else {
-        if (workshopCheck.checked) {
-            charImg.setAttribute('src', charPath + '/_Workshop/' + charName + '/' + skinName + '.png');
-        } else {
-            charImg.setAttribute('src', charPath + '/' + charName + '/' + skinName + '.png');
-        }
+        charImg.setAttribute('src', charPath + '/' + charName + '/' + skinName + '.png');
     }
 }
 
