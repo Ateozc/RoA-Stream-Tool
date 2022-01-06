@@ -63,7 +63,7 @@ body {
   border: 1px solid var(--bg4);
   transition: border-color 100ms;  
 }
-input[type="text"] {
+input[type="text"], input[type="number"]{
   font-family: 'Roboto-Regular';
   font-size: 13px;
 }
@@ -556,6 +556,11 @@ input[type="text"] {
   width: 15%;
   display: none;
 }
+
+input[type="number"] {
+  min-width: 40px !important;
+}
+
 
 
 #gamemode {

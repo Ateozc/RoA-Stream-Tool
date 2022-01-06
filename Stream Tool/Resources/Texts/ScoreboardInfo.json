@@ -42,8 +42,8 @@
     "Blue"
   ],
   "score": [
-    "2",
-    "2"
+    "0",
+    "0"
   ],
   "wl": [
     "Nada",
@@ -52,7 +52,7 @@
   "bestOf": "Bo3",
   "gamemode": 1,
   "round": "Friendlies",
-  "tournamentName": "testing",
+  "tournamentName": "",
   "caster": [
     {
       "name": "",
@@ -65,7 +65,7 @@
       "twitch": ""
     }
   ],
-  "allowIntro": false,
+  "allowIntro": true,
   "workshop": false,
   "forceMM": true,
   "forceHD": true,

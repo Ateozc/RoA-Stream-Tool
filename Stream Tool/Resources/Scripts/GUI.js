@@ -326,6 +326,8 @@ function init() {
     //add a listener to the clear button
     document.getElementById('clearButton').addEventListener("click", clearPlayers);
 
+    pipsToggle();
+
 
     /* KEYBOARD SHORTCUTS */
 

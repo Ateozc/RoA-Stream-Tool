@@ -1,7 +1,7 @@
 {
   "guiWidth": 776,
   "guiHeight": 400,
-  "allowIntro": false,
+  "allowIntro": true,
   "workshop": false,
   "forceMM": true,
   "forceHD": true,
