@@ -284,6 +284,26 @@ body {
     fill: #414141;
 }
 
+.scoreNumber {
+    position: absolute;
+    top: 192.5px;
+    fill: #414141;
+    font-size: 85px;
+    font-family: "Deansgate";
+}
+
+#scoreNumberL {
+    left: 845px;
+}
+
+#scoreNumberR {
+    left: 1025px;
+}
+
+#scoreNumberC {
+    left: 949px;
+}
+
 #scoreL-1 {
     left: 924px;
 }
@@ -307,11 +327,14 @@ body {
     transform: scaleX(-1);
 }
 
+#scoreBorderNumber {
+    top: 209px;
+    left: 755px;
+}
 #scoreBorder {
     top: 209px;
     left: 862px;
 }
-
 
 /* Animations! */
 

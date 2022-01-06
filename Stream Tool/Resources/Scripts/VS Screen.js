@@ -29,11 +29,14 @@ let colorList;
 const pCharPrev = [], pSkinPrev = [], scorePrev = [], colorPrev = [];
 let bestOfPrev, workshopPrev, gamemodePrev;
 
+let usePips = true;
+
 //variables for the twitter/twitch constant change
 let socialInt1, socialInt2;
 let twitter1, twitch1, twitter2, twitch2;
 let socialSwitch = true; //true = twitter, false = twitch
 const socialInterval = 7000;
+
 
 //to consider how many loops will we do
 let maxPlayers = 2; //will change when doubles comes
@@ -56,7 +59,11 @@ const scoreImg = document.getElementsByClassName("scoreTick");
 const colorBG = document.getElementsByClassName("colorBG");
 const textBG = document.getElementsByClassName("textBG");
 const scoreOverlay = document.getElementById("scores");
+const scoreNumberL = document.getElementById("scoreNumberL");
+const scoreNumberR = document.getElementById("scoreNumberR");
 const scoreBorder = document.getElementById("scoreBorder");
+const scoresPips = document.getElementById("scoresPips");
+const scoresNumbers = document.getElementById("scoresNumbers");
 const roundEL = document.getElementById("round");
 const tournamentEL = document.getElementById("tournament");
 const casterEL = document.getElementsByClassName("caster");
@@ -69,6 +76,7 @@ const twitchWrEL = document.getElementsByClassName("twitchWrapper");
 /* script begin */
 async function mainLoop() {
 	const scInfo = await getInfo();
+	// const guiInfo = await getGuiInfo();
 	getData(scInfo);
 }
 
@@ -77,6 +85,8 @@ setInterval( () => { mainLoop() }, 500); //update interval
 
 	
 async function getData(scInfo) {
+
+	usePips = scInfo['usePips'];
 
 	const player = scInfo['player'];
 	const teamName = scInfo['teamName'];
@@ -149,6 +159,14 @@ async function getData(scInfo) {
 		// if there is no team name, just display "[Color] Team"
 		if (!teamName[i]) teamName[i] = color[i] + " Team";
 
+	}
+
+	if (usePips) {
+		scoresPips.style.display = "block";
+		scoresNumbers.style.display = "none";
+	} else {
+		scoresPips.style.display = "none";
+		scoresNumbers.style.display = "block";
 	}
 	
 
@@ -472,8 +490,12 @@ function changeGM(gm) {
 		}
 
 	} else {
-
-		document.getElementById("vsOverlay").src = "Resources/Overlay/VS Screen/VS Overlay.png";
+		// if (caster[0].name || caster[1].name) {
+			document.getElementById("vsOverlay").src = "Resources/Overlay/VS Screen/VS Overlay.png";
+		// } else {
+			// document.getElementById("vsOverlay").src = "Resources/Overlay/VS Screen/VS Overlay - No Comms.png";
+		// }
+		
 
 		//hide the extra elements
 		const dubELs = document.getElementsByClassName("dubEL");
@@ -513,6 +535,9 @@ function updateScore(side, pScore, pColor) {
 	//if this is the right side, change the number
 	if (side == 1) {
 		side = 3;
+		scoreNumberR.textContent = pScore;
+	} else {
+		scoreNumberL.textContent = pScore;
 	}
 
 	if (pScore == 0) {
@@ -614,10 +639,12 @@ function updateBo(bestOf) {
 		scoreImg[2].style.opacity = 1;
 		scoreImg[5].style.opacity = 1;
 		scoreBorder.src = "Resources/Overlay/VS Screen/Score Border Bo5.png";
-	} else {
+	} else if (bestOf == "Bo3") {
 		scoreImg[2].style.opacity = 0;
 		scoreImg[5].style.opacity = 0;
 		scoreBorder.src = "Resources/Overlay/VS Screen/Score Border Bo3.png";
+	} else {
+		scoreBorder.src = "Resources/Overlay/VS Screen/Score Border - Numbers.png";
 	}
 }
 
@@ -807,6 +834,22 @@ function getInfo() {
 	})
 	//i would gladly have used fetch, but OBS local files wont support that :(
 }
+
+function getGuiInfo() {
+	return new Promise(function (resolve) {
+		const oReq = new XMLHttpRequest();
+		oReq.addEventListener("load", reqListener);
+		oReq.open("GET", 'Resources/Texts/GUI Settings.json');
+		oReq.send();
+
+		//will trigger when file loads
+		function reqListener () {
+			resolve(JSON.parse(oReq.responseText))
+		}
+	})
+	//i would gladly have used fetch, but OBS local files wont support that :(
+}
+
 
 //searches for the colors list json file
 function getColorInfo() {

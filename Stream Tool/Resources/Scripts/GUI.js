@@ -72,6 +72,9 @@ const p2Win1 = document.getElementById('winP2-1');
 const p2Win2 = document.getElementById('winP2-2');
 const p2Win3 = document.getElementById('winP2-3');
 
+const p1Score = document.getElementById('playerWins1');
+const p2Score = document.getElementById('playerWins2');
+
 const checks = document.getElementsByClassName("scoreCheck");
 
 const wlButtons = document.getElementsByClassName("wlButtons");
@@ -99,6 +102,7 @@ const forceMM = document.getElementById('forceMM');
 const forceHD = document.getElementById('forceHD');
 const noLoAHDCheck = document.getElementById('noLoAHD');
 const forceWL = document.getElementById('forceWLToggle');
+const usePips = document.getElementById('pipsToggle');
 const alwaysOnTopEl = document.getElementById('alwaysOnTop');
 
 
@@ -205,6 +209,7 @@ function init() {
     forceHD.addEventListener("click", HDtoggle);
     noLoAHDCheck.addEventListener("click", saveGUISettings);
     forceWL.addEventListener("click", forceWLtoggle);
+    usePips.addEventListener("click", pipsToggle);
     alwaysOnTopEl.addEventListener("click", alwaysOnTop);
     document.getElementById("copyMatch").addEventListener("click", copyMatch);
     
@@ -216,6 +221,7 @@ function init() {
     if (guiSettings.forceHD) {forceHD.checked = true};
     if (guiSettings.noLoAHD) {noLoAHDCheck.checked = true; noLoAHDCheck.disabled = false};
     if (guiSettings.forceWL) {forceWL.click()};
+    if (guiSettings.usePips) {usePips.click()};
     if (guiSettings.alwaysOnTop) {alwaysOnTopEl.click()};
 
 
@@ -697,12 +703,27 @@ function changeScoreTicks() {
     if (this == p1Win1 || this == p2Win1) {
         document.getElementById('winP' + pNum + '-2').checked = false;
         document.getElementById('winP' + pNum + '-3').checked = false;
+        if (pNum == 1) {
+            p1Score.value = 1;
+        } else {
+            p2Score.value = 1;
+        }
     } else if (this == p1Win2 || this == p2Win2) {
         document.getElementById('winP' + pNum + '-1').checked = true;
         document.getElementById('winP' + pNum + '-3').checked = false;
+        if (pNum == 1) {
+            p1Score.value = 2;
+        } else {
+            p2Score.value = 2;
+        }
     } else if (this == p1Win3 || this == p2Win3) {
         document.getElementById('winP' + pNum + '-1').checked = true;
         document.getElementById('winP' + pNum + '-2').checked = true;
+        if (pNum == 1) {
+            p1Score.value = 3;
+        } else {
+            p2Score.value = 3;
+        }
     }
 }
 
@@ -731,6 +752,7 @@ function changeScoreTicks3() {
     document.getElementById('winP'+pNum+'-2').checked = true;
 }
 
+
 //returns how much score does a player have
 function checkScore(tick1, tick2, tick3) {
     let totalScore = 0;
@@ -750,6 +772,7 @@ function checkScore(tick1, tick2, tick3) {
 
 //gives a victory to player 1 
 function giveWinP1() {
+    p1Score.value ++;
     if (p1Win2.checked) {
         p1Win3.checked = true;
     } else if (p1Win1.checked) {
@@ -760,6 +783,7 @@ function giveWinP1() {
 }
 //same with P2
 function giveWinP2() {
+    p2Score.value ++;
     if (p2Win2.checked) {
         p2Win3.checked = true;
     } else if (p2Win1.checked) {
@@ -1136,11 +1160,16 @@ function checkRound() {
         roundNumberElement = onDeckRoundNumber;
     }
 
-    if (this.value.indexOf("Round") != -1) { //If winners round or losers round, add the field in.
+    if (this.value.indexOf("Round") != -1 || this.value.indexOf("First to") != -1) { //If winners round or losers round, add the field in.
         roundNumberElement.style.display = "inline";
+        usePips.checked = false;
+        usePips.disabled = true;
     } else {
         roundNumberElement.style.display = "none";
+        // usePips.checked = true;
+        usePips.disabled = false;
     }
+    pipsToggle();
 
     if (!forceWL.checked && this.id != "onDeckRoundName") {
         if (this.value.toLocaleUpperCase().includes("Grand".toLocaleUpperCase())) {
@@ -1495,10 +1524,10 @@ function swap() {
     }    
 
     //scores
-    const tempP1Score = checkScore(p1Win1, p1Win2, p1Win3);
-    const tempP2Score = checkScore(p2Win1, p2Win2, p2Win3);
-    setScore(tempP2Score, p1Win1, p1Win2, p1Win3);
-    setScore(tempP1Score, p2Win1, p2Win2, p2Win3);
+    // const tempP1Score = checkScore(p1Win1, p1Win2, p1Win3);
+    // const tempP2Score = checkScore(p2Win1, p2Win2, p2Win3);
+    setScore(p1Score.value, p1Win1, p1Win2, p1Win3);
+    setScore(p2Score.value, p2Win1, p2Win2, p2Win3);
 
     //W/K, only if they are visible
     if (p1W.style.display = "flex") {
@@ -1650,6 +1679,43 @@ function forceWLtoggle() {
 
 }
 
+function pipsToggle() {
+
+    // // Shows the Bo3 and Bo5
+    if (usePips.checked) {
+        for (var i=1; i<3;i++) {
+            for (var j=1; j<4; j++) {
+                if (j==3 && currentBestOf == "Bo3") {
+                    continue;
+                }
+                document.getElementById('winP' + i + '-' + j).style.display = "block";
+            }
+        }
+        bo3Div.style.display = "block";
+        bo5Div.style.display = "block";
+        onDeckBo3Div.style.display = "block";
+        onDeckBo5Div.style.display = "block";
+        p1Score.style.display = 'none';
+        p2Score.style.display = 'none';
+    } else {
+        for (var i=1; i<3;i++) {
+            for (var j=1; j<4; j++) {
+                document.getElementById('winP' + i + '-' + j).style.display = "none";
+            }
+        }
+        bo3Div.style.display = "none";
+        bo5Div.style.display = "none";
+        onDeckBo3Div.style.display = "none";
+        onDeckBo5Div.style.display = "none";
+        p1Score.style.display = 'block';
+        p2Score.style.display = 'block';
+    }
+
+    // save current checkbox value to the settings file
+    saveGUISettings();
+
+}
+
 // whenever the user clicks on the HD renders checkbox
 function HDtoggle() {
 
@@ -1709,6 +1775,7 @@ function saveGUISettings() {
     guiSettings.forceHD = forceHD.checked;
     guiSettings.noLoAHD = noLoAHDCheck.checked;
     guiSettings.forceWL = forceWL.checked;
+    guiSettings.usePips = usePips.checked;
     guiSettings.alwaysOnTop = alwaysOnTopEl.checked;
 
     // save the file
@@ -1818,8 +1885,8 @@ function writeScoreboard() {
             colorR
         ],
         score: [
-            checkScore(p1Win1, p1Win2, p1Win3),
-            checkScore(p2Win1, p2Win2, p2Win3)
+            p1Score.value,
+            p2Score.value
         ],
         wl: [
             currentP1WL,
@@ -1827,7 +1894,7 @@ function writeScoreboard() {
         ],
         bestOf: currentBestOf,
         gamemode: gamemode,
-        round: (roundInp.value.indexOf("Round") != -1 && roundNumber.value) ? roundInp.value + " " + roundNumber.value : roundInp.value,
+        round: ((roundInp.value.indexOf("Round") != -1 || roundInp.value.indexOf("First to")) != -1 && roundNumber.value) ? roundInp.value + " " + roundNumber.value : roundInp.value,
         tournamentName: tournamentInp.value,
         caster: [],
         allowIntro: allowIntro.checked,
@@ -1836,6 +1903,7 @@ function writeScoreboard() {
         forceHD: forceHD.checked,
         noLoAHD: noLoAHDCheck.checked,
         forceWL: forceWL.checked,
+        usePips: usePips.checked,
         externalUpdate: false
     };
     //add the player's info to the player section of the json
@@ -1882,8 +1950,8 @@ function writeScoreboard() {
     fs.writeFileSync(textPath + "/Simple Texts/Team 1.txt", tNameInps[0].value, encoding);
     fs.writeFileSync(textPath + "/Simple Texts/Team 2.txt", tNameInps[1].value, encoding);
 
-    fs.writeFileSync(textPath + "/Simple Texts/Score L.txt", checkScore(p1Win1, p1Win2, p1Win3).toString(), encoding);
-    fs.writeFileSync(textPath + "/Simple Texts/Score R.txt", checkScore(p2Win1, p2Win2, p2Win3).toString(), encoding);
+    fs.writeFileSync(textPath + "/Simple Texts/Score L.txt", p1Score.value.toString(), encoding);
+    fs.writeFileSync(textPath + "/Simple Texts/Score R.txt", p2Score.value.toString(), encoding);
 
     fs.writeFileSync(textPath + "/Simple Texts/Round.txt", roundInp.value, encoding);
     fs.writeFileSync(textPath + "/Simple Texts/Tournament Name.txt", tournamentInp.value, encoding);

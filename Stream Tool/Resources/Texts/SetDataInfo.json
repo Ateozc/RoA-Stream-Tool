@@ -1,29 +1,12 @@
 {
   "player": [
     {
-      "name": "Bookworm",
-      "twitter": "@BookwormRoA",
-      "pronouns": "",
-      "tag": "Gooshi",
-      "characters": [
-        "Elliana"
-      ]
-    },
-    {
-      "name": "Serris",
-      "twitter": "@serrisfroon",
-      "pronouns": "He/HIm",
-      "tag": "UGS",
-      "characters": [
-        "Ranno"
-      ]
-    },
-    {
       "name": "",
       "twitter": "",
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Absa",
         "Random"
       ]
     },
@@ -33,10 +16,31 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Absa",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Absa",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Absa",
         "Random"
       ]
     }
   ],
-  "tournamentName": "",
+  "tournamentName": "testing",
   "round": "Friendlies"
 }

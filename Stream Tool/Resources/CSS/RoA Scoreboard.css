@@ -46,6 +46,14 @@ body {
     transform: scaleX(-1);
 }
 
+.scoreNumbers {
+    position:absolute;
+    font-size: 40px;
+    z-index: 1;
+    left: 0px;
+    top: 21px;
+    color: white;
+}
 
 .mask {
     position: absolute;

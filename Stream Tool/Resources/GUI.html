@@ -94,6 +94,8 @@
                 <input type="checkbox" id="winP1-2" class="scoreCheck mousetrap" tabindex="-1">
                 <input type="checkbox" id="winP1-3" class="scoreCheck mousetrap" tabindex="-1">
               </div>
+              <input type="text" id="playerWins1" class="textInput mousetrap" placeholder="0" spellcheck="false" tabindex="4" value=0>
+
 
               <div class="wlButtons" id="wlButtons1">
                 <div id="p1W" class="wlBox">[W]</div>
@@ -200,11 +202,12 @@
               </div>
 
               <div class="scoreBox" id="scoreBox2" title="Press F2 to increase the score">
-                <span id="scoreText2">Wins</span>
+                <span id="scoreText2" >Wins</span>
                 <input type="checkbox" id="winP2-1" class="scoreCheck mousetrap" tabindex="-1">
                 <input type="checkbox" id="winP2-2" class="scoreCheck mousetrap" tabindex="-1">
                 <input type="checkbox" id="winP2-3" class="scoreCheck mousetrap" tabindex="-1">
               </div>
+              <input type="text" id="playerWins2" class="textInput mousetrap" placeholder="0" spellcheck="false" tabindex="4" value=0>
 
               <div class="wlButtons" id="wlButtons2">
                 <div id="p2W" class="wlBox">[W]</div>
@@ -456,6 +459,11 @@ VS Screen even when LoA skins are selected.">
 They will always appear when typing 'Grand' in the round box.">
           <input type="checkbox" id="forceWLToggle" class="settingsCheck" tabindex="-1">
           <label for="forceWLToggle" class="settingsText">Force [W] / [L]</span>
+        </div>
+
+        <div class="settingBox" title="When toggled on, score will be displayed using pips. When toggled off, score will be displayed with a number.">
+          <input type="checkbox" id="pipsToggle" class="settingsCheck" tabindex="-1">
+          <label for="pipsToggle" class="settingsText">Use Score Pips</span>
         </div>
 
         <div class="settingBox" title="Prevents other windows to be displayed on top of this one.">

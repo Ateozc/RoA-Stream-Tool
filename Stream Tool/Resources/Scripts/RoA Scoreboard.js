@@ -29,6 +29,9 @@ let colorList;
 const pCharPrev = [], pSkinPrev = [], scorePrev = [], colorPrev = [], wlPrev = [];
 let bestOfPrev, workshopPrev, mainMenuPrev, gamemodePrev;
 
+let usePips = true;
+let prevUsePip = usePips;
+
 //to consider how many loops will we do
 let maxPlayers = 2;
 const maxSides = 2;
@@ -44,6 +47,7 @@ const wlGroup = document.getElementsByClassName("wlGroup");
 const wlText = document.getElementsByClassName("wlText");
 const scoreImg = document.getElementsByClassName("scoreImgs");
 const scoreAnim = document.getElementsByClassName("scoreVid");
+const scoreNumbers = document.getElementsByClassName("scoreNumbers");
 const tLogoImg = document.getElementsByClassName("tLogos");
 const overlayRound = document.getElementById("overlayRound");
 const textRound = document.getElementById('round');
@@ -86,12 +90,16 @@ async function mainLoop() {
 	}
 
 	const scInfo = await getInfo();
+	// const guiInfo = await getGuiInfo();
 	getData(scInfo);
 }
 mainLoop();
 setInterval( () => { mainLoop(); }, 500); //update interval
 
 async function getData(scInfo) {
+
+	prevUsePip = usePips;
+	usePips = scInfo['usePips'];
 
 	const player = scInfo['player'];
 	const teamName = scInfo['teamName'];
@@ -128,6 +136,10 @@ async function getData(scInfo) {
 		// update the score ticks so they fit the bestOf border
 		updateScore(score[0], bestOf, color[0], 0, gamemode, false);
 		updateScore(score[1], bestOf, color[1], 1, gamemode, false);
+	}
+
+	if (prevUsePip != usePips) {
+		updateBorder(bestOf, gamemode); // update the border
 	}
 
 	// now, things that will happen for each player
@@ -204,7 +216,7 @@ async function getData(scInfo) {
 
 			} else { //if its not the first game, show game count
 				const midTextEL = document.getElementById('midTextIntro');
-				if ((score[0] + score[1]) != 4) { //if its not the last game of a bo5
+				if ((score[0] + score[1]) != 4 || !usePips) { //if its not the last game of a bo5
 
 					//just show the game count in the intro
 					midTextEL.textContent = "Game " + (score[0] + score[1] + 1);
@@ -581,14 +593,19 @@ function changeGM(gm) {
 
 // update functions
 async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
-
 	if (playAnim) { //do we want to play the score up animation?
 		// depending on the color, change the clip
 		scoreAnim[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${pColor}.webm`;
 		scoreAnim[pNum].play();
 	} 
+	scoreNumbers[pNum].textContent = pScore;
 	// change the score image with the new values
-	scoreImg[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${bestOf} ${pScore}.png`;
+	if (usePips) {
+		scoreImg[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${bestOf} ${pScore}.png`;
+	} else {
+		scoreImg[pNum].src = ``;
+	}
+	
 
 }
 
@@ -598,7 +615,16 @@ function updateColor(colorEL, pColor, gamemode) {
 
 function updateBorder(bestOf, gamemode) {
 	for (let i = 0; i < borderImg.length; i++) {
-		borderImg[i].src = `Resources/Overlay/Scoreboard/Borders/Border ${gamemode} ${bestOf}.png`;
+		if (usePips) {
+			borderImg[i].src = `Resources/Overlay/Scoreboard/Borders/Border ${gamemode} ${bestOf}.png`;
+			borderImg[i].style.left = 0;
+			scoreNumbers[i].style.display = "none";
+		} else {
+			borderImg[i].src = `Resources/Overlay/Scoreboard/Borders/Border 1 Numbers.png`;
+			borderImg[i].style.left = '-60px';
+			scoreNumbers[i].style.display = "block";
+		}
+		
 	}
 	bestOfPrev = bestOf
 }
@@ -756,6 +782,21 @@ function getInfo() {
 		const oReq = new XMLHttpRequest();
 		oReq.addEventListener("load", reqListener);
 		oReq.open("GET", 'Resources/Texts/ScoreboardInfo.json');
+		oReq.send();
+
+		//will trigger when file loads
+		function reqListener () {
+			resolve(JSON.parse(oReq.responseText))
+		}
+	})
+	//i would gladly have used fetch, but OBS local files wont support that :(
+}
+
+function getGuiInfo() {
+	return new Promise(function (resolve) {
+		const oReq = new XMLHttpRequest();
+		oReq.addEventListener("load", reqListener);
+		oReq.open("GET", 'Resources/Texts/GUI Settings.json');
 		oReq.send();
 
 		//will trigger when file loads

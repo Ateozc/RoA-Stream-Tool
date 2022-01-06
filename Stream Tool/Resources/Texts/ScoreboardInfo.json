@@ -1,20 +1,20 @@
 {
   "player": [
     {
-      "name": "Bookworm",
-      "twitter": "@BookwormRoA",
+      "name": "",
+      "twitter": "",
       "pronouns": "",
-      "tag": "Gooshi",
-      "character": "Elliana",
-      "skin": "Default"
+      "tag": "",
+      "character": "Random",
+      "skin": ""
     },
     {
-      "name": "Serris",
-      "twitter": "@serrisfroon",
-      "pronouns": "He/HIm",
-      "tag": "UGS",
-      "character": "Ranno",
-      "skin": "Blue"
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "skin": ""
     },
     {
       "name": "",
@@ -42,8 +42,8 @@
     "Blue"
   ],
   "score": [
-    0,
-    0
+    "2",
+    "2"
   ],
   "wl": [
     "Nada",
@@ -52,7 +52,7 @@
   "bestOf": "Bo3",
   "gamemode": 1,
   "round": "Friendlies",
-  "tournamentName": "",
+  "tournamentName": "testing",
   "caster": [
     {
       "name": "",
@@ -65,11 +65,12 @@
       "twitch": ""
     }
   ],
-  "allowIntro": true,
+  "allowIntro": false,
   "workshop": false,
   "forceMM": true,
   "forceHD": true,
   "noLoAHD": false,
   "forceWL": false,
+  "usePips": true,
   "externalUpdate": false
 }
