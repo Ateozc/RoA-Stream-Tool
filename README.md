@@ -23,7 +23,7 @@ So you want to do a Rivals of Aether stream, huh? Well, today is your lucky day,
 
 ## How to setup
 These are instructions for regular OBS Studio, but I imagine you can do the same with other streaming software:
-- Get the [latest release](https://github.com/Readek/RoA-Stream-Control/releases).
+- Get the [latest release]https://github.com/Ateozc/RoA-Stream-Tool/releases).
 - Extract somewhere.
 - Drag and drop `RoA Scoreboard.htlm` into OBS, or add a new browser source in OBS pointing at the local file.
 - If the source looks weird, manually set the source's properties to 1920 width and 1080 height, or set your OBS canvas resolution to 1080p, or make the source fit the screen.
