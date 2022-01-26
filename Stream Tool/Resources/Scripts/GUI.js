@@ -125,6 +125,7 @@ setInterval(() => {
 
 function externalUpdateCheck(scInfo) {
     if (scInfo['externalUpdate'] == true) {
+        console.log('externalUpdate == true')
         //Update player data
         const player = scInfo['player'];
         if (player[0].name == "" && player[1].name == "") {
@@ -139,42 +140,8 @@ function externalUpdateCheck(scInfo) {
         for (let i = 0; i < checks.length; i++) {
             checks[i].checked = false;
         }
-        let event = new Event('click', changeScoreTicks);
-        for (let i = 0; i < score.length; i++) {
-            if (score[i] == 0) {
-                continue;
-            }
-            if (i == 0) {
-                let checkIndex = score[i] - 1;
-                checks[checkIndex].checked = true;
-            } else if (i == 1) {
-                let checkIndex = score[i] + 2;
-                checks[checkIndex].checked = true;
-            }
-
-            if (score[i] == 1) {
-                if (i == 0) {
-                    p1Win1.dispatchEvent(event);
-                } else if (i == 1) {
-                    p2Win1.dispatchEvent(event);
-                }
-            } else if (score[i] == 2) {
-
-                if (i == 0) {
-                    console.log("Score should be 2 for player 1")
-                    p1Win2.dispatchEvent(event);
-                } else if (i == 1) {
-                    console.log("Score should be 2 for player 2")
-                    p2Win2.dispatchEvent(event);
-                }
-            } else if (score[i] == 3) {
-                if (i == 0) {
-                    p1Win3.dispatchEvent(event);
-                } else if (i == 1) {
-                    p2Win3.dispatchEvent(event);
-                }
-            }
-        }
+        p1Score.value = score[0];
+        p2Score.value = score[1];
 
         //Other stuff?
         writeScoreboard();
@@ -731,29 +698,34 @@ function changeScoreTicks() {
         pNum = 2;
     }
 
+    var value = 0;
+    if (!this.checked) {
+        value = -1;
+    }
+
     if (this == p1Win1 || this == p2Win1) {
         document.getElementById('winP' + pNum + '-2').checked = false;
         document.getElementById('winP' + pNum + '-3').checked = false;
         if (pNum == 1) {
-            p1Score.value = 1;
+            p1Score.value = 1 + value;
         } else {
-            p2Score.value = 1;
+            p2Score.value = 1 + value;
         }
     } else if (this == p1Win2 || this == p2Win2) {
         document.getElementById('winP' + pNum + '-1').checked = true;
         document.getElementById('winP' + pNum + '-3').checked = false;
         if (pNum == 1) {
-            p1Score.value = 2;
+            p1Score.value = 2 + value;
         } else {
-            p2Score.value = 2;
+            p2Score.value = 2 + value;
         }
     } else if (this == p1Win3 || this == p2Win3) {
         document.getElementById('winP' + pNum + '-1').checked = true;
         document.getElementById('winP' + pNum + '-2').checked = true;
         if (pNum == 1) {
-            p1Score.value = 3;
+            p1Score.value = 3 + value;
         } else {
-            p2Score.value = 3;
+            p2Score.value = 3 + value;
         }
     }
 }
@@ -782,6 +754,7 @@ function changeScoreTicks3() {
     document.getElementById('winP' + pNum + '-1').checked = true;
     document.getElementById('winP' + pNum + '-2').checked = true;
 }
+
 
 
 //returns how much score does a player have
@@ -1203,14 +1176,15 @@ function checkRound() {
         roundNumberElement.style.display = "none";
     }
 
-    if (this.value.indexOf("First to") != -1) {
-        usePips.checked = false;
-        usePips.disabled = true;
-    } else {
-        // usePips.checked = true;
-        usePips.disabled = false;
+    if (this.id == "roundName") {
+        if (this.value.indexOf("First to") != -1) {
+            usePips.checked = false;
+            usePips.disabled = true;
+        } else {
+            // usePips.checked = true;
+            usePips.disabled = false;
+        }
     }
-
 
     pipsToggle();
 
@@ -1922,6 +1896,9 @@ function storeSetSpecificInfo(players, tournamentName, round) {
 //time to write it down
 function writeScoreboard() {
 
+    setScore(p1Score.value, p1Win1, p1Win2, p1Win3);
+    setScore(p2Score.value, p2Win1, p2Win2, p2Win3);
+
     //this is what's going to be in the json file
     const scoreboardJson = {
         player: [], //more lines will be added below
@@ -1934,8 +1911,8 @@ function writeScoreboard() {
             colorR
         ],
         score: [
-            p1Score.value,
-            p2Score.value
+            parseInt(p1Score.value),
+            parseInt(p2Score.value)
         ],
         wl: [
             currentP1WL,
