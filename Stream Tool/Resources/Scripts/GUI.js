@@ -125,7 +125,6 @@ setInterval(() => {
 
 function externalUpdateCheck(scInfo) {
     if (scInfo['externalUpdate'] == true) {
-        console.log('externalUpdate == true')
         //Update player data
         const player = scInfo['player'];
         if (player[0].name == "" && player[1].name == "") {
