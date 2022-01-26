@@ -51,10 +51,16 @@ const tNameInps = document.getElementsByClassName("teamName");
 //we want the correct order, we cant use getClassName here
 function pushArrayInOrder(array, string1, string2 = "") {
     for (let i = 0; i < maxPlayers; i++) {
-        array.push(document.getElementById(string1+(i+1)+string2));
+        array.push(document.getElementById(string1 + (i + 1) + string2));
     }
 }
-const pNameInps = [], pTwitterInps = [], pPronounsInps = [], pTagInps = [], pFinders = [], charLists = [], skinLists = [];
+const pNameInps = [],
+    pTwitterInps = [],
+    pPronounsInps = [],
+    pTagInps = [],
+    pFinders = [],
+    charLists = [],
+    skinLists = [];
 pushArrayInOrder(pNameInps, "p", "Name");
 pushArrayInOrder(pTwitterInps, "p", "Twitter");
 pushArrayInOrder(pPronounsInps, "p", "Pronouns");
@@ -109,14 +115,16 @@ const alwaysOnTopEl = document.getElementById('alwaysOnTop');
 
 init();
 async function mainLoop() {
-	const scInfo = await getInfo();
-	externalUpdateCheck(scInfo);
+    const scInfo = await getInfo();
+    externalUpdateCheck(scInfo);
 }
 mainLoop();
-setInterval( () => { mainLoop(); }, 1000); //update interval
+setInterval(() => {
+    mainLoop();
+}, 1000); //update interval
 
 function externalUpdateCheck(scInfo) {
-    if (scInfo['externalUpdate'] == true){
+    if (scInfo['externalUpdate'] == true) {
         //Update player data
         const player = scInfo['player'];
         if (player[0].name == "" && player[1].name == "") {
@@ -137,13 +145,13 @@ function externalUpdateCheck(scInfo) {
                 continue;
             }
             if (i == 0) {
-                let checkIndex = score[i] -1;
+                let checkIndex = score[i] - 1;
                 checks[checkIndex].checked = true;
             } else if (i == 1) {
                 let checkIndex = score[i] + 2;
                 checks[checkIndex].checked = true;
             }
-            
+
             if (score[i] == 1) {
                 if (i == 0) {
                     p1Win1.dispatchEvent(event);
@@ -151,7 +159,7 @@ function externalUpdateCheck(scInfo) {
                     p2Win1.dispatchEvent(event);
                 }
             } else if (score[i] == 2) {
-                
+
                 if (i == 0) {
                     console.log("Score should be 2 for player 1")
                     p1Win2.dispatchEvent(event);
@@ -174,18 +182,18 @@ function externalUpdateCheck(scInfo) {
 }
 //searches for the main json file
 function getInfo() {
-	return new Promise(function (resolve) {
-		const oReq = new XMLHttpRequest();
-		oReq.addEventListener("load", reqListener);
-		oReq.open("GET", textPath + '/ScoreboardInfo.json');
-		oReq.send();
+    return new Promise(function (resolve) {
+        const oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", textPath + '/ScoreboardInfo.json');
+        oReq.send();
 
-		//will trigger when file loads
-		function reqListener () {
-			resolve(JSON.parse(oReq.responseText))
-		}
-	})
-	//i would gladly have used fetch, but OBS local files wont support that :(
+        //will trigger when file loads
+        function reqListener() {
+            resolve(JSON.parse(oReq.responseText))
+        }
+    })
+    //i would gladly have used fetch, but OBS local files wont support that :(
 }
 
 function init() {
@@ -212,17 +220,34 @@ function init() {
     usePips.addEventListener("click", pipsToggle);
     alwaysOnTopEl.addEventListener("click", alwaysOnTop);
     document.getElementById("copyMatch").addEventListener("click", copyMatch);
-    
+
     // load GUI settings
     const guiSettings = JSON.parse(fs.readFileSync(textPath + "/GUI Settings.json", "utf-8"));
-    if (guiSettings.allowIntro) {allowIntro.checked = true};
-    if (guiSettings.workshop) {workshopCheck.checked = true};
-    if (guiSettings.forceMM) {forceMM.checked = true};
-    if (guiSettings.forceHD) {forceHD.checked = true};
-    if (guiSettings.noLoAHD) {noLoAHDCheck.checked = true; noLoAHDCheck.disabled = false};
-    if (guiSettings.forceWL) {forceWL.click()};
-    if (guiSettings.usePips) {usePips.click()};
-    if (guiSettings.alwaysOnTop) {alwaysOnTopEl.click()};
+    if (guiSettings.allowIntro) {
+        allowIntro.checked = true
+    };
+    if (guiSettings.workshop) {
+        workshopCheck.checked = true
+    };
+    if (guiSettings.forceMM) {
+        forceMM.checked = true
+    };
+    if (guiSettings.forceHD) {
+        forceHD.checked = true
+    };
+    if (guiSettings.noLoAHD) {
+        noLoAHDCheck.checked = true;
+        noLoAHDCheck.disabled = false
+    };
+    if (guiSettings.forceWL) {
+        forceWL.click()
+    };
+    if (guiSettings.usePips) {
+        usePips.click()
+    };
+    if (guiSettings.alwaysOnTop) {
+        alwaysOnTopEl.click()
+    };
 
 
     /* Overlay */
@@ -251,7 +276,7 @@ function init() {
             charImgs[i].setAttribute('src', charPathRandom + '/P2.png');
         });
     }
-    
+
 
     //score tick listeners, to automatically check/uncheck the other ticks
     p1Win1.addEventListener("click", changeScoreTicks);
@@ -279,7 +304,7 @@ function init() {
     for (let i = 0; i < maxPlayers; i++) {
 
         //prepare the player finder (player presets)
-        preparePF(i+1);
+        preparePF(i + 1);
 
         //check if theres a player preset every time we type or click in the player box
         pNameInps[i].addEventListener("input", checkPlayerPreset);
@@ -294,7 +319,7 @@ function init() {
         //also do it for pronouns inputs while we're at it
         pPronounsInps[i].addEventListener("input", resizeInput);
     }
-    
+
 
     //set click listeners to change the "best of" status
     bo3Div.addEventListener("click", changeBestOf);
@@ -367,8 +392,12 @@ function init() {
     });
 
     //F1 or F2 to give players a score tick
-    Mousetrap.bind('f1', () => { giveWinP1() });
-    Mousetrap.bind('f2', () => { giveWinP2() });
+    Mousetrap.bind('f1', () => {
+        giveWinP1()
+    });
+    Mousetrap.bind('f2', () => {
+        giveWinP2()
+    });
 
     //up/down, to navigate the player presets menu (only when a menu is shown)
     Mousetrap.bind('down', () => {
@@ -394,7 +423,7 @@ function isPresetOpen() {
     for (let i = 0; i < pFinders.length; i++) {
         if (pFinders[i].style.display == "block") {
             theBool = true;
-        }   
+        }
     }
     return theBool;
 }
@@ -427,7 +456,7 @@ function getJson(jPath) {
 
 
 //calls the main settings file and fills a combo list
-function loadCharacters(firstRun=true) {
+function loadCharacters(firstRun = true) {
 
     //if the folder name contains '_Workshop' or 'Random', exclude it
     const characterList = fs.readdirSync(charPath).filter((name) => {
@@ -441,7 +470,7 @@ function loadCharacters(firstRun=true) {
     if (firstRun == false) {
         numberOfPlayers = 4;
     }
-    for (let i=0; i < numberOfPlayers; i++) {
+    for (let i = 0; i < numberOfPlayers; i++) {
 
         //use the character list to add entries
         addEntries(charLists[i], characterList);
@@ -456,7 +485,7 @@ function loadCharacters(firstRun=true) {
 
         //update the image to random, only for the first 2 players
         for (let i = 0; i < 2; i++) {
-            charImgChange(charImgs[i], "Random", "P2");       
+            charImgChange(charImgs[i], "Random", "P2");
         }
 
         //change the width to the current text
@@ -473,7 +502,7 @@ function charChange(list) {
 
     //we need to know from what player is this coming from somehow
     const pNum = list.id.substring(1, 2); //yes this is hella dirty
-    const skinList = skinLists[pNum-1];
+    const skinList = skinLists[pNum - 1];
 
     //load a new skin list
     loadSkins(skinList, currentChar);
@@ -485,9 +514,9 @@ function charChange(list) {
         if (skinList.selectedOptions[0]) {
             currentSkin = skinList.selectedOptions[0].text;
         }
-        charImgChange(charImgs[pNum-1], currentChar, currentSkin);
+        charImgChange(charImgs[pNum - 1], currentChar, currentSkin);
     }
-    
+
     //hide the skin dropdown if the list has 1 or less entries
     if (gamemode == 1 && (pNum == 3 || pNum == 4 || pNum == 7 || pNum == 8)) {
         //dont do this for players 3 and 4 if the gamemode is singles
@@ -498,7 +527,7 @@ function charChange(list) {
             skinList.style.display = "inline";
         }
     }
-    
+
 
     //check if the current player name has a custom skin for the character
     checkCustomSkin(pNum);
@@ -522,7 +551,7 @@ function skinChange(list) {
     const pNum = list.id.substring(1, 2);
 
     //which character is it?
-    const currentChar = charLists[pNum-1].selectedOptions[0].text;
+    const currentChar = charLists[pNum - 1].selectedOptions[0].text;
 
     //which skin is it?
     let currentSkin;
@@ -538,7 +567,7 @@ function skinChange(list) {
 
     //change the image with the current skin (if player 1 or 2)
     if (pNum < 3) {
-        charImgChange(charImgs[pNum-1], currentChar, currentSkin);
+        charImgChange(charImgs[pNum - 1], currentChar, currentSkin);
     }
 
     //change the width of the combo box depending on the text
@@ -581,7 +610,7 @@ function addEntries(comboList, list) {
 
 //deletes all entries of a given combo list
 function clearList(comboList) {
-    for(let i = comboList.length; i >= 0; i--) {
+    for (let i = comboList.length; i >= 0; i--) {
         comboList.remove(i);
     }
 }
@@ -592,7 +621,7 @@ function changeListWidth(list) {
         list.style.width = getTextWidth(list.selectedOptions[0].text,
             window.getComputedStyle(list).fontSize + " " +
             window.getComputedStyle(list).fontFamily
-            ) + 12 + "px";
+        ) + 12 + "px";
     } catch (error) {
         //do absolutely nothing
     }
@@ -634,7 +663,7 @@ function loadColors() {
         //create the color's name
         const newText = document.createElement('div');
         newText.innerHTML = colorList[i].name;
-        
+
         //create the color's rectangle
         const newRect = document.createElement('div');
         newRect.style.width = "13px";
@@ -652,11 +681,11 @@ function loadColors() {
         //copy the div we just created to add it to the right side
         const newDivR = newDiv.cloneNode(true);
         document.getElementById("dropdownColorR").appendChild(newDivR);
-        
+
         //if the divs get clicked, update the colors
         newDiv.addEventListener("click", updateColor);
         newDivR.addEventListener("click", updateColor);
-    
+
     }
 
     //set the initial colors for the interface (the first color for p1, and the second for p2)
@@ -673,9 +702,9 @@ function updateColor() {
     for (let i = 0; i < colorList.length; i++) {
         if (colorList[i].name == clickedColor) {
 
-            const colorRectangle = document.getElementById(side+"ColorRect");
-            const colorGrad = document.getElementById(side+"Side");
-            
+            const colorRectangle = document.getElementById(side + "ColorRect");
+            const colorGrad = document.getElementById(side + "Side");
+
             //change the variable that will be read when clicking the update button
             if (side == "l") {
                 colorL = colorList[i].name;
@@ -685,7 +714,7 @@ function updateColor() {
 
             //then change both the color rectangle and the background gradient
             colorRectangle.style.backgroundColor = colorList[i].hex;
-            colorGrad.style.backgroundImage = "linear-gradient(to bottom left, "+colorList[i].hex+"50, #00000000, #00000000)";
+            colorGrad.style.backgroundImage = "linear-gradient(to bottom left, " + colorList[i].hex + "50, #00000000, #00000000)";
         }
     }
 
@@ -734,24 +763,24 @@ function changeScoreTicks1() {
     const pNum = this == p1Win1 ? 1 : 2;
 
     //deactivate wins 2 and 3
-    document.getElementById('winP'+pNum+'-2').checked = false;
-    document.getElementById('winP'+pNum+'-3').checked = false;
+    document.getElementById('winP' + pNum + '-2').checked = false;
+    document.getElementById('winP' + pNum + '-3').checked = false;
 }
 //whenever clicking on the second score tick
 function changeScoreTicks2() {
     const pNum = this == p1Win2 ? 1 : 2;
 
     //deactivate win 3, activate win 1
-    document.getElementById('winP'+pNum+'-1').checked = true;
-    document.getElementById('winP'+pNum+'-3').checked = false;
+    document.getElementById('winP' + pNum + '-1').checked = true;
+    document.getElementById('winP' + pNum + '-3').checked = false;
 }
 //something something the third score tick
 function changeScoreTicks3() {
     const pNum = this == p1Win3 ? 1 : 2;
 
     //activate wins 1 and 2
-    document.getElementById('winP'+pNum+'-1').checked = true;
-    document.getElementById('winP'+pNum+'-2').checked = true;
+    document.getElementById('winP' + pNum + '-1').checked = true;
+    document.getElementById('winP' + pNum + '-2').checked = true;
 }
 
 
@@ -774,7 +803,7 @@ function checkScore(tick1, tick2, tick3) {
 
 //gives a victory to player 1 
 function giveWinP1() {
-    p1Score.value ++;
+    p1Score.value++;
     if (p1Win2.checked) {
         p1Win3.checked = true;
     } else if (p1Win1.checked) {
@@ -785,7 +814,7 @@ function giveWinP1() {
 }
 //same with P2
 function giveWinP2() {
-    p2Score.value ++;
+    p2Score.value++;
     if (p2Win2.checked) {
         p2Win3.checked = true;
     } else if (p2Win1.checked) {
@@ -811,6 +840,7 @@ function setWLP1() {
         p1W.style.backgroundImage = "var(--bg4)";
     }
 }
+
 function setWLP2() {
     if (this == p2W) {
         currentP2WL = "W";
@@ -841,14 +871,18 @@ function deactivateWL() {
 
 //player presets setup
 function preparePF(pNum) {
-    const pFinderEL = pFinders[pNum-1];
+    const pFinderEL = pFinders[pNum - 1];
 
     //if the mouse is hovering a player preset, let us know
-    pFinderEL.addEventListener("mouseenter", () => { inPF = true });
-    pFinderEL.addEventListener("mouseleave", () => { inPF = false });
+    pFinderEL.addEventListener("mouseenter", () => {
+        inPF = true
+    });
+    pFinderEL.addEventListener("mouseleave", () => {
+        inPF = false
+    });
 
     //hide the player presets menu if text input loses focus
-    pNameInps[pNum-1].addEventListener("focusout", () => {
+    pNameInps[pNum - 1].addEventListener("focusout", () => {
         if (!inPF) { //but not if the mouse is hovering a player preset
             pFinderEL.style.display = "none";
         }
@@ -863,7 +897,7 @@ function checkPlayerPreset() {
 
     //player check once again
     const pNum = this.id.substring(1, 2);
-    const pFinderEL = pFinders[pNum-1];
+    const pFinderEL = pFinders[pNum - 1];
 
     //clear the current list each time we type
     pFinderEL.innerHTML = "";
@@ -893,7 +927,7 @@ function checkPlayerPreset() {
                     const newDiv = document.createElement('div');
                     newDiv.className = "finderEntry";
                     newDiv.addEventListener("click", playerPreset);
-                    
+
                     //create the texts for the div, starting with the tag
                     const spanTag = document.createElement('span');
                     //if the tag is empty, dont do anything
@@ -907,26 +941,26 @@ function checkPlayerPreset() {
                     spanName.innerHTML = playerInfo.name;
                     spanName.className = "pfName";
 
-                     //create the texts for the div, starting with the tag
-                     const spanTwitter = document.createElement('span');
-                     //if the twitter is empty, dont do anything
-                     if (playerInfo.twitter) {
-                         // spanTag.innerHTML = playerInfo.twitter;
-                         // spanTag.className = "pfTwitter";
-                     } else {
-                         playerInfo.twitter = "";
-                     }
- 
- 
-                     //create the texts for the div, starting with the tag
-                     const spanPronouns = document.createElement('span');
-                     //if the twitter is empty, dont do anything
-                     if (playerInfo.pronouns) {
-                         // spanTag.innerHTML = playerInfo.pronouns;
-                         // spanTag.className = "pfPronouns";
-                     } else {
-                         playerInfo.pronouns = "";
-                     }
+                    //create the texts for the div, starting with the tag
+                    const spanTwitter = document.createElement('span');
+                    //if the twitter is empty, dont do anything
+                    if (playerInfo.twitter) {
+                        // spanTag.innerHTML = playerInfo.twitter;
+                        // spanTag.className = "pfTwitter";
+                    } else {
+                        playerInfo.twitter = "";
+                    }
+
+
+                    //create the texts for the div, starting with the tag
+                    const spanPronouns = document.createElement('span');
+                    //if the twitter is empty, dont do anything
+                    if (playerInfo.pronouns) {
+                        // spanTag.innerHTML = playerInfo.pronouns;
+                        // spanTag.className = "pfPronouns";
+                    } else {
+                        playerInfo.pronouns = "";
+                    }
 
                     //player character
                     const spanChar = document.createElement('span');
@@ -936,7 +970,7 @@ function checkPlayerPreset() {
                     if (char.character == "Random") {
                         char.skin = "P2"
                     }
-                    
+
                     //we will use css variables to store data to read when clicked
                     newDiv.style.setProperty("--tag", playerInfo.tag);
                     newDiv.style.setProperty("--name", playerInfo.name);
@@ -959,7 +993,7 @@ function checkPlayerPreset() {
                     //actual image
                     const charImg = document.createElement('img');
                     charImg.className = "pfCharImg";
-                    charImg.setAttribute('src', charPath+'/'+char.character+'/'+char.skin+'.png');
+                    charImg.setAttribute('src', charPath + '/' + char.character + '/' + char.skin + '.png');
                     //we have to position it
                     positionChar(char.character, char.skin, charImg);
                     //and add it to the mask
@@ -981,38 +1015,38 @@ async function positionChar(character, skin, charEL) {
 
     //get the character positions
     const charInfo = getJson(charPath + "/" + character + "/_Info");
-	
-	//             x, y, scale
-	let charPos = [0, 0, 1];
-	//now, check if the character and skin exist in the database down there
-	if (charInfo != null) {
-		if (charInfo.gui[skin]) { //if the skin has a specific position
-			charPos[0] = charInfo.gui[skin].x;
-			charPos[1] = charInfo.gui[skin].y;
-			charPos[2] = charInfo.gui[skin].scale;
-		} else { //if none of the above, use a default position
-			charPos[0] = charInfo.gui.neutral.x;
-			charPos[1] = charInfo.gui.neutral.y;
-			charPos[2] = charInfo.gui.neutral.scale;
-		}
-	} else { //if the character isnt on the database, set positions for the "?" image
-		charPos[0] = 0;
+
+    //             x, y, scale
+    let charPos = [0, 0, 1];
+    //now, check if the character and skin exist in the database down there
+    if (charInfo != null) {
+        if (charInfo.gui[skin]) { //if the skin has a specific position
+            charPos[0] = charInfo.gui[skin].x;
+            charPos[1] = charInfo.gui[skin].y;
+            charPos[2] = charInfo.gui[skin].scale;
+        } else { //if none of the above, use a default position
+            charPos[0] = charInfo.gui.neutral.x;
+            charPos[1] = charInfo.gui.neutral.y;
+            charPos[2] = charInfo.gui.neutral.scale;
+        }
+    } else { //if the character isnt on the database, set positions for the "?" image
+        charPos[0] = 0;
         charPos[1] = 0;
         charPos[2] = 1.2;
-	}
-    
+    }
+
     //to position the character
     charEL.style.left = charPos[0] + "px";
     charEL.style.top = charPos[1] + "px";
     charEL.style.transform = "scale(" + charPos[2] + ")";
-    
+
     //if the image fails to load, we will put a placeholder
-	charEL.addEventListener("error", () => {
+    charEL.addEventListener("error", () => {
         charEL.setAttribute('src', charPathRandom + '/P2.png');
         charEL.style.left = "0px";
         charEL.style.top = "-2px";
         charEL.style.transform = "scale(1.2)";
-	});
+    });
 }
 
 //called when the user clicks on a player preset
@@ -1042,7 +1076,7 @@ function playerPreset() {
     skinChange(skinLists[pNum]);
 
     try {
-        checkCustomSkin(pNum+1);
+        checkCustomSkin(pNum + 1);
     } catch {
 
     }
@@ -1072,7 +1106,7 @@ function checkCustomSkin(pNum) {
 
     //get the player preset list for the current text
     const playerList = getJson(textPath + "/Player Info/" + pNameInps[pNum].value);
-    
+
     if (playerList != null) { //safety check
 
         playerList.characters.forEach(char => { //for each possible character
@@ -1104,7 +1138,7 @@ function changeInputWidth(input) {
     input.style.width = getTextWidth(input.value,
         window.getComputedStyle(input).fontSize + " " +
         window.getComputedStyle(input).fontFamily
-        ) + 12 + "px";
+    ) + 12 + "px";
 }
 //same code as above but just for listeners
 function resizeInput() {
@@ -1164,13 +1198,20 @@ function checkRound() {
 
     if (this.value.indexOf("Round") != -1 || this.value.indexOf("First to") != -1) { //If winners round or losers round, add the field in.
         roundNumberElement.style.display = "inline";
+
+    } else {
+        roundNumberElement.style.display = "none";
+    }
+
+    if (this.value.indexOf("First to") != -1) {
         usePips.checked = false;
         usePips.disabled = true;
     } else {
-        roundNumberElement.style.display = "none";
         // usePips.checked = true;
         usePips.disabled = false;
     }
+
+
     pipsToggle();
 
     if (!forceWL.checked && this.id != "onDeckRoundName") {
@@ -1193,13 +1234,13 @@ function changeGamemode() {
 
     //things are about to get messy
     if (gamemode == 1) {
-        
+
         gamemode = 2;
 
         //show singles icon
         gmIcon2.style.opacity = 0;
-        gmIcon1.style.left = "11px"; 
-        
+        gmIcon1.style.left = "11px";
+
         //hide the background character image to reduce clutter
         charImgs[0].style.opacity = 0;
         charImgs[1].style.opacity = 0;
@@ -1215,26 +1256,26 @@ function changeGamemode() {
         rColor.style.borderBottomLeftRadius = "3px";
 
         for (let i = 1; i < 3; i++) {
-            document.getElementById("row1-"+i).insertAdjacentElement("afterbegin", wlButtons[i-1]);
-            document.getElementById("row1-"+i).insertAdjacentElement("afterbegin", document.getElementById('scoreBox'+i));
-            
-            document.getElementById("scoreText"+i).style.display = "none";
+            document.getElementById("row1-" + i).insertAdjacentElement("afterbegin", wlButtons[i - 1]);
+            document.getElementById("row1-" + i).insertAdjacentElement("afterbegin", document.getElementById('scoreBox' + i));
 
-            tNameInps[i-1].style.display = "block";
+            document.getElementById("scoreText" + i).style.display = "none";
 
-            document.getElementById("row1-"+i).insertAdjacentElement("afterbegin", tNameInps[i-1]);
+            tNameInps[i - 1].style.display = "block";
 
-            document.getElementById('row2-'+i).insertAdjacentElement("beforeend", document.getElementById('pInfo'+i));
+            document.getElementById("row1-" + i).insertAdjacentElement("afterbegin", tNameInps[i - 1]);
 
-            charLists[i+1].style.display = "block";
-            if (skinLists[i+1].options.length <= 1) {
-                skinLists[i+1].style.display = "none";
+            document.getElementById('row2-' + i).insertAdjacentElement("beforeend", document.getElementById('pInfo' + i));
+
+            charLists[i + 1].style.display = "block";
+            if (skinLists[i + 1].options.length <= 1) {
+                skinLists[i + 1].style.display = "none";
             } else {
-                skinLists[i+1].style.display = "block";
+                skinLists[i + 1].style.display = "block";
             }
 
-            document.getElementById('pInfo'+(i+2)).style.display = "block";
-            document.getElementById('pInfo'+(i+6)).style.display = "block";
+            document.getElementById('pInfo' + (i + 2)).style.display = "block";
+            document.getElementById('pInfo' + (i + 6)).style.display = "block";
         }
 
         //add some left margin to the name/tag inputs, add border radius, change max width
@@ -1246,7 +1287,7 @@ function changeGamemode() {
 
             pTagInps[i].style.maxWidth = "45px"
             pNameInps[i].style.maxWidth = "94px"
-            
+
             charLists[i].style.maxWidth = "65px";
             skinLists[i].style.maxWidth = "65px";
         }
@@ -1256,7 +1297,7 @@ function changeGamemode() {
         this.setAttribute('title', "Change the gamemode to Singles");
 
         //dropdown menus for the right side will now be positioned to the right
-        for (let i = 1; i < 5; i+=2) {
+        for (let i = 1; i < 5; i += 2) {
             pFinders[i].style.right = "0px";
             pFinders[i].style.left = "";
         }
@@ -1280,25 +1321,25 @@ function changeGamemode() {
         const rColor = document.getElementById("rColor");
         rColor.style.marginLeft = "0px";
         rColor.style.borderTopLeftRadius = "0px";
-        rColor.style.borderBottomLeftRadius = "0px";        
+        rColor.style.borderBottomLeftRadius = "0px";
 
         //move everything back to normal
         for (let i = 1; i < 3; i++) {
-            charImgs[i-1].style.opacity = 1;
+            charImgs[i - 1].style.opacity = 1;
 
-            tNameInps[i-1].style.display = "none";
-            charLists[i+1].style.display = "none";
-            skinLists[i+1].style.display = "none";
+            tNameInps[i - 1].style.display = "none";
+            charLists[i + 1].style.display = "none";
+            skinLists[i + 1].style.display = "none";
 
-            document.getElementById('pInfo'+(i+2)).style.display = "none";
-            document.getElementById('pInfo'+(i+6)).style.display = "none";
+            document.getElementById('pInfo' + (i + 2)).style.display = "none";
+            document.getElementById('pInfo' + (i + 6)).style.display = "none";
 
-            document.getElementById("row3-"+i).insertAdjacentElement("afterbegin", wlButtons[i-1]);
-            document.getElementById("row3-"+i).insertAdjacentElement("afterbegin", document.getElementById('scoreBox'+i));
-            document.getElementById("scoreText"+i).style.display = "block";
-        
-            document.getElementById('row1-'+i).insertAdjacentElement("afterbegin", document.getElementById('pInfo'+i));
-        
+            document.getElementById("row3-" + i).insertAdjacentElement("afterbegin", wlButtons[i - 1]);
+            document.getElementById("row3-" + i).insertAdjacentElement("afterbegin", document.getElementById('scoreBox' + i));
+            document.getElementById("scoreText" + i).style.display = "block";
+
+            document.getElementById('row1-' + i).insertAdjacentElement("afterbegin", document.getElementById('pInfo' + i));
+
         }
 
         for (let i = 0; i < maxPlayers; i++) {
@@ -1309,7 +1350,7 @@ function changeGamemode() {
 
             pTagInps[i].style.maxWidth = "70px"
             pNameInps[i].style.maxWidth = "173px"
-            
+
             charLists[i].style.maxWidth = "141px";
             skinLists[i].style.maxWidth = "141px";
         }
@@ -1317,7 +1358,7 @@ function changeGamemode() {
         this.setAttribute('title', "Change the gamemode to Doubles");
 
         //dropdown menus for the right side will now be positioned to the left
-        for (let i = 1; i < 5; i+=2) {
+        for (let i = 1; i < 5; i += 2) {
             pFinders[i].style.left = "0px";
             pFinders[i].style.right = "";
         }
@@ -1457,14 +1498,14 @@ function swap() {
     tNameInps[0].value = tNameInps[1].value;
     tNameInps[1].value = teamStore;
 
-    for (let i = 0; i < maxPlayers; i+=2) {
+    for (let i = 0; i < maxPlayers; i += 2) {
 
         //names
         const nameStore = pNameInps[i].value;
-        pNameInps[i].value = pNameInps[i+1].value;
-        pNameInps[i+1].value = nameStore;
+        pNameInps[i].value = pNameInps[i + 1].value;
+        pNameInps[i + 1].value = nameStore;
         changeInputWidth(pNameInps[i]);
-        changeInputWidth(pNameInps[i+1]);
+        changeInputWidth(pNameInps[i + 1]);
 
         //twitter
         const twitterStore = pTwitterInps[i].value;
@@ -1482,16 +1523,16 @@ function swap() {
 
         //tags
         const tagStore = pTagInps[i].value;
-        pTagInps[i].value = pTagInps[i+1].value;
-        pTagInps[i+1].value = tagStore;
+        pTagInps[i].value = pTagInps[i + 1].value;
+        pTagInps[i + 1].value = tagStore;
         changeInputWidth(pTagInps[i]);
-        changeInputWidth(pTagInps[i+1]);
+        changeInputWidth(pTagInps[i + 1]);
 
 
         //characters and skins
         const tempP1Char = charLists[i].selectedOptions[0].text;
-        const tempP2Char = charLists[i+1].selectedOptions[0].text;
-        
+        const tempP2Char = charLists[i + 1].selectedOptions[0].text;
+
         //we need to perform this check since the program would halt when reading from null
         let p1RealSkin, p2RealSkin;
         try {
@@ -1500,7 +1541,7 @@ function swap() {
             p1RealSkin = "";
         }
         try {
-            p2RealSkin = skinLists[i+1].selectedOptions[0].text
+            p2RealSkin = skinLists[i + 1].selectedOptions[0].text
         } catch (error) {
             p2RealSkin = "";
         }
@@ -1509,21 +1550,21 @@ function swap() {
         const tempP2Skin = p2RealSkin;
 
         changeListValue(charLists[i], tempP2Char);
-        changeListValue(charLists[i+1], tempP1Char);
+        changeListValue(charLists[i + 1], tempP1Char);
         //the change event doesnt fire up on its own so we have to change the image ourselves
         charChange(charLists[i]);
-        charChange(charLists[i+1]);
+        charChange(charLists[i + 1]);
 
         //same but for skins
         changeListValue(skinLists[i], tempP2Skin);
-        changeListValue(skinLists[i+1], tempP1Skin);
+        changeListValue(skinLists[i + 1], tempP1Skin);
         skinChange(skinLists[i]);
-        skinChange(skinLists[i+1]);
+        skinChange(skinLists[i + 1]);
 
         //find out if the swapped skin is a custom one
-        checkCustomSkin(i+1);
-        checkCustomSkin(i+2);
-    }    
+        checkCustomSkin(i + 1);
+        checkCustomSkin(i + 2);
+    }
 
     //scores
     // const tempP1Score = checkScore(p1Win1, p1Win2, p1Win3);
@@ -1554,7 +1595,7 @@ function clearPlayers() {
 
     //clear the team names
     for (let i = 0; i < tNameInps.length; i++) {
-        tNameInps[i].value = "";        
+        tNameInps[i].value = "";
     }
 
     for (let i = 0; i < 4; i++) {
@@ -1634,10 +1675,10 @@ function workshopToggle() {
 
     // set a new character path
     charPath = this.checked ? charPathWork : charPathBase;
-    
+
     //clear current character lists
     for (let i = 0; i < maxPlayers; i++) {
-        clearList(charLists[i])        
+        clearList(charLists[i])
     }
     //then reload character lists
     loadCharacters();
@@ -1685,9 +1726,9 @@ function pipsToggle() {
 
     // // Shows the Bo3 and Bo5
     if (usePips.checked) {
-        for (var i=1; i<3;i++) {
-            for (var j=1; j<4; j++) {
-                if (j==3 && currentBestOf == "Bo3") {
+        for (var i = 1; i < 3; i++) {
+            for (var j = 1; j < 4; j++) {
+                if (j == 3 && currentBestOf == "Bo3") {
                     continue;
                 }
                 document.getElementById('winP' + i + '-' + j).style.display = "block";
@@ -1700,8 +1741,8 @@ function pipsToggle() {
         p1Score.style.display = 'none';
         p2Score.style.display = 'none';
     } else {
-        for (var i=1; i<3;i++) {
-            for (var j=1; j<4; j++) {
+        for (var i = 1; i < 3; i++) {
+            for (var j = 1; j < 4; j++) {
                 document.getElementById('winP' + i + '-' + j).style.display = "none";
             }
         }
@@ -1751,11 +1792,11 @@ function copyMatch() {
         if (pTagInps[0].value) {
             copiedText += pTagInps[0].value + " | ";
         }
-        copiedText += pNameInps[0].value + " (" + charLists[0].selectedOptions[0].text +") VS ";
+        copiedText += pNameInps[0].value + " (" + charLists[0].selectedOptions[0].text + ") VS ";
         if (pTagInps[1].value) {
             copiedText += pTagInps[1].value + " | ";
         }
-        copiedText += pNameInps[1].value + " (" + charLists[1].selectedOptions[0].text +")";
+        copiedText += pNameInps[1].value + " (" + charLists[1].selectedOptions[0].text + ")";
     } else { //for team matches
         copiedText += tNameInps[0].value + " VS " + tNameInps[1].value;
     }
@@ -1766,7 +1807,7 @@ function copyMatch() {
 
 // called whenever the used clicks on a settings checkbox
 function saveGUISettings() {
-    
+
     // read the file
     const guiSettings = JSON.parse(fs.readFileSync(textPath + "/GUI Settings.json", "utf-8"));
 
@@ -1798,7 +1839,10 @@ function updatePlayerJson(player) {
             "twitter": player.twitter,
             "pronouns": player.pronouns,
             "tag": player.tag,
-            "characters": [{ "character": player.character, "skin": player.skin }]
+            "characters": [{
+                "character": player.character,
+                "skin": player.skin
+            }]
         }
     } else {
         playerInfo.twitter = player.twitter;
@@ -1815,7 +1859,10 @@ function updatePlayerJson(player) {
         }
 
         if (newCharacter == true) {
-            playerInfo.characters.push({ "character": player.character, "skin": player.skin });
+            playerInfo.characters.push({
+                "character": player.character,
+                "skin": player.skin
+            });
         }
     }
 
@@ -1933,9 +1980,9 @@ function writeScoreboard() {
     //do the same for the casters
     for (let i = 0; i < casters.length; i++) {
         scoreboardJson.caster.push({
-            name: document.getElementById('cName'+(i+1)).value,
-            twitter: document.getElementById('cTwitter'+(i+1)).value,
-            twitch: document.getElementById('cTwitch'+(i+1)).value,
+            name: document.getElementById('cName' + (i + 1)).value,
+            twitter: document.getElementById('cTwitter' + (i + 1)).value,
+            twitch: document.getElementById('cTwitch' + (i + 1)).value,
         })
     }
 
@@ -1946,7 +1993,7 @@ function writeScoreboard() {
 
     //simple .txt files
     for (let i = 0; i < 4; i++) {
-        fs.writeFileSync(textPath + "/Simple Texts/Player "+(i+1)+".txt", pNameInps[i].value, encoding);        
+        fs.writeFileSync(textPath + "/Simple Texts/Player " + (i + 1) + ".txt", pNameInps[i].value, encoding);
     }
 
     fs.writeFileSync(textPath + "/Simple Texts/Team 1.txt", tNameInps[0].value, encoding);
@@ -1959,9 +2006,9 @@ function writeScoreboard() {
     fs.writeFileSync(textPath + "/Simple Texts/Tournament Name.txt", tournamentInp.value, encoding);
 
     for (let i = 0; i < casters.length; i++) {
-        fs.writeFileSync(textPath + "/Simple Texts/Caster "+(i+1)+" Name.txt", document.getElementById('cName'+(i+1)).value, encoding);
-        fs.writeFileSync(textPath + "/Simple Texts/Caster "+(i+1)+" Twitter.txt", document.getElementById('cTwitter'+(i+1)).value, encoding);
-        fs.writeFileSync(textPath + "/Simple Texts/Caster "+(i+1)+" Twitch.txt", document.getElementById('cTwitch'+(i+1)).value, encoding);    
+        fs.writeFileSync(textPath + "/Simple Texts/Caster " + (i + 1) + " Name.txt", document.getElementById('cName' + (i + 1)).value, encoding);
+        fs.writeFileSync(textPath + "/Simple Texts/Caster " + (i + 1) + " Twitter.txt", document.getElementById('cTwitter' + (i + 1)).value, encoding);
+        fs.writeFileSync(textPath + "/Simple Texts/Caster " + (i + 1) + " Twitch.txt", document.getElementById('cTwitch' + (i + 1)).value, encoding);
     }
 
 
