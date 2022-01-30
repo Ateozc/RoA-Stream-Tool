@@ -122,7 +122,7 @@ async function getData(scInfo) {
 	
 	// set the current char path
 	if (workshopPrev != workshop) {
-		workshop ? charPath = charPathWork : charPath = charPathBase;
+		charPath = workshop ? charPathWork : charPathBase;
 		// save the current workshop status so we know when it changes next time
 		workshopPrev = workshop;
 	}

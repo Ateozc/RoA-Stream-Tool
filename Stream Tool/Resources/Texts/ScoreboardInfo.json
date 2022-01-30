@@ -5,16 +5,16 @@
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Random",
-      "skin": ""
+      "character": "Pomme",
+      "skin": "Default"
     },
     {
       "name": "",
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Random",
-      "skin": ""
+      "character": "Tenru",
+      "skin": "Default"
     },
     {
       "name": "",
@@ -42,8 +42,8 @@
     "Blue"
   ],
   "score": [
-    "0",
-    "0"
+    0,
+    0
   ],
   "wl": [
     "Nada",
@@ -66,9 +66,9 @@
     }
   ],
   "allowIntro": true,
-  "workshop": false,
+  "workshop": true,
   "forceMM": true,
-  "forceHD": true,
+  "forceHD": false,
   "noLoAHD": false,
   "forceWL": false,
   "usePips": true,

@@ -548,7 +548,7 @@ function skinChangeL() {
 //change the image path depending on the character and skin
 function charImgChange(charImg, charName, skinName) {
     if (charName == "Random") {
-        charImg.setAttribute('src', charPath + '/' + charName + '/P2.png');
+        charImg.setAttribute('src', charPathRandom + '/P2.png');
     } else {
         charImg.setAttribute('src', charPath + '/' + charName + '/' + skinName + '.png');
     }
@@ -1663,9 +1663,12 @@ function workshopToggle() {
 
     //change the Main Menu button for a CSS button
     if (this.checked) {
+        forceHD.checked = false;
+        forceHD.disabled = true;
         document.getElementById('mmText').innerText = "CSS renders in Scoreboard"
         document.getElementById('mmText').title = "Forces showing the Character Select Screen\nrenders (if any) on 'RoA Scoreboard.html'."
     } else {
+        forceHD.disabled = false;
         document.getElementById('mmText').innerText = "Main Menu renders in Scoreboard"
         document.getElementById('mmText').title = "Forces showing the 'Main Menu' character\nrenders on 'RoA Scoreboard.html'."
     }
