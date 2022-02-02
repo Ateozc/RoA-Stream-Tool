@@ -5,7 +5,7 @@
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Pomme",
+      "character": "Olympia",
       "skin": "Default"
     },
     {
@@ -13,7 +13,7 @@
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Tenru",
+      "character": "Mollo",
       "skin": "Default"
     },
     {
@@ -65,10 +65,10 @@
       "twitch": ""
     }
   ],
-  "allowIntro": true,
-  "workshop": true,
+  "allowIntro": false,
+  "workshop": false,
   "forceMM": true,
-  "forceHD": false,
+  "forceHD": true,
   "noLoAHD": false,
   "forceWL": false,
   "usePips": true,

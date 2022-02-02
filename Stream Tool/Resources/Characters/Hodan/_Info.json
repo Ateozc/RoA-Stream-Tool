@@ -1,0 +1,61 @@
+{
+    "skinList": [
+        "Default",
+        "Blue",
+        "Red",
+        "Green",
+        "Grey",
+        "Purple",
+        "Abyss",
+        "Early Access",
+        "Donkey Kong",
+		"Trans Rights",
+		"White",
+		"Blanka",
+		"Uh Oh",
+		"Champion",
+		"Golden",
+		"Ambi"
+    ],
+    "scoreboard": {
+        "neutral": {
+            "x": -5,
+            "y": 5,
+            "scale": 3.6
+        },
+        "mainMenu": {
+            "x": -50,
+            "y": 40,
+            "scale": 4.4
+        },        
+        "HD": {
+            "x": 12,
+            "y": 78,
+            "scale": 4.5
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -575,
+            "y": -50,
+            "scale": 1.25
+        },
+        "HD": {
+            "x": -725,
+            "y": 100,
+            "scale": 1.5
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": -5,
+            "y": 5,
+            "scale": 4.5
+        },
+        "HD": {
+            "x": 6,
+            "y": 0,
+            "scale": 5.5
+        }
+    }
+}

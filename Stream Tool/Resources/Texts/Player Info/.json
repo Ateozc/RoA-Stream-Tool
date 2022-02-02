@@ -70,6 +70,18 @@
     {
       "character": "Pomme",
       "skin": "Default"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Blue"
+    },
+    {
+      "character": "Olympia",
+      "skin": "Default"
+    },
+    {
+      "character": "Elliana",
+      "skin": "Default"
     }
   ],
   "pronouns": ""
