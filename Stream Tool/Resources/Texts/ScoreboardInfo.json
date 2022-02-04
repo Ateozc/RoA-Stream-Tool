@@ -1,20 +1,20 @@
 {
   "player": [
     {
-      "name": "Ateozc",
-      "twitter": "@ateozc",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
-      "character": "Hodan",
-      "skin": "Default"
+      "character": "Random",
+      "skin": ""
     },
     {
-      "name": "Foxtrot",
-      "twitter": "@AuralisFoxtrot",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
-      "character": "Olympia",
-      "skin": "Citrine"
+      "character": "Random",
+      "skin": ""
     },
     {
       "name": "",
@@ -49,10 +49,10 @@
     "Nada",
     "Nada"
   ],
-  "bestOf": "Bo3",
+  "bestOf": "Bo5",
   "gamemode": 1,
   "round": "Friendlies",
-  "tournamentName": "",
+  "tournamentName": "Snow Day",
   "caster": [
     {
       "name": "",
@@ -65,7 +65,7 @@
       "twitch": ""
     }
   ],
-  "allowIntro": false,
+  "allowIntro": true,
   "workshop": false,
   "forceMM": true,
   "forceHD": true,

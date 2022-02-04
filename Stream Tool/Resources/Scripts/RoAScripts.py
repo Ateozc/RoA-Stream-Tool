@@ -2,7 +2,9 @@ import os
 import sys
 import json
 import shutil
+import logging
 from RoADictionary import *
+
 
 def get_player_string(player):
     string = ''
@@ -155,23 +157,27 @@ def update_scores(player1Score, player2Score):
 
 
 def rename_files():
-    if os.path.isfile(set_data_loc) == False:
-        return
-    set_data_file = open(set_data_loc, "r+", encoding='utf-8-sig')
-    set_data_json = json.load(set_data_file)
-    set_data_file.close()
+    try:
+        if os.path.isfile(set_data_loc) == False:
+            return
+        set_data_file = open(set_data_loc, "r+", encoding='utf-8-sig')
+        set_data_json = json.load(set_data_file)
+        set_data_file.close()
 
-    tournament = set_data_json['tournamentName']
-    round = set_data_json['round']
-    player1 = set_data_json['player'][0]
-    player2 = set_data_json['player'][1]
+        tournament = set_data_json['tournamentName']
+        round = set_data_json['round']
+        player1 = set_data_json['player'][0]
+        player2 = set_data_json['player'][1]
 
-    newfilename = tournament + ' - ' + round + ' - ' + get_player_string_v2(player1) + ' Vs ' + get_player_string_v2(player2)
-    tournament_recordings_dir = recordings_dir + "/" + tournament + '/'
-    if os.path.isdir(tournament_recordings_dir) == False:
-        os.mkdir(tournament_recordings_dir)
-        
-    for count, filename in enumerate(os.listdir(recordings_dir)):
-        file_name, file_extension = os.path.splitext(filename)
-        if file_extension == '.png' or file_extension == '.flv' or file_extension == '.mp4':
-            shutil.move(recordings_dir + filename, recordings_dir + tournament + '/' + newfilename + file_extension)
+        newfilename = tournament + ' - ' + round + ' - ' + get_player_string_v2(player1) + ' Vs ' + get_player_string_v2(player2)
+        tournament_recordings_dir = recordings_dir + "/" + tournament + '/'
+        if os.path.isdir(tournament_recordings_dir) == False:
+            os.mkdir(tournament_recordings_dir)
+            
+        for count, filename in enumerate(os.listdir(recordings_dir)):
+            file_name, file_extension = os.path.splitext(filename)
+            if file_extension == '.png' or file_extension == '.flv' or file_extension == '.mp4':
+                shutil.move(recordings_dir + filename, recordings_dir + tournament + '/' + newfilename + file_extension)
+    except BaseException as err:
+        logging.basicConfig(filename='error.log', encoding='utf-8', level=logging.DEBUG)
+        logging.error("Error occurred while renaming files: " + err)

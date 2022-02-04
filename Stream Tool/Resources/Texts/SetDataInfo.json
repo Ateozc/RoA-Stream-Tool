@@ -1,49 +1,11 @@
 {
   "player": [
     {
-      "name": "Ateozc",
-      "twitter": "@ateozc",
-      "pronouns": "He/Him",
-      "tag": "",
-      "characters": [
-        "Olympia",
-        "Hodan"
-      ]
-    },
-    {
-      "name": "Foxtrot",
-      "twitter": "@AuralisFoxtrot",
-      "pronouns": "He/Him",
-      "tag": "",
-      "characters": [
-        "Olympia"
-      ]
-    },
-    {
       "name": "",
       "twitter": "",
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Elliana",
-        "Tenru",
-        "Mayu Ashikaga",
-        "N⁄A",
-        "Nade",
-        "Cosign",
-        "Acid Rainbows",
-        "Lumina",
-        "Cinnamon",
-        "Lyca",
-        "Astra",
-        "Chef",
-        "Epinel",
-        "Fox",
-        "Absa",
-        "Hodan",
-        "Pomme",
-        "Mollo",
-        "Olympia",
         "Random"
       ]
     },
@@ -53,29 +15,28 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Elliana",
-        "Tenru",
-        "Mayu Ashikaga",
-        "N⁄A",
-        "Nade",
-        "Cosign",
-        "Acid Rainbows",
-        "Lumina",
-        "Cinnamon",
-        "Lyca",
-        "Astra",
-        "Chef",
-        "Epinel",
-        "Fox",
-        "Absa",
-        "Hodan",
-        "Pomme",
-        "Mollo",
-        "Olympia",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
         "Random"
       ]
     }
   ],
-  "tournamentName": "",
+  "tournamentName": "Snow Day",
   "round": "Friendlies"
 }

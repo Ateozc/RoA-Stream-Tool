@@ -1566,6 +1566,8 @@ function swap() {
 
 function clearPlayers() {
 
+
+
     //clear the team names
     for (let i = 0; i < tNameInps.length; i++) {
         tNameInps[i].value = "";
@@ -1601,6 +1603,9 @@ function clearPlayers() {
     for (let i = 0; i < checks.length; i++) {
         checks[i].checked = false;
     }
+
+    p1Score.value = 0;
+    p2Score.value = 0;
 
     if (usePythonForClearingSetData) {
         //Clear related set data
