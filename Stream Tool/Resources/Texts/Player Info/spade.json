@@ -5,7 +5,7 @@
   "characters": [
     {
       "character": "Sylvanos",
-      "skin": "White"
+      "skin": "Genesis"
     },
     {
       "character": "Wrastor",
@@ -18,6 +18,10 @@
     {
       "character": "Zetterburn",
       "skin": "Purple"
+    },
+    {
+      "character": "Olympia",
+      "skin": "Default"
     }
   ],
   "pronouns": "He/Him"

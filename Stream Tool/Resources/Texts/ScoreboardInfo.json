@@ -1,20 +1,20 @@
 {
   "player": [
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "Dandy",
+      "twitter": "@john_is_online",
+      "pronouns": "He/Him",
       "tag": "",
-      "character": "Random",
-      "skin": ""
+      "character": "Mollo",
+      "skin": "Default"
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "GammaStar",
+      "twitter": "@GammaStar17",
+      "pronouns": "He/They",
       "tag": "",
-      "character": "Random",
-      "skin": ""
+      "character": "Pomme",
+      "skin": "Default"
     },
     {
       "name": "",
@@ -49,10 +49,10 @@
     "Nada",
     "Nada"
   ],
-  "bestOf": "Bo5",
+  "bestOf": "Bo3",
   "gamemode": 1,
   "round": "Friendlies",
-  "tournamentName": "Snow Day",
+  "tournamentName": "",
   "caster": [
     {
       "name": "",

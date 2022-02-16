@@ -1,21 +1,21 @@
 {
   "player": [
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "Dandy",
+      "twitter": "@john_is_online",
+      "pronouns": "He/Him",
       "tag": "",
       "characters": [
-        "Random"
+        "Mollo"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "GammaStar",
+      "twitter": "@GammaStar17",
+      "pronouns": "He/They",
       "tag": "",
       "characters": [
-        "Random"
+        "Pomme"
       ]
     },
     {
@@ -37,6 +37,6 @@
       ]
     }
   ],
-  "tournamentName": "Snow Day",
+  "tournamentName": "",
   "round": "Friendlies"
 }

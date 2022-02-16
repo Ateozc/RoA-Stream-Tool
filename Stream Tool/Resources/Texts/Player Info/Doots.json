@@ -1,0 +1,36 @@
+{
+  "name": "Doots",
+  "twitter": "",
+  "pronouns": "",
+  "tag": "LITE",
+  "characters": [
+    {
+      "character": "Orcane",
+      "skin": "Red"
+    },
+    {
+      "character": "Mollo",
+      "skin": "Default"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "Default"
+    },
+    {
+      "character": "Olympia",
+      "skin": "Default"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Default"
+    },
+    {
+      "character": "Etalus",
+      "skin": "Default"
+    },
+    {
+      "character": "Forsburn",
+      "skin": "Valentines"
+    }
+  ]
+}
