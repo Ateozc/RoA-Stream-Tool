@@ -6,7 +6,8 @@
   "characters": [
     {
       "character": "Kragg",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ]
 }

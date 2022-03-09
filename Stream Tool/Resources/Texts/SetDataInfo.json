@@ -1,20 +1,23 @@
 {
   "player": [
     {
-      "name": "Dandy",
-      "twitter": "@john_is_online",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
       "characters": [
-        "Mollo"
-      ]
-    },
-    {
-      "name": "GammaStar",
-      "twitter": "@GammaStar17",
-      "pronouns": "He/They",
-      "tag": "",
-      "characters": [
+        "Elliana",
+        "Hodan",
+        "Bluey",
+        "Mycolich",
+        "Fox",
+        "Cupcake",
+        "Mollo",
+        "Epinel",
+        "NA",
+        "Astra",
+        "Random",
+        "Clairen",
         "Pomme"
       ]
     },
@@ -24,7 +27,19 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Random"
+        "Pomme",
+        "Hodan",
+        "Bluey",
+        "Mycolich",
+        "Fox",
+        "Cupcake",
+        "Mollo",
+        "Epinel",
+        "NA",
+        "Astra",
+        "Random",
+        "Clairen",
+        "Elliana"
       ]
     },
     {
@@ -33,7 +48,40 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Random"
+        "Pomme",
+        "Elliana",
+        "Hodan",
+        "Bluey",
+        "Mycolich",
+        "Fox",
+        "Cupcake",
+        "Mollo",
+        "Epinel",
+        "NA",
+        "Astra",
+        "Random",
+        "Clairen"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Pomme",
+        "Elliana",
+        "Bluey",
+        "Mycolich",
+        "Fox",
+        "Cupcake",
+        "Mollo",
+        "Epinel",
+        "NA",
+        "Astra",
+        "Random",
+        "Clairen",
+        "Hodan"
       ]
     }
   ],

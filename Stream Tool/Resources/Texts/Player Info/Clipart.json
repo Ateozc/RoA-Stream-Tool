@@ -5,11 +5,13 @@
   "characters": [
     {
       "character": "Elliana",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Etalus",
-      "skin": "Yellow"
+      "skin": "Yellow",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

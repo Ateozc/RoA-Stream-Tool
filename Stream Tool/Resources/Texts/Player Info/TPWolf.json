@@ -1,11 +1,12 @@
 {
-    "name": "TPWolf",
-    "twitter": "@tpwolf9",
-    "tag": "",
-    "characters": [
-        {
-            "character": "Clairen",
-            "skin": "Default"
-        }
-    ]
+  "name": "TPWolf",
+  "twitter": "@tpwolf9",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Clairen",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    }
+  ]
 }

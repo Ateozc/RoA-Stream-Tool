@@ -22,11 +22,32 @@ let charPath;
 const charPathBase = "Resources/Characters/";
 const charPathWork = "Resources/Characters/_Workshop/";
 
+let player = [];
+let teamName = [];
+let color = [];
+let score = [];
+let wl = [];
+let bestOf = "Bo3";
+let gamemode = "Singles";
+let round = "";
+let workshop = false;
+let mainMenu = false;
+
+
 //color list will be stored here on startup
 let colorList;
 
 //to avoid the code constantly running the same method over and over
-const pCharPrev = [], pSkinPrev = [], scorePrev = [], colorPrev = [], wlPrev = [];
+let pCharPrev = [], pSkinPrev = ["",""], scorePrev = ["",""], colorPrev = [
+	{
+		name: 'Blank',
+		hex: ""
+	},
+	{
+		name: 'Blank',
+		hex: ""
+	}
+], wlPrev = ["",""];
 let bestOfPrev, workshopPrev, mainMenuPrev, gamemodePrev;
 
 let usePips = true;
@@ -100,22 +121,32 @@ async function getData(scInfo) {
 
 	prevUsePip = usePips;
 	usePips = scInfo['usePips'];
+	gamemode = scInfo['gamemode'];
 
-	const player = scInfo['player'];
-	const teamName = scInfo['teamName'];
+	let tempPlayers = scInfo['player']
+	if (gamemode == 'Teams') { // this is a very hacky way to do this. Do not do this in the future. Please.
+		player[0] = tempPlayers[0];
+		player[1] = tempPlayers[2];
+		player[2] = tempPlayers[1];
+		player[3] = tempPlayers[3];
+	} else {
+		player = tempPlayers;
+	}
 
-	const color = scInfo['color'];
+	teamName = scInfo['teamName'];
+
+	color = scInfo['color'];
 	const score = scInfo['score'];
-	const wl = scInfo['wl'];
+	wl = scInfo['wl'];
 
-	const bestOf = scInfo['bestOf'];
-	const gamemode = scInfo['gamemode'];
+	bestOf = scInfo['bestOf'];
+	
 
-	const round = (scInfo['round'] == "Grand Finals" && (wl[0] == "L" && wl[1] == "L")) ? scInfo['round'] += " - Reset" : scInfo['round'];
+	round = scInfo['round'];
 
-	const workshop = scInfo['workshop'];
+	workshop = scInfo['workshop'];
 
-	const mainMenu = scInfo['forceMM'];
+	mainMenu = scInfo['forceMM'];
 
 
 	// first of all, things that will always happen on each cycle
@@ -128,7 +159,7 @@ async function getData(scInfo) {
 	}
 
 	// set the max players depending on singles or doubles
-	maxPlayers = gamemode == 1 ? 2 : 4;
+	maxPlayers = gamemode == 'Singles' ? 2 : 4;
 
 	// change border depending of the Best Of status
 	if (bestOfPrev != bestOf) {
@@ -146,10 +177,10 @@ async function getData(scInfo) {
 	for (let i = 0; i < maxPlayers; i++) {
 
 		// get the character lists now before we do anything else
-		if (pCharPrev[i] != player[i].character) {
-			// gets us the character positions to be used when updating the char image
-			pCharInfo[i] = await getCharInfo(player[i].character);
-		}
+		// if (pCharPrev[i] != player[i].character) {
+		// 	// gets us the character positions to be used when updating the char image
+		// 	pCharInfo[i] = await getCharInfo(player[i].character);
+		// }
 
 	}
 
@@ -157,10 +188,10 @@ async function getData(scInfo) {
 	for (let i = 0; i < maxSides; i++) {
 
 		// if there is no team name, just display "[Color] Team"
-		if (!teamName[i]) teamName[i] = color[i] + " Team";
+		if (!teamName[i]) teamName[i] = color[i].name + " Team";
 
 		// change the player background colors
-		if (colorPrev[i] != color[i]) {
+		if (colorPrev[i].hex != color[i].hex) {
 			updateColor(colorImg[i], color[i], gamemode);
 			colorPrev[i] = color[i];
 		}
@@ -191,7 +222,7 @@ async function getData(scInfo) {
 					const pIntroEL = document.getElementById('p'+(i+1)+'Intro');
 
 					//update players intro text
-					if (gamemode == 1) { //if singles, show player 1 and 2 names
+					if (gamemode == 'Singles') { //if singles, show player 1 and 2 names
 						pIntroEL.textContent = player[i].name;
 					} else { //if doubles
 						if (teamName[i] == color[i] + " Team") { //if theres no team name, show player names
@@ -232,7 +263,7 @@ async function getData(scInfo) {
 						midTextEL.textContent = "Final Game";
 						
 						//if GF, we dont know if its the last game or not, right?
-						if (round.toLocaleUpperCase() == "GRAND FINALS" && !(wl[0] == "L" && wl[1] == "L")) {
+						if (round.toLocaleUpperCase() == "GRAND FINALS - RESET" && !(wl[0] == "L" && wl[1] == "L")) {
 							fadeIn(document.getElementById("superCoolInterrogation"), introDelay+.5, 1.5);
 						}
 
@@ -257,7 +288,7 @@ async function getData(scInfo) {
 
 
 		//if this isnt a singles match, rearrange stuff
-		if (gamemode != 1) {
+		if (gamemode != 'Singles') {
 			changeGM(gamemode);
 		}
 		gamemodePrev = gamemode;
@@ -271,7 +302,7 @@ async function getData(scInfo) {
 			
 			//lets start with the player names and tags
 			updatePlayerName(i, player[i].name, player[i].tag, player[i].pronouns, player[i].twitter, gamemode);
-			if (gamemode == 1) { //if this is singles, fade the names in with a sick motion
+			if (gamemode == 'Singles') { //if this is singles, fade the names in with a sick motion
 				const side = (i % 2 == 0) ? true : false; //to know direction
 				fadeInMove(pWrapper[i], introDelay, null, side); // fade it in with some movement
 			} else { //if doubles, just fade them in
@@ -303,7 +334,7 @@ async function getData(scInfo) {
 			const side = (i % 2 == 0) ? true : false;
 
 			//set the team names if not singles
-			if (gamemode != 1) {
+			if (gamemode != 'Singles') {
 				updateText(teamNames[i], teamName[i], teamSize);
 				fadeInMove(teamNames[i], introDelay, null, side);
 			}
@@ -323,7 +354,7 @@ async function getData(scInfo) {
 			scorePrev[i] = score[i];
 
 			//check if we have a logo we can place on the overlay
-			if (gamemode == 1) { //if this is singles, check the player tag
+			if (gamemode == 'Singles') { //if this is singles, check the player tag
 				updateLogo(tLogoImg[i], player[i].tag);
 			} else { //if doubles, check the team name
 				updateLogo(tLogoImg[i], teamName[i]);
@@ -363,13 +394,13 @@ async function getData(scInfo) {
 		// this will be used later to sync the animations for all character images
 		const charsLoaded = [], animsEnded = [];
 
-		//get the character lists now before we do anything else
-		for (let i = 0; i < maxPlayers; i++) {
-			//if the character has changed, update the info
-			if (pCharPrev[i] != player[i].character) {
-				pCharInfo[i] = await getCharInfo(player[i].character);
-			}
-		}
+		// //get the character lists now before we do anything else
+		// for (let i = 0; i < maxPlayers; i++) {
+		// 	//if the character has changed, update the info
+		// 	// if (pCharPrev[i] != player[i].character) {
+		// 	// 	pCharInfo[i] = await getCharInfo(player[i].character);
+		// 	// }
+		// }
 		
 		
 		//lets check each player
@@ -381,10 +412,16 @@ async function getData(scInfo) {
 				playerName = player[i].twitter; //change the actual text
 				playerTag = "";
 				
-				tLogoImg[i].style.display = "none";
+				if (i < 2) {
+					tLogoImg[i].style.display = "none";
+				}
+				
 			} else {
 				playerPronouns = "";
-				tLogoImg[i].style.display = "block";
+				if (i < 2) {
+					tLogoImg[i].style.display = "block";
+				}
+				
 			}
 
 
@@ -395,7 +432,7 @@ async function getData(scInfo) {
 				const side = (i % 2 == 0) ? true : false;
 
 				//if this is singles, move the texts while updating
-				if (gamemode == 1) {
+				if (gamemode == 'Singles') {
 					//move and fade out the player 1's text
 					fadeOutMove(pWrapper[i], null, side).then( () => {
 						//now that nobody is seeing it, quick, change the text's content!
@@ -439,7 +476,7 @@ async function getData(scInfo) {
 		for (let i = 0; i < maxSides; i++) {
 
 			//check if the team names changed
-			if (gamemode != 1) {
+			if (gamemode != 'Singles') {
 
 				const side = (i % 2 == 0) ? true : false;
 
@@ -470,7 +507,7 @@ async function getData(scInfo) {
 			}
 
 			//check if we have a logo we can place on the overlay
-			if (gamemode == 1) { //if this is singles, check the player tag
+			if (gamemode == 'Singles') { //if this is singles, check the player tag
 				if (pTag[i].textContent != player[i].tag) {
 					fadeOut(tLogoImg[i]).then( () => {
 						updateLogo(tLogoImg[i], player[i].tag);
@@ -509,7 +546,7 @@ async function getData(scInfo) {
 // the gamemode manager
 function changeGM(gm) {
 			
-	if (gm == 2) {
+	if (gm == 'Teams') {
 
 		// move the scoreboard to the new positions
 		const r = document.querySelector(':root');
@@ -595,7 +632,7 @@ function changeGM(gm) {
 async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
 	if (playAnim) { //do we want to play the score up animation?
 		// depending on the color, change the clip
-		scoreAnim[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${pColor}.webm`;
+		scoreAnim[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/CPU.webm`;
 		scoreAnim[pNum].play();
 	} 
 	scoreNumbers[pNum].textContent = pScore;
@@ -610,7 +647,18 @@ async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
 }
 
 function updateColor(colorEL, pColor, gamemode) {
-	colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/${pColor}.png`;
+
+	colorEL.children[0].style.fill = pColor.hex;
+	colorEL.children[1].style.fill = pColor.hex;
+
+	if (gamemode == 'Singles') {
+		colorEL.children[0].style.display = 'block';
+		colorEL.children[1].style.display = 'none';
+	} else {
+		colorEL.children[0].style.display = 'none';
+		colorEL.children[1].style.display = 'block';
+	}
+	// colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/${pColor.name}.png`;
 }
 
 function updateBorder(bestOf, gamemode) {
@@ -634,7 +682,7 @@ function updateLogo(logoEL, nameLogo) {
 }
 
 function updatePlayerName(pNum, name, tag, pronouns, twitter, gamemode) {
-	if (gamemode == 2) {
+	if (gamemode == 'Teams') {
 		pName[pNum].style.fontSize = nameSizeDubs; //set original text size
 		pTag[pNum].style.fontSize = tagSizeDubs;
 		pPronouns[pNum].style.fontSize = tagSizeDubs;
@@ -769,11 +817,12 @@ function getFontSize(textElement) {
 
 //so we can get the exact color used by the game!
 function getHexColor(color) {
-	for (let i = 0; i < colorList.length; i++) {
-		if (colorList[i].name == color) {
-			return colorList[i].hex;
-		}
-	}
+	return color.hex;
+	// for (let i = 0; i < colorList.length; i++) {
+	// 	if (colorList[i].name == color.name) {
+	// 		return colorList[i].hex;
+	// 	}
+	// }
 }
 
 //searches for the main json file
@@ -842,23 +891,30 @@ async function updateChar(pCharacter, pSkin, pNum, charInfo, mainMenu) {
 
 	//store so code looks cleaner
 	const charEL = charImg[pNum];
+	charInfo = player[pNum].info;
 
 	//change the image path depending on the character and skin
-	charEL.src = charPath + pCharacter + '/' + pSkin + '.png';
+	charEL.src = player[pNum].scoreboardSkinPath;
+	// charEL.src = charPath + pCharacter + '/' + pSkin + '.png';
+
+	let scaleX = 1;
 
 	//               x, y, scale
 	const charPos = [0, 0, 1];
 	//now, check if the character and skin exist in the database down there
-	if (charInfo) {
+	
+	let skinIsRandom = (player[pNum].scoreboardSkinPath.indexOf('Random.png') != -1)
+
+	if (!skinIsRandom && charInfo) {
 		if (charInfo.scoreboard[pSkin]) { //if the skin has a specific position
 			charPos[0] = charInfo.scoreboard[pSkin].x;
 			charPos[1] = charInfo.scoreboard[pSkin].y;
 			charPos[2] = charInfo.scoreboard[pSkin].scale;
-		} else if (mainMenu && charInfo.scoreboard.mainMenu) { //for the main menu renders, or some extras for workshop characters
-			charPos[0] = charInfo.scoreboard.mainMenu.x;
-			charPos[1] = charInfo.scoreboard.mainMenu.y;
-			charPos[2] = charInfo.scoreboard.mainMenu.scale;
-			charEL.src = charPath + pCharacter + '/MainMenu/'+pSkin+'.png';
+		// } else if (mainMenu && charInfo.scoreboard.mainMenu) { //for the main menu renders, or some extras for workshop characters
+		// 	charPos[0] = charInfo.scoreboard.mainMenu.x;
+		// 	charPos[1] = charInfo.scoreboard.mainMenu.y;
+		// 	charPos[2] = charInfo.scoreboard.mainMenu.scale;
+		// 	charEL.src = charPath + pCharacter + '/MainMenu/'+pSkin+'.png';
 		} else { //if none of the above, use a default position
 			charPos[0] = charInfo.scoreboard.neutral.x;
 			charPos[1] = charInfo.scoreboard.neutral.y;
@@ -870,20 +926,25 @@ async function updateChar(pCharacter, pSkin, pNum, charInfo, mainMenu) {
 			charPos[0] = 35;
 		} else {
 			charPos[0] = 30;
+			if (skinIsRandom) {
+				scaleX = -1;
+			}
 		}
 		charPos[1] = -10;
 		charPos[2] = 1.2;
 	}
+
+	scaleX = scaleX * charPos[2];
 	
 	//to position the character
-	charEL.style.transform = `translate(${charPos[0]}px, ${charPos[1]}px) scale(${charPos[2]})`;
+	charEL.style.transform = `translate(${charPos[0]}px, ${charPos[1]}px) scale(${scaleX} , ${charPos[2]})`;
 
 	// this will make the thing wait till the image is fully loaded
 	await charEL.decode().catch( () => {
 		// if the image fails to load, we will use a placeholder
 		/* for whatever reason, catch doesnt work properly on firefox */
 		/* add an extra timeout before decode to fix */
-		charEL.src = charPathBase + 'Random/P'+((pNum%2)+1)+'.png';
+		charEL.src = player[pNum].defaultSkinPath;
 	});
 
 	return charImg[pNum];

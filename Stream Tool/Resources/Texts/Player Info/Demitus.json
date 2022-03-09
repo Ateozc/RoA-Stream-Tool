@@ -5,11 +5,18 @@
   "characters": [
     {
       "character": "Forsburn",
-      "skin": "Red"
+      "skin": "Red",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Mollo",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

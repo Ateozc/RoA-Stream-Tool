@@ -5,15 +5,18 @@
   "characters": [
     {
       "character": "Clairen",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
-      "skin": "Custom 2"
+      "skin": "Custom 2",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Random",
-      "skin": ""
+      "skin": "",
+      "game": "Rivals Workshop"
     }
   ]
 }

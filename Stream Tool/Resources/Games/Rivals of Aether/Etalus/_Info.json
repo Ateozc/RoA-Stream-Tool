@@ -1,0 +1,83 @@
+{
+    "skinList": [
+        "Default",
+        "Cyan",
+        "Yellow",
+        "Green",
+        "Brown",
+        "Pink",
+        "Halloween",
+        "Christmas",
+        "Valentines",
+        "Summer",
+        "Default Custom 1",
+        "Default Custom 2",
+        "Champion",
+        "Golden",
+        "Abyss",
+        "Early Access",
+        "Panda",
+        "Genesis",
+        "Pool Party",
+        "Ranked",
+        "HD",
+        "LoA HD"
+    ],
+    "scoreboard": {
+        "neutral": {
+            "x": -60,
+            "y": 70,
+            "scale": 3
+        },
+        "LoA HD": {
+            "x": 25,
+            "y": 180,
+            "scale": 5
+        },
+        "HD": {
+            "x": -81,
+            "y": 92,
+            "scale": 3.6
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -722,
+            "y": 170,
+            "scale": 0.95
+        },
+        "LoA HD": {
+            "x": -510,
+            "y": 310,
+            "scale": 1.4
+        },
+        "Panda": {
+            "x": -722,
+            "y": 150,
+            "scale": 0.95,
+            "comment": "same as neutral, just here so trail shows up"
+        },
+        "HD": {
+            "x": -722,
+            "y": 150,
+            "scale": 0.95
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": -40,
+            "y": 45,
+            "scale": 3.5
+        },
+        "LoA HD": {
+            "x": 15,
+            "y": 85,
+            "scale": 6
+        },
+        "HD": {
+            "x": -32,
+            "y": 38,
+            "scale": 3
+        }
+    }
+}

@@ -5,11 +5,13 @@
   "characters": [
     {
       "character": "Shovel Knight",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     }
   ],
   "pronouns": "He/Him"

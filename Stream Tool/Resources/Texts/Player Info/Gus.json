@@ -6,7 +6,8 @@
   "characters": [
     {
       "character": "Hodan",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     }
   ]
 }

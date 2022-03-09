@@ -1,11 +1,12 @@
 {
-    "name": "Prompto",
-    "twitter": "@PromptoPaul",
-    "tag": "",
-    "characters": [
-        {
-            "character": "Elliana",
-            "skin": "Pink"
-        }
-    ]
+  "name": "Prompto",
+  "twitter": "@PromptoPaul",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Elliana",
+      "skin": "Pink",
+      "game": "Rivals of Aether"
+    }
+  ]
 }

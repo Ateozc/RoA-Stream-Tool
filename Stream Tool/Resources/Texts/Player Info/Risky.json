@@ -6,19 +6,23 @@
   "characters": [
     {
       "character": "Shovel Knight",
-      "skin": "Grey"
+      "skin": "Grey",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Etalus",
-      "skin": "Brown"
+      "skin": "Brown",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Zetterburn",
-      "skin": "Purple"
+      "skin": "Purple",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Ranno",
-      "skin": "Halloween"
+      "skin": "Halloween",
+      "game": "Rivals of Aether"
     }
   ]
 }

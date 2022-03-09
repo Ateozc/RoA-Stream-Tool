@@ -1,0 +1,109 @@
+{
+    "skinList": [
+        "Default",
+        "Blue",
+        "Red",
+        "Green",
+        "Grey",
+        "Purple",
+        "Halloween",
+        "Christmas",
+        "Valentines",
+        "Summer",
+        "Default Custom 1",
+        "Default Custom 2",
+        "Champion",
+        "Excaliburn",
+        "Abyss",
+        "Early Access",
+        "Shine",
+        "Golden",
+        "LoA",
+        "Ranked",
+        "Steampunk",
+        "HD",
+        "LoA HD",
+        "LoA 1 HD"
+    ],
+    "scoreboard": {
+        "neutral": {
+            "x": -90,
+            "y": 25,
+            "scale": 4.2
+        },
+        "LoA": {
+            "x": -70,
+            "y": 35,
+            "scale": 4.5
+        },
+        "LoA HD": {
+            "x": 10,
+            "y": 147,
+            "scale": 5.8
+        },
+        "LoA 1 HD": {
+            "x": 25,
+            "y": 140,
+            "scale": 6
+        },
+        "HD": {
+            "x": -102,
+            "y": 35,
+            "scale": 4.7
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -675,
+            "y": 0,
+            "scale": 1.25
+        },
+        "LoA": {
+            "x": -660,
+            "y": 70,
+            "scale": 1.35
+        },
+        "LoA HD": {
+            "x": -500,
+            "y": 150,
+            "scale": 1.2
+        },
+        "LoA 1 HD": {
+            "x": -495,
+            "y": 125,
+            "scale": 1.2
+        },
+        "HD": {
+            "x": -700,
+            "y": -20,
+            "scale": 1.25
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": -45,
+            "y": 16,
+            "scale": 5.5
+        },
+        "LoA": {
+            "x": -30,
+            "y": 20,
+            "scale": 6
+        },
+        "LoA HD": {
+            "x": 10,
+            "y": 67,
+            "scale": 6.5
+        },
+        "LoA 1 HD": {
+            "x": 10,
+            "y": 58,
+            "scale": 6.5
+        },
+        "HD": {
+            "x": -42,
+            "y": 16,
+            "scale": 5.5
+        }
+    }
+}

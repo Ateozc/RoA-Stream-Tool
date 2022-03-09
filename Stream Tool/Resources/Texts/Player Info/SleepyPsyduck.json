@@ -5,11 +5,13 @@
   "characters": [
     {
       "character": "Zetterburn",
-      "skin": "LoA"
+      "skin": "LoA",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Absa",
-      "skin": "LoA"
+      "skin": "LoA",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/They"

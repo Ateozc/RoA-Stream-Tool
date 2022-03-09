@@ -1,12 +1,16 @@
 {
-    "name": "Readek",
-    "tag": "",
-    "characters": [
-        {
-            "character": "Maypul",  "skin": "Readek"
-        },
-        {
-            "character": "Ori and Sein",  "skin": "Readek"
-        }
-    ]
+  "name": "Readek",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Maypul",
+      "skin": "Readek",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Readek",
+      "game": "Rivals of Aether"
+    }
+  ]
 }

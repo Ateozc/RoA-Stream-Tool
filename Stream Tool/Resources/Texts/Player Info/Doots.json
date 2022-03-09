@@ -6,31 +6,38 @@
   "characters": [
     {
       "character": "Orcane",
-      "skin": "Red"
+      "skin": "Red",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Mollo",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     },
     {
       "character": "Zetterburn",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     },
     {
       "character": "Hodan",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     },
     {
       "character": "Etalus",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Forsburn",
-      "skin": "Valentines"
+      "skin": "Valentines",
+      "game": "Rivals of Aether"
     }
   ]
 }

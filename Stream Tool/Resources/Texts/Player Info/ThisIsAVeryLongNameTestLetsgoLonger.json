@@ -1,0 +1,14 @@
+{
+  "name": "ThisIsAVeryLongNameTestLetsgoLonger",
+  "twitter": "test",
+  "pronouns": "test",
+  "tag": "test",
+  "characters": [
+    {
+      "character": "Random",
+      "skin": "",
+      "game": "Rivals Workshop"
+    }
+  ],
+  "game": "Rivals of Aether"
+}

@@ -1,0 +1,77 @@
+{
+    "skinList": [
+        "Default",
+        "Blue",
+        "Red",
+        "Green",
+        "White",
+        "Purple",
+        "Halloween",
+        "Christmas",
+        "Valentines",
+        "Summer",
+        "Default Custom 1",
+        "Default Custom 2",
+        "Genesis",
+        "Infamous",
+        "Abyss",
+        "Early Access",
+        "Golden",
+        "Champion",
+        "Ranked",
+        "Steampunk",
+        "HD",
+        "LoA HD"
+    ],
+    "scoreboard": {
+        "neutral": {
+            "x": -80,
+            "y": 19,
+            "scale": 4
+        },
+        "LoA HD": {
+            "x": -25,
+            "y": 168,
+            "scale": 6.3
+        },
+        "HD": {
+            "x": -90,
+            "y": 19,
+            "scale": 4.3
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -675,
+            "y": 30,
+            "scale": 1.04
+        },
+        "LoA HD": {
+            "x": -500,
+            "y": 150,
+            "scale": 1.2
+        },
+        "HD": {
+            "x": -715,
+            "y": 30,
+            "scale": 1.04
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": -55,
+            "y": 15,
+            "scale": 4.5
+        },
+        "LoA HD": {
+            "x": 5,
+            "y": 78,
+            "scale": 7
+        },
+        "HD": {
+            "x": -55,
+            "y": 15,
+            "scale": 4.5
+        }
+    }
+}

@@ -5,11 +5,13 @@
   "characters": [
     {
       "character": "Zetterburn",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Shovel Knight",
-      "skin": "Champion"
+      "skin": "Champion",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

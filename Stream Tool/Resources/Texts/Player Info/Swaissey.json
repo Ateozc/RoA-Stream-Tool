@@ -5,11 +5,13 @@
   "characters": [
     {
       "character": "Ranno",
-      "skin": "Pink"
+      "skin": "Pink",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     }
   ],
   "pronouns": "He/Him"

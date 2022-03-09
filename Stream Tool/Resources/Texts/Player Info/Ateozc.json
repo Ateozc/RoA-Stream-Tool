@@ -1,23 +1,37 @@
 {
   "name": "Ateozc",
   "twitter": "@ateozc",
-  "tag": "",
+  "tag": "test",
   "characters": [
     {
       "character": "Absa",
-      "skin": "Grey"
+      "skin": "Grey",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "White"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "Default"
+      "skin": "Valentines",
+      "game": "Rivals Workshop"
     },
     {
       "character": "Hodan",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
+    },
+    {
+      "character": "Elliana",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetta Ashikaga",
+      "skin": "Sakura",
+      "game": "Rivals Workshop"
     }
   ],
   "pronouns": "He/Him"

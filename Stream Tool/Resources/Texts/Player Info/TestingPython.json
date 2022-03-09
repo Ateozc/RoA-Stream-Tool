@@ -5,11 +5,13 @@
   "characters": [
     {
       "character": "Orcane",
-      "skin": "Red"
+      "skin": "Red",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Orange"
+      "skin": "Orange",
+      "game": "Rivals of Aether"
     }
   ]
 }

@@ -5,7 +5,8 @@
   "characters": [
     {
       "character": "Sylvanos",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "Anything"

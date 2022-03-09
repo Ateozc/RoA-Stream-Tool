@@ -1,11 +1,12 @@
 {
-    "name": "big_mak",
-    "twitter": "@MarkOfMastery_",
-    "tag": "",
-    "characters": [
-        {
-            "character": "Wrastor",
-            "skin": "Bradshaw"
-        }
-    ]
+  "name": "big_mak",
+  "twitter": "@MarkOfMastery_",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Wrastor",
+      "skin": "Bradshaw",
+      "game": "Rivals of Aether"
+    }
+  ]
 }

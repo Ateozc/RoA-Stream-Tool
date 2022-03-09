@@ -6,7 +6,8 @@
   "characters": [
     {
       "character": "Olympia",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     }
   ]
 }

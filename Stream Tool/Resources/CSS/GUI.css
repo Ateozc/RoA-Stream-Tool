@@ -100,6 +100,7 @@ input[type="text"], input[type="number"]{
 
 /* player stuff */
 .onDeckPlayerInfo {
+  display: flex;
   float:left;
   width: 100%;
 }
@@ -135,7 +136,7 @@ input[type="text"], input[type="number"]{
 .teamName {
   float: left;
   width: 100%;
-  display: none;
+  /* display: none; */
   margin-right: 5px;
 }
 
@@ -175,10 +176,10 @@ input[type="text"], input[type="number"]{
   position: relative;
 }
 .playerFinder {
-  display: none;
+  /* display: none; */
   position: fixed;
   top: 0%;
-  left: 50%;
+  left: 47%;
   background-color: var(--bg5);
   filter: drop-shadow(0px 0px 5px var(--bg3));
   z-index: 3;
@@ -187,6 +188,7 @@ input[type="text"], input[type="number"]{
   overflow: auto;
   transform: translate(-50%, 0%);
 }
+
 
 .finderEntry {
   display: flex;
@@ -305,6 +307,11 @@ input[type="text"], input[type="number"]{
 }
 
 
+.buttonSelected {
+  color: var(--text1) !important;
+  background-image: linear-gradient(to top, #575757, #00000000) !important;
+}
+
 .charCombo {
   width: auto;
   max-width: 141px;
@@ -334,7 +341,7 @@ input[type="text"], input[type="number"]{
 }
 
 .skinList {
-  display: none;
+  /* display: none; */
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   margin-left: -1px;
@@ -378,7 +385,7 @@ input[type="text"], input[type="number"]{
 }
 
 .wlButtons {
-  display: none;
+  /* display: none; */
   font-size: 13px;
   font-family: 'Roboto-Medium';
   padding-left: 5px;
@@ -417,10 +424,10 @@ input[type="text"], input[type="number"]{
 }
 
 
-/* elements that will show up when changing gamemode */
+/* elements that will show up when changing gamemode
 #p3Char, #p4Char, #p3Skin, #p4Skin, #pInfo3, #pInfo4, #p7Char, #p8Char, #p7Skin, #p8Skin, #pInfo7, #pInfo8 {
   display: none;
-}
+} */
 
 
 #sideSep {
@@ -484,6 +491,10 @@ input[type="text"], input[type="number"]{
   box-sizing: border-box;
 }
 
+.charImgRandom{
+  -webkit-transform: scaleX(-1);
+}
+
 
 /* round propierties */
 #roundInfo, #onDeckRoundInfo {
@@ -497,7 +508,7 @@ input[type="text"], input[type="number"]{
   padding-right: 10px;
 }
 #onDeckInfo {
-  height: 80px;
+  /* height: 80px; */
   border-top: thin;
   border-bottom: thin;
   border-style: solid none solid;
@@ -554,7 +565,6 @@ input[type="text"], input[type="number"]{
   margin-right: 4px;
   min-width: 20px;
   width: 15%;
-  display: none;
 }
 
 input[type="number"] {
@@ -615,11 +625,11 @@ input[type="number"] {
   fill: #b6b6b6;
 }
 
-#twitterIcon {
+.twitterIcon {
   margin-right: 4px;
   margin-left: 5px;
 }
-#twitchIcon {
+.twitchIcon {
   margin-right: 4px;
   margin-left: 5px;
 }

@@ -1,0 +1,58 @@
+{
+    "skinList": [
+        "Default",
+        "Cyan",
+        "Red",
+        "Green",
+        "Dark",
+        "Pink",
+        "Halloween",
+        "Christmas",
+        "Valentines",
+        "Summer",
+        "Default Custom 1",
+        "Default Custom 2",
+        "Infamous",
+        "Champion",
+        "Abyss",
+        "Early Access",
+        "Ranked",
+        "HD"
+    ],
+    "scoreboard": {
+        "neutral": {
+            "x": -20,
+            "y": 20,
+            "scale": 2.8
+        },
+        "HD": {
+            "x": -50,
+            "y": 25,
+            "scale": 3.4
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -630,
+            "y": 50,
+            "scale": 1.2
+        },
+        "HD": {
+            "x": -690,
+            "y": 40,
+            "scale": 1.08
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": -28,
+            "y": 15,
+            "scale": 3.4
+        },
+        "HD": {
+            "x": -25,
+            "y": 15,
+            "scale": 3.4
+        }
+    }
+}

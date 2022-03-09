@@ -6,11 +6,13 @@
   "characters": [
     {
       "character": "Zetterburn",
-      "skin": "Green"
+      "skin": "Green",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Sylvanos",
-      "skin": "White"
+      "skin": "White",
+      "game": "Rivals of Aether"
     }
   ]
 }

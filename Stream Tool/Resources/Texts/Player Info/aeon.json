@@ -6,15 +6,18 @@
   "characters": [
     {
       "character": "Sylvanos",
-      "skin": "White"
+      "skin": "White",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Wrastor",
-      "skin": "Red"
+      "skin": "Red",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Orange"
+      "skin": "Orange",
+      "game": "Rivals of Aether"
     }
   ]
 }

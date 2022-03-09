@@ -6,15 +6,18 @@
   "characters": [
     {
       "character": "Wrastor",
-      "skin": "Bradshaw"
+      "skin": "Bradshaw",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Kragg",
-      "skin": "Purple"
+      "skin": "Purple",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Shovel Knight",
-      "skin": "Custom 2"
+      "skin": "Custom 2",
+      "game": "Rivals of Aether"
     }
   ]
 }

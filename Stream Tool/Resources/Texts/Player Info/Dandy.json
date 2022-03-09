@@ -1,16 +1,18 @@
 {
   "name": "Dandy",
-  "twitter": "@john_is_online",
+  "twitter": "",
   "tag": "",
   "characters": [
     {
       "character": "Kragg",
-      "skin": "Grey"
+      "skin": "Grey",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Mollo",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     }
   ],
-  "pronouns": "He/Him"
+  "pronouns": ""
 }

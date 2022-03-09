@@ -55,6 +55,10 @@ body {
     color: white;
 }
 
+.colors {
+    overflow: visible;
+}
+
 .mask {
     position: absolute;
     -webkit-mask-image: url("../Overlay/Scoreboard/Icon Mask.png");

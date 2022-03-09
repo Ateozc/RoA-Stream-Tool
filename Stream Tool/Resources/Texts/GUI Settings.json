@@ -7,6 +7,11 @@
   "forceHD": true,
   "noLoAHD": false,
   "forceWL": false,
-  "alwaysOnTop": false,
-  "usePips": true
+  "usePips": true,
+  "alwaysOnTop": true,
+  "useCustomRound": false,
+  "maxPlayers": 4,
+  "showOnDeck": false,
+  "game": "Rivals of Aether",
+  "useCustomColors": false
 }

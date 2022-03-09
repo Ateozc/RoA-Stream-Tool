@@ -6,15 +6,18 @@
   "characters": [
     {
       "character": "Forsburn",
-      "skin": "Blue"
+      "skin": "Blue",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Zetterburn",
-      "skin": "LoA"
+      "skin": "LoA",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Kragg",
-      "skin": "Pink"
+      "skin": "Pink",
+      "game": "Rivals of Aether"
     }
   ]
 }

@@ -5,23 +5,28 @@
   "characters": [
     {
       "character": "Random",
-      "skin": ""
+      "skin": "",
+      "game": "Rivals Workshop"
     },
     {
       "character": "Elliana",
-      "skin": "Grey"
+      "skin": "Grey",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Wrastor",
-      "skin": "Red"
+      "skin": "Red",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Shovel Knight",
-      "skin": "Infamous"
+      "skin": "Infamous",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Kragg",
-      "skin": "Halloween"
+      "skin": "Halloween",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": ""

@@ -1,0 +1,92 @@
+{
+    "skinList": [
+        "Default",
+        "Blue",
+        "Red",
+        "Green",
+        "White",
+        "Purple",
+        "Halloween",
+        "Christmas",
+        "Valentines",
+        "Summer",
+        "Default Custom 1",
+        "Default Custom 2",
+        "Genesis",
+        "Heatwave",
+        "Abyss",
+        "Early Access",
+        "Champion",
+        "Dreamscape",
+        "LoA",
+        "Ranked",
+        "HD",
+        "LoA HD"
+    ],
+    "scoreboard": {
+        "neutral": {
+            "x": -145,
+            "y": 25,
+            "scale": 4.5
+        },
+        "LoA": {
+            "x": -105,
+            "y": 73,
+            "scale": 4.5
+        },
+        "LoA HD": {
+            "x": -80,
+            "y": 135,
+            "scale": 5.8
+        },
+        "HD": {
+            "x": -155,
+            "y": 25,
+            "scale": 5
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -830,
+            "y": 30,
+            "scale": 1.27
+        },
+        "LoA": {
+            "x": -686,
+            "y": 194,
+            "scale": 1.2
+        },
+        "LoA HD": {
+            "x": -525,
+            "y": 230,
+            "scale": 1.35
+        },
+        "HD": {
+            "x": -830,
+            "y": 30,
+            "scale": 1.27
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": -80,
+            "y": 18,
+            "scale": 6.5
+        },
+        "LoA": {
+            "x": -50,
+            "y": 40,
+            "scale": 5.5
+        },
+        "LoA HD": {
+            "x": -17,
+            "y": 55,
+            "scale": 6
+        },
+        "HD": {
+            "x": -88,
+            "y": 18,
+            "scale": 6.5
+        }
+    }
+}

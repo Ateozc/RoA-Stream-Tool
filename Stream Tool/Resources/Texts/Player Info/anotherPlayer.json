@@ -5,11 +5,13 @@
   "characters": [
     {
       "character": "Clairen",
-      "skin": "Christmas"
+      "skin": "Christmas",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
-      "skin": "Blue"
+      "skin": "Blue",
+      "game": "Rivals of Aether"
     }
   ]
 }

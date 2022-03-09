@@ -5,23 +5,28 @@
   "characters": [
     {
       "character": "Sylvanos",
-      "skin": "Genesis"
+      "skin": "Genesis",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Wrastor",
-      "skin": "Custom 1"
+      "skin": "Custom 1",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Orange"
+      "skin": "Orange",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Zetterburn",
-      "skin": "Purple"
+      "skin": "Purple",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "Default"
+      "skin": "Default",
+      "game": "Rivals Workshop"
     }
   ],
   "pronouns": "He/Him"

@@ -36,7 +36,7 @@ function createWindow() {
         width: guiWidth,
         height: guiHeight,
 
-        resizable: false,
+        resizable: true,
 
         icon: path.join(__dirname, 'icon.png'),
 

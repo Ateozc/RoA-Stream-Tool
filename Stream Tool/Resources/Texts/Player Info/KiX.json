@@ -1,11 +1,12 @@
 {
-    "name": "KiX",
-    "twitter": "@maypulsyrup",
-    "tag": "",
-    "characters": [
-        {
-            "character": "Elliana",
-            "skin": "Default"
-        }
-    ]
+  "name": "KiX",
+  "twitter": "@maypulsyrup",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Elliana",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    }
+  ]
 }
