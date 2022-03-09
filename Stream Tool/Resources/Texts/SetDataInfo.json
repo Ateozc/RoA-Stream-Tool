@@ -1,6 +1,24 @@
 {
   "player": [
     {
+      "name": "Ateozc",
+      "twitter": "@ateozc",
+      "pronouns": "He/Him",
+      "tag": "test",
+      "characters": [
+        "Absa"
+      ]
+    },
+    {
+      "name": "Demitus",
+      "twitter": "@demitustouch",
+      "pronouns": "He/Him",
+      "tag": "",
+      "characters": [
+        "Forsburn"
+      ]
+    },
+    {
       "name": "",
       "twitter": "",
       "pronouns": "",
@@ -16,9 +34,9 @@
         "Epinel",
         "NA",
         "Astra",
-        "Random",
         "Clairen",
-        "Pomme"
+        "Pomme",
+        "Random"
       ]
     },
     {
@@ -27,28 +45,6 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Pomme",
-        "Hodan",
-        "Bluey",
-        "Mycolich",
-        "Fox",
-        "Cupcake",
-        "Mollo",
-        "Epinel",
-        "NA",
-        "Astra",
-        "Random",
-        "Clairen",
-        "Elliana"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Pomme",
         "Elliana",
         "Hodan",
         "Bluey",
@@ -59,29 +55,9 @@
         "Epinel",
         "NA",
         "Astra",
-        "Random",
-        "Clairen"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Pomme",
-        "Elliana",
-        "Bluey",
-        "Mycolich",
-        "Fox",
-        "Cupcake",
-        "Mollo",
-        "Epinel",
-        "NA",
-        "Astra",
-        "Random",
         "Clairen",
-        "Hodan"
+        "Pomme",
+        "Random"
       ]
     }
   ],

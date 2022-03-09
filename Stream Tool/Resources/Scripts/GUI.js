@@ -102,7 +102,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
     c.fixProfilesForCurrentGame = function () {
         let playerProfiles = [];
-        console.log(c.characterList);
         const files = fs.readdirSync(textPath + "/Player Info/");
         files.forEach(file => {
 
@@ -116,7 +115,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             playerInfo.characters.forEach(char => {
                 for (let i = 0; i < c.characterList.length; i++) {
                     if (c.characterList[i].name == char.character) {
-                        console.log('match');
                         let profile = {
                             name: playerInfo.name,
                             tag: playerInfo.tag,
@@ -130,7 +128,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 }
             });
         });
-        console.log(playerProfiles);
         for (let i = 0; i < playerProfiles.length; i++) {
             updatePlayerJson(playerProfiles[i], true);
         }
@@ -444,7 +441,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     }
 
     c.saveWLData = function () {
-        console.log((c.buildRoundName().indexOf('Grand Finals') != -1 || c.forceWL))
         return (c.buildRoundName().indexOf('Grand Finals') != -1 || c.forceWL);
     }
 
@@ -739,15 +735,13 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
             //Update score data
             const score = scInfo['score'];
-            //clear player scores
-            for (let i = 0; i < checks.length; i++) {
-                checks[i].checked = false;
-            }
-            p1Score.value = score[0];
-            p2Score.value = score[1];
+
+            c.setScore('left', score[0]);
+            c.setScore('right', score[1]);
 
             //Other stuff?
             c.writeScoreboard();
+            $scope.$apply();
         }
     }
     //searches for the main json file
@@ -1011,7 +1005,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     }
 
     function updatePlayerJson(player, forceUpdate = false) {
-        console.log(player);
         if (!player) {
             return;
         }
