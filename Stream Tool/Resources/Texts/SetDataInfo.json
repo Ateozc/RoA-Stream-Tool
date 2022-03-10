@@ -1,24 +1,6 @@
 {
   "player": [
     {
-      "name": "Ateozc",
-      "twitter": "@ateozc",
-      "pronouns": "He/Him",
-      "tag": "test",
-      "characters": [
-        "Absa"
-      ]
-    },
-    {
-      "name": "Demitus",
-      "twitter": "@demitustouch",
-      "pronouns": "He/Him",
-      "tag": "",
-      "characters": [
-        "Forsburn"
-      ]
-    },
-    {
       "name": "",
       "twitter": "",
       "pronouns": "",
@@ -36,6 +18,7 @@
         "Astra",
         "Clairen",
         "Pomme",
+        "Zetterburn",
         "Random"
       ]
     },
@@ -57,6 +40,51 @@
         "Astra",
         "Clairen",
         "Pomme",
+        "Zetterburn",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Elliana",
+        "Hodan",
+        "Bluey",
+        "Mycolich",
+        "Fox",
+        "Cupcake",
+        "Mollo",
+        "Epinel",
+        "NA",
+        "Astra",
+        "Clairen",
+        "Pomme",
+        "Zetterburn",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Elliana",
+        "Hodan",
+        "Bluey",
+        "Mycolich",
+        "Fox",
+        "Cupcake",
+        "Mollo",
+        "Epinel",
+        "NA",
+        "Astra",
+        "Clairen",
+        "Pomme",
+        "Zetterburn",
         "Random"
       ]
     }

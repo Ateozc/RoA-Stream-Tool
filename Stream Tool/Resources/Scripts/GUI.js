@@ -61,6 +61,29 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     c.inProfileSelector = false;
 
 
+    c.getColorList = function() {
+        c.colorList = getJson(textPath + "/Color Slots");
+    }
+
+    c.saveColorPreset = function(side) {
+        let colorExists = false;
+        let tempColors = [];
+        for (let i = 0; i < c.colorList.length; i++) {
+            tempColors.push({
+                name: c.colorList[i].name,
+                hex: c.colorList[i].hex,
+            });
+            if (c.sides[side].color.hex == c.colorList[i].hex) {
+                colorExists = true;
+            }
+        }
+
+        if (!colorExists) {
+            tempColors.push(c.sides[side].color);
+            fs.writeFileSync(textPath + "/Color Slots.json", JSON.stringify(tempColors, null, 2), encoding);
+            c.getColorList();
+        }
+    }
 
     //Angular Scoped Function (to be called from HTML)
     c.getPlayerProfiles = function (playerName, checkForLength = true) {
@@ -247,10 +270,10 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
                 let altPath = "";
                 if (c.forceHD && c.game == 'Rivals of Aether') {
-                    if (skin.indexOf('LoA') != -1 && !c.noLoAHD) {
+                    if (skin.indexOf('LoA') != -1 && !c.noLoAHD && skin.indexOf('HD') ==-1) {
                         altPath = c.relativePathOfFile(charPathRel + character + "/LoA HD.png");
                         vsScreenSkin = "LoA HD";
-                    } else {
+                    } else if (skin.indexOf('HD') ==-1) {
                         altPath = c.relativePathOfFile(charPathRel + character + "/HD.png");
                         vsScreenSkin = "HD";
                     }
@@ -260,11 +283,11 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
             if (c.game == 'Rivals of Aether') {
                 if (vsScreenSkinPath.indexOf('LoA') != -1) {
-                    backgroundPath = c.relativePathOfFile(charPathRel + "/LoA.webm");
+                    backgroundPath = c.relativePathOfFile(charPathRel + "BG LoA.webm");
                 } else if (skin == 'Ragnir') {
                     backgroundPath = c.relativePathOfFile(defaultWbBackground);
                 } else if (character == 'Shovel Knight' && skin == 'Golden') {
-                    let checkSpecialPath = c.relativePathOfFile(charPathRel + "/BG Golden.webm");
+                    let checkSpecialPath = c.relativePathOfFile(charPathRel + character + "/BG Golden.webm");
                     backgroundPath = (checkSpecialPath) ? checkSpecialPath : backgroundPath;
                 }
             }

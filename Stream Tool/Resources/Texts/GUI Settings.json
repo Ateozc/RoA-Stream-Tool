@@ -13,5 +13,5 @@
   "maxPlayers": 4,
   "showOnDeck": false,
   "game": "Rivals of Aether",
-  "useCustomColors": false
+  "useCustomColors": true
 }

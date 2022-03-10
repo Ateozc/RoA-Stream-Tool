@@ -66,6 +66,7 @@
               </div>
 
               <input type="color" class="textInput" ng-model="sides.left.color.hex" ng-show="useCustomColors" ng-change="setSideColorFromHex('left')">
+              <button class="textInput" ng-click="saveColorPreset('left')" ng-show="useCustomColors">Save Preset</button>
 
               <div id="lColor" class="pColor" tabindex="-1" title="Change the color slot for this player" ng-show="!useCustomColors">
                 <div class="colorContainer">
@@ -161,6 +162,8 @@
 
 
               <input type="color" class="textInput" ng-model="sides.right.color.hex" ng-show="useCustomColors" ng-change="setSideColorFromHex('right')">
+              <button class="textInput" ng-click="saveColorPreset('right')" ng-show="useCustomColors">Save Preset</button>
+
               <div id="rColor" class="pColor" tabindex="-1" ng-show="!useCustomColors">
                 
                 <div class="colorContainer" title="Change the color slot for this player" >
@@ -387,13 +390,13 @@ renders on 'RoA Scoreboard.html'." ng-show="game=='Rivals of Aether'">
 
         <div class="settingBox" title="Forces HD renders to appear on the VS screen,
 while keeping the regular renders for the scoreboard." ng-show="game=='Rivals of Aether'">
-          <input type="checkbox" id="forceHD" class="settingsCheck" ng-disabled="useWorkshop" tabindex="-1" ng-model="forceHD" ng-change="HDtoggle()">
+          <input type="checkbox" id="forceHD" class="settingsCheck" tabindex="-1" ng-model="forceHD" ng-change="HDtoggle()">
           <label for="forceHD" class="settingsText">HD renders in VS Screen</span>
         </div>
 
         <div class="settingBox" title="Will just show regular HD renders in the
 VS Screen even when LoA skins are selected." ng-show="game=='Rivals of Aether'">
-          <input type="checkbox" id="noLoAHD" class="settingsCheck" ng-disabled="forceHD" tabindex="-1" ng-model="noLoAHD" ng-change="saveGUISettings()">
+          <input type="checkbox" id="noLoAHD" class="settingsCheck" ng-disabled="!forceHD" tabindex="-1" ng-model="noLoAHD" ng-change="saveGUISettings()">
           <label for="noLoAHD" class="settingsText">No LoA HD renders</span>
         </div>
 
