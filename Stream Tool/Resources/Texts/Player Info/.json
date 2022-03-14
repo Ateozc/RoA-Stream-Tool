@@ -10,7 +10,7 @@
     },
     {
       "character": "Absa",
-      "skin": "Default",
+      "skin": "Champion",
       "game": "Rivals of Aether"
     },
     {
@@ -45,8 +45,8 @@
     },
     {
       "character": "Mollo",
-      "skin": "Default",
-      "game": "Rivals Workshop"
+      "skin": "White",
+      "game": "Rivals of Aether"
     },
     {
       "character": "N⁄A",
@@ -84,72 +84,72 @@
     },
     {
       "character": "Pomme",
-      "skin": "Default",
-      "game": "Rivals Workshop"
+      "skin": "Green",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Hodan",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "Default",
-      "game": "Rivals Workshop"
+      "skin": "Valentines",
+      "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
-      "skin": "Default",
+      "skin": "Grey",
       "game": "Rivals of Aether"
     },
     {
       "character": "Shovel Knight",
-      "skin": "Default",
+      "skin": "Abyss",
       "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Default",
+      "skin": "Arcade Green",
       "game": "Rivals of Aether"
     },
     {
       "character": "Etalus",
-      "skin": "Default",
+      "skin": "Pink",
       "game": "Rivals of Aether"
     },
     {
       "character": "Maypul",
-      "skin": "Default",
+      "skin": "Abyss",
       "game": "Rivals of Aether"
     },
     {
       "character": "Forsburn",
-      "skin": "Default",
+      "skin": "Dreamscape",
       "game": "Rivals of Aether"
     },
     {
       "character": "Kragg",
-      "skin": "Default",
+      "skin": "Abyss",
       "game": "Rivals of Aether"
     },
     {
       "character": "Orcane",
-      "skin": "Default",
+      "skin": "Steampunk",
       "game": "Rivals of Aether"
     },
     {
       "character": "Ori and Sein",
-      "skin": "Default",
+      "skin": "Dark",
       "game": "Rivals of Aether"
     },
     {
       "character": "Wrastor",
-      "skin": "Default",
+      "skin": "Champion",
       "game": "Rivals of Aether"
     },
     {
       "character": "Sylvanos",
-      "skin": "Default",
+      "skin": "Infamous",
       "game": "Rivals of Aether"
     },
     {
@@ -244,7 +244,12 @@
     },
     {
       "character": "Zetterburn",
-      "skin": "LoA 1 HD",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Blue",
       "game": "Rivals of Aether"
     }
   ],

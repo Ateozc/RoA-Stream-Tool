@@ -11,7 +11,17 @@
   "alwaysOnTop": true,
   "useCustomRound": false,
   "maxPlayers": 4,
-  "showOnDeck": false,
+  "showOnDeck": true,
   "game": "Rivals of Aether",
-  "useCustomColors": true
+  "useCustomColors": true,
+  "addressRockerSettings": {
+    "useAddressRocker": true,
+    "enableCharacterUpdate": true,
+    "enableSkinUpdate": true,
+    "enableBestOfUpdate": true,
+    "enableScoreUpdate": true,
+    "inMatch": false,
+    "inSet": false
+  },
+  "seasonalSkin": "Valentines"
 }

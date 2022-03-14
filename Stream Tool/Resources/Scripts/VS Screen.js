@@ -299,9 +299,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			};
 		} else {
 			if (prevDifFromGuiCount == -1) {
-				document.getElementById('caster' + (caster+1) + 'Text').style.fontSize = casterSize;
+				document.getElementById('caster' + (caster + 1) + 'Text').style.fontSize = casterSize;
 			}
-			c.resizeText('caster' + (caster+1));
+			c.resizeText('caster' + (caster + 1));
 			return {
 				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 			};
@@ -314,15 +314,15 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			return {
 				animation: `fadeOut ${c.fadeOutTime}s both`
 			};
-		} else if((c.prev.casters[caster].twitch && !showTwitter) || !c.prev.casters[caster].twitter) {
+		} else if ((c.prev.casters[caster].twitch && !showTwitter) || !c.prev.casters[caster].twitter) {
 			return {
 				animation: `fadeOut ${c.fadeOutTime}s both`
 			};
 		} else {
 			if (prevDifFromGuiCount == -1) {
-				document.getElementById('twitter' + (caster+1) + 'Text').style.fontSize = twitterSize;
+				document.getElementById('twitter' + (caster + 1) + 'Text').style.fontSize = twitterSize;
 			}
-			c.resizeText('twitter' + (caster+1));
+			c.resizeText('twitter' + (caster + 1));
 			return {
 				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 			};
@@ -335,15 +335,15 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			return {
 				animation: `fadeOut ${c.fadeOutTime}s both`
 			};
-		} else if((c.prev.casters[caster].twitter && showTwitter) || !c.prev.casters[caster].twitch) {
+		} else if ((c.prev.casters[caster].twitter && showTwitter) || !c.prev.casters[caster].twitch) {
 			return {
 				animation: `fadeOut ${c.fadeOutTime}s both`
 			};
 		} else {
 			if (prevDifFromGuiCount == -1) {
-				document.getElementById('twitch' + (caster+1) + 'Text').style.fontSize = twitterSize;
+				document.getElementById('twitch' + (caster + 1) + 'Text').style.fontSize = twitterSize;
 			}
-			c.resizeText('twitch' + (caster+1));
+			c.resizeText('twitch' + (caster + 1));
 			return {
 				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 			};
@@ -515,7 +515,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
 
 	c.getData = function (scInfo) {
-		console.log(prevDifFromGuiCount);
 		c.gui.usePips = scInfo['usePips'];
 		c.gui.players = scInfo['player'];
 		c.gui.teams = scInfo['teamName'];
@@ -527,7 +526,16 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		c.gui.round = scInfo['round'];
 		c.gui.tournament = scInfo['tournamentName'];
 		c.gui.casters = scInfo['caster'];
-
+		console.log(window.obsstudio);
+		let addressRockerSettings = scInfo['adressRockerSettings'];
+		let obsSettings = scInfo['obsSettings'];
+		if (obsSettings.useObsAutomation && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene) {
+			window.obsstudio.getCurrentScene(function(scene) {
+				if (scene.name != obsSettings.currentScene) {
+					window.obsstudio.setCurrentScene(obsSettings.currentScene);
+				}
+			});
+		}
 
 		if (prevDifFromGuiCount == iterationsBeforePrevUpdate || firstRun) {
 			c.prev.usePips = c.gui.usePips;

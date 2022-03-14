@@ -8,7 +8,7 @@
   <script src="Scripts/mousetrap.min.js" defer></script>
   <script src="Scripts/GUI.js" defer></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script type="text/javascript" src="Scripts/ntc.js"></script>    
+  <script type="text/javascript" src="Scripts/ntc.js"></script>
 </head>
 
 <body>
@@ -94,8 +94,8 @@
               <select ng-if="playerIndex==0 || gamemode=='Teams'" id="p{{playerIndex}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[playerIndex].character" ng-change="markCharacterIndex(playerIndex)">
                 <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
               </select>
-              <select ng-if="playerIndex==0 || gamemode=='Teams'" ng-hide="players[playerIndex].character == 'Random'" id="p{{playerIndex}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[playerIndex].skin">
-                <option class="theEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins" value="{{skin}}">{{skin}}</option>
+              <select ng-if="playerIndex==0 || gamemode=='Teams'" ng-hide="players[playerIndex].character == 'Random'" id="p{{playerIndex}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[playerIndex].skinIndex" ng-change="setSkinBasedOnIndex(playerIndex)">
+                <option class="theEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins" ng-value={{skin.index}}>{{skin.label}}</option>
               </select>
             </div>
 
@@ -141,7 +141,7 @@
         <div id="rSide" class="side" ng-style="getBackgroundGradient('right')">
 
           <div class="charImgBox">
-            <img ng-if="gamemode=='Singles'" id="p2CharImg" class="charImg" ng-class="{'charImgRandom' : players[1].character == 'Random'}" ng-src="{{getSkinPathForPlayer(1)}}"/>
+            <img ng-if="gamemode=='Singles'" id="p2CharImg" class="charImg" ng-class="{'charImgRandom' : players[1].character == 'Random'}" ng-src="{{getSkinPathForPlayer(1)}}" />
           </div>
 
           <div class="sideEditor">
@@ -165,8 +165,8 @@
               <button class="textInput" ng-click="saveColorPreset('right')" ng-show="useCustomColors">Save Preset</button>
 
               <div id="rColor" class="pColor" tabindex="-1" ng-show="!useCustomColors">
-                
-                <div class="colorContainer" title="Change the color slot for this player" >
+
+                <div class="colorContainer" title="Change the color slot for this player">
                   <div id="rColorRect" class="pColorRect" ng-style="{'background-color': sides.right.color.hex}"></div>
                 </div>
                 <div class="dropdownColor" id="dropdownColorR">
@@ -213,6 +213,16 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div id="addressRockerInfo" ng-show="addressRockerSettings.useAddressRocker">
+        <div class="row">Address Rocker information: </div>
+        <div class="row">Auto Update Characters: {{addressRockerSettings.enableCharacterUpdate}}</div>
+        <div class="row">Auto Update Skins: {{addressRockerSettings.enableSkinUpdate}}</div>
+        <div class="row">Auto Update Best Of: {{addressRockerSettings.enableBestOfUpdate}}</div>
+        <div class="row">Auto Update Scores: {{addressRockerSettings.enableScoreUpdate}}</div>
+        <div class="row">Currently in Match: {{addressRockerSettings.inMatch}}</div>
+        <div class="row">Currently in Set: {{addressRockerSettings.inSet}}</div>   
       </div>
 
       <div id="botRegion">
@@ -296,12 +306,12 @@
           <span ng-if="showOnDeck">On Deck Information (Click to Hide)</span>
           <span ng-if="!showOnDeck">On Deck Information (Click to Show)</span>
         </div>
-        
+
         <div id="onDeckInfo" ng-show="showOnDeck">
-          
+
           <div class="row">
             <div class="onDeckPlayerInfo" id="pInfo{{$index}}OnDeck" ng-repeat="player in onDeckPlayers" ng-if="$index == 0 || $index == 1 || gamemode=='Teams'">
-              
+
 
               <div class="playerInfo" id="pInfo{{$index}}OnDeck">
                 <input type="text" id="p{{$index}}TagOnDeck" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="onDeckPlayers[$index].tag">
@@ -335,7 +345,7 @@
               <input type="text" id="onDeckRoundName" class="textInput mousetrap" title="Round" placeholder="Round Name" spellcheck="false" tabindex="4" ng-model="onDeckRoundInfo.name" ng-show="useCustomRound" ng-change="roundChange()">
               <input type="number" id="onDeckRoundNumber" class="textInput mousetrap" placeholder="0" spellcheck="false" tabindex="4" min=0 ng-model="onDeckRoundInfo.number" ng-if="showRoundNumber(true)">
             </div>
-          </div> 
+          </div>
         </div>
 
         <div id="botBar">
@@ -357,78 +367,164 @@
     </div>
 
     <div id="settings">
-      <div id="settingsTitle">SETTINGS</div>
+      <div id="settingsTitle">{{settingsPageName}}</div>
 
       <div id="actualSettings">
 
-        <div class="settingBox" title="Select a game to use.">
-          <label for="gameSelect" class="settingsText">Game</span>
-          <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="4" ng-model="game" ng-change="gameChanged();">
-            <option ng-repeat="game in games" value="{{game}}">{{game}}</option>
-          </select>
+        <div ng-show="settingsPageNumber==1">
+          <div class="settingBox" title="Select a game to use.">
+            <label for="gameSelect" class="settingsText">Game</span>
+              <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="4" ng-model="game" ng-change="gameChanged();">
+                <option ng-repeat="game in games" value="{{game}}">{{game}}</option>
+              </select>
+          </div>
+
+          <div class="settingBox" title="Fixes profiles for currently selected game">
+            <button id="fixProfiles" class="" tabindex="-1" ng-model="fixProfiles" ng-click="fixProfilesForCurrentGame()">Fix Profiles</button>
+          </div>
+
+          <div class="settingBox" title="Plays an intro on 'RoA Scoreboard.html' whenever the file loads.">
+            <input type="checkbox" id="allowIntro" class="settingsCheck" tabindex="-1" ng-model="allowIntro" ng-change="saveGUISettings()">
+            <label for="allowIntro" class="settingsText">Allow Intro</span>
+          </div>
+
+          <div ng-show="game=='Rivals of Aether'" class="settingBox" title="Select a game to use.">
+            <label for="curSeasonalSkin" class="settingsText">Seasonal Skin Select</span>
+              <select id="curSeasonalSkin" class="textInput mousetrap" title="Seasonal Skin Select" tabindex="4" ng-model="seasonalSkin" ng-change="updateSeasonalSkins();">
+                <option ng-repeat="skin in seasonalSkins" value="{{skin}}">{{skin}}</option>
+              </select>
+          </div>
+
+          <div class="settingBox" title="Forces HD renders to appear on the VS screen,
+  while keeping the regular renders for the scoreboard." ng-show="game=='Rivals of Aether'">
+            <input type="checkbox" id="forceHD" class="settingsCheck" tabindex="-1" ng-model="forceHD" ng-change="HDtoggle()">
+            <label for="forceHD" class="settingsText">HD renders in VS Screen</span>
+          </div>
+
+          <div class="settingBox" title="Will just show regular HD renders in the
+  VS Screen even when LoA skins are selected." ng-show="game=='Rivals of Aether'">
+            <input type="checkbox" id="noLoAHD" class="settingsCheck" ng-disabled="!forceHD" tabindex="-1" ng-model="noLoAHD" ng-change="saveGUISettings()">
+            <label for="noLoAHD" class="settingsText">No LoA HD renders</span>
+          </div>
+
+          <div class="settingBox" title="Forces the [W]/[L] buttons to appear on the interface.
+  They will always appear when typing 'Grand' in the round box.">
+            <input type="checkbox" id="forceWLToggle" class="settingsCheck" tabindex="-1" ng-model="forceWL" ng-change="saveGUISettings()">
+            <label for="forceWLToggle" class="settingsText">Force [W] / [L]</span>
+          </div>
+
+          <div class="settingBox" title="When toggled on, score will be displayed using pips. When toggled off, score will be displayed with a number.">
+            <input type="checkbox" id="pipsToggle" class="settingsCheck" tabindex="-1" ng-disabled='!checkIfRoundSupportsPips()' ng-model="usePips" ng-change="saveGUISettings()">
+            <label for="pipsToggle" class="settingsText">Use Score Pips</span>
+          </div>
+
+          <div class="settingBox" title="Prevents other windows to be displayed on top of this one.">
+            <input type="checkbox" id="alwaysOnTop" class="settingsCheck" tabindex="-1" ng-model="alwaysOnTop" ng-change="alwaysOnTopToggle()">
+            <label for="alwaysOnTop" class="settingsText">Window always on top</span>
+          </div>
+
+          <div class="settingBox" title="Use a custom Round Name instead of a pre-made list.">
+            <input type="checkbox" id="useCustomRound" class="settingsCheck" tabindex="-1" ng-model="useCustomRound" ng-change="saveGUISettings()">
+            <label for="useCustomRound" class="settingsText">Use Custom Round Name</span>
+          </div>
+
+          <div class="settingBox" title="Use a custom Color instead of a color preset.">
+            <input type="checkbox" id="useCustomColors" class="settingsCheck" tabindex="-1" ng-model="useCustomColors" ng-change="saveGUISettings()">
+            <label for="useCustomColors" class="settingsText">Use Custom Colors</span>
+          </div>
+
+          <button id="copyMatch" tabindex="-1" title='"Tournament Name - Round - Player1 (Character1) VS Player2 (Character2)"' ng-click="copyToClipboard()">
+            Copy match info to clipboard
+          </button>
+        </div>
+        <!-- Page 2, Automated Stream Tool -->
+        <div ng-show="settingsPageNumber==2">
+          <div ng-show="game=='Rivals of Aether' || game=='Rivals Workshop'">
+            <div class="settingBox" title="Toggle the ability to use the Address Rocker Json file">
+              <input type="checkbox" id="useAddressRocker" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.useAddressRocker" ng-change="saveGUISettings()">
+              <label for="useAddressRocker" class="settingsText">Use Address Rocker for Tool Control</span>
+            </div>
+            <div class="settingBox" title="Toggle automatic character updates" ng-hide="game != 'Rivals of Aether'">
+              <input type="checkbox" id="enableCharacterUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableCharacterUpdate" ng-change="saveGUISettings()">
+              <label for="enableCharacterUpdate" class="settingsText">Toggle Automatic Character update</span>
+            </div>
+            <div class="settingBox" title="Toggle automatic character updates" ng-hide="game != 'Rivals of Aether'">
+              <input type="checkbox" id="enableSkinUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableSkinUpdate" ng-change="saveGUISettings()">
+              <label for="enableSkinUpdate" class="settingsText">Toggle Automatic Skin update</span>
+            </div>
+            <div class="settingBox" title="Toggle automatic character updates">
+              <input type="checkbox" id="enableBestOfUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableBestOfUpdate" ng-change="saveGUISettings()">
+              <label for="enableBestOfUpdate" class="settingsText">Toggle Automatic Best Of update</span>
+            </div>
+            <div class="settingBox" title="Toggle automatic character updates">
+              <input type="checkbox" id="enableScoreUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableScoreUpdate" ng-change="saveGUISettings()">
+              <label for="enableScoreUpdate" class="settingsText">Toggle Automatic Score update</span>
+            </div>
+            <button id="startSet" tabindex="-1" title='Start the Set to begin automated checks' ng-if="addressRockerSettings.inSet == false" ng-click="toggleSetStart()">
+              Start Set
+            </button>
+            <button id="stopSet" tabindex="-1" title='Stop the Set to stop automated checks' ng-show="addressRockerSettings.inSet == true" ng-click="toggleSetStop()">
+              Stop Set
+            </button>
+          </div>
+
+          <div ng-hide="game=='Rivals of Aether' || game=='Rivals Workshop'">Cant use Address Rocker with this game. Full support on Rivals of Aether. Score and Best Of support for Rivals Workshop.</div>
+          
         </div>
 
-        <div class="settingBox" title="Fixes profiles for currently selected game">
-          <button id="fixProfiles" class="" tabindex="-1" ng-model="fixProfiles" ng-click="fixProfilesForCurrentGame()">Fix Profiles</button>
+        <!-- Page 3, OBS Settings -->
+        <div ng-show="settingsPageNumber==3">
+          <div class="settingBox" title="Toggle the ability to use OBS Auto Control. You must use Auto Stream Tool feature.">
+            <input type="checkbox" id="useObsAutomation" class="settingsCheck" tabindex="-1" ng-model="obsSettings.useObsAutomation" ng-change="saveOBSSettings()">
+            <label for="useObsAutomation" class="settingsText">OBS Auto Control</span>
+          </div>
+          <div>
+            <div class="settingBox" title="Toggle automatic set recording.">
+              <input type="checkbox" id="autoRecordSets" class="settingsCheck" tabindex="-1" ng-model="obsSettings.autoRecordSets" ng-change="saveOBSSettings()">
+              <label for="autoRecordSets" class="settingsText">Toggle automatic set recording</span>
+            </div>
+            <div class="settingBox" title="This sets how scenes will change on OBS.">
+              <label for="autoChangeScenes" class="settingsText">OBS Scene Control:</span>
+              <select id="autoChangeScenes" class="textInput mousetrap" title="This sets how scenes will change on OBS." tabindex="4" ng-model="obsSettings.autoChangeScenes" ng-change="saveOBSSettings()">
+                <option value="manualFromOBS">Manual from OBS</option>
+                <option value="manualFromTool">Manual from Stream Tool</option>
+                <option value="addressRockerAuto" ng-if="game=='Rivals of Aether' || game=='Rivals Workshop'">Auto from Address Rocker</option>
+              </select>
+            </div>
+            <div class="settingBox" title="This sets how scenes will change on OBS." ng-show="obsSettings.autoChangeScenes == 'manualFromTool'">
+              <label for="obsCurrentScene" class="settingsText">Change OBS Scene</span>
+              <select id="obsCurrentScene" class="textInput mousetrap" title="This sets the current Scene in OBS." tabindex="4" ng-model="selectedScene" ng-change="obsSetScreen(selectedScene, true)" >
+                <option value="startScene">Start Scene</option>
+                <option value="vsScreenName">Vs Screen Scene</option>
+                <option value="scoreboardSceneName">Scoreboard Scene</option>
+                <option value="endScene">End Scene</option>
+                
+              </select>
+            </div>
+            <div class="settingBox" title="The name as it appears in OBS for the scene to be used when a set starts.">
+              <label for="startScene" class="settingsText">Set Start Scene</span>
+                <input type="text" id="startScene" class="settingsCheck" tabindex="-1" ng-model="obsSettings.startScene" ng-change="saveOBSSettings()">
+            </div>
+            <div class="settingBox" title="The name as it appears in OBS for the scene to be used when players are not fighting.">
+              <label for="vsScreenName" class="settingsText">VS Screen Scene</span>
+                <input type="text" id="vsScreenName" class="settingsCheck" tabindex="-1" ng-model="obsSettings.vsScreenName" ng-change="saveOBSSettings()">
+            </div>
+            <div class="settingBox" title="The name as it appears in OBS for the scene to be used when you are showing the players fight.">
+              <label for="scoreboardSceneName" class="settingsText">Scoreboard Scene</span>
+                <input type="text" id="scoreboardSceneName" class="settingsCheck" tabindex="-1" ng-model="obsSettings.scoreboardSceneName" ng-change="saveOBSSettings()">
+            </div>
+            <div class="settingBox" title="The name as it appears in OBS for the scene to be used when a set ends.">
+              <label for="endScene" class="settingsText">Set End Scene</span>
+                <input type="text" id="endScene" class="settingsCheck" tabindex="-1" ng-model="obsSettings.endScene" ng-change="saveOBSSettings()">
+            </div>
+          </div>
         </div>
 
-        <!-- <div class="settingBox" title="Max number of players. (Multiple of 2 only).">
-          <input type="number" id="maxPlayers" class="settingsCheck" tabindex="-1" min=2 max=12 ng-model="maxPlayers" ng-change="setMaxPlayers();">
-          <label for="maxPlayers" class="settingsText">Max number of players</span>
-        </div> -->
-
-        <div class="settingBox" title="Plays an intro on 'RoA Scoreboard.html' whenever the file loads.">
-          <input type="checkbox" id="allowIntro" class="settingsCheck" tabindex="-1" ng-model="allowIntro" ng-change="saveGUISettings()">
-          <label for="allowIntro" class="settingsText">Allow Intro</span>
+        <div class="row pageButtons">
+          <button class="textInput inline" ng-show="showSettingsPagePrevButton()" ng-click="changeSettingsPage(-1)">Previous</button>
+          <div class="inline"><span>Page {{settingsPageNumber}}</span></div>
+          <button class="textInput inline" ng-show="showSettingsPageNextButton()" ng-click="changeSettingsPage(1)">Next</button>
         </div>
-
-        <!-- <div class="settingBox" id="mmTool" title="Forces showing the 'Main Menu' character
-renders on 'RoA Scoreboard.html'." ng-show="game=='Rivals of Aether'">
-          <input type="checkbox" id="forceMM" class="settingsCheck" tabindex="-1" ng-model="forceMM" ng-change="saveGUISettings()">
-          <label for="forceMM" id="mmText" class="settingsText">Main Menu renders in Scoreboard</span>
-        </div> -->
-
-        <div class="settingBox" title="Forces HD renders to appear on the VS screen,
-while keeping the regular renders for the scoreboard." ng-show="game=='Rivals of Aether'">
-          <input type="checkbox" id="forceHD" class="settingsCheck" tabindex="-1" ng-model="forceHD" ng-change="HDtoggle()">
-          <label for="forceHD" class="settingsText">HD renders in VS Screen</span>
-        </div>
-
-        <div class="settingBox" title="Will just show regular HD renders in the
-VS Screen even when LoA skins are selected." ng-show="game=='Rivals of Aether'">
-          <input type="checkbox" id="noLoAHD" class="settingsCheck" ng-disabled="!forceHD" tabindex="-1" ng-model="noLoAHD" ng-change="saveGUISettings()">
-          <label for="noLoAHD" class="settingsText">No LoA HD renders</span>
-        </div>
-
-        <div class="settingBox" title="Forces the [W]/[L] buttons to appear on the interface.
-They will always appear when typing 'Grand' in the round box.">
-          <input type="checkbox" id="forceWLToggle" class="settingsCheck" tabindex="-1" ng-model="forceWL" ng-change="saveGUISettings()">
-          <label for="forceWLToggle" class="settingsText">Force [W] / [L]</span>
-        </div>
-
-        <div class="settingBox" title="When toggled on, score will be displayed using pips. When toggled off, score will be displayed with a number.">
-          <input type="checkbox" id="pipsToggle" class="settingsCheck" tabindex="-1" ng-disabled='!checkIfRoundSupportsPips()' ng-model="usePips" ng-change="saveGUISettings()">
-          <label for="pipsToggle" class="settingsText">Use Score Pips</span>
-        </div>
-
-        <div class="settingBox" title="Prevents other windows to be displayed on top of this one.">
-          <input type="checkbox" id="alwaysOnTop" class="settingsCheck" tabindex="-1" ng-model="alwaysOnTop" ng-change="alwaysOnTopToggle()">
-          <label for="alwaysOnTop" class="settingsText">Window always on top</span>
-        </div>
-
-        <div class="settingBox" title="Use a custom Round Name instead of a pre-made list.">
-          <input type="checkbox" id="useCustomRound" class="settingsCheck" tabindex="-1" ng-model="useCustomRound" ng-change="saveGUISettings()">
-          <label for="useCustomRound" class="settingsText">Use Custom Round Name</span>
-        </div>
-
-        <div class="settingBox" title="Use a custom Color instead of a color preset.">
-          <input type="checkbox" id="useCustomColors" class="settingsCheck" tabindex="-1" ng-model="useCustomColors" ng-change="saveGUISettings()">
-          <label for="useCustomColors" class="settingsText">Use Custom Colors</span>
-        </div>
-
-        <button id="copyMatch" tabindex="-1" title='"Tournament Name - Round - Player1 (Character1) VS Player2 (Character2)"' ng-click="copyToClipboard()">
-          Copy match info to clipboard
-        </button>
 
       </div>
     </div>

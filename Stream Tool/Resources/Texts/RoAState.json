@@ -1,0 +1,22 @@
+{
+  "P1Character": {
+    "Character": "UNKNOWN",
+    "Skin": {
+      "SkinDescription": "",
+      "SkinIndex": 0
+    }
+  },
+  "P2Character": {
+    "Character": "UNKNOWN",
+    "Skin": {
+      "SkinDescription": "",
+      "SkinIndex": 0
+    }
+  },
+  "TourneySet": {
+    "InMatch": false,
+    "TourneyModeBestOf": -1,
+    "P1GameCount": -1,
+    "P2GameCount": -1
+  }
+}

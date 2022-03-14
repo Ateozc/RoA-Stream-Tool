@@ -49,6 +49,17 @@ body {
   font-size: 16px;
 }
 
+.inline {
+  display: inline;
+}
+
+.pageButtons {
+  text-align-last:center;
+  position: fixed;
+    bottom: 0;
+    width: 14%;
+    text-align: center;
+}
 
 /* general text input class*/
 .textInput {
@@ -63,6 +74,7 @@ body {
   border: 1px solid var(--bg4);
   transition: border-color 100ms;  
 }
+
 input[type="text"], input[type="number"]{
   font-family: 'Roboto-Regular';
   font-size: 13px;
@@ -496,7 +508,19 @@ input[type="text"], input[type="number"]{
 }
 
 
-/* round propierties */
+#addressRockerInfo {
+  height: 80px;
+  border-top: thin;
+  border-bottom: thin;
+  border-style: solid none solid;
+  border-color: var(--bg4);
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+
+/* round properties */
 #roundInfo, #onDeckRoundInfo {
   height: 40px;
   border-top: thin;

@@ -1,0 +1,12 @@
+{
+  "useObsAutomation": true,
+  "autoChangeScenes": "addressRockerAuto",
+  "vsScreenName": "Vs Screen (Between Games)",
+  "scoreboardSceneName": "Main Screen with overlay",
+  "autoRecordSets": false,
+  "setStartScene": "Vs Screen (Set Start)",
+  "setEndScene": "Vs Screen (Between Games)",
+  "currentScene": "Vs Screen (Between Games)",
+  "startScene": "Vs Screen (Set Start)",
+  "endScene": "Vs Screen (Between Games)"
+}

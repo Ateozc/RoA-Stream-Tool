@@ -119,6 +119,15 @@ setInterval( () => { mainLoop(); }, 500); //update interval
 
 async function getData(scInfo) {
 
+	let obsSettings = scInfo['obsSettings'];
+	if (obsSettings.useObsAutomation && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene) {
+		window.obsstudio.getCurrentScene(function(scene) {
+			if (scene.name != obsSettings.currentScene) {
+				window.obsstudio.setCurrentScene(obsSettings.currentScene);
+			}
+		});
+	}
+
 	prevUsePip = usePips;
 	usePips = scInfo['usePips'];
 	gamemode = scInfo['gamemode'];

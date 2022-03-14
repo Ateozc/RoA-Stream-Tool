@@ -59,8 +59,85 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     c.playerFocusOnDeck = false;
     c.inPlayerField = false;
     c.inProfileSelector = false;
+    c.settingsPageNumber = 1;
+    c.settingsPageName = 'Settings';
+    c.settingsPageNames = [
+        "",
+        'Settings',
+        'Automated Stream Tool Settings',
+        'OBS Settings'
+    ];
+    c.maxPages = c.settingsPageNames.length -1;
+    c.seasonalSkins = [
+        "Valentines",
+        "Summer",
+        "Halloween",
+        "Christmas"
+    ];
+    c.seasonalSkin = c.seasonalSkins[0];
 
 
+    c.obsSettings = {
+        useObsAutomation: false,
+        autoChangeScenes: 'manualFromOBS',
+        vsScreenName: "",
+        scoreboardSceneName: "",
+        autoRecordSets: false,
+        startScene: "",
+        endScene: "",
+        currentScene: "",
+    }
+
+    let currentIntervalForVsScreen = 0;
+    const intervalBeforeVsScreenShows = 8;
+    c.addressRockerSettings = {
+        useAddressRocker: false,
+        enableCharacterUpdate: false,
+        enableSkinUpdate: false,
+        enableBestOfUpdate: false,
+        enableScoreUpdate: false,
+        inMatch: false,
+        inSet: false
+    }
+
+    c.obsSetScreen = function(scene, forced=false) {
+        if (!scene) {
+            return;
+        }
+        if (c.obsSettings.autoChangeScenes == 'addressRockerAuto' || forced) {
+            c.obsSettings.currentScene = c.obsSettings[scene];
+            c.saveOBSSettings();
+        }
+    }
+    
+    c.toggleSetStart = function() {
+        c.addressRockerSettings.inSet = true;
+        c.updateInterval = 500;        
+        currentIntervalForVsScreen = 0;
+        c.setScore('left', 0);
+        c.setScore('right', 0);
+        c.obsSetScreen('startScene');
+    }
+
+    c.toggleSetStop = function() {
+        c.addressRockerSettings.inSet = false;
+        currentIntervalForVsScreen = 0;
+        c.updateInterval = 1000;
+        c.obsSetScreen('endScene');
+        // c.renameFilesPython();
+    }
+
+    c.showSettingsPagePrevButton = function() {
+        return (c.settingsPageNumber > 1);
+    }
+    c.showSettingsPageNextButton = function() {
+        return (c.settingsPageNumber < c.maxPages);
+    }
+
+    c.changeSettingsPage = function(value) {
+        c.settingsPageNumber += value;
+        c.settingsPageName= c.settingsPageNames[c.settingsPageNumber];
+    }
     c.getColorList = function() {
         c.colorList = getJson(textPath + "/Color Slots");
     }
@@ -203,8 +280,33 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         c[playerType][player].characterIndex = c.characterList.map(e => e.name).indexOf(c[playerType][player].character);
         if (updateSkin) {
             c[playerType][player].skin = (c[playerType][player].character != "Random") ? "Default" : "";
+            c[playerType][player].skinIndex = 0;
         }
+    }
 
+    c.setSkinBasedOnIndex = function(player, skinIndex=-1) {
+        let skins = c.characterList[c.players[player].characterIndex].skins;
+
+        let arrayIndex = -1;
+        if (skinIndex == -1) {
+            skinIndex = c.players[player].skinIndex;
+        } 
+        
+        arrayIndex = skins.map(e => e.index).indexOf(skinIndex);
+        c.players[player].skin = skins[arrayIndex].fileName;
+
+        if (c.players[player].skin == "Calendar") {
+            c.players[player].skin = c.seasonalSkin;
+        }
+    }
+
+    c.updateSeasonalSkins = function() {
+        for (let i = 0; i < c.players.length; i++) {
+            if (c.seasonalSkins.indexOf(c.players[i].skin) != -1 || c.players[i].skin == 'Calendar') {
+                c.players[i].skin = c.seasonalSkin;
+            }
+        }
+        c.saveGUISettings();
     }
 
     c.getSkinPathForPlayer = function (player) {
@@ -344,9 +446,37 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         });
         for (let i = 0; i < characterList.length; i++) {
             let charInfo = getJson(charPath + "/" + characterList[i] + "/_Info");
+            var skins = [];
+            for (let j = 0; j < charInfo.skinList.length; j++) {
+                let skin = {
+                    label: "",
+                    fileName:"",
+                    index:"-1"
+                };
+                try {
+                    if (charInfo.skinList[j].label || charInfo.skinList[j].fileName) {
+                        skin.label = (charInfo.skinList[j].label) ? charInfo.skinList[j].label : charInfo.skinList[j].fileName;
+                        skin.fileName = (charInfo.skinList[j].fileName) ? charInfo.skinList[j].fileName : charInfo.skinList[j].label;
+                        skin.index = charInfo.skinList[j].index;
+                    }
+                } catch (err) {
+
+                }
+                if (!skin.label || !skin.fileName || skin.index == -1) {
+                    skin.label = charInfo.skinList[j];
+                    skin.fileName = charInfo.skinList[j];
+                    skin.index = j;
+                }
+
+                if (skin.fileName == 'Calendar') {
+                    skin.fileName == c.seasonalSkin;
+                }
+
+                skins.push(skin);
+            }
             var character = {
                 name: characterList[i],
-                skins: charInfo.skinList
+                skins: skins
             }
             c.characterList.push(character);
         }
@@ -355,6 +485,18 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     c.gameChanged = function () {
         charPath = gamePath + "/" + c.game + "/";
         charPathRel = gamePathRel + "/" + c.game + "/";
+        if (c.game != 'Rivals of Aether') {
+            c.addressRockerSettings.useAddressRocker = false;
+            c.addressRockerSettings.enableCharacterUpdate = false;
+            c.addressRockerSettings.enableSkinUpdate = false;
+            if (c.game != 'Rivals Workshop') {
+                c.obsSettings.autoChangeScenes = 'manualFromOBS';
+            }
+            
+        }
+        c.addressRockerSettings.inMatch = false;
+        c.addressRockerSettings.inSet = false;
+        
 
         c.saveGUISettings();
         c.clearPlayers();
@@ -540,10 +682,32 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         guiSettings.useCustomColors = c.useCustomColors;
         guiSettings.showOnDeck = c.showOnDeck;
         guiSettings.game = c.game;
+        guiSettings.addressRockerSettings = c.addressRockerSettings;
+        guiSettings.seasonalSkin = c.seasonalSkin;
 
         // save the file
         fs.writeFileSync(textPath + "/GUI Settings.json", JSON.stringify(guiSettings, null, 2));
     }
+
+
+    // called whenever the used clicks on a settings checkbox
+    c.saveOBSSettings = function () {
+        // read the file
+        const obsSettings = JSON.parse(fs.readFileSync(textPath + "/OBS Settings.json", "utf-8"));
+
+        obsSettings.useObsAutomation = c.obsSettings.useObsAutomation;
+        obsSettings.autoChangeScenes = c.obsSettings.autoChangeScenes;
+        obsSettings.vsScreenName = c.obsSettings.vsScreenName;
+        obsSettings.scoreboardSceneName = c.obsSettings.scoreboardSceneName;
+        obsSettings.autoRecordSets = c.obsSettings.autoRecordSets;
+        obsSettings.startScene = c.obsSettings.startScene;
+        obsSettings.endScene = c.obsSettings.endScene;
+        obsSettings.currentScene = c.obsSettings.currentScene;
+
+        // save the file
+        fs.writeFileSync(textPath + "/OBS Settings.json", JSON.stringify(obsSettings, null, 2));
+    }
+
 
     // c.showPlayerFinder = function() {
     //     return inPF;
@@ -579,7 +743,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 tag: "",
                 character: "Random",
                 characterIndex: 0,
-                skin: ""
+                skin: "",
+                skinIndex: 0
             }
             playerArray.push(player);
         }
@@ -646,6 +811,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     c.game = "Rivals of Aether";
 
     c.init = function () {
+        c.setScore('left', 0);
+        c.setScore('right',0);
         // setup Settings region and go back.
         document.getElementById('settingsRegion').addEventListener("click", moveViewport);
 
@@ -659,6 +826,11 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         const guiSettings = JSON.parse(fs.readFileSync(textPath + "/GUI Settings.json", "utf-8"));
         for (var key in guiSettings) {
             c[key] = guiSettings[key];
+        }
+
+        const obsSettings = JSON.parse(fs.readFileSync(textPath + "/OBS Settings.json", "utf-8"));
+        for (var key in obsSettings) {
+            c.obsSettings[key] = obsSettings[key];
         }
 
         c.setMaxPlayers();
@@ -735,6 +907,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         // });
     }
 
+    c.updateInterval = 1000;
+
 
     c.init();
     c.mainLoop = async function () {
@@ -742,30 +916,115 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         c.externalUpdateCheck(scInfo);
     }
     c.mainLoop();
-    setInterval(() => {
+    // setInterval(() => {
+    //     c.mainLoop();
+    // }, c.updateInterval); //update interval
+
+    setTimeout(function run() {
         c.mainLoop();
-    }, 1000); //update interval
+        setTimeout(run, c.updateInterval);
+      }, c.updateInterval);
+
+
 
     c.externalUpdateCheck = function (scInfo) {
-        if (scInfo['externalUpdate'] == true) {
-            //Update player data
-            const player = scInfo['player'];
-            if (player[0].name == "" && player[1].name == "") {
-                c.clearPlayers();
-                c.writeScoreboard();
+        if (c.addressRockerSettings.useAddressRocker && c.addressRockerSettings.inSet) {
+            let addressRockerData = JSON.parse(fs.readFileSync(textPath + "/RoAState.json", "utf-8"));
+            if (addressRockerData.TourneySet.TourneyModeBestOf == -1 ) {
                 return;
             }
+            c.addressRockerSettings.inMatch = addressRockerData.TourneySet.InMatch;
 
-            //Update score data
-            const score = scInfo['score'];
+            if (currentIntervalForVsScreen >= intervalBeforeVsScreenShows && c.addressRockerSettings.inMatch == false) {
+                c.obsSetScreen('vsScreenName');
+            }
 
-            c.setScore('left', score[0]);
-            c.setScore('right', score[1]);
+            if (c.addressRockerSettings.inMatch == true) {
+                c.obsSetScreen('scoreboardSceneName');
+            }
 
-            //Other stuff?
+            if (currentIntervalForVsScreen < intervalBeforeVsScreenShows) {
+                currentIntervalForVsScreen++;
+            }
+
+            
+            if (c.addressRockerSettings.enableCharacterUpdate) {
+                for (let i = 0; i < c.characterList.length; i++) {
+                    if (addressRockerData.P1Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase()) {
+                        c.players[0].character = c.characterList[i].name;
+                        c.markCharacterIndex(0);
+                        c.players[0].skin = "Default";
+
+                        if (c.addressRockerSettings.enableSkinUpdate) {
+                            for (let j = 0; j < c.characterList[i].skins.length; j++) {
+                                if (addressRockerData.P1Character.Skin.SkinIndex == c.characterList[i].skins[j].index) {
+                                    c.players[0].skinIndex = c.characterList[i].skins[j].index;
+                                    c.setSkinBasedOnIndex(0);
+                                }
+                            }
+                        }
+                    }
+                    if (addressRockerData.P2Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase()) {
+                        c.players[1].character = c.characterList[i].name;
+                        c.markCharacterIndex(1);
+                        c.players[1].skin = "Default";
+
+                        if (c.addressRockerSettings.enableSkinUpdate) {
+                            for (let j = 0; j < c.characterList[i].skins.length; j++) {
+                                if (addressRockerData.P2Character.Skin.SkinIndex == c.characterList[i].skins[j].index) {
+                                    c.players[1].skinIndex = c.characterList[i].skins[j].index;
+                                    c.setSkinBasedOnIndex(1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (c.addressRockerSettings.enableBestOfUpdate) {
+                c.roundInfo.bestOf = "Bo" + addressRockerData.TourneySet.TourneyModeBestOf;
+            } 
+            
+            if (c.addressRockerSettings.enableScoreUpdate) {
+                c.setScore('left', addressRockerData.TourneySet.P1GameCount);
+                c.setScore('right', addressRockerData.TourneySet.P2GameCount);
+            }
+
+            if (c.roundInfo.bestOf == 'Bo3') {
+                if (c.sides.left.score == 2 || c.sides.right.score == 2) {
+                    c.toggleSetStop();
+                }
+            } else if (c.roundInfo.bestOf == 'Bo5') {
+                if (c.sides.left.score == 3 || c.sides.right.score == 3) {
+                    c.toggleSetStop();
+                }
+            }
+
             c.writeScoreboard();
             $scope.$apply();
+        } else {
+            c.updateInterval = 1000;
+            if (scInfo['externalUpdate'] == true) {
+                //Update player data
+                const player = scInfo['player'];
+                if (player[0].name == "" && player[1].name == "") {
+                    c.clearPlayers();
+                    c.writeScoreboard();
+                    return;
+                }
+    
+                //Update score data
+                const score = scInfo['score'];
+    
+                c.setScore('left', score[0]);
+                c.setScore('right', score[1]);
+    
+                //Other stuff?
+                c.writeScoreboard();
+                $scope.$apply();
+            }
         }
+        
     }
     //searches for the main json file
     function getInfo() {
@@ -1172,7 +1431,10 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             useCustomColors: c.useCustomColors,
             showOnDeck: c.showOnDeck,
             game: c.game,
-            externalUpdate: false
+            seasonalSkin: c.seasonalSkin,
+            externalUpdate: false,
+            addressRockerSettings: c.addressRockerSettings,
+            obsSettings: c.obsSettings
         };
         //add the player's info to the player section of the json
         for (let i = 0; i < c.players.length; i++) {
@@ -1226,6 +1488,13 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         storeSetSpecificInfo(scoreboardJson.player, scoreboardJson.tournamentName, scoreboardJson.round);
         // const spawn = require("child_process").spawn;
         // const pythonProcess = spawn('python',[scriptsPath + "/RoAUpdateScores.py", checkScore(p1Win1, p1Win2, p1Win3), checkScore(p2Win1, p2Win2, p2Win3)]);
+    }
+
+    c.renameFilesPython = function() {
+        setTimeout(function run() {
+            const spawn = require("child_process").spawn;
+            const pythonProcess = spawn('python',[scriptsPath + "/RoARenameFiles.py"]);
+          }, 5000);
     }
 
 
