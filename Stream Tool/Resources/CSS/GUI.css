@@ -88,6 +88,9 @@ input[type="text"], input[type="number"]{
   border-color: var(--focused);
 }
 
+.addressRockerSetButtons {
+  width: 100%;
+}
 
 /* main viewport */
 #viewport {

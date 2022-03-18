@@ -192,8 +192,8 @@
               <select ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" id="p{{getPlayerIndexRightSide($index)}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[getPlayerIndexRightSide($index)].character" ng-change="markCharacterIndex(getPlayerIndexRightSide($index))">
                 <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
               </select>
-              <select ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" id="p{{getPlayerIndexRightSide($index)}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[getPlayerIndexRightSide($index)].skin">
-                <option class="theEntry" ng-repeat="skin in characterList[players[getPlayerIndexRightSide($index)].characterIndex].skins" value="{{skin}}">{{skin}}</option>
+              <select ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" id="p{{getPlayerIndexRightSide($index)}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[getPlayerIndexRightSide($index)].skinIndex" ng-change="setSkinBasedOnIndex(getPlayerIndexRightSide($index))">
+                <option class="theEntry" ng-repeat="skin in characterList[players[getPlayerIndexRightSide($index)].characterIndex].skins" ng-value={{skin.index}}>{{skin.label}}</option>
               </select>
             </div>
 
@@ -325,8 +325,8 @@
               <select id="p{{$index}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="onDeckPlayers[$index].character" ng-change="markCharacterIndex($index, true, true)">
                 <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
               </select>
-              <select ng-hide="onDeckPlayers[$index].character == 'Random'" id="p{{$index}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="onDeckPlayers[$index].skin">
-                <option class="theEntry" ng-repeat="skin in characterList[onDeckPlayers[$index].characterIndex].skins" value="{{skin}}">{{skin}}</option>
+              <select ng-hide="onDeckPlayers[$index].character == 'Random'" id="p{{$index}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="onDeckPlayers[$index].skinIndex" ng-change="setSkinBasedOnIndex($index, -1, true)">
+                <option class="theEntry" ng-repeat="skin in characterList[onDeckPlayers[$index].characterIndex].skins" ng-value="{{skin.index}}">{{skin.label}}</option>
               </select>
             </div>
           </div>
@@ -441,7 +441,7 @@
         <div ng-show="settingsPageNumber==2">
           <div ng-show="game=='Rivals of Aether' || game=='Rivals Workshop'">
             <div class="settingBox" title="Toggle the ability to use the Address Rocker Json file">
-              <input type="checkbox" id="useAddressRocker" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.useAddressRocker" ng-change="saveGUISettings()">
+              <input type="checkbox" id="useAddressRocker" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.useAddressRocker" ng-change="toggleSetStop(); saveGUISettings();">
               <label for="useAddressRocker" class="settingsText">Use Address Rocker for Tool Control</span>
             </div>
             <div class="settingBox" title="Toggle automatic character updates" ng-hide="game != 'Rivals of Aether'">
@@ -460,11 +460,11 @@
               <input type="checkbox" id="enableScoreUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableScoreUpdate" ng-change="saveGUISettings()">
               <label for="enableScoreUpdate" class="settingsText">Toggle Automatic Score update</span>
             </div>
-            <button id="startSet" tabindex="-1" title='Start the Set to begin automated checks' ng-if="addressRockerSettings.inSet == false" ng-click="toggleSetStart()">
-              Start Set
+            <button id="startSet" class="addressRockerSetButtons" tabindex="-1" title='Start the Set to begin automated checks' ng-if="addressRockerSettings.useAddressRocker && addressRockerSettings.inSet == false" ng-click="toggleSetStart()">
+              Start Set (Enables Auto Check for Changes)
             </button>
-            <button id="stopSet" tabindex="-1" title='Stop the Set to stop automated checks' ng-show="addressRockerSettings.inSet == true" ng-click="toggleSetStop()">
-              Stop Set
+            <button id="stopSet" class="addressRockerSetButtons" tabindex="-1" title='Stop the Set to stop automated checks' ng-show="addressRockerSettings.useAddressRocker && addressRockerSettings.inSet == true" ng-click="toggleSetStop()">
+              Stop Set (Disables Auto Check for Changes)
             </button>
           </div>
 
@@ -479,10 +479,10 @@
             <label for="useObsAutomation" class="settingsText">OBS Auto Control</span>
           </div>
           <div>
-            <div class="settingBox" title="Toggle automatic set recording.">
+            <!-- <div class="settingBox" title="Toggle automatic set recording.">
               <input type="checkbox" id="autoRecordSets" class="settingsCheck" tabindex="-1" ng-model="obsSettings.autoRecordSets" ng-change="saveOBSSettings()">
               <label for="autoRecordSets" class="settingsText">Toggle automatic set recording</span>
-            </div>
+            </div> -->
             <div class="settingBox" title="This sets how scenes will change on OBS.">
               <label for="autoChangeScenes" class="settingsText">OBS Scene Control:</span>
               <select id="autoChangeScenes" class="textInput mousetrap" title="This sets how scenes will change on OBS." tabindex="4" ng-model="obsSettings.autoChangeScenes" ng-change="saveOBSSettings()">

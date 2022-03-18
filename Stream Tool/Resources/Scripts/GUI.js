@@ -246,6 +246,15 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         c[playerType][c.playerFocus].character = c.playerProfiles[index].character;
         c[playerType][c.playerFocus].skin = c.playerProfiles[index].skin;
         c.markCharacterIndex(c.playerFocus, false, c.playerFocusOnDeck);
+        for (let i = 0; i < c.characterList.length; i++) {
+            if (c.characterList[i].name == c.playerProfiles[index].character) {
+                for (let j =0; j < c.characterList[i].skins.length; j++) {
+                    if (c.characterList[i].skins[j].fileName == c.playerProfiles[index].skin) {
+                        c[playerType][c.playerFocus].skinIndex = c.characterList[i].skins[j].index;
+                    }
+                }
+            }
+        }
         c.inPlayerField = false;
         c.inProfileSelector = false;
     }
@@ -277,6 +286,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         if (onDeck) {
             playerType = "onDeckPlayers";
         }
+
         c[playerType][player].characterIndex = c.characterList.map(e => e.name).indexOf(c[playerType][player].character);
         if (updateSkin) {
             c[playerType][player].skin = (c[playerType][player].character != "Random") ? "Default" : "";
@@ -284,19 +294,30 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         }
     }
 
-    c.setSkinBasedOnIndex = function(player, skinIndex=-1) {
-        let skins = c.characterList[c.players[player].characterIndex].skins;
+    c.setSkinBasedOnIndex = function(player, skinIndex=-1, onDeckPlayers=false) {
+
+        let playerType = 'players';
+        if (c.playerFocusOnDeck) {
+            playerType = 'onDeckPlayers';
+        }
+
+        let skins = c.characterList[c[playerType][player].characterIndex].skins;
 
         let arrayIndex = -1;
         if (skinIndex == -1) {
-            skinIndex = c.players[player].skinIndex;
+            skinIndex = c[playerType][player].skinIndex;
         } 
         
         arrayIndex = skins.map(e => e.index).indexOf(skinIndex);
-        c.players[player].skin = skins[arrayIndex].fileName;
+        try {
+            c[playerType][player].skin = skins[arrayIndex].fileName;
 
-        if (c.players[player].skin == "Calendar") {
-            c.players[player].skin = c.seasonalSkin;
+            if (c[playerType][player].skin == "Calendar") {
+                c[playerType][player].skin = c.seasonalSkin;
+            }
+        } catch (err) {
+            c[playerType][player].skin = "Random";
+            c[playerType][player].skinIndex = 0;
         }
     }
 
@@ -304,6 +325,11 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         for (let i = 0; i < c.players.length; i++) {
             if (c.seasonalSkins.indexOf(c.players[i].skin) != -1 || c.players[i].skin == 'Calendar') {
                 c.players[i].skin = c.seasonalSkin;
+            }
+        }
+        for (let i = 0; i < c.onDeckPlayers.length; i++) {
+            if (c.seasonalSkins.indexOf(c.onDeckPlayers[i].skin) != -1 || c.onDeckPlayers[i].skin == 'Calendar') {
+                c.onDeckPlayers[i].skin = c.seasonalSkin;
             }
         }
         c.saveGUISettings();
