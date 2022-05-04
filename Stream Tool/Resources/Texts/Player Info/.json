@@ -89,12 +89,12 @@
     },
     {
       "character": "Hodan",
-      "skin": "Default",
+      "skin": "Valentines",
       "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "Valentines",
+      "skin": "White",
       "game": "Rivals of Aether"
     },
     {
@@ -104,12 +104,12 @@
     },
     {
       "character": "Shovel Knight",
-      "skin": "Abyss",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Arcade Green",
+      "skin": "Green",
       "game": "Rivals of Aether"
     },
     {
@@ -119,12 +119,12 @@
     },
     {
       "character": "Maypul",
-      "skin": "Abyss",
+      "skin": "Valentines",
       "game": "Rivals of Aether"
     },
     {
       "character": "Forsburn",
-      "skin": "Dreamscape",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "character": "Sylvanos",
-      "skin": "Infamous",
+      "skin": "Abyss",
       "game": "Rivals of Aether"
     },
     {
@@ -244,12 +244,12 @@
     },
     {
       "character": "Zetterburn",
-      "skin": "Default",
+      "skin": "Green",
       "game": "Rivals of Aether"
     },
     {
       "character": "Ranno",
-      "skin": "Blue",
+      "skin": "Grey",
       "game": "Rivals of Aether"
     }
   ],

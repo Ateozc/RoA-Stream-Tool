@@ -166,6 +166,9 @@ def rename_files():
 
         tournament = set_data_json['tournamentName']
         round = set_data_json['round']
+
+        if round == "Grand Finals - Reset":
+            round = "Grand Finals"
         player1 = set_data_json['player'][0]
         player2 = set_data_json['player'][1]
 

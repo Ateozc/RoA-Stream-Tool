@@ -1,22 +1,24 @@
 {
   "P1Character": {
-    "Character": "UNKNOWN",
+    "Character": "OLYMPIA",
     "Skin": {
-      "SkinDescription": "",
-      "SkinIndex": 0
-    }
+      "SkinDescription": "GREY",
+      "SkinIndex": 4
+    },
+    "SlotState": "HMN"
   },
   "P2Character": {
-    "Character": "UNKNOWN",
+    "Character": "SYLVANOS",
     "Skin": {
-      "SkinDescription": "",
-      "SkinIndex": 0
-    }
+      "SkinDescription": "ABYSS",
+      "SkinIndex": 13
+    },
+    "SlotState": "HMN"
   },
   "TourneySet": {
-    "InMatch": false,
-    "TourneyModeBestOf": -1,
-    "P1GameCount": -1,
-    "P2GameCount": -1
+    "InMatch": true,
+    "TourneyModeBestOf": 3,
+    "P1GameCount": 0,
+    "P2GameCount": 0
   }
 }

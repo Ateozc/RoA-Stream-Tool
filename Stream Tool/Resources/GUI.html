@@ -91,7 +91,14 @@
                   <input type="text" id="p{{playerIndex}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{playerNumber}}'s Pronouns here" spellcheck="false" ng-model="players[playerIndex].pronouns">
                 </div>
               </div>
+
+              <!-- <input list="p{{playerIndex}}Char" ng-model="players[playerIndex].character" ng-change="markCharacterIndex(playerIndex)">
+              <datalist ng-if="playerIndex==0 || gamemode=='Teams'" id="p{{playerIndex}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[playerIndex].character" ng-change="markCharacterIndex(playerIndex)">
+                <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
+              </datalist> -->
+
               <select ng-if="playerIndex==0 || gamemode=='Teams'" id="p{{playerIndex}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[playerIndex].character" ng-change="markCharacterIndex(playerIndex)">
+                <div><span>Test</span></div>
                 <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
               </select>
               <select ng-if="playerIndex==0 || gamemode=='Teams'" ng-hide="players[playerIndex].character == 'Random'" id="p{{playerIndex}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[playerIndex].skinIndex" ng-change="setSkinBasedOnIndex(playerIndex)">
@@ -215,7 +222,7 @@
         </div>
       </div>
 
-      <div id="addressRockerInfo" ng-show="addressRockerSettings.useAddressRocker">
+      <div id="addressRockerInfo" ng-show="addressRockerSettings.useAddressRocker && addressRockerSettings.showInfo">
         <div class="row">Address Rocker information: </div>
         <div class="row">Auto Update Characters: {{addressRockerSettings.enableCharacterUpdate}}</div>
         <div class="row">Auto Update Skins: {{addressRockerSettings.enableSkinUpdate}}</div>
@@ -444,21 +451,29 @@
               <input type="checkbox" id="useAddressRocker" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.useAddressRocker" ng-change="toggleSetStop(); saveGUISettings();">
               <label for="useAddressRocker" class="settingsText">Use Address Rocker for Tool Control</span>
             </div>
+            <div class="settingBox" title="Toggle showing info on tool">
+              <input type="checkbox" id="showAddressRockerInfo" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.showInfo" ng-change="saveGUISettings()">
+              <label for="showAddressRockerInfo" class="settingsText">Toggle AddressRocker info display</span>
+            </div>
             <div class="settingBox" title="Toggle automatic character updates" ng-hide="game != 'Rivals of Aether'">
               <input type="checkbox" id="enableCharacterUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableCharacterUpdate" ng-change="saveGUISettings()">
               <label for="enableCharacterUpdate" class="settingsText">Toggle Automatic Character update</span>
             </div>
-            <div class="settingBox" title="Toggle automatic character updates" ng-hide="game != 'Rivals of Aether'">
+            <div class="settingBox" title="Toggle automatic skin color updates" ng-hide="game != 'Rivals of Aether'">
               <input type="checkbox" id="enableSkinUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableSkinUpdate" ng-change="saveGUISettings()">
               <label for="enableSkinUpdate" class="settingsText">Toggle Automatic Skin update</span>
             </div>
-            <div class="settingBox" title="Toggle automatic character updates">
+            <div class="settingBox" title="Toggle automatic best of updates">
               <input type="checkbox" id="enableBestOfUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableBestOfUpdate" ng-change="saveGUISettings()">
               <label for="enableBestOfUpdate" class="settingsText">Toggle Automatic Best Of update</span>
             </div>
-            <div class="settingBox" title="Toggle automatic character updates">
+            <div class="settingBox" title="Toggle automatic score updates">
               <input type="checkbox" id="enableScoreUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableScoreUpdate" ng-change="saveGUISettings()">
               <label for="enableScoreUpdate" class="settingsText">Toggle Automatic Score update</span>
+            </div>
+            <div class="settingBox" title="Toggle automatic team color updates">
+              <input type="checkbox" id="enableTeamColorUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.setTeamColor" ng-change="saveGUISettings()">
+              <label for="enableTeamColorUpdate" class="settingsText">Toggle Automatic Team Color update</span>
             </div>
             <button id="startSet" class="addressRockerSetButtons" tabindex="-1" title='Start the Set to begin automated checks' ng-if="addressRockerSettings.useAddressRocker && addressRockerSettings.inSet == false" ng-click="toggleSetStart()">
               Start Set (Enables Auto Check for Changes)

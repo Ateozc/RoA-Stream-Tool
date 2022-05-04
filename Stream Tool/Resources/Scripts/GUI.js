@@ -97,7 +97,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         enableBestOfUpdate: false,
         enableScoreUpdate: false,
         inMatch: false,
-        inSet: false
+        inSet: false,
+        showInfo: false,
+        setTeamColor: false
     }
 
     c.obsSetScreen = function(scene, forced=false) {
@@ -722,6 +724,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         const obsSettings = JSON.parse(fs.readFileSync(textPath + "/OBS Settings.json", "utf-8"));
 
         obsSettings.useObsAutomation = c.obsSettings.useObsAutomation;
+        if (c.obsSettings.useObsAutomation == false) {
+            c.obsSettings.autoChangeScenes = 'manualFromOBS';
+        }
         obsSettings.autoChangeScenes = c.obsSettings.autoChangeScenes;
         obsSettings.vsScreenName = c.obsSettings.vsScreenName;
         obsSettings.scoreboardSceneName = c.obsSettings.scoreboardSceneName;
@@ -976,10 +981,26 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             
             if (c.addressRockerSettings.enableCharacterUpdate) {
                 for (let i = 0; i < c.characterList.length; i++) {
-                    if (addressRockerData.P1Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase()) {
+                    if (addressRockerData.P1Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase() && addressRockerData.P1Character.SlotState != 'OFF') {
                         c.players[0].character = c.characterList[i].name;
                         c.markCharacterIndex(0);
                         c.players[0].skin = "Default";
+                        if (c.gamemode =='Singles' && c.addressRockerSettings.setTeamColor) {
+                            if (addressRockerData.P1Character.SlotState == 'HMN') {
+                                c.sides.left.color = {
+                                    name: "Red",
+                                    hex: "#ed1c23"
+                                }
+                            }
+    
+                            if (addressRockerData.P1Character.SlotState == 'CPU') {
+                                c.sides.left.color = {
+                                    name: "CPU",
+                                    hex: "#808080"
+                                }
+                            }
+                        }
+                        
 
                         if (c.addressRockerSettings.enableSkinUpdate) {
                             for (let j = 0; j < c.characterList[i].skins.length; j++) {
@@ -990,10 +1011,26 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                             }
                         }
                     }
-                    if (addressRockerData.P2Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase()) {
+                    if (addressRockerData.P2Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase() && addressRockerData.P2Character.SlotState != 'OFF') {
                         c.players[1].character = c.characterList[i].name;
                         c.markCharacterIndex(1);
                         c.players[1].skin = "Default";
+
+                        if (c.gamemode =='Singles' && c.addressRockerSettings.setTeamColor) {
+                            if (addressRockerData.P2Character.SlotState == 'HMN') {
+                                c.sides.right.color = {
+                                    name: "Blue",
+                                    hex: "#00b7ef"
+                                }
+                            }
+    
+                            if (addressRockerData.P2Character.SlotState == 'CPU') {
+                                c.sides.right.color = {
+                                    name: "CPU",
+                                    hex: "#808080"
+                                }
+                            }
+                        }
 
                         if (c.addressRockerSettings.enableSkinUpdate) {
                             for (let j = 0; j < c.characterList[i].skins.length; j++) {
@@ -1018,11 +1055,34 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
             if (c.roundInfo.bestOf == 'Bo3') {
                 if (c.sides.left.score == 2 || c.sides.right.score == 2) {
-                    c.toggleSetStop();
+                    if (c.roundInfo.name == 'Grand Finals') {
+                        if ( (c.sides.left.wl == 'L' && c.sides.left.score == 2) || (c.sides.right.wl == 'L' && c.sides.right.score == 2)) {
+                            c.sides.left.wl = 'L';
+                            c.sides.right.wl = 'L';
+                            c.setScore('left', 0);
+                            c.setScore('right', 0);
+                        } else {
+                            c.toggleSetStop();
+                        }
+                    } else {
+                        c.toggleSetStop();
+                    }
+
                 }
             } else if (c.roundInfo.bestOf == 'Bo5') {
                 if (c.sides.left.score == 3 || c.sides.right.score == 3) {
-                    c.toggleSetStop();
+                    if (c.roundInfo.name == 'Grand Finals') {
+                        if ( (c.sides.left.wl == 'L' && c.sides.left.score == 3) || (c.sides.right.wl == 'L' && c.sides.right.score == 3)) {
+                            c.sides.left.wl = 'L';
+                            c.sides.right.wl = 'L';
+                            c.setScore('left', 0);
+                            c.setScore('right', 0);
+                        } else {
+                            c.toggleSetStop();
+                        }
+                    } else {
+                        c.toggleSetStop();
+                    }
                 }
             }
 
