@@ -16,14 +16,26 @@
   "useCustomColors": false,
   "addressRockerSettings": {
     "useAddressRocker": true,
-    "enableCharacterUpdate": false,
-    "enableSkinUpdate": false,
-    "enableBestOfUpdate": false,
-    "enableScoreUpdate": false,
-    "inMatch": false,
+    "enableCharacterUpdate": true,
+    "enableSkinUpdate": true,
+    "enableBestOfUpdate": true,
+    "enableScoreUpdate": true,
+    "inMatch": true,
     "inSet": false,
-    "setTeamColor": false,
+    "setTeamColor": true,
     "showInfo": false
   },
-  "seasonalSkin": "Valentines"
+  "seasonalSkin": "Summer",
+  "obsSettings": {
+    "useObsAutomation": true,
+    "autoChangeScenes": "addressRockerAuto",
+    "vsScreenName": "Vs Screen (Between Games)",
+    "scoreboardSceneName": "Main Screen with overlay",
+    "autoRecordSets": false,
+    "startScene": "Vs Screen (Set Start)",
+    "endScene": "Vs Screen (Between Games)",
+    "currentScene": "Vs Screen (Between Games)",
+    "setStartScene": "Vs Screen (Set Start)",
+    "setEndScene": "Vs Screen (Between Games)"
+  }
 }

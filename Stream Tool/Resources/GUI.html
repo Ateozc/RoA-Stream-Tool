@@ -125,10 +125,10 @@
 
         <div id="sideSep">
           <div id="swapButton" title="Swap P1's and P2's values" ng-click="swap()">
-            <load-svg src="SVGs/Swap.svg" class="midIcon" id="swapIcon"></load-svg>
+            <load-svg src="SVGs/Swap.svg" class="icon midIcon" id="swapIcon"></load-svg>
           </div>
           <div id="clearButton" title="Clear player names, character and win values. [Shortcut: Esc]" ng-click="clearPlayers()">
-            <load-svg src="SVGs/Trash.svg" class="midIcon" id="clearIcon"></load-svg>
+            <load-svg src="SVGs/Trash.svg" class="icon midIcon" id="clearIcon"></load-svg>
           </div>
         </div>
 
@@ -251,17 +251,17 @@
 
 
               <div class="casterGroup casterNameG">
-                <load-svg src="SVGs/Mic.svg" class="casterIcon"></load-svg>
+                <load-svg src="SVGs/Mic.svg" class="icon casterIcon"></load-svg>
                 <input type="text" id="cName{{casterNumber}}" class="textInput mousetrap" placeholder="Caster {{casterNumber}} name" spellcheck="false" ng-model="casters[$index].name">
               </div>
 
               <div class="casterGroup casterSocialG">
-                <load-svg src="SVGs/Twitter.svg" class="casterIcon twitterIcon"></load-svg>
+                <load-svg src="SVGs/Twitter.svg" class="icon casterIcon twitterIcon"></load-svg>
                 <input type="text" id="cTwitter{{casterNumber}}" class="textInput mousetrap" placeholder="Caster {{casterNumber}} twitter" spellcheck="false" ng-model="casters[$index].twitter">
               </div>
 
               <div class="casterGroup casterSocialG">
-                <load-svg src="SVGs/Twitch.svg" class="casterIcon twitchIcon"></load-svg>
+                <load-svg src="SVGs/Twitch.svg" class="icon casterIcon twitchIcon"></load-svg>
                 <input type="text" id="cTwitch{{casterNumber}}" class="textInput mousetrap" placeholder="Caster {{casterNumber}} Twitch" spellcheck="false" ng-model="casters[$index].twitch">
               </div>
             </div>
@@ -320,7 +320,7 @@
             <span class="botText">UPDATE</span>
             <div class="rectangle"></div>
           </div>
-          <div id="settingsRegion" class="botRegion" title="Settings">
+          <div id="settingsRegion" class="icon botRegion" title="Settings">
             <load-svg src="SVGs/Settings.svg" id="configIcon"></load-svg>
           </div>
         </div>

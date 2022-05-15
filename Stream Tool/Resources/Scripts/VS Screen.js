@@ -566,21 +566,21 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		c.gui.round = scInfo['round'];
 		c.gui.tournament = scInfo['tournamentName'];
 		c.gui.casters = scInfo['caster'];
-		let obsSettings = scInfo['obsSettings'];
-		let addressRockerSettings = scInfo['addressRockerSettings'];
+		// let obsSettings = scInfo['obsSettings'];
+		// let addressRockerSettings = scInfo['addressRockerSettings'];
 	
-		if (obsSettings.useObsAutomation && addressRockerSettings.useAddressRocker && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene && !gettingScene) {
-			window.obsstudio.getCurrentScene(function(scene) {
-				if (scene.name != obsSettings.currentScene) {
-					gettingScene = true;
-					window.obsstudio.setCurrentScene(obsSettings.currentScene);
-					return;
-				}
-			});
-		}
-		if (gettingScene) {
-			return;
-		}
+		// if (obsSettings.useObsAutomation && addressRockerSettings.useAddressRocker && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene && !gettingScene) {
+		// 	window.obsstudio.getCurrentScene(function(scene) {
+		// 		if (scene.name != obsSettings.currentScene) {
+		// 			gettingScene = true;
+		// 			window.obsstudio.setCurrentScene(obsSettings.currentScene);
+		// 			return;
+		// 		}
+		// 	});
+		// }
+		// if (gettingScene) {
+		// 	return;
+		// }
 
 		if (prevDifFromGuiCount == iterationsBeforePrevUpdate || firstRun) {
 			c.prev.usePips = c.gui.usePips;

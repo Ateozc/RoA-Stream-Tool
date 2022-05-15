@@ -472,10 +472,13 @@ input[type="text"], input[type="number"]{
   filter: brightness(1.3);
 }
 
+.icon {
+  fill: #b6b6b6;
+}
+
 .midIcon {
   height: 12px;
   width: 12px;
-  fill: #b6b6b6;
   opacity: 0;
   transform: scale(1.5, 1.5);
   transition: opacity 200ms, transform 200ms;
@@ -649,7 +652,6 @@ input[type="number"] {
   width: 24px;
   margin-left: -5px;
   margin-top: 5px;
-  fill: #b6b6b6;
 }
 
 .twitterIcon {

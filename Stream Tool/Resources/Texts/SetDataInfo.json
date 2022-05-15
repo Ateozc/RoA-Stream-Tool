@@ -1,12 +1,32 @@
 {
   "player": [
     {
-      "name": "",
+      "name": "Test",
       "twitter": "",
       "pronouns": "",
       "tag": "",
       "characters": [
         "Sylvanos",
+        "Olympia"
+      ]
+    },
+    {
+      "name": "Test",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Olympia",
+        "Sylvanos"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Elliana",
         "Ranno",
         "Clairen",
         "Hodan",
@@ -14,6 +34,8 @@
         "Forsburn",
         "Maypul",
         "Zetterburn",
+        "Sylvanos",
+        "Absa",
         "Olympia",
         "Random"
       ]
@@ -24,7 +46,7 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Sylvanos",
+        "Elliana",
         "Ranno",
         "Clairen",
         "Hodan",
@@ -32,42 +54,8 @@
         "Forsburn",
         "Maypul",
         "Zetterburn",
-        "Olympia",
-        "Random"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
         "Sylvanos",
-        "Ranno",
-        "Clairen",
-        "Hodan",
-        "Shovel Knight",
-        "Forsburn",
-        "Maypul",
-        "Zetterburn",
-        "Olympia",
-        "Random"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Sylvanos",
-        "Ranno",
-        "Clairen",
-        "Hodan",
-        "Shovel Knight",
-        "Forsburn",
-        "Maypul",
-        "Zetterburn",
+        "Absa",
         "Olympia",
         "Random"
       ]

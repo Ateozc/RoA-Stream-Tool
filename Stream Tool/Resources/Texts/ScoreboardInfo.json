@@ -1,47 +1,342 @@
 {
   "player": [
     {
-      "name": "",
+      "name": "Test",
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Random",
-      "characterIndex": 0,
-      "skin": "",
-      "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
-      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
-      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
-      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
-      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
-      "info": null,
+      "character": "Olympia",
+      "characterIndex": 10,
+      "skin": "White",
+      "skinIndex": 4,
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Rivals of Aether/Olympia/White.png",
+      "defaultSkinPath": "Resources/Games/Rivals of Aether/Olympia/White.png",
+      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Olympia/HD.png",
+      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Olympia/White.png",
+      "backgroundWebm": "Resources/Games/Rivals of Aether/Olympia/BG.webm",
+      "info": {
+        "skinList": [
+          {
+            "label": "Default",
+            "fileName": "Default",
+            "index": 0
+          },
+          {
+            "label": "Blue",
+            "fileName": "Blue",
+            "index": 1
+          },
+          {
+            "label": "Red",
+            "fileName": "Red",
+            "index": 2
+          },
+          {
+            "label": "Green",
+            "fileName": "Green",
+            "index": 3
+          },
+          {
+            "label": "White",
+            "fileName": "White",
+            "index": 4
+          },
+          {
+            "label": "Dark Purple",
+            "fileName": "Dark Purple",
+            "index": 5
+          },
+          {
+            "label": "Seasonal",
+            "fileName": "Calendar",
+            "index": 6
+          },
+          {
+            "label": "Default Custom 1",
+            "fileName": "Default Custom 1",
+            "index": 8
+          },
+          {
+            "label": "Default Custom 2",
+            "fileName": "Default Custom 2",
+            "index": 9
+          },
+          {
+            "label": "Abyss",
+            "fileName": "Abyss",
+            "index": 13
+          },
+          {
+            "label": "Early Access",
+            "fileName": "Early Access",
+            "index": 14
+          },
+          {
+            "label": "Ranked",
+            "fileName": "Ranked",
+            "index": 18
+          },
+          {
+            "label": "HD",
+            "fileName": "HD",
+            "index": 100
+          }
+        ],
+        "skinListOld": [
+          "Default",
+          "Blue",
+          "Red",
+          "Green",
+          "White",
+          "Dark Purple",
+          "Christmas",
+          "Valentines",
+          "Summer",
+          "Halloween",
+          "Default Custom 1",
+          "Default Custom 2",
+          "Abyss",
+          "Early Access",
+          "Ranked",
+          "HD"
+        ],
+        "scoreboard": {
+          "neutral": {
+            "x": 0,
+            "y": 70,
+            "scale": 3.5
+          },
+          "HD": {
+            "x": 0,
+            "y": 70,
+            "scale": 3.5
+          }
+        },
+        "vsScreen": {
+          "neutral": {
+            "x": -500,
+            "y": 185,
+            "scale": 1.15
+          },
+          "HD": {
+            "x": -550,
+            "y": 150,
+            "scale": 1.15
+          }
+        },
+        "gui": {
+          "neutral": {
+            "x": -5,
+            "y": 40,
+            "scale": 4.6
+          },
+          "HD": {
+            "x": -5,
+            "y": 40,
+            "scale": 4.6
+          }
+        }
+      },
       "teamColor": {
         "name": "Red",
         "hex": "#ed1c23"
       },
-      "vsScreenSkin": "Random",
+      "vsScreenSkin": "HD",
       "team": 0
     },
     {
-      "name": "",
+      "name": "Test",
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Random",
-      "characterIndex": 0,
-      "skin": "",
-      "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
-      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
-      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
-      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
-      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
-      "info": null,
+      "character": "Sylvanos",
+      "characterIndex": 16,
+      "skin": "Abyss",
+      "skinIndex": 13,
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Rivals of Aether/Sylvanos/Abyss.png",
+      "defaultSkinPath": "Resources/Games/Rivals of Aether/Sylvanos/Abyss.png",
+      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Sylvanos/HD.png",
+      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Sylvanos/Abyss.png",
+      "backgroundWebm": "Resources/Games/Rivals of Aether/Sylvanos/BG.webm",
+      "info": {
+        "skinList": [
+          {
+            "label": "Default",
+            "fileName": "Default",
+            "index": 0
+          },
+          {
+            "label": "Blue",
+            "fileName": "Blue",
+            "index": 1
+          },
+          {
+            "label": "Red",
+            "fileName": "Red",
+            "index": 2
+          },
+          {
+            "label": "Green",
+            "fileName": "Green",
+            "index": 3
+          },
+          {
+            "label": "White",
+            "fileName": "White",
+            "index": 4
+          },
+          {
+            "label": "Purple",
+            "fileName": "Purple",
+            "index": 5
+          },
+          {
+            "label": "Seasonal",
+            "fileName": "Calendar",
+            "index": 6
+          },
+          {
+            "label": "Default Custom 1",
+            "fileName": "Default Custom 1",
+            "index": 8
+          },
+          {
+            "label": "Default Custom 2",
+            "fileName": "Default Custom 2",
+            "index": 9
+          },
+          {
+            "label": "Genesis",
+            "fileName": "Genesis",
+            "index": 11
+          },
+          {
+            "label": "Infamous",
+            "fileName": "Infamous",
+            "index": 12
+          },
+          {
+            "label": "Abyss",
+            "fileName": "Abyss",
+            "index": 13
+          },
+          {
+            "label": "Early Access",
+            "fileName": "Early Access",
+            "index": 14
+          },
+          {
+            "label": "Golden",
+            "fileName": "Golden",
+            "index": 15
+          },
+          {
+            "label": "Champion",
+            "fileName": "Champion",
+            "index": 16
+          },
+          {
+            "label": "Ranked",
+            "fileName": "Ranked",
+            "index": 18
+          },
+          {
+            "label": "Steampunk",
+            "fileName": "Steampunk",
+            "index": 19
+          },
+          {
+            "label": "HD",
+            "fileName": "HD",
+            "index": 100
+          },
+          {
+            "label": "LoA HD",
+            "fileName": "LoA HD",
+            "index": 101
+          }
+        ],
+        "skinListOld": [
+          "Default",
+          "Blue",
+          "Red",
+          "Green",
+          "White",
+          "Purple",
+          "Halloween",
+          "Christmas",
+          "Valentines",
+          "Summer",
+          "Default Custom 1",
+          "Default Custom 2",
+          "Genesis",
+          "Infamous",
+          "Abyss",
+          "Early Access",
+          "Golden",
+          "Champion",
+          "Ranked",
+          "Steampunk",
+          "HD",
+          "LoA HD"
+        ],
+        "scoreboard": {
+          "neutral": {
+            "x": -80,
+            "y": 19,
+            "scale": 4
+          },
+          "LoA HD": {
+            "x": -25,
+            "y": 168,
+            "scale": 6.3
+          },
+          "HD": {
+            "x": -90,
+            "y": 19,
+            "scale": 4.3
+          }
+        },
+        "vsScreen": {
+          "neutral": {
+            "x": -675,
+            "y": 30,
+            "scale": 1.04
+          },
+          "LoA HD": {
+            "x": -500,
+            "y": 150,
+            "scale": 1.2
+          },
+          "HD": {
+            "x": -715,
+            "y": 30,
+            "scale": 1.04
+          }
+        },
+        "gui": {
+          "neutral": {
+            "x": -55,
+            "y": 15,
+            "scale": 4.5
+          },
+          "LoA HD": {
+            "x": 5,
+            "y": 78,
+            "scale": 7
+          },
+          "HD": {
+            "x": -55,
+            "y": 15,
+            "scale": 4.5
+          }
+        }
+      },
       "teamColor": {
         "name": "Blue",
         "hex": "#00b7ef"
       },
-      "vsScreenSkin": "Random",
+      "vsScreenSkin": "HD",
       "team": 1
     },
     {
@@ -115,14 +410,14 @@
   "tournamentName": "",
   "caster": [
     {
-      "name": "test1",
-      "twitter": "test2",
-      "twitch": "test3"
+      "name": "",
+      "twitter": "",
+      "twitch": ""
     },
     {
-      "name": "test4",
-      "twitter": "test5",
-      "twitch": "test6"
+      "name": "",
+      "twitter": "",
+      "twitch": ""
     }
   ],
   "allowIntro": true,
@@ -137,28 +432,28 @@
   "useCustomColors": false,
   "showOnDeck": false,
   "game": "Rivals of Aether",
-  "seasonalSkin": "Valentines",
+  "seasonalSkin": "Summer",
   "externalUpdate": false,
   "addressRockerSettings": {
     "useAddressRocker": true,
-    "enableCharacterUpdate": false,
-    "enableSkinUpdate": false,
-    "enableBestOfUpdate": false,
-    "enableScoreUpdate": false,
-    "inMatch": false,
-    "inSet": false,
-    "setTeamColor": false,
+    "enableCharacterUpdate": true,
+    "enableSkinUpdate": true,
+    "enableBestOfUpdate": true,
+    "enableScoreUpdate": true,
+    "inMatch": true,
+    "inSet": true,
+    "setTeamColor": true,
     "showInfo": false
   },
   "obsSettings": {
-    "useObsAutomation": false,
-    "autoChangeScenes": "manualFromOBS",
+    "useObsAutomation": true,
+    "autoChangeScenes": "addressRockerAuto",
     "vsScreenName": "Vs Screen (Between Games)",
     "scoreboardSceneName": "Main Screen with overlay",
     "autoRecordSets": false,
     "startScene": "Vs Screen (Set Start)",
     "endScene": "Vs Screen (Between Games)",
-    "currentScene": "Vs Screen (Between Games)",
+    "currentScene": "Main Screen with overlay",
     "setStartScene": "Vs Screen (Set Start)",
     "setEndScene": "Vs Screen (Between Games)"
   }

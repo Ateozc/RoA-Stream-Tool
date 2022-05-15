@@ -23,7 +23,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             
             // console.log(svgClass);
             if (svgClass) {
-                shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
+                // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
+                shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:100%; width:100%;" ');
+
                 // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
             }
             $scope.$apply();
@@ -140,6 +142,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         c.setScore('left', 0);
         c.setScore('right', 0);
         c.obsSetScreen('startScene');
+        c.saveGUISettings();
+        
     }
 
     c.toggleSetStop = function () {
@@ -147,6 +151,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         currentIntervalForVsScreen = 0;
         c.updateInterval = 1000;
         c.obsSetScreen('endScene');
+        c.saveGUISettings();
         // c.renameFilesPython();
     }
 
@@ -732,6 +737,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         guiSettings.showOnDeck = c.showOnDeck;
         guiSettings.game = c.game;
         guiSettings.addressRockerSettings = c.addressRockerSettings;
+        guiSettings.obsSettings = c.obsSettings;
         guiSettings.seasonalSkin = c.seasonalSkin;
 
         // save the file
@@ -1108,6 +1114,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             }
 
             c.writeScoreboard();
+            c.saveGUISettings();
             $scope.$apply();
         } else {
             c.updateInterval = 1000;
