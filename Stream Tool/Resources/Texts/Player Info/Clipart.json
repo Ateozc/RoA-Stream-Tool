@@ -12,6 +12,16 @@
       "character": "Etalus",
       "skin": "Yellow",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

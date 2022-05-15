@@ -1,6 +1,6 @@
 {
-  "name": "Foxtrot",
-  "twitter": "@AuralisFoxtrot",
+  "name": "Kaoson",
+  "twitter": "@KaosonFoxtrot",
   "pronouns": "He/Him",
   "tag": "",
   "characters": [
@@ -8,11 +8,6 @@
       "character": "Shovel Knight",
       "skin": "Default",
       "game": "Rivals of Aether"
-    },
-    {
-      "character": "Olympia",
-      "skin": "Citrine",
-      "game": "Rivals Workshop"
     }
   ]
 }

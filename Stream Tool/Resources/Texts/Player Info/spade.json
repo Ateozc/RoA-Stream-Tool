@@ -5,28 +5,73 @@
   "characters": [
     {
       "character": "Sylvanos",
-      "skin": "Genesis",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Wrastor",
-      "skin": "Custom 1",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Orange",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Zetterburn",
-      "skin": "Purple",
+      "skin": "Green",
       "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
+      "skin": "Red",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Pink",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Forsburn",
+      "skin": "Valentines",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Maypul",
+      "skin": "Red",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Pomme",
+      "skin": "Abyss",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Green",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Etalus",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Valentines",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Kragg",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

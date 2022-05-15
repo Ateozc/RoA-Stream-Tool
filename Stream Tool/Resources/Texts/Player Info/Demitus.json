@@ -5,7 +5,7 @@
   "characters": [
     {
       "character": "Forsburn",
-      "skin": "Red",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -15,6 +15,31 @@
     },
     {
       "character": "Clairen",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Absa",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Olympia",
       "skin": "Default",
       "game": "Rivals of Aether"
     }

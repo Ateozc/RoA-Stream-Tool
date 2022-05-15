@@ -84,22 +84,22 @@
     },
     {
       "character": "Pomme",
-      "skin": "Green",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Hodan",
-      "skin": "Valentines",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
-      "skin": "White",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
-      "skin": "Default",
+      "skin": "Grey",
       "game": "Rivals of Aether"
     },
     {
@@ -109,17 +109,17 @@
     },
     {
       "character": "Clairen",
-      "skin": "Green",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Etalus",
-      "skin": "Pink",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Maypul",
-      "skin": "Valentines",
+      "skin": "Purple",
       "game": "Rivals of Aether"
     },
     {
@@ -129,27 +129,27 @@
     },
     {
       "character": "Kragg",
-      "skin": "Abyss",
+      "skin": "Summit",
       "game": "Rivals of Aether"
     },
     {
       "character": "Orcane",
-      "skin": "Steampunk",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Ori and Sein",
-      "skin": "Dark",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Wrastor",
-      "skin": "Champion",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Sylvanos",
-      "skin": "Abyss",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -249,7 +249,7 @@
     },
     {
       "character": "Ranno",
-      "skin": "Grey",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ],

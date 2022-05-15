@@ -10,7 +10,67 @@
     },
     {
       "character": "Absa",
-      "skin": "LoA",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Mollo",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Pomme",
+      "skin": "Purple",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Kragg",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Forsburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Elliana",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Wrastor",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Etalus",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ],

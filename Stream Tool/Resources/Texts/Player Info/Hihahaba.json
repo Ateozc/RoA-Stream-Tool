@@ -1,17 +1,27 @@
 {
   "name": "Hihahaba",
   "twitter": "@Hihahaba",
-  "tag": "Neco",
+  "tag": "QSC",
   "characters": [
     {
       "character": "Shovel Knight",
-      "skin": "Default",
+      "skin": "Cyan",
       "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
+      "skin": "Blue",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Tuxedo",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Mollo",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

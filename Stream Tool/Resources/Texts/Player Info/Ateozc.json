@@ -1,11 +1,11 @@
 {
   "name": "Ateozc",
   "twitter": "@ateozc",
-  "tag": "test",
+  "tag": "",
   "characters": [
     {
       "character": "Absa",
-      "skin": "Grey",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -21,7 +21,7 @@
     {
       "character": "Hodan",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
@@ -32,6 +32,71 @@
       "character": "Zetta Ashikaga",
       "skin": "Sakura",
       "game": "Rivals Workshop"
+    },
+    {
+      "character": "Shovel Knight",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Grey",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Mollo",
+      "skin": "Red",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Kragg",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Pomme",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Sylvanos",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Wrastor",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
+      "skin": "Cyan",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Maypul",
+      "skin": "Purple",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Etalus",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

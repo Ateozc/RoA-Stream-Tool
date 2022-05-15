@@ -1,11 +1,12 @@
 {
-  "name": "KaiserBlu",
-  "twitter": "@KaiserBluSSB",
-  "tag": "UGS",
+  "name": "LilDreamer",
+  "twitter": "",
+  "pronouns": "She/Her",
+  "tag": "",
   "characters": [
     {
-      "character": "Zetterburn",
-      "skin": "Default",
+      "character": "Random",
+      "skin": "",
       "game": "Rivals of Aether"
     },
     {
@@ -13,6 +14,5 @@
       "skin": "Default",
       "game": "Rivals of Aether"
     }
-  ],
-  "pronouns": "He/Him"
+  ]
 }

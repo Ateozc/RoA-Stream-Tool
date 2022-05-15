@@ -1,11 +1,16 @@
 {
-  "name": "Trainer Red",
-  "twitter": "@ManOnMtSilver",
+  "name": "Shelter",
+  "twitter": "@Shelter0000plus",
   "pronouns": "He/Him",
-  "tag": "UGS",
+  "tag": "",
   "characters": [
     {
-      "character": "Etalus",
+      "character": "Random",
+      "skin": "",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
       "skin": "Default",
       "game": "Rivals of Aether"
     },

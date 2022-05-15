@@ -5,7 +5,12 @@
   "characters": [
     {
       "character": "Kragg",
-      "skin": "Green",
+      "skin": "Genesis",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Olympia",
+      "skin": "Default Custom 1",
       "game": "Rivals of Aether"
     }
   ],

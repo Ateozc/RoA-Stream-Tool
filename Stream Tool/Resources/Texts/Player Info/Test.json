@@ -1,6 +1,6 @@
 {
   "name": "Test",
-  "tag": "",
+  "tag": "One",
   "characters": [
     {
       "character": "Absa",
@@ -59,7 +59,7 @@
     },
     {
       "character": "Sylvanos",
-      "skin": "Abyss",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -75,13 +75,6 @@
     {
       "character": "Error",
       "skin": "Default"
-    },
-    {
-      "character": "Olympia",
-      "skin": "White",
-      "game": "Rivals of Aether"
     }
-  ],
-  "twitter": "",
-  "pronouns": ""
+  ]
 }

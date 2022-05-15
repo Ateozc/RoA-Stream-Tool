@@ -1,13 +1,14 @@
 {
-  "name": "Ate",
+  "name": "Samantha",
   "twitter": "",
   "pronouns": "",
   "tag": "",
   "characters": [
     {
       "character": "Random",
-      "skin": "",
+      "skin": "Random",
       "game": "Rivals of Aether"
     }
-  ]
+  ],
+  "game": "Rivals of Aether"
 }

@@ -1,18 +1,19 @@
 {
-  "name": "Trainer Red",
-  "twitter": "@ManOnMtSilver",
+  "name": "Moosie",
+  "twitter": "@IszwaProf",
   "pronouns": "He/Him",
-  "tag": "UGS",
+  "tag": "",
   "characters": [
     {
-      "character": "Etalus",
+      "character": "Ranno",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Olympia",
+      "character": "Ori and Sein",
       "skin": "Default",
       "game": "Rivals of Aether"
     }
-  ]
+  ],
+  "game": "Rivals of Aether"
 }

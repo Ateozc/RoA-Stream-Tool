@@ -1,16 +1,15 @@
 {
-  "name": "Lotus",
+  "name": "Sam",
   "twitter": "@JbrockPony",
   "pronouns": "He/Him",
   "tag": "",
   "characters": [
     {
-      "character": "Olympia",
-      "skin": "Default",
-      "game": "Rivals of Aether"
+      "character": "Random",
+      "skin": ""
     },
     {
-      "character": "Sylvanos",
+      "character": "Olympia",
       "skin": "Default",
       "game": "Rivals of Aether"
     }

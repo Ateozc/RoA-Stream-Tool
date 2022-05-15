@@ -1,12 +1,13 @@
 {
-  "name": "T",
+  "name": "DingoDial",
   "twitter": "",
   "pronouns": "",
   "tag": "",
   "characters": [
     {
-      "character": "Olympia",
-      "skin": "White"
+      "character": "Pomme",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ],
   "game": "Rivals of Aether"

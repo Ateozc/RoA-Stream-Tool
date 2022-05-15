@@ -1,0 +1,39 @@
+{
+  "name": "CPU",
+  "twitter": "",
+  "pronouns": "",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Shovel Knight",
+      "skin": "Cyan",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
+      "skin": "Steampunk",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "LoA",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Arcade Green",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "",
+      "game": "Rivals of Aether"
+    }
+  ],
+  "game": "Rivals of Aether"
+}

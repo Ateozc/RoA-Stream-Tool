@@ -6,7 +6,17 @@
   "characters": [
     {
       "character": "Ranno",
-      "skin": "Green",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Kragg",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ]

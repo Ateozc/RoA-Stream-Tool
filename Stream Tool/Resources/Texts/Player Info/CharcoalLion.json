@@ -1,28 +1,29 @@
 {
-  "name": "Serris",
-  "twitter": "@serrisfroon",
-  "tag": "UGS",
+  "name": "CharcoalLion",
+  "twitter": "@Quentin3100",
+  "pronouns": "He/Him",
+  "tag": "",
   "characters": [
     {
-      "character": "Ranno",
+      "character": "Sylvanos",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Shovel Knight",
+      "character": "Orcane",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Olympia",
+      "character": "Wrastor",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Hodan",
+      "character": "Maypul",
       "skin": "Default",
       "game": "Rivals of Aether"
     }
   ],
-  "pronouns": "He/HIm"
+  "game": "Rivals of Aether"
 }
