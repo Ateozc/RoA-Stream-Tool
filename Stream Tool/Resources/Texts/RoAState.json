@@ -16,7 +16,7 @@
     "SlotState": "HMN"
   },
   "TourneySet": {
-    "InMatch": true,
+    "InMatch": false,
     "TourneyModeBestOf": 3,
     "P1GameCount": 0,
     "P2GameCount": 0

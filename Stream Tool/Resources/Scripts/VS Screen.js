@@ -4,6 +4,8 @@ angular.module('angularapp', []);
 angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	var c = $scope;
 
+
+
 	// function LoadSVGElement() {
 	// 	var ref = Reflect.construct(HTMLElement, [], this.constructor);
 	// 	return ref;
@@ -122,7 +124,54 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	let delay = 0;
 
 
+	
+	//max text sizes (used when resizing back)
+	const playerSize = '90px';
+	const tagSize = '50px';
+	const teamSize = '80px';
+	const roundSize = '38px';
+	const tournamentSize = '28px';
+	const casterSize = '25px';
+	const twitterSize = '20px';
 
+	//to store the current character info
+	const pCharInfo = [];
+
+	//the characters image file path will change depending if they're workshop or not
+	let charPath;
+	const charPathBase = "Resources/Characters/";
+
+	c.randomSkinPath = charPathBase + "/Random/P1.png";
+
+	//to consider how many loops will we do
+	let maxPlayers = 2; //will change when doubles comes
+	const maxSides = 2;
+
+	let startup = true;
+
+
+	let prevDifFromGuiCount = 0;
+	const iterationsBeforePrevUpdate = 1;
+	let prevSameAsGui = false;
+
+	let socialChangeTimer = 0;
+	const socialChangeTimerMax = 8;
+
+	let showTwitter = true;
+
+	c.scoreEmpty = true;
+
+	/* script begin */
+	let gettingScene = false;
+
+	let firstRun = true;
+
+	c.mainLoop = async function () {
+		const scInfo = await getInfo();
+		// const guiInfo = await getGuiInfo();
+		c.getData(scInfo);
+	}
+	c.mainLoop();
 
 
 	const pSBC = (p, c0, c1, l) => {
@@ -565,51 +614,51 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
 
 
-	//max text sizes (used when resizing back)
-	const playerSize = '90px';
-	const tagSize = '50px';
-	const teamSize = '80px';
-	const roundSize = '38px';
-	const tournamentSize = '28px';
-	const casterSize = '25px';
-	const twitterSize = '20px';
+	// //max text sizes (used when resizing back)
+	// const playerSize = '90px';
+	// const tagSize = '50px';
+	// const teamSize = '80px';
+	// const roundSize = '38px';
+	// const tournamentSize = '28px';
+	// const casterSize = '25px';
+	// const twitterSize = '20px';
 
-	//to store the current character info
-	const pCharInfo = [];
+	// //to store the current character info
+	// const pCharInfo = [];
 
-	//the characters image file path will change depending if they're workshop or not
-	let charPath;
-	const charPathBase = "Resources/Characters/";
+	// //the characters image file path will change depending if they're workshop or not
+	// let charPath;
+	// const charPathBase = "Resources/Characters/";
 
-	c.randomSkinPath = charPathBase + "/Random/P1.png";
+	// c.randomSkinPath = charPathBase + "/Random/P1.png";
 
-	//to consider how many loops will we do
-	let maxPlayers = 2; //will change when doubles comes
-	const maxSides = 2;
+	// //to consider how many loops will we do
+	// let maxPlayers = 2; //will change when doubles comes
+	// const maxSides = 2;
 
-	let startup = true;
+	// let startup = true;
 
 
-	let prevDifFromGuiCount = 0;
-	const iterationsBeforePrevUpdate = 1;
-	let prevSameAsGui = false;
+	// let prevDifFromGuiCount = 0;
+	// const iterationsBeforePrevUpdate = 1;
+	// let prevSameAsGui = false;
 
-	let socialChangeTimer = 0;
-	const socialChangeTimerMax = 8;
+	// let socialChangeTimer = 0;
+	// const socialChangeTimerMax = 8;
 
-	let showTwitter = true;
+	// let showTwitter = true;
 
-	c.scoreEmpty = true;
+	// c.scoreEmpty = true;
 
-	/* script begin */
-	let gettingScene = false;
+	// /* script begin */
+	// let gettingScene = false;
 
-	let firstRun = true;
-	c.mainLoop = async function () {
-		const scInfo = await getInfo();
-		// const guiInfo = await getGuiInfo();
-		c.getData(scInfo);
-	}
+	// let firstRun = true;
+	// c.mainLoop = async function () {
+	// 	const scInfo = await getInfo();
+	// 	// const guiInfo = await getGuiInfo();
+	// 	c.getData(scInfo);
+	// }
 
 
 	c.mainLoop();
