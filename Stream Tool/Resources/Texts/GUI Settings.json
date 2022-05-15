@@ -16,13 +16,13 @@
   "useCustomColors": false,
   "addressRockerSettings": {
     "useAddressRocker": true,
-    "enableCharacterUpdate": true,
-    "enableSkinUpdate": true,
-    "enableBestOfUpdate": true,
-    "enableScoreUpdate": true,
+    "enableCharacterUpdate": false,
+    "enableSkinUpdate": false,
+    "enableBestOfUpdate": false,
+    "enableScoreUpdate": false,
     "inMatch": false,
     "inSet": false,
-    "setTeamColor": true,
+    "setTeamColor": false,
     "showInfo": false
   },
   "seasonalSkin": "Valentines"

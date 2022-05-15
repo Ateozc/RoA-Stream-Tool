@@ -300,10 +300,10 @@ body {
   transform: translate(0px, 2px);
 }
 .twitchIcon {
-  height: 17px;
-  width: 17px;
+  height: 17px !important;
+  width: 17px !important;
   fill: rgb(65, 65, 65);
-  transform: translate(0px, 1px);
+  transform: translate(0px, 1px) !important;
 }
 
 #twitter1Wrapper,

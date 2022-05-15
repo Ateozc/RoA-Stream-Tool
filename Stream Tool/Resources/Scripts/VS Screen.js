@@ -4,6 +4,45 @@ angular.module('angularapp', []);
 angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	var c = $scope;
 
+	// function LoadSVGElement() {
+	// 	var ref = Reflect.construct(HTMLElement, [], this.constructor);
+	// 	return ref;
+	// }
+
+	// LoadSVGElement.prototype = Object.create(HTMLElement.prototype);
+	// LoadSVGElement.prototype.constructor = LoadSVGElement;
+	// LoadSVGElement.prototype.connectedCallback = async function (
+	// 	shadowRoot = this.shadowRoot || this.attachShadow({
+	// 		mode: "open"
+	// 	})
+	// ) {
+	// 	shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
+	// 	$scope.$apply();
+	// };
+	// customElements.define('load-svg', LoadSVGElement);
+
+	customElements.define("load-svg", class extends HTMLElement {
+        async connectedCallback(
+            shadowRoot = this.shadowRoot || this.attachShadow({
+                mode: "open"
+            })
+        ) {
+            shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
+            let svgClass = this.getAttribute('class');
+            let style = getComputedStyle(this);
+            // this.setAttribute('class', '');
+            
+            // console.log(svgClass);
+            if (svgClass) {
+                shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
+                // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
+            }
+            $scope.$apply();
+        }
+    })
+
+
+
 	c.gui = {};
 
 	c.gui.players = [];
@@ -486,6 +525,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	c.scoreEmpty = true;
 
 	/* script begin */
+	let gettingScene = false;
 
 	let firstRun = true;
 	c.mainLoop = async function () {
@@ -526,15 +566,20 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		c.gui.round = scInfo['round'];
 		c.gui.tournament = scInfo['tournamentName'];
 		c.gui.casters = scInfo['caster'];
-		console.log(window.obsstudio);
-		let addressRockerSettings = scInfo['adressRockerSettings'];
 		let obsSettings = scInfo['obsSettings'];
-		if (obsSettings.useObsAutomation && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene) {
+		let addressRockerSettings = scInfo['addressRockerSettings'];
+	
+		if (obsSettings.useObsAutomation && addressRockerSettings.useAddressRocker && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene && !gettingScene) {
 			window.obsstudio.getCurrentScene(function(scene) {
 				if (scene.name != obsSettings.currentScene) {
+					gettingScene = true;
 					window.obsstudio.setCurrentScene(obsSettings.currentScene);
+					return;
 				}
 			});
+		}
+		if (gettingScene) {
+			return;
 		}
 
 		if (prevDifFromGuiCount == iterationsBeforePrevUpdate || firstRun) {

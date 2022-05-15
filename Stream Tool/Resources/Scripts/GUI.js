@@ -9,6 +9,27 @@ angular.module('angularapp', []);
 angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     var c = $scope;
 
+    // this is a weird way to have file svg's that can be recolored by css
+    customElements.define("load-svg", class extends HTMLElement {
+        async connectedCallback(
+            shadowRoot = this.shadowRoot || this.attachShadow({
+                mode: "open"
+            })
+        ) {
+            shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
+            let svgClass = this.getAttribute('class');
+            let style = getComputedStyle(this);
+            // this.setAttribute('class', '');
+            
+            // console.log(svgClass);
+            if (svgClass) {
+                shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
+                // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
+            }
+            $scope.$apply();
+        }
+    })
+
     //Global Variables
     const fs = require('fs');
     const path = require('path');
@@ -67,7 +88,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         'Automated Stream Tool Settings',
         'OBS Settings'
     ];
-    c.maxPages = c.settingsPageNames.length -1;
+    c.maxPages = c.settingsPageNames.length - 1;
     c.seasonalSkins = [
         "Valentines",
         "Summer",
@@ -102,7 +123,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         setTeamColor: false
     }
 
-    c.obsSetScreen = function(scene, forced=false) {
+    c.obsSetScreen = function (scene, forced = false) {
         if (!scene) {
             return;
         }
@@ -111,17 +132,17 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             c.saveOBSSettings();
         }
     }
-    
-    c.toggleSetStart = function() {
+
+    c.toggleSetStart = function () {
         c.addressRockerSettings.inSet = true;
-        c.updateInterval = 500;        
+        c.updateInterval = 500;
         currentIntervalForVsScreen = 0;
         c.setScore('left', 0);
         c.setScore('right', 0);
         c.obsSetScreen('startScene');
     }
 
-    c.toggleSetStop = function() {
+    c.toggleSetStop = function () {
         c.addressRockerSettings.inSet = false;
         currentIntervalForVsScreen = 0;
         c.updateInterval = 1000;
@@ -129,22 +150,22 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         // c.renameFilesPython();
     }
 
-    c.showSettingsPagePrevButton = function() {
+    c.showSettingsPagePrevButton = function () {
         return (c.settingsPageNumber > 1);
     }
-    c.showSettingsPageNextButton = function() {
+    c.showSettingsPageNextButton = function () {
         return (c.settingsPageNumber < c.maxPages);
     }
 
-    c.changeSettingsPage = function(value) {
+    c.changeSettingsPage = function (value) {
         c.settingsPageNumber += value;
-        c.settingsPageName= c.settingsPageNames[c.settingsPageNumber];
+        c.settingsPageName = c.settingsPageNames[c.settingsPageNumber];
     }
-    c.getColorList = function() {
+    c.getColorList = function () {
         c.colorList = getJson(textPath + "/Color Slots");
     }
 
-    c.saveColorPreset = function(side) {
+    c.saveColorPreset = function (side) {
         let colorExists = false;
         let tempColors = [];
         for (let i = 0; i < c.colorList.length; i++) {
@@ -233,7 +254,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         for (let i = 0; i < playerProfiles.length; i++) {
             updatePlayerJson(playerProfiles[i], true);
         }
-        
+
     }
 
     c.applyProfile = function (index) {
@@ -250,7 +271,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         c.markCharacterIndex(c.playerFocus, false, c.playerFocusOnDeck);
         for (let i = 0; i < c.characterList.length; i++) {
             if (c.characterList[i].name == c.playerProfiles[index].character) {
-                for (let j =0; j < c.characterList[i].skins.length; j++) {
+                for (let j = 0; j < c.characterList[i].skins.length; j++) {
                     if (c.characterList[i].skins[j].fileName == c.playerProfiles[index].skin) {
                         c[playerType][c.playerFocus].skinIndex = c.characterList[i].skins[j].index;
                     }
@@ -296,7 +317,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         }
     }
 
-    c.setSkinBasedOnIndex = function(player, skinIndex=-1, onDeckPlayers=false) {
+    c.setSkinBasedOnIndex = function (player, skinIndex = -1, onDeckPlayers = false) {
 
         let playerType = 'players';
         if (c.playerFocusOnDeck) {
@@ -308,8 +329,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         let arrayIndex = -1;
         if (skinIndex == -1) {
             skinIndex = c[playerType][player].skinIndex;
-        } 
-        
+        }
+
         arrayIndex = skins.map(e => e.index).indexOf(skinIndex);
         try {
             c[playerType][player].skin = skins[arrayIndex].fileName;
@@ -323,7 +344,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         }
     }
 
-    c.updateSeasonalSkins = function() {
+    c.updateSeasonalSkins = function () {
         for (let i = 0; i < c.players.length; i++) {
             if (c.seasonalSkins.indexOf(c.players[i].skin) != -1 || c.players[i].skin == 'Calendar') {
                 c.players[i].skin = c.seasonalSkin;
@@ -400,10 +421,10 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
                 let altPath = "";
                 if (c.forceHD && c.game == 'Rivals of Aether') {
-                    if (skin.indexOf('LoA') != -1 && !c.noLoAHD && skin.indexOf('HD') ==-1) {
+                    if (skin.indexOf('LoA') != -1 && !c.noLoAHD && skin.indexOf('HD') == -1) {
                         altPath = c.relativePathOfFile(charPathRel + character + "/LoA HD.png");
                         vsScreenSkin = "LoA HD";
-                    } else if (skin.indexOf('HD') ==-1) {
+                    } else if (skin.indexOf('HD') == -1) {
                         altPath = c.relativePathOfFile(charPathRel + character + "/HD.png");
                         vsScreenSkin = "HD";
                     }
@@ -478,8 +499,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             for (let j = 0; j < charInfo.skinList.length; j++) {
                 let skin = {
                     label: "",
-                    fileName:"",
-                    index:"-1"
+                    fileName: "",
+                    index: "-1"
                 };
                 try {
                     if (charInfo.skinList[j].label || charInfo.skinList[j].fileName) {
@@ -520,11 +541,11 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             if (c.game != 'Rivals Workshop') {
                 c.obsSettings.autoChangeScenes = 'manualFromOBS';
             }
-            
+
         }
         c.addressRockerSettings.inMatch = false;
         c.addressRockerSettings.inSet = false;
-        
+
 
         c.saveGUISettings();
         c.clearPlayers();
@@ -843,7 +864,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
     c.init = function () {
         c.setScore('left', 0);
-        c.setScore('right',0);
+        c.setScore('right', 0);
         // setup Settings region and go back.
         document.getElementById('settingsRegion').addEventListener("click", moveViewport);
 
@@ -954,14 +975,14 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     setTimeout(function run() {
         c.mainLoop();
         setTimeout(run, c.updateInterval);
-      }, c.updateInterval);
+    }, c.updateInterval);
 
 
 
     c.externalUpdateCheck = function (scInfo) {
         if (c.addressRockerSettings.useAddressRocker && c.addressRockerSettings.inSet) {
             let addressRockerData = JSON.parse(fs.readFileSync(textPath + "/RoAState.json", "utf-8"));
-            if (addressRockerData.TourneySet.TourneyModeBestOf == -1 ) {
+            if (addressRockerData.TourneySet.TourneyModeBestOf == -1) {
                 return;
             }
             c.addressRockerSettings.inMatch = addressRockerData.TourneySet.InMatch;
@@ -978,21 +999,21 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 currentIntervalForVsScreen++;
             }
 
-            
+
             if (c.addressRockerSettings.enableCharacterUpdate) {
                 for (let i = 0; i < c.characterList.length; i++) {
                     if (addressRockerData.P1Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase() && addressRockerData.P1Character.SlotState != 'OFF') {
                         c.players[0].character = c.characterList[i].name;
                         c.markCharacterIndex(0);
                         c.players[0].skin = "Default";
-                        if (c.gamemode =='Singles' && c.addressRockerSettings.setTeamColor) {
+                        if (c.gamemode == 'Singles' && c.addressRockerSettings.setTeamColor) {
                             if (addressRockerData.P1Character.SlotState == 'HMN') {
                                 c.sides.left.color = {
                                     name: "Red",
                                     hex: "#ed1c23"
                                 }
                             }
-    
+
                             if (addressRockerData.P1Character.SlotState == 'CPU') {
                                 c.sides.left.color = {
                                     name: "CPU",
@@ -1000,7 +1021,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                                 }
                             }
                         }
-                        
+
 
                         if (c.addressRockerSettings.enableSkinUpdate) {
                             for (let j = 0; j < c.characterList[i].skins.length; j++) {
@@ -1016,14 +1037,14 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                         c.markCharacterIndex(1);
                         c.players[1].skin = "Default";
 
-                        if (c.gamemode =='Singles' && c.addressRockerSettings.setTeamColor) {
+                        if (c.gamemode == 'Singles' && c.addressRockerSettings.setTeamColor) {
                             if (addressRockerData.P2Character.SlotState == 'HMN') {
                                 c.sides.right.color = {
                                     name: "Blue",
                                     hex: "#00b7ef"
                                 }
                             }
-    
+
                             if (addressRockerData.P2Character.SlotState == 'CPU') {
                                 c.sides.right.color = {
                                     name: "CPU",
@@ -1046,8 +1067,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
             if (c.addressRockerSettings.enableBestOfUpdate) {
                 c.roundInfo.bestOf = "Bo" + addressRockerData.TourneySet.TourneyModeBestOf;
-            } 
-            
+            }
+
             if (c.addressRockerSettings.enableScoreUpdate) {
                 c.setScore('left', addressRockerData.TourneySet.P1GameCount);
                 c.setScore('right', addressRockerData.TourneySet.P2GameCount);
@@ -1056,7 +1077,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             if (c.roundInfo.bestOf == 'Bo3') {
                 if (c.sides.left.score == 2 || c.sides.right.score == 2) {
                     if (c.roundInfo.name == 'Grand Finals') {
-                        if ( (c.sides.left.wl == 'L' && c.sides.left.score == 2) || (c.sides.right.wl == 'L' && c.sides.right.score == 2)) {
+                        if ((c.sides.left.wl == 'L' && c.sides.left.score == 2) || (c.sides.right.wl == 'L' && c.sides.right.score == 2)) {
                             c.sides.left.wl = 'L';
                             c.sides.right.wl = 'L';
                             c.setScore('left', 0);
@@ -1072,7 +1093,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             } else if (c.roundInfo.bestOf == 'Bo5') {
                 if (c.sides.left.score == 3 || c.sides.right.score == 3) {
                     if (c.roundInfo.name == 'Grand Finals') {
-                        if ( (c.sides.left.wl == 'L' && c.sides.left.score == 3) || (c.sides.right.wl == 'L' && c.sides.right.score == 3)) {
+                        if ((c.sides.left.wl == 'L' && c.sides.left.score == 3) || (c.sides.right.wl == 'L' && c.sides.right.score == 3)) {
                             c.sides.left.wl = 'L';
                             c.sides.right.wl = 'L';
                             c.setScore('left', 0);
@@ -1098,19 +1119,19 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                     c.writeScoreboard();
                     return;
                 }
-    
+
                 //Update score data
                 const score = scInfo['score'];
-    
+
                 c.setScore('left', score[0]);
                 c.setScore('right', score[1]);
-    
+
                 //Other stuff?
                 c.writeScoreboard();
                 $scope.$apply();
             }
         }
-        
+
     }
     //searches for the main json file
     function getInfo() {
@@ -1414,7 +1435,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             if (foundCount > 1) {
                 playerInfo.characters.splice(foundIndexLast, 1);
             }
-            
+
 
             if (newCharacter == true) {
                 playerInfo.characters.push({
@@ -1576,11 +1597,11 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         // const pythonProcess = spawn('python',[scriptsPath + "/RoAUpdateScores.py", checkScore(p1Win1, p1Win2, p1Win3), checkScore(p2Win1, p2Win2, p2Win3)]);
     }
 
-    c.renameFilesPython = function() {
+    c.renameFilesPython = function () {
         setTimeout(function run() {
             const spawn = require("child_process").spawn;
-            const pythonProcess = spawn('python',[scriptsPath + "/RoARenameFiles.py"]);
-          }, 5000);
+            const pythonProcess = spawn('python', [scriptsPath + "/RoARenameFiles.py"]);
+        }, 5000);
     }
 
 

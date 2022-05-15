@@ -14,8 +14,8 @@
         "Forsburn",
         "Maypul",
         "Zetterburn",
-        "Random",
-        "Olympia"
+        "Olympia",
+        "Random"
       ]
     },
     {
@@ -24,6 +24,7 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Sylvanos",
         "Ranno",
         "Clairen",
         "Hodan",
@@ -31,9 +32,8 @@
         "Forsburn",
         "Maypul",
         "Zetterburn",
-        "Random",
         "Olympia",
-        "Sylvanos"
+        "Random"
       ]
     },
     {
@@ -74,5 +74,5 @@
     }
   ],
   "tournamentName": "",
-  "round": "Grand Finals - Reset"
+  "round": "Friendlies"
 }
