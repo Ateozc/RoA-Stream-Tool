@@ -179,6 +179,63 @@ If you need help understanding this part, reach out to me. I would be happy to h
 
 ---
 
+
+## Python Stuff...
+Do you want to have vods handled a little bit more automatically?
+If so, you came to the right place. The following are what can be done through the python scripts:
+   - Automatically update Player Score counts
+   - Automatically rename files from a folder, and place them into a new folder based upon the tournament name
+   - Clear set information.
+
+Listen. I really want to explain this, but if you dont know scripting or any python it isnt super easy for me to break this one down as you will require some basic coding knowledge. But, if you do have that knowledge, here is what youll need.
+
+It doesn't do much in comparison to the rest of things that you have access to... but for me this is a huge piece.
+
+On top of that, I call these python scripts from my Stream Deck. (Really nice btw, highly recommend for its flexibility). 
+So, ill explain how I use it first before you go through the hassle to actually do this yourself. You may be able to do most of this without python, albeit more manually.
+I use my Stream deck to call the scripts at certain timings to do different things. At the start of a set, I have a plugin for the Stream Deck that makes OBS Start Recording and makes OBS take a screenshot (as a png) of what is on the screen on OBS (this screenshot is used as a thumbnail).
+At the end of a set, i have another button that will "Stop Recording" and then, after a 5 second delay, will attempt to rename all files in a folder based upon the Tournament, Round, Players, and their Characters, then move those files into a new folder titled after the Tournament.
+   - Example: Tripoint 143 - Grand Finals - Foxtrot (Shovel Knight) VS UGS | Serris (Ranno)
+
+This issentially auto starts/stops recording and renames files for me. Not much else. If that interests you, you can probably do the same with/without the python stuff.
+
+If you are still interested after all of that, do the following:
+
+1. Install Latest Python. It should work on Latest.
+2. Make sure you can call the Python scripts located in "Stream Tool/Resources/Scripts"
+  - A good test is the "Stream Tool\Resources\Scripts\RoAIncrementP1Score.py"
+  - If you call that script via command line it should increment the player score automatically within the Stream Tool. If it doesn't, there may be something wrong.
+3. For is to work, you will need to do one of the following:
+  - Have OBS Save its screenshots and replays in the same folder as where the Stream Tool is located but call it Recordings(Example: c:/Documents/Stream Tool you want to save to c:/Documents/Recordings)
+  - OR you can modify the RoADictionary.py to change where the "Recordings" is tied to. May require some coding knowledge to do that though, so dont really recommend unless you know what you are doing.
+4. Once you have tested you can call the scripts and you have the folders set up correctly you are essentially done.
+5. The next part is about how you want it setup. Since I use Stream Deck to control mine its a bit different. If you dont have a Stream Deck you will have to find your own solution.
+
+
+*Recommendations:*
+I highly recommend you have your vods as MP4 and FLV. You can set that up in OBS. Screenshots should be png regardless.
+Make sure they save to the Recordings folder.
+
+If you dont have a Stream Deck, it isn't all lost. You can do the following
+   - Set up a hotkey for taking screenshots in OBS
+   - Set up a hotkey for Starting and Stopping Recording in OBS.
+   - You can run the "RoARenameFiles.py" after your recording is done and it should automatically rename the files for you.
+     - If you do this, you either need to hit the "Trash" icon in the Stream Tool or run the "RoAClearSetData.py". This is to ensure the data used to rename files is cleaned up and ready for the next match. (This is important as it does track which characters are used. Can be buggy with the Auto stuff a player picks Random).
+
+If you do have a Stream Deck
+  - Install the OBS Tools [BarRaider] (This is important, as it is the best way I have found to control OBS with the Stream Deck. You will have to go through a bit of an installation setup since it uses Websockets)
+  - Set up a Multi-Action. 
+     - Add a "Record" action from the basic "OBS Studio" choices. Make sure it is set to "Start"
+     - Add a "Hotkey Trigger" to trigger your hotkey for taking a screenshot.
+  - Set up another Multi-Action
+     - Add a "Delay" action from "Stream Deck" option. Set that delay to at least 2000ms. (This is to ensure nothing is cut off at the end of a match)
+     - Add a "Record" action from the basic "OBS Studio" choices. Make sure it is set to "Stop"
+     - Add a "Delay" action from "Stream Deck" option. Set that delay to at least 2000ms. (This is to ensure there is enough time for OBS to process the recording and save it.
+     - Call the "RoARenameFiles.py" by using the "Open" command under "Sytem" and choosing the file.
+     - Call the "RoAClearSetData.py" by using the "Open" command under "Sytem" and choosing the file.
+     - Call the "RoAResetScore.py" by using the "Open" command under "Sytem" and choosing the file.
+---
+
 ## Other stuff...
 Hey, Ateozc speakin for the remainder of this...
 
