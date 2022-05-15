@@ -7,7 +7,12 @@ async function mainLoop() {
 
     const scInfo = await getInfo();
     // const guiInfo = await getGuiInfo();
-    getData(scInfo);
+    try {
+        getData(scInfo);
+    } catch (e) {
+        console.log(e);
+    }
+    
 }
 mainLoop();
 setInterval(() => {

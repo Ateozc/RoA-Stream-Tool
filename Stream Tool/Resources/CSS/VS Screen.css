@@ -8,6 +8,11 @@
   src: url("../Fonts/LEMONMILK-Medium.otf");
 }
 
+@font-face {
+  font-family: "CB";
+  src: url('../Fonts/Urban-Nation.ttf');
+}
+
 body {
   width: 1920px;
   height: 1080px;
@@ -107,7 +112,8 @@ body {
 
 .wrappers {
   position: absolute;
-  font-family: "LemonMilk";
+  font-family: "LemonMilk"; 
+  /* font-family: "CB";  */
   text-align: center;
   white-space: nowrap;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
@@ -196,6 +202,7 @@ body {
   height: 90px;
   top: 495px;
   font-family: "LemonMilk";
+  /* font-family: "CB"; */
   white-space: nowrap;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
   /* opacity: 0; */
@@ -219,6 +226,7 @@ body {
   position: absolute;
   text-align: center;
   font-family: "Deansgate";
+  /* font-family: "CB"; */
   white-space: nowrap;
   font-size: 34px;
 }
@@ -227,6 +235,7 @@ body {
   position: absolute;
   text-align: center;
   font-family: "Deansgate";
+  /* font-family: "CB"; */
   white-space: nowrap;
   font-size: 28px;
 }

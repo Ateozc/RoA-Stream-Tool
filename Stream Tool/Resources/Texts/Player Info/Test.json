@@ -1,10 +1,10 @@
 {
   "name": "Test",
-  "tag": "One",
+  "tag": "",
   "characters": [
     {
       "character": "Absa",
-      "skin": "Default",
+      "skin": "Steampunk",
       "game": "Rivals of Aether"
     },
     {
@@ -59,7 +59,7 @@
     },
     {
       "character": "Sylvanos",
-      "skin": "Default",
+      "skin": "Abyss",
       "game": "Rivals of Aether"
     },
     {
@@ -75,6 +75,13 @@
     {
       "character": "Error",
       "skin": "Default"
+    },
+    {
+      "character": "Olympia",
+      "skin": "White",
+      "game": "Rivals of Aether"
     }
-  ]
+  ],
+  "twitter": "@test",
+  "pronouns": "they/them"
 }

@@ -22,24 +22,23 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	// customElements.define('load-svg', LoadSVGElement);
 
 	customElements.define("load-svg", class extends HTMLElement {
-        async connectedCallback(
-            shadowRoot = this.shadowRoot || this.attachShadow({
-                mode: "open"
-            })
-        ) {
-            shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
-            let svgClass = this.getAttribute('class');
-            let style = getComputedStyle(this);
-            // this.setAttribute('class', '');
-            
-            // console.log(svgClass);
-            if (svgClass) {
-                shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
-                // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
-            }
-            $scope.$apply();
-        }
-    })
+		async connectedCallback(
+			shadowRoot = this.shadowRoot || this.attachShadow({
+				mode: "open"
+			})
+		) {
+			shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
+			let svgClass = this.getAttribute('class');
+			let style = getComputedStyle(this);
+			// this.setAttribute('class', '');
+
+			if (svgClass) {
+				shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: ' + style.width + ';" ');
+				// shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
+			}
+			$scope.$apply();
+		}
+	})
 
 
 
@@ -49,7 +48,18 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	c.gui.teams = [];
 	c.gui.tournament = "";
 	c.gui.round = "";
-	c.gui.casters = [];
+	c.gui.casters = [    
+		{
+		"name": "",
+		"twitter": "",
+		"twitch": ""
+	  },
+	  {
+		"name": "",
+		"twitter": "",
+		"twitch": ""
+	  }
+	];
 	c.gui.wl = [];
 	c.gui.bestOf = "Bo3";
 	c.gui.usePips = true;
@@ -57,7 +67,16 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	c.gui.score = [];
 	c.gui.maxPlayersOnScreen = 2;
 	c.gui.gamemode = 'Singles';
-	c.gui.colors = [];
+	c.gui.colors = [
+		{
+		"name": "Red",
+		"hex": "#ed1c23"
+	  },
+	  {
+		"name": "Blue",
+		"hex": "#00b7ef"
+	  }
+	];
 
 
 	c.prev = {};
@@ -66,7 +85,18 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	c.prev.teams = [];
 	c.prev.tournament = "";
 	c.prev.round = "";
-	c.prev.casters = [];
+	c.prev.casters = [    
+		{
+		"name": "",
+		"twitter": "",
+		"twitch": ""
+	  },
+	  {
+		"name": "",
+		"twitter": "",
+		"twitch": ""
+	  }
+	];
 	c.prev.wl = [];
 	c.prev.bestOf = "Bo3";
 	c.prev.usePips = false;
@@ -74,7 +104,16 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	c.prev.score = [];
 	c.prev.maxPlayersOnScreen = 2;
 	c.prev.gamemode = 'Singles';
-	c.prev.colors = [];
+	c.prev.colors = [
+		{
+		"name": "Red",
+		"hex": "#ed1c23"
+	  },
+	  {
+		"name": "Blue",
+		"hex": "#00b7ef"
+	  }
+	];
 
 	//animation stuff
 	c.fadeInTime = .4; //(seconds)
@@ -238,37 +277,47 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	}
 
 	c.fadeInCharacter = function (player) {
-		if (c.gui.players[player].character != c.prev.players[player].character || c.gui.players[player].vsScreenSkin != c.prev.players[player].vsScreenSkin) {
-			prevSameAsGui = false;
-			return {
-				animation: `charaMoveOut ${c.fadeOutTime}s both, fadeOut ${c.fadeOutTime}s both`
-			};
-		} else {
-			return {
-				animation: `charaMoveIn ${c.fadeInTime + .1}s ${delay + .2}s both, fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
-			};
+		try {
+			if (c.gui.players[player].character != c.prev.players[player].character || c.gui.players[player].vsScreenSkin != c.prev.players[player].vsScreenSkin) {
+				prevSameAsGui = false;
+				return {
+					animation: `charaMoveOut ${c.fadeOutTime}s both, fadeOut ${c.fadeOutTime}s both`
+				};
+			} else {
+				return {
+					animation: `charaMoveIn ${c.fadeInTime + .1}s ${delay + .2}s both, fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
+				};
+			}
+		} catch (e) {
+
 		}
+		
 	}
 
 	c.fadeInPlayerName = function (player) {
-		if (
-			c.gui.players[player].name != c.prev.players[player].name ||
-			c.gui.players[player].tag != c.prev.players[player].tag ||
-			c.gui.players[player].pronouns != c.prev.players[player].pronouns
-		) {
-			prevSameAsGui = false;
-			return {
-				animation: `fadeOut ${c.fadeOutTime}s both`
-			};
-		} else {
-			if (prevDifFromGuiCount == -1) {
-				c.setPlayerFontSizeToDefault(player);
+		try {
+			if (
+				c.gui.players[player].name != c.prev.players[player].name ||
+				c.gui.players[player].tag != c.prev.players[player].tag ||
+				c.gui.players[player].pronouns != c.prev.players[player].pronouns
+			) {
+				prevSameAsGui = false;
+				return {
+					animation: `fadeOut ${c.fadeOutTime}s both`
+				};
+			} else {
+				if (prevDifFromGuiCount == -1) {
+					c.setPlayerFontSizeToDefault(player);
+				}
+				c.resizeText('p' + (player + 1) + "Wrapper", true);
+				return {
+					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
+				};
 			}
-			c.resizeText('p' + (player + 1) + "Wrapper", true);
-			return {
-				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
-			};
+		} catch (e) {
+			
 		}
+
 	}
 	c.setPlayerFontSizeToDefault = function (player) {
 		let p = player + 1;
@@ -331,62 +380,77 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		}
 	}
 	c.fadeInCasterName = function (caster) {
-		if (c.prev.casters[caster].name != c.gui.casters[caster].name) {
-			prevSameAsGui = false;
-			return {
-				animation: `fadeOut ${c.fadeOutTime}s both`
-			};
-		} else {
-			if (prevDifFromGuiCount == -1) {
-				document.getElementById('caster' + (caster + 1) + 'Text').style.fontSize = casterSize;
+		try {
+			if (c.prev.casters[caster].name != c.gui.casters[caster].name) {
+				prevSameAsGui = false;
+				return {
+					animation: `fadeOut ${c.fadeOutTime}s both`
+				};
+			} else {
+				if (prevDifFromGuiCount == -1) {
+					document.getElementById('caster' + (caster + 1) + 'Text').style.fontSize = casterSize;
+				}
+				c.resizeText('caster' + (caster + 1));
+				return {
+					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
+				};
 			}
-			c.resizeText('caster' + (caster + 1));
-			return {
-				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
-			};
+		} catch (e) {
+			
 		}
+
 	}
 
 	c.fadeInCasterTwitter = function (caster) {
-		if (c.prev.casters[caster].twitter != c.gui.casters[caster].twitter) {
-			prevSameAsGui = false;
-			return {
-				animation: `fadeOut ${c.fadeOutTime}s both`
-			};
-		} else if ((c.prev.casters[caster].twitch && !showTwitter) || !c.prev.casters[caster].twitter) {
-			return {
-				animation: `fadeOut ${c.fadeOutTime}s both`
-			};
-		} else {
-			if (prevDifFromGuiCount == -1) {
-				document.getElementById('twitter' + (caster + 1) + 'Text').style.fontSize = twitterSize;
+		try {
+			if (c.prev.casters[caster].twitter != c.gui.casters[caster].twitter) {
+				prevSameAsGui = false;
+				return {
+					animation: `fadeOut ${c.fadeOutTime}s both`
+				};
+			} else if ((c.prev.casters[caster].twitch && !showTwitter) || !c.prev.casters[caster].twitter) {
+				return {
+					animation: `fadeOut ${c.fadeOutTime}s both`
+				};
+			} else {
+				if (prevDifFromGuiCount == -1) {
+					document.getElementById('twitter' + (caster + 1) + 'Text').style.fontSize = twitterSize;
+				}
+				c.resizeText('twitter' + (caster + 1));
+				return {
+					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
+				};
 			}
-			c.resizeText('twitter' + (caster + 1));
-			return {
-				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
-			};
+		} catch (e) {
+			
 		}
+
 	}
 
 	c.fadeInCasterTwitch = function (caster) {
-		if (c.prev.casters[caster].twitch != c.gui.casters[caster].twitch) {
-			prevSameAsGui = false;
-			return {
-				animation: `fadeOut ${c.fadeOutTime}s both`
-			};
-		} else if ((c.prev.casters[caster].twitter && showTwitter) || !c.prev.casters[caster].twitch) {
-			return {
-				animation: `fadeOut ${c.fadeOutTime}s both`
-			};
-		} else {
-			if (prevDifFromGuiCount == -1) {
-				document.getElementById('twitch' + (caster + 1) + 'Text').style.fontSize = twitterSize;
+		try {
+			if (c.prev.casters[caster].twitch != c.gui.casters[caster].twitch) {
+				prevSameAsGui = false;
+				return {
+					animation: `fadeOut ${c.fadeOutTime}s both`
+				};
+			} else if ((c.prev.casters[caster].twitter && showTwitter) || !c.prev.casters[caster].twitch) {
+				return {
+					animation: `fadeOut ${c.fadeOutTime}s both`
+				};
+			} else {
+				if (prevDifFromGuiCount == -1) {
+					document.getElementById('twitch' + (caster + 1) + 'Text').style.fontSize = twitterSize;
+				}
+				c.resizeText('twitch' + (caster + 1));
+				return {
+					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
+				};
 			}
-			c.resizeText('twitch' + (caster + 1));
-			return {
-				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
-			};
+		} catch (e) {
+
 		}
+
 	}
 
 
@@ -403,17 +467,22 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	}
 
 	c.fadeInBGVid = function (player) {
-		//We fade in differently for the character. see fadeInCharacter for that.
-		if (c.gui.players[player].backgroundWebm != c.prev.players[player].backgroundWebm) {
-			prevSameAsGui = false;
-			return {
-				animation: `fadeOut ${c.fadeOutTime}s both`
-			};
-		} else {
-			return {
-				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
-			};
+		try {
+			//We fade in differently for the character. see fadeInCharacter for that.
+			if (c.gui.players[player].backgroundWebm != c.prev.players[player].backgroundWebm) {
+				prevSameAsGui = false;
+				return {
+					animation: `fadeOut ${c.fadeOutTime}s both`
+				};
+			} else {
+				return {
+					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
+				};
+			}
+		} catch (e) {
+
 		}
+
 	}
 
 	c.fadeInScreen = function () {
@@ -432,58 +501,66 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
 
 	c.getTransformInformation = function (player) {
-		let info = "";
-		if (c.prev.players[player].info) {
-			info = c.prev.players[player].info.vsScreen;
-		}
-		let skin = c.prev.players[player].vsScreenSkin;
-
-		let x, y = 0;
-		let scale = 1;
-		let scaleX = 1;
-		let imageRendering = (skin == 'HD') ? 'auto' : 'pixelated';
-		let filter = c.getDropShadowWithHex(player);
-
-		if (skin != "Random" && info) {
-			if (info[skin]) {
-				x = info[skin].x;
-				y = info[skin].y;
-				scale = info[skin].scale;
-			} else {
-				x = info.neutral.x;
-				y = info.neutral.y;
-				scale = info.neutral.scale;
+		try {
+			let info = "";
+			if (c.prev.players[player].info) {
+				info = c.prev.players[player].info.vsScreen;
 			}
-		} else {
-			if (c.prev.gamemode == 'Singles') {
-				if (player == 0) {
-					x = -475;
+			let skin = c.prev.players[player].vsScreenSkin;
+	
+			let x, y = 0;
+			let scale = 1;
+			let scaleX = 1;
+			let imageRendering = (skin == 'HD') ? 'auto' : 'pixelated';
+			let filter = c.getDropShadowWithHex(player);
+			//CB - Combo Breaker
+			// let filter =  "grayscale(1)" + c.getDropShadowWithHex(player);
+
+	
+			if (skin != "Random" && info) {
+				if (info[skin]) {
+					x = info[skin].x;
+					y = info[skin].y;
+					scale = info[skin].scale;
 				} else {
-					x = -500;
-				}
-				if (skin == 'Random' && player == 1) {
-					scaleX = -1;
+					x = info.neutral.x;
+					y = info.neutral.y;
+					scale = info.neutral.scale;
 				}
 			} else {
-				y = -125;
-				if (player < c.prev.players.length / 2) {
-					x = -475;
+				if (c.prev.gamemode == 'Singles') {
+					if (player == 0) {
+						x = -475;
+					} else {
+						x = -500;
+					}
+					if (skin == 'Random' && player == 1) {
+						scaleX = -1;
+					}
 				} else {
-					x = -500;
-					scaleX = -1;
+					y = -125;
+					if (player < c.prev.players.length / 2) {
+						x = -475;
+					} else {
+						x = -500;
+						scaleX = -1;
+					}
 				}
+				scale = .8;
 			}
-			scale = .8;
+	
+			scaleX = scale * scaleX;
+			let style = {
+				transform: `translate(${x}px, ${y}px) scale(${scaleX} , ${scale})`,
+				imageRendering: imageRendering,
+				filter: filter,
+				// animation: `charaMoveIn ${fadeInTime + .1}s ${delay + .2}s both, fadeIn ${fadeInTime + .1}s ${delay + .2}s both`
+			}
+			return style;
+		} catch (e) {
+			return {};
 		}
-
-		scaleX = scale * scaleX;
-		let style = {
-			transform: `translate(${x}px, ${y}px) scale(${scaleX} , ${scale})`,
-			imageRendering: imageRendering,
-			filter: filter,
-			// animation: `charaMoveIn ${fadeInTime + .1}s ${delay + .2}s both, fadeIn ${fadeInTime + .1}s ${delay + .2}s both`
-		}
-		return style;
+		
 	}
 
 
@@ -537,7 +614,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
 	c.mainLoop();
 	setInterval(() => {
-		c.mainLoop()
+
 		if ((prevSameAsGui || prevDifFromGuiCount == iterationsBeforePrevUpdate) && prevDifFromGuiCount >= 0) {
 			prevDifFromGuiCount = 0;
 		} else {
@@ -550,11 +627,18 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		}
 
 		socialChangeTimer++;
+
+		c.mainLoop();
 	}, 500); //update interval
 
 
 
 	c.getData = function (scInfo) {
+		if (firstRun) {
+			firstRun = false;
+			return;
+		}
+		
 		c.gui.usePips = scInfo['usePips'];
 		c.gui.players = scInfo['player'];
 		c.gui.teams = scInfo['teamName'];
@@ -568,7 +652,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		c.gui.casters = scInfo['caster'];
 		// let obsSettings = scInfo['obsSettings'];
 		// let addressRockerSettings = scInfo['addressRockerSettings'];
-	
+
 		// if (obsSettings.useObsAutomation && addressRockerSettings.useAddressRocker && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene && !gettingScene) {
 		// 	window.obsstudio.getCurrentScene(function(scene) {
 		// 		if (scene.name != obsSettings.currentScene) {
@@ -581,8 +665,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		// if (gettingScene) {
 		// 	return;
 		// }
-
-		if (prevDifFromGuiCount == iterationsBeforePrevUpdate || firstRun) {
+		
+		if (prevDifFromGuiCount == iterationsBeforePrevUpdate) {
 			c.prev.usePips = c.gui.usePips;
 			c.prev.players = c.gui.players;
 			c.prev.teams = c.gui.teams;
@@ -595,7 +679,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			c.prev.tournament = c.gui.tournament;
 			c.prev.casters = c.gui.casters;
 			prevSameAsGui = true;
-			firstRun = false;
+			// firstRun = false;
 			prevDifFromGuiCount = -2;
 			if (c.prev.score[0] > 0 || c.prev.score[1] > 0) {
 				c.scoreEmpty = false;
