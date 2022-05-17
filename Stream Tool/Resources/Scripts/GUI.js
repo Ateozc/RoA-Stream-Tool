@@ -17,17 +17,17 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             })
         ) {
             shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
-            let svgClass = this.getAttribute('class');
-            let style = getComputedStyle(this);
-            // this.setAttribute('class', '');
+            // let svgClass = this.getAttribute('class');
+            // let style = getComputedStyle(this);
+            // // this.setAttribute('class', '');
             
-            // console.log(svgClass);
-            if (svgClass) {
-                // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
-                shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:100%; width:100%;" ');
+            // // console.log(svgClass);
+            // if (svgClass) {
+            //     // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
+            //     shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:100%; width:100%;" ');
 
-                // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
-            }
+            //     // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
+            // }
             $scope.$apply();
         }
     })
@@ -52,6 +52,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     // "/Resources/Games/Rivals Workshop/Characters"
 
     const randomSkinPath = gamePath + "/Defaults/Random.png";
+    const randomIconPath = gamePath + "/Defaults/icon.png"
     const randomSkinPathRel = "/Games/Defaults/Random.png";
     const defaultWbBackground = "/Games/Defaults/BG.webm";
 
@@ -369,6 +370,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     }
 
     c.getSkinPath = function (character, skin, player) {
+        if (skin == 'Seasonal') {
+            skin = c.seasonalSkin;
+        }
         let path = "";
         if (character == "Random") {
             path = randomSkinPath;
@@ -377,6 +381,16 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         }
 
         return fs.existsSync(path) ? path : randomSkinPath;
+    }
+
+    c.getIconPath = function(character) {
+        let path = "";
+        if (character == "Random") {
+            path = randomIconPath;
+        } else {
+            path = charPath + character + "/icon.png";
+        }
+        return fs.existsSync(path) ? path : randomIconPath;
     }
 
     c.getPathsForOverlays = function () {
@@ -1214,6 +1228,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
     c.getTransformForCharImage = function (character, skin) {
         const charInfo = getJson(charPath + "/" + character + "/_Info");
+        if (skin == 'Seasonal') {
+            skin = c.seasonalSkin;
+        }
         const charSkinPath = c.getSkinPath(character, skin);
 
         let randomSelected = false;

@@ -302,6 +302,11 @@ body {
   line-height: 26px;
   white-space: nowrap;
 }
+
+.icon {
+  display: inline-block;
+}
+
 .twitterIcon {
   height: 19px;
   width: 19px;

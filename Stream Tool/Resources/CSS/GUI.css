@@ -1,12 +1,11 @@
-
 @font-face {
   font-family: "Roboto-Regular";
-  src: url('../Fonts/Roboto-Regular.ttf');
+  src: url("../Fonts/Roboto-Regular.ttf");
 }
 
 @font-face {
   font-family: "Roboto-Medium";
-  src: url('../Fonts/Roboto-Medium.ttf');
+  src: url("../Fonts/Roboto-Medium.ttf");
 }
 
 :root {
@@ -32,7 +31,8 @@
   background-color: var(--focused);
 }
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   height: 100%;
@@ -45,7 +45,7 @@ body {
   background-color: var(--bg2);
   color: var(--text1);
   user-select: none;
-  font-family: 'Roboto-Regular';
+  font-family: "Roboto-Regular";
   font-size: 16px;
 }
 
@@ -54,11 +54,11 @@ body {
 }
 
 .pageButtons {
-  text-align-last:center;
+  text-align-last: center;
   position: fixed;
-    bottom: 0;
-    width: 14%;
-    text-align: center;
+  bottom: 0;
+  width: 14%;
+  text-align: center;
 }
 
 /* general text input class*/
@@ -72,11 +72,12 @@ body {
   box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid var(--bg4);
-  transition: border-color 100ms;  
+  transition: border-color 100ms;
 }
 
-input[type="text"], input[type="number"]{
-  font-family: 'Roboto-Regular';
+input[type="text"],
+input[type="number"] {
+  font-family: "Roboto-Regular";
   font-size: 13px;
 }
 
@@ -103,7 +104,6 @@ input[type="text"], input[type="number"]{
   transition: transform 300ms ease;
 }
 
-
 /* where all the magic happens */
 #overlay {
   width: calc(100% / 3);
@@ -116,7 +116,7 @@ input[type="text"], input[type="number"]{
 /* player stuff */
 .onDeckPlayerInfo {
   display: flex;
-  float:left;
+  float: left;
   width: 100%;
 }
 
@@ -143,10 +143,9 @@ input[type="text"], input[type="number"]{
 .row {
   padding-left: 10px;
   padding-right: 10px;
-  display: flow-root;
+  display: flex;
   align-items: center;
 }
-
 
 .teamName {
   float: left;
@@ -202,17 +201,70 @@ input[type="text"], input[type="number"]{
   max-height: 165px;
   overflow: auto;
   transform: translate(-50%, 0%);
+  width: 250px;
 }
 
+
+.finder {
+  /* display: none; */
+  left: 0px;
+  position: absolute;
+  top: 100%;
+  filter: drop-shadow(0px 0px 5px var(--bg3));
+  z-index: 3;
+  max-height: 165px;
+  /* max-width: 300px; */
+}
+
+.skinFinder {
+  width: 251px;
+}
+
+.searchList {
+  background-color: var(--bg5);
+  font-size: 15px;
+  overflow: auto;
+  max-height: 140px;
+  position: relative;
+}
+
+.listSearch {
+  outline: none;
+  border: none;
+  width: 100%;
+  background: var(--bg1);
+  color: var(--text1);
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.selector {
+  max-width: 141px;
+  height: 32px;
+  color: var(--text1);
+  background-color: var(--bg4);
+  border: 1px solid var(--focused);
+  transition: border-color 100ms;
+  padding: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto-Regular";
+  white-space: nowrap;
+  gap: 3px;
+  overflow: hidden;
+}
 
 .finderEntry {
   display: flex;
   align-items: center;
-  height: 35px;
-  width: 220px;
+  height: 30px;
+  width: 100%;
   z-index: 30;
   cursor: pointer;
 }
+
 .finderEntry:not(:first-child) {
   border-top: 1px solid var(--bg2);
 }
@@ -243,11 +295,11 @@ input[type="text"], input[type="number"]{
 }
 .pfCharImgBox {
   position: absolute;
-  height: 35px;
-  width: 220px;
+  height: 30px;
+  width: 100%;
   transform: scaleX(-1);
   overflow: hidden;
-  opacity: .8;
+  opacity: 0.8;
 }
 .pfCharImg {
   position: absolute;
@@ -255,10 +307,9 @@ input[type="text"], input[type="number"]{
   top: 0px;
   object-fit: contain;
   height: 40px;
-  opacity: .8;
+  opacity: 0.8;
   z-index: 31;
 }
-
 
 .pColor {
   float: left;
@@ -302,14 +353,14 @@ input[type="text"], input[type="number"]{
   position: absolute;
   background-color: var(--bg5);
   width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 3;
   font-size: 15px;
 }
 
 .colorEntry {
   display: flex;
-  align-items: center;  
+  align-items: center;
 }
 
 .colorEntry:hover {
@@ -320,7 +371,6 @@ input[type="text"], input[type="number"]{
 #rColor:focus #dropdownColorR {
   display: block;
 }
-
 
 .buttonSelected {
   color: var(--text1) !important;
@@ -373,7 +423,6 @@ input[type="text"], input[type="number"]{
   background-color: var(--bg5);
 }
 
-
 .scoreBox {
   background-color: var(--bg4);
   height: 30px;
@@ -386,7 +435,7 @@ input[type="text"], input[type="number"]{
   align-items: center;
   color: var(--text2);
   float: left;
-  font-family: 'Roboto-Medium';
+  font-family: "Roboto-Medium";
 }
 .scoreBox:hover {
   border-color: var(--selected);
@@ -402,7 +451,7 @@ input[type="text"], input[type="number"]{
 .wlButtons {
   /* display: none; */
   font-size: 13px;
-  font-family: 'Roboto-Medium';
+  font-family: "Roboto-Medium";
   padding-left: 5px;
 }
 
@@ -424,26 +473,27 @@ input[type="text"], input[type="number"]{
   border-color: var(--selected);
 }
 
-#p1W, #p2W {
+#p1W,
+#p2W {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-#p1W:hover, #p2W:hover {
+#p1W:hover,
+#p2W:hover {
   transform: scale(1);
 }
-#p1L, #p2L {
+#p1L,
+#p2L {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   box-sizing: border-box;
   padding-left: 7px;
 }
 
-
 /* elements that will show up when changing gamemode
 #p3Char, #p4Char, #p3Skin, #p4Skin, #pInfo3, #pInfo4, #p7Char, #p8Char, #p7Skin, #p8Skin, #pInfo7, #pInfo8 {
   display: none;
 } */
-
 
 #sideSep {
   width: 2%;
@@ -474,11 +524,12 @@ input[type="text"], input[type="number"]{
 
 .icon {
   fill: #b6b6b6;
+  display: inline-block;
 }
 
 .midIcon {
-  height: 12px;
-  width: 12px;
+  height: 16px;
+  width: 16px;
   opacity: 0;
   transform: scale(1.5, 1.5);
   transition: opacity 200ms, transform 200ms;
@@ -491,7 +542,6 @@ input[type="text"], input[type="number"]{
   opacity: 1;
   transform: scale(2, 2);
 }
-
 
 .charImgBox {
   width: 100%;
@@ -509,10 +559,9 @@ input[type="text"], input[type="number"]{
   box-sizing: border-box;
 }
 
-.charImgRandom{
+.charImgRandom {
   -webkit-transform: scaleX(-1);
 }
-
 
 #addressRockerInfo {
   height: 80px;
@@ -525,9 +574,9 @@ input[type="text"], input[type="number"]{
   padding-right: 10px;
 }
 
-
 /* round properties */
-#roundInfo, #onDeckRoundInfo {
+#roundInfo,
+#onDeckRoundInfo {
   height: 40px;
   border-top: thin;
   border-bottom: thin;
@@ -552,7 +601,8 @@ input[type="text"], input[type="number"]{
   width: 100%;
 }
 
-#bestOf, #onDeckBestOf {
+#bestOf,
+#onDeckBestOf {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -584,13 +634,15 @@ input[type="text"], input[type="number"]{
   margin-left: -1px;
 }
 
-#roundName, #onDeckRoundName #tournamentName {
+#roundName,
+#onDeckRoundName #tournamentName {
   width: 100%;
   text-align: center;
   margin-right: 4px;
 }
 
-#roundNumber, #onDeckRoundNumber {
+#roundNumber,
+#onDeckRoundNumber {
   text-align: center;
   margin-right: 4px;
   min-width: 20px;
@@ -600,8 +652,6 @@ input[type="text"], input[type="number"]{
 input[type="number"] {
   min-width: 40px !important;
 }
-
-
 
 #gamemode {
   background-color: var(--bg4);
@@ -638,7 +688,6 @@ input[type="number"] {
 #gmIcon2 {
   left: 17px;
 }
-
 
 /* caster region */
 #casterInfo {
@@ -681,12 +730,16 @@ input[type="number"] {
   width: 31%;
 }
 
-#cName1, #cName2 {
+#cName1,
+#cName2 {
   width: 100%;
   margin-left: 4px;
 }
 
-#cTwitter1, #cTwitter2, #cTwitch1, #cTwitch2 {
+#cTwitter1,
+#cTwitter2,
+#cTwitch1,
+#cTwitch2 {
   width: 100%;
   margin-left: 1px;
 }
@@ -710,7 +763,7 @@ input[type="number"] {
 
 .botText {
   color: var(--text1);
-  font-family: 'Roboto-Medium';
+  font-family: "Roboto-Medium";
 }
 
 .rectangle {
@@ -724,13 +777,13 @@ input[type="number"] {
   background-color: var(--bg3);
 }
 
-#updateRegion:active{
+#updateRegion:active {
   background-color: var(--bg5);
 }
 
 #settingsRegion {
   width: 32px;
-  background-color: var(--bg3)
+  background-color: var(--bg3);
 }
 
 #configIcon {
@@ -746,17 +799,15 @@ input[type="number"] {
   background-color: var(--bg1);
 }
 
-#settingsRegion:active{
+#settingsRegion:active {
   background-color: var(--bg5);
 }
-
 
 /* bracket section */
 #bracket {
   width: calc(100% / 3);
   height: 200px;
 }
-
 
 /* settings section */
 #settings {
@@ -808,7 +859,6 @@ input[type="number"] {
   font-size: 14px;
   font-family: "Roboto-Medium";
 }
-
 
 /* clickable area that gets enabled when moving the viewport */
 #goBack {

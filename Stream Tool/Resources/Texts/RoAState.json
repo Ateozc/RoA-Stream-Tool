@@ -1,19 +1,19 @@
 {
   "P1Character": {
-    "Character": "OLYMPIA",
+    "Character": "MAYPUL",
     "Skin": {
-      "SkinDescription": "GREY",
-      "SkinIndex": 4
+      "SkinDescription": "UNKNOWN19",
+      "SkinIndex": 19
     },
     "SlotState": "HMN"
   },
   "P2Character": {
-    "Character": "SYLVANOS",
+    "Character": "UNKNOWN",
     "Skin": {
-      "SkinDescription": "ABYSS",
-      "SkinIndex": 13
+      "SkinDescription": "UNKNOWN",
+      "SkinIndex": 0
     },
-    "SlotState": "HMN"
+    "SlotState": "OFF"
   },
   "TourneySet": {
     "InMatch": false,

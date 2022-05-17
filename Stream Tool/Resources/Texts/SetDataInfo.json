@@ -6,18 +6,19 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Mollo",
         "Elliana",
         "Ranno",
         "Clairen",
         "Hodan",
         "Shovel Knight",
         "Forsburn",
-        "Maypul",
         "Zetterburn",
         "Sylvanos",
-        "Absa",
         "Random",
-        "Olympia"
+        "Olympia",
+        "Absa",
+        "Maypul"
       ]
     },
     {
@@ -26,37 +27,18 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Mollo",
         "Elliana",
         "Ranno",
         "Clairen",
         "Hodan",
         "Shovel Knight",
         "Forsburn",
-        "Maypul",
-        "Zetterburn",
-        "Absa",
-        "Random",
-        "Olympia",
-        "Sylvanos"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Elliana",
-        "Ranno",
-        "Clairen",
-        "Hodan",
-        "Shovel Knight",
-        "Forsburn",
-        "Maypul",
         "Zetterburn",
         "Sylvanos",
-        "Absa",
         "Olympia",
+        "Absa",
+        "Maypul",
         "Random"
       ]
     },
@@ -66,17 +48,39 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Mollo",
         "Elliana",
         "Ranno",
         "Clairen",
         "Hodan",
         "Shovel Knight",
         "Forsburn",
-        "Maypul",
         "Zetterburn",
         "Sylvanos",
-        "Absa",
         "Olympia",
+        "Absa",
+        "Maypul",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Mollo",
+        "Elliana",
+        "Ranno",
+        "Clairen",
+        "Hodan",
+        "Shovel Knight",
+        "Forsburn",
+        "Zetterburn",
+        "Sylvanos",
+        "Olympia",
+        "Absa",
+        "Maypul",
         "Random"
       ]
     }

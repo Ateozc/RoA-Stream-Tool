@@ -22,7 +22,7 @@
     "enableScoreUpdate": true,
     "inMatch": false,
     "inSet": false,
-    "setTeamColor": false,
+    "setTeamColor": true,
     "showInfo": false
   },
   "seasonalSkin": "Summer",

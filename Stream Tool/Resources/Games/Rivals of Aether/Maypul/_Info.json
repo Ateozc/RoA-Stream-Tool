@@ -76,14 +76,19 @@
             "index": 16
         },
         {
-            "label": "Champion ",
-            "fileName" : "Champion ",
+            "label": "Champion",
+            "fileName" : "Champion",
             "index": 17
         },
         {
             "label": "Ranked",
             "fileName" : "Ranked",
             "index": 18
+        },
+        {
+            "label": "GoTE",
+            "fileName" : "GoTE",
+            "index": 19
         },
         {
             "label": "HD",

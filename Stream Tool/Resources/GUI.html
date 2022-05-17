@@ -97,13 +97,47 @@
                 <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
               </datalist> -->
 
-              <select ng-if="playerIndex==0 || gamemode=='Teams'" id="p{{playerIndex}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[playerIndex].character" ng-change="markCharacterIndex(playerIndex)">
-                <div><span>Test</span></div>
-                <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
-              </select>
-              <select ng-if="playerIndex==0 || gamemode=='Teams'" ng-hide="players[playerIndex].character == 'Random'" id="p{{playerIndex}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[playerIndex].skinIndex" ng-change="setSkinBasedOnIndex(playerIndex)">
-                <option class="theEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins" ng-value={{skin.index}}>{{skin.label}}</option>
-              </select>
+
+              <!-- <div ng-if="playerIndex==0 || gamemode=='Teams'">
+                <div ng-repeat="character in characterList" ng-click="players[playerIndex].character = character.name">
+                  <img ng-src="X:\OBS\RoA-Stream-Tool\Stream Tool\Resources/Games/Rivals of Aether/{{character.name}}/icon.png">
+                  <span>{{character.name}}</span>
+                </div>
+              </div> -->
+
+              <div ng-if="playerIndex==0 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                <div class="selector">
+                  <img ng-src="{{getIconPath(players[playerIndex].character)}}">
+                  <span>{{players[playerIndex].character}}</span>
+                  <div class="finder" ng-show="show || focused || filter">
+                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false;">
+                    <div class="searchList">
+                      <div class="finderEntry" ng-repeat="character in characterList | filter: {name: filter}" ng-click="players[playerIndex].character = character.name; markCharacterIndex(playerIndex)">
+                        <img ng-src="{{getIconPath(character.name)}}">
+                        <span>{{character.name}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div ng-if="playerIndex==0 || gamemode=='Teams'" ng-hide="players[playerIndex].character == 'Random'" style="position: relative;"  ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                <div class="selector">
+                  {{players[playerIndex].skin}}
+                  <div class="skinFinder finder" ng-show="show || focused || filter">
+                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
+                    <div class="searchList" >
+                      <div class="finderEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins | filter: {label: filter}" ng-click="players[playerIndex].skinIndex = skin.index; setSkinBasedOnIndex(playerIndex);">
+                        <span class="pfName">{{skin.label}}</span>
+                        <div class="pfCharImgBox">
+                          <img class="pfCharImg" ng-src='{{getSkinPath(players[playerIndex].character, skin.label)}}' ng-style="{{getTransformForCharImage(players[playerIndex].character, skin.label)}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="row" id="row3-1">
@@ -184,13 +218,56 @@
                   <input type="text" id="p{{getPlayerIndexRightSide($index)}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{$index + players.length/2 + 1}}'s Pronouns here" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].pronouns">
                 </div>
               </div>
+
+
+
+
+<!-- 
               <select ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" id="p{{getPlayerIndexRightSide($index)}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[getPlayerIndexRightSide($index)].character" ng-change="markCharacterIndex(getPlayerIndexRightSide($index))">
                 <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
               </select>
+               -->
+
+              <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="playerIndex=getPlayerIndexRightSide($index); filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                <div class="selector">
+                  <img ng-src="{{getIconPath(players[getPlayerIndexRightSide($index)].character)}}">
+                  <span>{{players[getPlayerIndexRightSide($index)].character}}</span>
+                  <div class="finder" ng-show="show || focused || filter">
+                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
+                    <div class="searchList">
+                      <div class="finderEntry" ng-repeat="character in characterList | filter: {name: filter}" ng-click="players[getPlayerIndexRightSide($parent.$index)].character = character.name; markCharacterIndex(getPlayerIndexRightSide($parent.$index))">
+                        <img ng-src="{{getIconPath(character.name)}}">
+                        <span>{{character.name}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+<!-- 
               <select ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" id="p{{getPlayerIndexRightSide($index)}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[getPlayerIndexRightSide($index)].skinIndex" ng-change="setSkinBasedOnIndex(getPlayerIndexRightSide($index))">
                 <option class="theEntry" ng-repeat="skin in characterList[players[getPlayerIndexRightSide($index)].characterIndex].skins" ng-value={{skin.index}}>{{skin.label}}</option>
-              </select>
+              </select> -->
+
+              <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" style="position: relative;"  ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                <div class="selector">
+                  {{players[getPlayerIndexRightSide($parent.$index)].skin}}
+                  <div class="skinFinder finder" ng-show="show || focused || filter">
+                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
+                    <div class="searchList" >
+                      <div class="finderEntry" ng-repeat="skin in characterList[players[getPlayerIndexRightSide($parent.$index)].characterIndex].skins | filter: {label: filter}" ng-click="players[getPlayerIndexRightSide($parent.$index)].skinIndex = skin.index; setSkinBasedOnIndex(getPlayerIndexRightSide($parent.$index));">
+                        <span class="pfName">{{skin.label}}</span>
+                        <div class="pfCharImgBox">
+                          <img class="pfCharImg" ng-src='{{getSkinPath(players[getPlayerIndexRightSide($parent.$index)].character, skin.label)}}' ng-style="{{getTransformForCharImage(players[getPlayerIndexRightSide($parent.$index)].character, skin.label)}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
+            
 
             <div class="row" id="row3-2">
               <div class="scoreBox" id="scoreBox2" title="Press F2 to increase the score" ng-if="usePips">
@@ -244,8 +321,13 @@
           </div>
         </div>
 
-        <div id=casterInfo>
 
+        <div style="text-align: center;justify-content: center;" ng-click="showCasterInfo = !showCasterInfo; saveGUISettings()">
+          <span ng-if="showCasterInfo">---------- Caster Information (Click to Hide) ----------</span>
+          <span ng-if="!showCasterInfo">---------- Caster Information (Click to Show) ----------</span>
+        </div>
+
+        <div id=casterInfo ng-show="showCasterInfo">
           <div ng-repeat="caster in casters" ng-init="casterNumber = $index + 1">
             <div id="caster{{casterNumber}}" class="caster">
 
@@ -268,9 +350,9 @@
           </div>
         </div>
 
-        <div class="row" style="text-align: center;" ng-click="showOnDeck = !showOnDeck; saveGUISettings()">
-          <span ng-if="showOnDeck">On Deck Information (Click to Hide)</span>
-          <span ng-if="!showOnDeck">On Deck Information (Click to Show)</span>
+        <div class="row" style="text-align: center;justify-content: center;" ng-click="showOnDeck = !showOnDeck; saveGUISettings()">
+          <span ng-if="showOnDeck">---------- On Deck Information (Click to Hide) ----------</span>
+          <span ng-if="!showOnDeck">---------- On Deck Information (Click to Show) ----------</span>
         </div>
 
         <div id="onDeckInfo" ng-show="showOnDeck">
@@ -337,7 +419,7 @@
         <div ng-show="settingsPageNumber==1">
           <div class="settingBox" title="Select a game to use.">
             <label for="gameSelect" class="settingsText">Game</span>
-              <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="4" ng-model="game" ng-change="gameChanged();">
+              <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="-1" ng-model="game" ng-change="gameChanged();">
                 <option ng-repeat="game in games" value="{{game}}">{{game}}</option>
               </select>
           </div>
@@ -353,7 +435,7 @@
 
           <div ng-show="game=='Rivals of Aether'" class="settingBox" title="Select a game to use.">
             <label for="curSeasonalSkin" class="settingsText">Seasonal Skin Select</span>
-              <select id="curSeasonalSkin" class="textInput mousetrap" title="Seasonal Skin Select" tabindex="4" ng-model="seasonalSkin" ng-change="updateSeasonalSkins();">
+              <select id="curSeasonalSkin" class="textInput mousetrap" title="Seasonal Skin Select" tabindex="-1" ng-model="seasonalSkin" ng-change="updateSeasonalSkins();">
                 <option ng-repeat="skin in seasonalSkins" value="{{skin}}">{{skin}}</option>
               </select>
           </div>
@@ -456,7 +538,7 @@
             </div> -->
             <div class="settingBox" title="This sets how scenes will change on OBS.">
               <label for="autoChangeScenes" class="settingsText">OBS Scene Control:</span>
-                <select id="autoChangeScenes" class="textInput mousetrap" title="This sets how scenes will change on OBS." tabindex="4" ng-model="obsSettings.autoChangeScenes" ng-change="saveOBSSettings()">
+                <select id="autoChangeScenes" class="textInput mousetrap" title="This sets how scenes will change on OBS." tabindex="-1" ng-model="obsSettings.autoChangeScenes" ng-change="saveOBSSettings()">
                   <option value="manualFromOBS">Manual from OBS</option>
                   <option value="manualFromTool">Manual from Stream Tool</option>
                   <option value="addressRockerAuto" ng-if="game=='Rivals of Aether' || game=='Rivals Workshop'">Auto from Address Rocker</option>
@@ -464,7 +546,7 @@
             </div>
             <div class="settingBox" title="This sets how scenes will change on OBS." ng-show="obsSettings.autoChangeScenes == 'manualFromTool'">
               <label for="obsCurrentScene" class="settingsText">Change OBS Scene</span>
-                <select id="obsCurrentScene" class="textInput mousetrap" title="This sets the current Scene in OBS." tabindex="4" ng-model="selectedScene" ng-change="obsSetScreen(selectedScene, true)">
+                <select id="obsCurrentScene" class="textInput mousetrap" title="This sets the current Scene in OBS." tabindex="-1" ng-model="selectedScene" ng-change="obsSetScreen(selectedScene, true)">
                   <option value="startScene">Start Scene</option>
                   <option value="vsScreenName">Vs Screen Scene</option>
                   <option value="scoreboardSceneName">Scoreboard Scene</option>
@@ -492,9 +574,9 @@
         </div>
 
         <div class="row pageButtons">
-          <button class="textInput inline" ng-show="showSettingsPagePrevButton()" ng-click="changeSettingsPage(-1)">Previous</button>
+          <button class="textInput inline" tabindex="-1" ng-show="showSettingsPagePrevButton()" ng-click="changeSettingsPage(-1)">Previous</button>
           <div class="inline"><span>Page {{settingsPageNumber}}</span></div>
-          <button class="textInput inline" ng-show="showSettingsPageNextButton()" ng-click="changeSettingsPage(1)">Next</button>
+          <button class="textInput inline" tabindex="-1" ng-show="showSettingsPageNextButton()" ng-click="changeSettingsPage(1)">Next</button>
         </div>
 
       </div>

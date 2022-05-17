@@ -30,14 +30,14 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			})
 		) {
 			shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
-			let svgClass = this.getAttribute('class');
-			let style = getComputedStyle(this);
-			// this.setAttribute('class', '');
+			// let svgClass = this.getAttribute('class');
+			// let style = getComputedStyle(this);
+			// // this.setAttribute('class', '');
 
-			if (svgClass) {
-				shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: ' + style.width + ';" ');
-				// shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
-			}
+			// if (svgClass) {
+			// 	shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: ' + style.width + ';" ');
+			// 	// shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
+			// }
 			$scope.$apply();
 		}
 	})
