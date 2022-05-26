@@ -1,45 +1,23 @@
 {
   "player": [
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "Test",
+      "twitter": "@test",
+      "pronouns": "they/them",
       "tag": "",
       "characters": [
-        "Mollo",
-        "Elliana",
-        "Ranno",
-        "Clairen",
-        "Hodan",
-        "Shovel Knight",
         "Forsburn",
-        "Zetterburn",
-        "Sylvanos",
-        "Random",
-        "Olympia",
-        "Absa",
-        "Maypul"
+        "Elliana"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "Test",
+      "twitter": "@test",
+      "pronouns": "they/them",
       "tag": "",
       "characters": [
-        "Mollo",
         "Elliana",
-        "Ranno",
-        "Clairen",
-        "Hodan",
-        "Shovel Knight",
-        "Forsburn",
-        "Zetterburn",
-        "Sylvanos",
-        "Olympia",
-        "Absa",
-        "Maypul",
-        "Random"
+        "Forsburn"
       ]
     },
     {
@@ -85,6 +63,6 @@
       ]
     }
   ],
-  "tournamentName": "",
+  "tournamentName": "test",
   "round": "Friendlies"
 }

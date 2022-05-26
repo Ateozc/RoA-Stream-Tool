@@ -13,7 +13,7 @@
   "maxPlayers": 4,
   "showOnDeck": false,
   "game": "Rivals of Aether",
-  "useCustomColors": false,
+  "useCustomColors": true,
   "addressRockerSettings": {
     "useAddressRocker": false,
     "enableCharacterUpdate": true,
@@ -22,7 +22,7 @@
     "enableScoreUpdate": true,
     "inMatch": false,
     "inSet": false,
-    "setTeamColor": true,
+    "setTeamColor": false,
     "showInfo": false
   },
   "seasonalSkin": "Summer",

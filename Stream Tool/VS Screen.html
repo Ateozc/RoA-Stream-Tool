@@ -11,7 +11,7 @@
 </head>
 
 <body ng-app="angularapp" ng-controller="AngularAppCtrl">
-    <div ng-style="fadeInScreen()">
+    <div ng-if="loaded" ng-style="fadeInScreen()">
         <div id="bgVids">
             <video autoplay loop class="absol bgVid vidTopLeft" ng-src="{{prev.players[0].backgroundWebm}}" id="vidBGP1" ng-style="fadeInBGVid(0)"></video>
             <video autoplay loop class="absol bgVid" id="vidBGP2" ng-src="{{prev.players[1].backgroundWebm}}" ng-style="fadeInBGVid(1)" ng-class="{'vidTopRight': prev.gamemode=='Singles', 'vidBotLeft' : prev.gamemode=='Teams'}"></video>

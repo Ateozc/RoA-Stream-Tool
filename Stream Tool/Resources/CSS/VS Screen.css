@@ -112,8 +112,8 @@ body {
 
 .wrappers {
   position: absolute;
-  font-family: "LemonMilk"; 
-  /* font-family: "CB";  */
+  /* font-family: "LemonMilk";  */
+  font-family: "CB"; 
   text-align: center;
   white-space: nowrap;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
@@ -201,8 +201,8 @@ body {
   width: 690px;
   height: 90px;
   top: 495px;
-  font-family: "LemonMilk";
-  /* font-family: "CB"; */
+  /* font-family: "LemonMilk"; */
+  font-family: "CB";
   white-space: nowrap;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
   /* opacity: 0; */
@@ -225,8 +225,8 @@ body {
 .roundInfo {
   position: absolute;
   text-align: center;
-  font-family: "Deansgate";
-  /* font-family: "CB"; */
+  /* font-family: "Deansgate"; */
+  font-family: "CB";
   white-space: nowrap;
   font-size: 34px;
 }
@@ -234,8 +234,8 @@ body {
 .tournamentInfo {
   position: absolute;
   text-align: center;
-  font-family: "Deansgate";
-  /* font-family: "CB"; */
+  /* font-family: "Deansgate"; */
+  font-family: "CB";
   white-space: nowrap;
   font-size: 28px;
 }
