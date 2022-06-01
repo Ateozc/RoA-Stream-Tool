@@ -1,11 +1,11 @@
 {
   "P1Character": {
-    "Character": "MAYPUL",
+    "Character": "UNKNOWN",
     "Skin": {
-      "SkinDescription": "UNKNOWN19",
-      "SkinIndex": 19
+      "SkinDescription": "UNKNOWN",
+      "SkinIndex": 0
     },
-    "SlotState": "HMN"
+    "SlotState": "OFF"
   },
   "P2Character": {
     "Character": "UNKNOWN",
@@ -17,7 +17,7 @@
   },
   "TourneySet": {
     "InMatch": false,
-    "TourneyModeBestOf": 3,
+    "TourneyModeBestOf": -1,
     "P1GameCount": 0,
     "P2GameCount": 0
   }

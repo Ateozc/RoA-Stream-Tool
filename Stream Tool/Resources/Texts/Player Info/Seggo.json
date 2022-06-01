@@ -1,12 +1,12 @@
 {
   "name": "Seggo",
   "twitter": "@SeggoAhmet",
-  "tag": "PINK",
+  "tag": "",
   "characters": [
     {
       "character": "Random",
       "skin": "",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
@@ -26,6 +26,11 @@
     {
       "character": "Kragg",
       "skin": "Halloween",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Olympia",
+      "skin": "Abyss",
       "game": "Rivals of Aether"
     }
   ],

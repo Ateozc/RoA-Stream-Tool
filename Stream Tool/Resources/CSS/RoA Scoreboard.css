@@ -32,8 +32,8 @@ body {
     margin: 0px;
     text-transform: uppercase;
     color: white;
-    /* font-family: "Deansgate"; */
-    font-family: "CB";
+    font-family: "Deansgate";
+    /* font-family: "CB"; */
 
 }
 
@@ -191,8 +191,8 @@ body {
     top: 13px;
     line-height: 32px;
     text-align: center;
-    /* font-family: "Roboto"; */
-    font-family: "CB";
+    font-family: "Roboto";
+    /* font-family: "CB"; */
     white-space: nowrap;
 }
 
@@ -209,8 +209,8 @@ body {
     line-height: 74px;
     bottom: 485px;
     opacity: 0;
-    /* font-family: "LemonMilk"; */
-    font-family: "CB";
+    font-family: "LemonMilk";
+    /* font-family: "CB"; */
     white-space: nowrap;
 }
 
@@ -239,8 +239,8 @@ body {
     height: 74px;
     left: 410px;
     bottom: 505px;
-    /* font-family: "LemonMilk"; */
-    font-family: "CB";
+    font-family: "LemonMilk";
+    /* font-family: "CB"; */
     line-height: 74px;
     font-size: 110px;
 }
@@ -290,8 +290,8 @@ body {
     position: absolute;
     height: 74px;
     right: 550px;
-    /* font-family: "LemonMilk"; */
-    font-family: "CB";
+    font-family: "LemonMilk";
+    /* font-family: "CB"; */
     line-height: 74px;
     bottom: 505px;
     font-size: 110px;

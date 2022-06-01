@@ -562,9 +562,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			let scale = 1;
 			let scaleX = 1;
 			let imageRendering = (skin == 'HD') ? 'auto' : 'pixelated';
-			// let filter = c.getDropShadowWithHex(player);
+			let filter = c.getDropShadowWithHex(player);
 			//CB - Combo Breaker
-			let filter =  "grayscale(1)" + c.getDropShadowWithHex(player);
+			// let filter =  "grayscale(1)" + c.getDropShadowWithHex(player);
 
 	
 			if (skin != "Random" && info) {

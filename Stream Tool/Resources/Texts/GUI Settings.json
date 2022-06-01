@@ -13,7 +13,7 @@
   "maxPlayers": 4,
   "showOnDeck": false,
   "game": "Rivals of Aether",
-  "useCustomColors": true,
+  "useCustomColors": false,
   "addressRockerSettings": {
     "useAddressRocker": false,
     "enableCharacterUpdate": true,

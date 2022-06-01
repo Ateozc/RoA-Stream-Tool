@@ -667,8 +667,8 @@ async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
 	scoreNumbers[pNum].textContent = pScore;
 	// change the score image with the new values
 	if (usePips) {
-		// scoreImg[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${bestOf} ${pScore}.png`;
-		scoreImg[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${bestOf} ${pScore} - cb.png`; //cb version
+		scoreImg[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${bestOf} ${pScore}.png`;
+		// scoreImg[pNum].src = `Resources/Overlay/Scoreboard/Score/${gamemode}/${bestOf} ${pScore} - cb.png`; //cb version
 	} else {
 		scoreImg[pNum].src = ``;
 	}

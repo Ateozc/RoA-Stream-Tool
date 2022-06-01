@@ -1,23 +1,22 @@
 {
   "player": [
     {
-      "name": "Test",
-      "twitter": "@test",
-      "pronouns": "they/them",
+      "name": "3XD",
+      "twitter": "@3_X_D",
+      "pronouns": "He/Him",
       "tag": "",
       "characters": [
-        "Forsburn",
-        "Elliana"
+        "Shovel Knight",
+        "Zetterburn"
       ]
     },
     {
-      "name": "Test",
-      "twitter": "@test",
-      "pronouns": "they/them",
+      "name": "Seggo",
+      "twitter": "@SeggoAhmet",
+      "pronouns": "",
       "tag": "",
       "characters": [
-        "Elliana",
-        "Forsburn"
+        "Random"
       ]
     },
     {
@@ -63,6 +62,6 @@
       ]
     }
   ],
-  "tournamentName": "test",
-  "round": "Friendlies"
+  "tournamentName": "Combo Breaker",
+  "round": "Grand Finals"
 }
