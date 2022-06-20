@@ -1,18 +1,8 @@
 {
   "player": [
     {
-      "name": "3XD",
-      "twitter": "@3_X_D",
-      "pronouns": "He/Him",
-      "tag": "",
-      "characters": [
-        "Shovel Knight",
-        "Zetterburn"
-      ]
-    },
-    {
-      "name": "Seggo",
-      "twitter": "@SeggoAhmet",
+      "name": "",
+      "twitter": "",
       "pronouns": "",
       "tag": "",
       "characters": [
@@ -25,18 +15,6 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Mollo",
-        "Elliana",
-        "Ranno",
-        "Clairen",
-        "Hodan",
-        "Shovel Knight",
-        "Forsburn",
-        "Zetterburn",
-        "Sylvanos",
-        "Olympia",
-        "Absa",
-        "Maypul",
         "Random"
       ]
     },
@@ -46,22 +24,19 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Mollo",
-        "Elliana",
-        "Ranno",
-        "Clairen",
-        "Hodan",
-        "Shovel Knight",
-        "Forsburn",
-        "Zetterburn",
-        "Sylvanos",
-        "Olympia",
-        "Absa",
-        "Maypul",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
         "Random"
       ]
     }
   ],
-  "tournamentName": "Combo Breaker",
-  "round": "Grand Finals"
+  "tournamentName": "City of the Elements",
+  "round": "Losers Round 1"
 }

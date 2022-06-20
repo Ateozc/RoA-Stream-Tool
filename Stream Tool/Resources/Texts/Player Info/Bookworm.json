@@ -5,6 +5,11 @@
   "characters": [
     {
       "character": "Elliana",
+      "skin": "Blue",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Clairen",
       "skin": "Default",
       "game": "Rivals of Aether"
     }

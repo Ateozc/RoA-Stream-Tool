@@ -460,6 +460,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                     let checkSpecialPath = c.relativePathOfFile(charPathRel + character + "/BG Golden.webm");
                     backgroundPath = (checkSpecialPath) ? checkSpecialPath : backgroundPath;
                 }
+
+                //City of the Elements (cote)
+                // backgroundPath = c.relativePathOfFile(charPathRel + "Clairen/BG.webm");
             }
 
 
