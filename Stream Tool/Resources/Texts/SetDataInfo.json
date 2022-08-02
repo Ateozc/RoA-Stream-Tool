@@ -1,11 +1,26 @@
 {
   "player": [
     {
+      "name": "Test",
+      "twitter": "@test",
+      "pronouns": "they/them",
+      "tag": "",
+      "characters": [
+        "Absa",
+        "Clairen",
+        "Elliana",
+        "Etalus",
+        "Forsburn",
+        "Zetterburn"
+      ]
+    },
+    {
       "name": "",
       "twitter": "",
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Olympia",
         "Random"
       ]
     },
@@ -15,6 +30,7 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Olympia",
         "Random"
       ]
     },
@@ -24,19 +40,11 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Random"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
+        "Olympia",
         "Random"
       ]
     }
   ],
-  "tournamentName": "City of the Elements",
-  "round": "Losers Round 1"
+  "tournamentName": "",
+  "round": "Friendlies"
 }

@@ -91,6 +91,11 @@
             "index": 19
         },
         {
+            "label": "High Roller",
+            "fileName" : "High Roller",
+            "index": 20
+        },
+        {
             "label": "HD",
             "fileName" : "HD",
             "index": 100

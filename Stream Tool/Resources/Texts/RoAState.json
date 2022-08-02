@@ -1,23 +1,23 @@
 {
   "P1Character": {
-    "Character": "UNKNOWN",
+    "Character": "MOLLO",
     "Skin": {
-      "SkinDescription": "UNKNOWN",
+      "SkinDescription": "DEFAULT",
       "SkinIndex": 0
     },
-    "SlotState": "OFF"
+    "SlotState": "HMN"
   },
   "P2Character": {
-    "Character": "UNKNOWN",
+    "Character": "ZETTERBURN",
     "Skin": {
-      "SkinDescription": "UNKNOWN",
+      "SkinDescription": "DEFAULT",
       "SkinIndex": 0
     },
-    "SlotState": "OFF"
+    "SlotState": "HMN"
   },
   "TourneySet": {
     "InMatch": false,
-    "TourneyModeBestOf": -1,
+    "TourneyModeBestOf": 3,
     "P1GameCount": 0,
     "P2GameCount": 0
   }

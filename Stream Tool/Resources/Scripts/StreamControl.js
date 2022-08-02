@@ -30,6 +30,9 @@ setInterval(() => {
 }, 100); //update interval
 
 async function getData(scInfo) {
+    //https://obsproject.com/docs/reference-frontend-api.html
+    //https://github.com/obsproject/obs-browser/blob/master/README.md
+    console.log(window.obsstudio);
     let obsSettings = scInfo['obsSettings'];
     let addressRockerSettings = scInfo['addressRockerSettings'];
     if (obsSettings.useObsAutomation && addressRockerSettings.useAddressRocker && addressRockerSettings.inSet && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene) {

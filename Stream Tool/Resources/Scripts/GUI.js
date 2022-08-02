@@ -468,7 +468,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
             c.players[i].defaultSkinPath = defaultSkinPath;
             c.players[i].vsScreenSkinPath = vsScreenSkinPath;
-            c.players[i].scoreboardSkinPath = defaultSkinPath;
+            c.players[i].scoreboardSkinPath = vsScreenSkinPath;
             c.players[i].backgroundWebm = backgroundPath;
             c.players[i].info = characterInfo;
             c.players[i].teamColor = teamColor;
