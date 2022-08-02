@@ -16,7 +16,7 @@
   "game": "Rivals of Aether",
   "useCustomColors": false,
   "addressRockerSettings": {
-    "useAddressRocker": true,
+    "useAddressRocker": false,
     "enableCharacterUpdate": true,
     "enableSkinUpdate": true,
     "enableBestOfUpdate": true,
@@ -28,8 +28,8 @@
   },
   "seasonalSkin": "Summer",
   "obsSettings": {
-    "useObsAutomation": true,
-    "autoChangeScenes": "addressRockerAuto",
+    "useObsAutomation": false,
+    "autoChangeScenes": "manualFromOBS",
     "vsScreenName": "Vs Screen (Between Games)",
     "scoreboardSceneName": "Main Screen with overlay",
     "autoRecordSets": false,

@@ -1,22 +1,23 @@
 {
   "player": [
     {
-      "name": "Test",
-      "twitter": "@test",
-      "pronouns": "they/them",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
       "characters": [
-        "Random",
-        "Olympia"
+        "Olympia",
+        "Random"
       ]
     },
     {
-      "name": "Demitus",
-      "twitter": "@demitustouch",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
       "characters": [
-        "Forsburn"
+        "Olympia",
+        "Random"
       ]
     },
     {

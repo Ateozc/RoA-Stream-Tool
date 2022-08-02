@@ -1,6 +1,6 @@
 {
-  "useObsAutomation": true,
-  "autoChangeScenes": "addressRockerAuto",
+  "useObsAutomation": false,
+  "autoChangeScenes": "manualFromOBS",
   "vsScreenName": "Vs Screen (Between Games)",
   "scoreboardSceneName": "Main Screen with overlay",
   "autoRecordSets": false,
