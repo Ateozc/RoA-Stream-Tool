@@ -4,27 +4,27 @@
   "characters": [
     {
       "character": "Absa",
-      "skin": "Steampunk",
+      "skin": "LoA",
       "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Default",
+      "skin": "LoA 1 HD",
       "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
-      "skin": "Default",
+      "skin": "LoA HD",
       "game": "Rivals of Aether"
     },
     {
       "character": "Etalus",
-      "skin": "Default",
+      "skin": "LoA HD",
       "game": "Rivals of Aether"
     },
     {
       "character": "Forsburn",
-      "skin": "Default",
+      "skin": "LoA",
       "game": "Rivals of Aether"
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "character": "Zetterburn",
-      "skin": "Default",
+      "skin": "LoA",
       "game": "Rivals of Aether"
     },
     {
@@ -78,7 +78,12 @@
     },
     {
       "character": "Olympia",
-      "skin": "White",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ],

@@ -340,12 +340,12 @@ async function getData(scInfo) {
 			
 
 			//set the character image for the player
-			charsLoaded.push(updateChar(player[i].character, player[i].vsScreenSkin, i, pCharInfo[i], mainMenu));
+			charsLoaded.push(updateChar(player[i].character, player[i].scoreboardSkin, i, pCharInfo[i], mainMenu));
 			//the animation will be fired below, when the image finishes loading
 
 			//save the character/skin so we run the character change code only when this doesnt equal to the next
 			pCharPrev[i] = player[i].character;
-			pSkinPrev[i] = player[i].vsScreenSkin;
+			pSkinPrev[i] = player[i].scoreboardSkin;
 
 		}
 
@@ -481,16 +481,16 @@ async function getData(scInfo) {
 			}
 
 			//player characters and skins
-			if (pCharPrev[i] != player[i].character || pSkinPrev[i] != player[i].vsScreenSkin || mainMenuPrev != mainMenu) {
+			if (pCharPrev[i] != player[i].character || pSkinPrev[i] != player[i].scoreboardSkin || mainMenuPrev != mainMenu) {
 
 				//fade out the image while also moving it because that always looks cool
 				animsEnded.push(fadeOutMove(charImg[i], true, null).then( () => {
 					//now that nobody can see it, lets change the image!
-					charsLoaded.push(updateChar(player[i].character, player[i].vsScreenSkin, i, pCharInfo[i], mainMenu));
+					charsLoaded.push(updateChar(player[i].character, player[i].scoreboardSkin, i, pCharInfo[i], mainMenu));
 					//will fade in when image finishes loading
 				}));
 				pCharPrev[i] = player[i].character;
-				pSkinPrev[i] = player[i].vsScreenSkin;
+				pSkinPrev[i] = player[i].scoreboardSkin;
 			}
 		}
 		// now we use that array from earlier to animate all characters at the same time

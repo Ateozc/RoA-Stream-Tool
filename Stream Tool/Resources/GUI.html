@@ -24,7 +24,7 @@
     <div id="overlay">
       <div id="playerRegion">
         <div class="playerFinder" id="pFinder" ng-show="showProfileList()">
-          <div class="finderEntry" ng-repeat="profile in playerProfiles" ng-mouseout="setProfileSelectorFocus(false)" ng-mouseover="setProfileSelectorFocus(true)" ng-click="applyProfile($index)">
+          <div class="finderEntry" ng-repeat="profile in playerProfiles" ng-mouseout="setProfileSelectorFocus(false)" ng-mouseover="setProfileSelectorFocus(true)" ng-click="applyProfile($index, $event)">
             <span>
 
             </span>
@@ -425,7 +425,7 @@
           </div>
 
           <div class="settingBox" title="Fixes profiles for currently selected game">
-            <button id="fixProfiles" class="" tabindex="-1" ng-model="fixProfiles" ng-click="fixProfilesForCurrentGame()">Fix Profiles</button>
+            <!-- <button id="fixProfiles" class="" tabindex="-1" ng-model="fixProfiles" ng-click="fixProfilesForCurrentGame()">Fix Profiles</button> -->
           </div>
 
           <div class="settingBox" title="Plays an intro on 'RoA Scoreboard.html' whenever the file loads.">
@@ -442,8 +442,10 @@
 
           <div class="settingBox" title="Forces HD renders to appear on the VS screen,
   while keeping the regular renders for the scoreboard." ng-show="game=='Rivals of Aether'">
-            <input type="checkbox" id="forceHD" class="settingsCheck" tabindex="-1" ng-model="forceHD" ng-change="HDtoggle()">
-            <label for="forceHD" class="settingsText">HD renders in VS Screen</span>
+            <label for="forceHD" class="settingsText">Display HD renders</span>
+            <select id="forceHD" class="textInput mousetrap" title="Select when you want to display HD Renders" tabindex="-1" ng-model="forceHDChoice" ng-change="HDtoggle();">
+              <option ng-repeat="option in hdOptions" value="{{option}}">{{option}}</option>
+            </select>
           </div>
 
           <div class="settingBox" title="Will just show regular HD renders in the

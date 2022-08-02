@@ -5,6 +5,7 @@
   "workshop": false,
   "forceMM": true,
   "forceHD": true,
+  "forceHDChoice": "Scoreboard",
   "noLoAHD": false,
   "forceWL": false,
   "usePips": true,

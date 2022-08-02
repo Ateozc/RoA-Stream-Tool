@@ -98,7 +98,14 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         "Halloween",
         "Christmas"
     ];
+    c.hdOptions = [
+        'None',
+        'VS Screen',
+        'Scoreboard',
+        'Both'
+    ];
     c.seasonalSkin = c.seasonalSkins[0];
+    c.forceHDChoice = c.hdOptions[0];
 
 
     c.obsSettings = {
@@ -228,7 +235,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         });
         return playerProfiles;
     }
-
     c.fixProfilesForCurrentGame = function () {
         let playerProfiles = [];
         const files = fs.readdirSync(textPath + "/Player Info/");
@@ -260,14 +266,21 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         for (let i = 0; i < playerProfiles.length; i++) {
             updatePlayerJson(playerProfiles[i], true);
         }
-
     }
 
-    c.applyProfile = function (index) {
+    c.applyProfile = function (index, event) {
         let playerType = 'players';
         if (c.playerFocusOnDeck) {
             playerType = 'onDeckPlayers';
         }
+
+        if (event.altKey && event.ctrlKey) {
+            updatePlayerJson(c.playerProfiles[index], true);
+            c.inPlayerField = false;
+            c.inProfileSelector = false;
+            return;
+        }
+
         c[playerType][c.playerFocus].name = c.playerProfiles[index].name;
         c[playerType][c.playerFocus].tag = c.playerProfiles[index].tag;
         c[playerType][c.playerFocus].twitter = c.playerProfiles[index].twitter;
@@ -399,7 +412,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             let character = c.players[i].character;
             let skin = c.players[i].skin;
             let teamColor = "";
-            let vsScreenSkin = c.players[i].skin;
+            let altSkin = c.players[i].skin;
+            let vsScreenSkin = altSkin;
+            let scoreboardSkin = altSkin;
             let playerTeam = 0;
 
             let defaultSkinPath = "";
@@ -428,7 +443,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 defaultSkinPath = random;
                 vsScreenSkinPath = random;
                 scoreboardSkinPath = random;
-                vsScreenSkin = "Random";
+                altSkin = "Random";
             } else {
                 let defaultPath = c.relativePathOfFile(charPathRel + character + "/" + skin + ".png");
 
@@ -439,16 +454,40 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 backgroundPath = (defaultBackground) ? defaultBackground : backgroundPath;
 
                 let altPath = "";
-                if (c.forceHD && c.game == 'Rivals of Aether') {
-                    if (skin.indexOf('LoA') != -1 && !c.noLoAHD && skin.indexOf('HD') == -1) {
-                        altPath = c.relativePathOfFile(charPathRel + character + "/LoA HD.png");
-                        vsScreenSkin = "LoA HD";
-                    } else if (skin.indexOf('HD') == -1) {
-                        altPath = c.relativePathOfFile(charPathRel + character + "/HD.png");
-                        vsScreenSkin = "HD";
+                if (c.game == 'Rivals of Aether') {
+                    if (c.forceHD) {
+                        if (skin.indexOf('LoA') != -1 && !c.noLoAHD && skin.indexOf('HD') == -1) {
+                            altPath = c.relativePathOfFile(charPathRel + character + "/LoA HD.png");
+                            altSkin = "LoA HD";
+                        } else if (skin.indexOf('HD') == -1) {
+                            altPath = c.relativePathOfFile(charPathRel + character + "/HD.png");
+                            altSkin = "HD";
+                        }
+                    }
+                    
+                    if (c.forceHDChoice == c.hdOptions[0]) {
+                        vsScreenSkinPath = defaultSkinPath;
+                        scoreboardSkinPath = defaultSkinPath;
+                        vsScreenSkin = skin;
+                        scoreboardSkin = skin;
+                    } else if (c.forceHDChoice == c.hdOptions[1]) {
+                        vsScreenSkin = (altSkin) ? altSkin : skin;
+                        vsScreenSkinPath = (altPath) ? altPath : defaultSkinPath;
+                        scoreboardSkinPath = defaultSkinPath;
+                        scoreboardSkin = skin;
+                    } else if (c.forceHDChoice == c.hdOptions[2]) {
+                        scoreboardSkinPath = (altPath) ? altPath : defaultSkinPath;
+                        scoreboardSkin = (altSkin) ? altSkin : skin;
+                        vsScreenSkinPath = defaultSkinPath;
+                        vsScreenSkin = skin;
+                    } else if (c.forceHDChoice == c.hdOptions[3]) {
+                        vsScreenSkinPath = (altPath) ? altPath : defaultSkinPath;
+                        vsScreenSkin = (altSkin) ? altSkin : skin;
+                        scoreboardSkinPath = (altPath) ? altPath : defaultSkinPath;
+                        scoreboardSkin = (altSkin) ? altSkin : skin;
                     }
                 }
-                vsScreenSkinPath = (altPath) ? altPath : defaultPath;
+
             }
 
             if (c.game == 'Rivals of Aether') {
@@ -468,11 +507,12 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
             c.players[i].defaultSkinPath = defaultSkinPath;
             c.players[i].vsScreenSkinPath = vsScreenSkinPath;
-            c.players[i].scoreboardSkinPath = vsScreenSkinPath;
+            c.players[i].scoreboardSkinPath = scoreboardSkinPath;
             c.players[i].backgroundWebm = backgroundPath;
             c.players[i].info = characterInfo;
             c.players[i].teamColor = teamColor;
             c.players[i].vsScreenSkin = vsScreenSkin;
+            c.players[i].scoreboardSkin = scoreboardSkin;
             c.players[i].team = playerTeam;
         }
     }
@@ -720,8 +760,11 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     // whenever the user clicks on the HD renders checkbox
     c.HDtoggle = function () {
         // enables or disables the second forceHD option
-        if (c.forceHD) {
+        if (c.forceHDChoice == c.hdOptions[0]) {
+            c.forceHD = false;
             c.noLoAHD = false;
+        } else {
+            c.forceHD = true;
         }
 
         // save current checkbox value to the settings file
@@ -744,6 +787,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         guiSettings.workshop = c.useWorkshop;
         guiSettings.forceMM = c.forceMM;
         guiSettings.forceHD = c.forceHD;
+        guiSettings.forceHDChoice = c.forceHDChoice;
         guiSettings.noLoAHD = c.noLoAHD;
         guiSettings.forceWL = c.forceWL;
         guiSettings.usePips = c.usePips;
@@ -1420,7 +1464,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         navigator.clipboard.writeText(copiedText);
     }
 
-    function updatePlayerJson(player, forceUpdate = false) {
+    function updatePlayerJson(player, deleteSpot = false, forceUpdate = false) {
         if (!player) {
             return;
         }
@@ -1448,6 +1492,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
             let foundCount = 0;
             let foundIndexLast = "";
+            let indexToDelete = "";
 
             for (let i = 0; i < playerInfo.characters.length; i++) {
                 if (playerInfo.characters[i].character == player.character) {
@@ -1460,6 +1505,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             }
 
             if (foundCount > 1) {
+                playerInfo.characters.splice(foundIndexLast, 1);
+            }
+            if (deleteSpot) {
                 playerInfo.characters.splice(foundIndexLast, 1);
             }
 
@@ -1557,6 +1605,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             workshop: c.workshop,
             forceMM: c.forceMM,
             forceHD: c.forceHD,
+            forceHDChoice: c.forceHDChoice,
             noLoAHD: c.noLoAHD,
             forceWL: c.forceWL,
             usePips: c.usePips,

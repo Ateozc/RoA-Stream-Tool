@@ -313,7 +313,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 	}
 
 	c.getSkinPathForPlayer = function (player) {
-		return c.getSkinPath(c.prev.players[player].character, c.prev.players[player].skin);
+		return c.getSkinPath(c.prev.players[player].character, c.prev.players[player].vsScreenSkin);
 	}
 
 	c.getSkinPath = function (character, skin) {
