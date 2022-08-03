@@ -80,6 +80,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		"hex": "#00b7ef"
 	  }
 	];
+	c.gui.game = 'Rivals of Aether';
 
 
 	c.prev = {};
@@ -117,6 +118,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		"hex": "#00b7ef"
 	  }
 	];
+	c.prev.game = 'Rivals of Aether';
 
 	//animation stuff
 	c.fadeInTime = .4; //(seconds)
@@ -558,10 +560,17 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			}
 			let skin = c.prev.players[player].vsScreenSkin;
 	
+			let usePixelation = true;
+
+			if(((c.prev.game == 'Rivals Workshop' || c.prev.game == 'Rivals of Aether') && skin == 'HD')) {
+				usePixelation = false;
+			} else if (c.prev.game != 'Rivals Workshop' && c.prev.game != 'Rivals of Aether') {
+				usePixelation = false;
+			}
 			let x, y = 0;
 			let scale = 1;
 			let scaleX = 1;
-			let imageRendering = (skin == 'HD') ? 'auto' : 'pixelated';
+			let imageRendering = (usePixelation) ? 'pixelated' : 'auto';
 			let filter = c.getDropShadowWithHex(player);
 			//CB - Combo Breaker
 			// let filter =  "grayscale(1)" + c.getDropShadowWithHex(player);
@@ -700,6 +709,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		c.gui.round = scInfo['round'];
 		c.gui.tournament = scInfo['tournamentName'];
 		c.gui.casters = scInfo['caster'];
+		c.gui.game = scInfo['game'];
 		// let obsSettings = scInfo['obsSettings'];
 		// let addressRockerSettings = scInfo['addressRockerSettings'];
 
@@ -728,6 +738,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			c.prev.round = c.gui.round;
 			c.prev.tournament = c.gui.tournament;
 			c.prev.casters = c.gui.casters;
+			c.prev.game = c.gui.game;
 			prevSameAsGui = true;
 			// firstRun = false;
 			prevDifFromGuiCount = -2;

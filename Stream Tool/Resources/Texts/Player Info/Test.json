@@ -85,8 +85,103 @@
       "character": "Random",
       "skin": "Default",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Arya",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Batman",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Bugs",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Finn",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Garnet",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Harley",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Iron Giant",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Jake",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Lebron",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Morty",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Reindog",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Rick",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Shaggy",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Steven",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Superman",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Taz",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Tom and Jerry",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Velma",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Wonder Woman",
+      "skin": "Default",
+      "game": "Multiversus"
     }
   ],
-  "twitter": "@test",
-  "pronouns": "they/them"
+  "twitter": "test",
+  "pronouns": "They/It"
 }

@@ -413,8 +413,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             let skin = c.players[i].skin;
             let teamColor = "";
             let altSkin = c.players[i].skin;
-            let vsScreenSkin = altSkin;
-            let scoreboardSkin = altSkin;
+            let vsScreenSkin = skin;
+            let scoreboardSkin = skin;
             let playerTeam = 0;
 
             let defaultSkinPath = "";
@@ -443,7 +443,9 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 defaultSkinPath = random;
                 vsScreenSkinPath = random;
                 scoreboardSkinPath = random;
-                altSkin = "Random";
+                skin = 'Random';
+                vsScreenSkin = skin;
+                scoreboardSkin = skin;
             } else {
                 let defaultPath = c.relativePathOfFile(charPathRel + character + "/" + skin + ".png");
 
@@ -464,28 +466,28 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                             altSkin = "HD";
                         }
                     }
-                    
-                    if (c.forceHDChoice == c.hdOptions[0]) {
-                        vsScreenSkinPath = defaultSkinPath;
-                        scoreboardSkinPath = defaultSkinPath;
-                        vsScreenSkin = skin;
-                        scoreboardSkin = skin;
-                    } else if (c.forceHDChoice == c.hdOptions[1]) {
-                        vsScreenSkin = (altSkin) ? altSkin : skin;
-                        vsScreenSkinPath = (altPath) ? altPath : defaultSkinPath;
-                        scoreboardSkinPath = defaultSkinPath;
-                        scoreboardSkin = skin;
-                    } else if (c.forceHDChoice == c.hdOptions[2]) {
-                        scoreboardSkinPath = (altPath) ? altPath : defaultSkinPath;
-                        scoreboardSkin = (altSkin) ? altSkin : skin;
-                        vsScreenSkinPath = defaultSkinPath;
-                        vsScreenSkin = skin;
-                    } else if (c.forceHDChoice == c.hdOptions[3]) {
-                        vsScreenSkinPath = (altPath) ? altPath : defaultSkinPath;
-                        vsScreenSkin = (altSkin) ? altSkin : skin;
-                        scoreboardSkinPath = (altPath) ? altPath : defaultSkinPath;
-                        scoreboardSkin = (altSkin) ? altSkin : skin;
-                    }
+                }
+
+                if (c.forceHDChoice == c.hdOptions[0]) {
+                    vsScreenSkinPath = defaultSkinPath;
+                    scoreboardSkinPath = defaultSkinPath;
+                    vsScreenSkin = skin;
+                    scoreboardSkin = skin;
+                } else if (c.forceHDChoice == c.hdOptions[1]) {
+                    vsScreenSkin = (altSkin) ? altSkin : skin;
+                    vsScreenSkinPath = (altPath) ? altPath : defaultSkinPath;
+                    scoreboardSkinPath = defaultSkinPath;
+                    scoreboardSkin = skin;
+                } else if (c.forceHDChoice == c.hdOptions[2]) {
+                    scoreboardSkinPath = (altPath) ? altPath : defaultSkinPath;
+                    scoreboardSkin = (altSkin) ? altSkin : skin;
+                    vsScreenSkinPath = defaultSkinPath;
+                    vsScreenSkin = skin;
+                } else if (c.forceHDChoice == c.hdOptions[3]) {
+                    vsScreenSkinPath = (altPath) ? altPath : defaultSkinPath;
+                    vsScreenSkin = (altSkin) ? altSkin : skin;
+                    scoreboardSkinPath = (altPath) ? altPath : defaultSkinPath;
+                    scoreboardSkin = (altSkin) ? altSkin : skin;
                 }
 
             }
@@ -603,6 +605,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             if (c.game != 'Rivals Workshop') {
                 c.obsSettings.autoChangeScenes = 'manualFromOBS';
             }
+            c.forceHDChoice = c.hdOptions[0];
+            c.HDtoggle();
 
         }
         c.addressRockerSettings.inMatch = false;

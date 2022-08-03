@@ -1,0 +1,31 @@
+{
+    "skinList": [
+        {
+            "label": "Default",
+            "fileName" : "Default",
+            "index": 0
+        }
+    ],
+
+    "scoreboard": {
+        "neutral": {
+            "x": 20,
+            "y": 50,
+            "scale": 2
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -500,
+            "y": 200,
+            "scale": 2.0
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": 10,
+            "y": 15,
+            "scale": 2
+        }
+    }
+}
