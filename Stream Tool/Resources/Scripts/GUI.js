@@ -64,6 +64,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     c.roundNames = getJson(textPath + "/RoundNames");
     c.games = [];
     c.useCustomRound = false;
+    c.useTeamNames = false;
 
     c.roundInfo = {
         name: "Friendlies",
@@ -799,6 +800,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         guiSettings.maxPlayers = c.maxPlayers;
         guiSettings.useCustomRound = c.useCustomRound;
         guiSettings.useCustomColors = c.useCustomColors;
+        guiSettings.useTeamNames = c.useTeamNames;
         guiSettings.showOnDeck = c.showOnDeck;
         guiSettings.game = c.game;
         guiSettings.addressRockerSettings = c.addressRockerSettings;
@@ -1461,7 +1463,25 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 copiedText += " (" + c.players[i].character + ")";
             }
         } else { //for team matches
-            copiedText += c.sides.left.teamName + " VS " + c.sides.right.teamName;
+            if (c.useTeamNames) {
+                var leftTeam = (c.sides.left.teamName) ? (c.sides.left.teamName) : c.sides.left.color.name + " Team";
+                var rightTeam = (c.sides.right.teamName) ? (c.sides.right.teamName) : c.sides.right.color.name + " Team";
+                copiedText += leftTeam + " VS " + rightTeam;
+            } else {
+                for (let i = 0; i < 4; i++) {
+                    if (i == 2) {
+                        copiedText += " VS "
+                    }
+                    if (i == 1 || i == 3) {
+                        copiedText += " & ";
+                    }
+                    
+                    // let tag = c.players[i].tag;
+                    // copiedText += (tag) ? tag + " | " : "";
+                    copiedText += c.players[i].name;
+                    // copiedText += " (" + c.players[i].character + ")";
+                }
+            }         
         }
 
         //send the string to the user's clipboard
@@ -1534,7 +1554,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     }
 
     //This is used to identify information when renaming files with python. Not needed unless using the extra python scripts.
-    function storeSetSpecificInfo(players, tournamentName, round) {
+    function storeSetSpecificInfo(players, tournamentName, round, gamemode, useTeamNames, teamNames, game) {
         if (usePythonForCreatingSetData) {
             const spawn = require("child_process").spawn;
             const pythonProcess = spawn('python', [scriptsPath + "/RoAUpdateSetInfo.py"]);
@@ -1543,6 +1563,10 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 "player": [],
                 "tournamentName": tournamentName,
                 "round": round,
+                "gamemode": gamemode,
+                "useTeamNames": useTeamNames,
+                "teamNames": teamNames,
+                "game":game
             };
             for (let i = 0; i < players.length; i++) {
                 data.player.push({
@@ -1616,6 +1640,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             maxPlayers: c.maxPlayers,
             useCustomRound: c.useCustomRound,
             useCustomColors: c.useCustomColors,
+            useTeamNames: c.useTeamNames,
             showOnDeck: c.showOnDeck,
             game: c.game,
             seasonalSkin: c.seasonalSkin,
@@ -1672,7 +1697,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         }
 
 
-        storeSetSpecificInfo(scoreboardJson.player, scoreboardJson.tournamentName, scoreboardJson.round);
+        storeSetSpecificInfo(scoreboardJson.player, scoreboardJson.tournamentName, scoreboardJson.round, scoreboardJson.gamemode, scoreboardJson.useTeamNames, scoreboardJson.teamName, scoreboardJson.game);
         // const spawn = require("child_process").spawn;
         // const pythonProcess = spawn('python',[scriptsPath + "/RoAUpdateScores.py", checkScore(p1Win1, p1Win2, p1Win3), checkScore(p2Win1, p2Win2, p2Win3)]);
     }

@@ -1,54 +1,49 @@
 {
   "player": [
     {
-      "name": "",
+      "name": "Arya",
       "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "pronouns": "She/Her",
+      "tag": "Stark",
       "characters": [
-        "Clairen",
-        "Olympia",
-        "Absa",
-        "Random"
+        "Arya"
       ]
     },
     {
-      "name": "",
+      "name": "Batman",
       "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "pronouns": "Justice",
+      "tag": "The",
       "characters": [
-        "Clairen",
-        "Olympia",
-        "Absa",
-        "Random"
+        "Batman"
       ]
     },
     {
-      "name": "",
+      "name": "Finn",
       "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "pronouns": "He/Him",
+      "tag": "HMN",
       "characters": [
-        "Clairen",
-        "Olympia",
-        "Absa",
-        "Random"
+        "Finn"
       ]
     },
     {
-      "name": "",
+      "name": "Giant",
       "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "pronouns": "It",
+      "tag": "Iron",
       "characters": [
-        "Clairen",
-        "Olympia",
-        "Absa",
-        "Random"
+        "Iron Giant"
       ]
     }
   ],
-  "tournamentName": "",
-  "round": "Friendlies"
+  "tournamentName": "Test",
+  "round": "Friendlies",
+  "gamemode": "Teams",
+  "useTeamNames": false,
+  "teamNames": [
+    "Red Team",
+    "Blue Team"
+  ],
+  "game": "Multiversus"
 }

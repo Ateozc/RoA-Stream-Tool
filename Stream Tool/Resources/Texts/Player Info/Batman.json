@@ -1,0 +1,14 @@
+{
+  "name": "Batman",
+  "twitter": "",
+  "pronouns": "Justice",
+  "tag": "The",
+  "characters": [
+    {
+      "character": "Batman",
+      "skin": "Default",
+      "game": "Multiversus"
+    }
+  ],
+  "game": "Multiversus"
+}

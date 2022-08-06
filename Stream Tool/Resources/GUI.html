@@ -480,6 +480,11 @@
             <label for="useCustomColors" class="settingsText">Use Custom Colors</span>
           </div>
 
+          <div class="settingBox" title="Use Team names instead of Player names for clipboard (teams only)" ng-show="gamemode == 'Teams'">
+            <input type="checkbox" id="useTeamNames" class="settingsCheck" tabindex="-1" ng-model="useTeamNames" ng-change="saveGUISettings()">
+            <label for="useTeamNames" class="settingsText">Use Team Names for Clipboard</span>
+          </div>
+
           <button id="copyMatch" tabindex="-1" title='"Tournament Name - Round - Player1 (Character1) VS Player2 (Character2)"' ng-click="copyToClipboard()">
             Copy match info to clipboard
           </button>

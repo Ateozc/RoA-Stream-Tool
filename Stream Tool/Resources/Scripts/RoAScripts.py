@@ -164,23 +164,41 @@ def rename_files():
         set_data_json = json.load(set_data_file)
         set_data_file.close()
 
+        game = set_data_json['game']
         tournament = set_data_json['tournamentName']
         round = set_data_json['round']
+        gamemode = set_data_json['gamemode']
+        useTeamNames = set_data_json['useTeamNames']
+        leftTeam = set_data_json['teamNames'][0]
+        rightTeam = set_data_json['teamNames'][1]
 
         if round == "Grand Finals - Reset":
             round = "Grand Finals"
         player1 = set_data_json['player'][0]
         player2 = set_data_json['player'][1]
+        player3 = set_data_json['player'][2]
+        player4 = set_data_json['player'][3]
 
-        newfilename = tournament + ' - ' + round + ' - ' + get_player_string_v2(player1) + ' Vs ' + get_player_string_v2(player2)
+        if gamemode == "Singles":
+            newfilename = tournament + ' - ' + round + ' - ' + get_player_string_v2(player1) + ' Vs ' + get_player_string_v2(player2)
+        else:
+            if useTeamNames:
+                newfilename = tournament + ' - ' + round + ' - ' + leftTeam + ' Vs ' + rightTeam
+            else:
+                newfilename = tournament + ' - ' + round + ' - ' + player1['name'] + ' & ' + player2['name'] + ' Vs ' + player3['name'] + ' & ' + player4['name']
+        
         tournament_recordings_dir = recordings_dir + "/" + tournament + '/'
+        if os.path.isdir(tournament_recordings_dir) == False:
+            os.mkdir(tournament_recordings_dir)
+
+        tournament_recordings_dir += '/' + game
         if os.path.isdir(tournament_recordings_dir) == False:
             os.mkdir(tournament_recordings_dir)
             
         for count, filename in enumerate(os.listdir(recordings_dir)):
             file_name, file_extension = os.path.splitext(filename)
             if file_extension == '.png' or file_extension == '.flv' or file_extension == '.mp4':
-                shutil.move(recordings_dir + filename, recordings_dir + tournament + '/' + newfilename + file_extension)
+                shutil.move(recordings_dir + filename, tournament_recordings_dir + '/' + newfilename + file_extension)
     except BaseException as err:
         logging.basicConfig(filename='error.log', encoding='utf-8', level=logging.DEBUG)
         logging.error("Error occurred while renaming files: " + err)

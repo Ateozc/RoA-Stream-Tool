@@ -13,8 +13,9 @@
   "useCustomRound": false,
   "maxPlayers": 4,
   "showOnDeck": false,
-  "game": "Rivals of Aether",
+  "game": "Multiversus",
   "useCustomColors": false,
+  "useTeamNames": false,
   "addressRockerSettings": {
     "useAddressRocker": false,
     "enableCharacterUpdate": false,
