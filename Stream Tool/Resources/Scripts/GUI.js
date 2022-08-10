@@ -5,9 +5,13 @@ const {
 } = require('http2');
 
 
-angular.module('angularapp', []);
-angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
+var app = angular.module('angularapp', []);
+app.controller('AngularAppCtrl', function ($scope) {
     var c = $scope;
+
+    $scope.title = "This is a message";
+    // $scope.body = "Welcome Modal";
+    $scope.test = 'testing';
 
     // this is a weird way to have file svg's that can be recolored by css
     customElements.define("load-svg", class extends HTMLElement {
@@ -20,7 +24,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
             // let svgClass = this.getAttribute('class');
             // let style = getComputedStyle(this);
             // // this.setAttribute('class', '');
-            
+
             // // console.log(svgClass);
             // if (svgClass) {
             //     // shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: '+ style.width +';" ');
@@ -152,7 +156,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         c.setScore('right', 0);
         c.obsSetScreen('startScene');
         c.saveGUISettings();
-        
+
     }
 
     c.toggleSetStop = function () {
@@ -397,7 +401,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
         return fs.existsSync(path) ? path : randomSkinPath;
     }
 
-    c.getIconPath = function(character) {
+    c.getIconPath = function (character) {
         let path = "";
         if (character == "Random") {
             path = randomIconPath;
@@ -1475,13 +1479,13 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                     if (i == 1 || i == 3) {
                         copiedText += " & ";
                     }
-                    
+
                     // let tag = c.players[i].tag;
                     // copiedText += (tag) ? tag + " | " : "";
                     copiedText += c.players[i].name;
                     // copiedText += " (" + c.players[i].character + ")";
                 }
-            }         
+            }
         }
 
         //send the string to the user's clipboard
@@ -1566,7 +1570,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
                 "gamemode": gamemode,
                 "useTeamNames": useTeamNames,
                 "teamNames": teamNames,
-                "game":game
+                "game": game
             };
             for (let i = 0; i < players.length; i++) {
                 data.player.push({
@@ -1710,4 +1714,29 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
     }
 
 
+});
+app.directive("modalWindow", function () {
+    return {
+        restrict: "E",
+        templateUrl: "Scripts/modalContent.html",
+        // scope: true,
+        scope: {
+            'player': '=',
+            'index':'@',
+            'number':'@'
+        },
+        transclude: true,
+        controller: function ($scope) {
+            $scope.hidden = true;
+            $scope.open = function () {
+                $scope.hidden = false;
+            };
+        },
+        link: function (scope, ele, attrs) {
+            $(ele).find('.trans-layer').on('click', function (event) {
+                scope.hidden = true;
+                scope.$apply();
+            })
+        }
+    }
 });

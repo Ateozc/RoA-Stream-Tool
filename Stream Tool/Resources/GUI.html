@@ -6,6 +6,7 @@
   <title>RoA Stream Tool (Ateozc Custom)</title>
   <link rel="stylesheet" href="CSS/GUI.css">
   <script src="Scripts/mousetrap.min.js" defer></script>
+  <script src="Scripts/jquery.min.js" defer></script>
   <script src="Scripts/GUI.js" defer></script>
   <script src="Scripts/angular.min.js"></script>
   <script type="text/javascript" src="Scripts/ntc.js"></script>
@@ -21,7 +22,12 @@
 
     </div>
 
+
+    
+
+
     <div id="overlay">
+      
       <div id="playerRegion">
         <div class="playerFinder" id="pFinder" ng-show="showProfileList()">
           <div class="finderEntry" ng-repeat="profile in playerProfiles" ng-mouseout="setProfileSelectorFocus(false)" ng-mouseover="setProfileSelectorFocus(true)" ng-click="applyProfile($index, $event)">
@@ -41,27 +47,30 @@
             </div>
           </div>
         </div>
+        
+        
 
 
         <div id="lSide" class="side" ng-style="getBackgroundGradient('left')">
-
           <div class="charImgBox">
             <img ng-if="gamemode=='Singles'" id="p1CharImg" class="charImg" ng-class="{'charImgRandom' : players[0].guiSkinPath.indexOf('Random.png') != -1}" ng-src="{{getSkinPathForPlayer(0)}}" />
           </div>
 
+          
           <div class="sideEditor">
-
+            
             <div class="row" id="row1-1">
-
+              
               <input ng-if="gamemode=='Teams'" type="text" id="teamName1" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 1 name" spellcheck="false" contenteditable="true" ng-model="sides.left.teamName">
 
               <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo0">
-                <input type="text" id="p0Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[0].tag">
+                <modal-window player="players[0]" index="0" number="1"></modal-window>
+                <!-- <input type="text" id="p0Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[0].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox0">
                   <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 1" title="Insert P1's name here" spellcheck="false" ng-model="players[0].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(0)" ng-change="checkPlayerPreset(0)">
                   <div class="playerFinder" id="pFinder0"></div>
-                  <input type="text" id="p0Twitter" class="textInput mousetrap twitterInput" tabindex="2" placeholder="Twitter" title="Insert P1's Twitter here" spellcheck="false" ng-model="players[0].twitter">
-                  <input type="text" id="p0Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P1's Pronouns here" spellcheck="false" ng-model="players[0].pronouns">
+                  <!-- <input type="text" id="p0Twitter" class="textInput mousetrap twitterInput" tabindex="2" placeholder="Twitter" title="Insert P1's Twitter here" spellcheck="false" ng-model="players[0].twitter"> -->
+                  <!-- <input type="text" id="p0Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P1's Pronouns here" spellcheck="false" ng-model="players[0].pronouns"> -->
                 </div>
               </div>
 
@@ -82,13 +91,15 @@
 
             </div>
             <div class="row" id="row2-1" ng-repeat="player in players | limitTo: players.length/2" ng-init="playerIndex = $index; playerNumber = $index + 1">
+              
               <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{playerIndex}}">
-                <input type="text" id="p{{playerIndex}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[playerIndex].tag">
+                <modal-window player="players[playerIndex]" index="playerIndex" number="playerNumber"></modal-window>
+                <!-- <input type="text" id="p{{playerIndex}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[playerIndex].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox{{playerIndex}}">
                   <input type="text" id="p{{playerIndex}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{playerNumber}}" title="Insert P{{playerNumber}}'s name here" spellcheck="false" ng-model="players[playerIndex].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(playerIndex)" ng-change="checkPlayerPreset(playerIndex)">
                   <div class="playerFinder" id="pFinder{{playerIndex}}"></div>
-                  <input type="text" id="p{{playerIndex}}Twitter" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{playerNumber}}'s Twitter here" spellcheck="false" ng-model="players[playerIndex].twitter">
-                  <input type="text" id="p{{playerIndex}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{playerNumber}}'s Pronouns here" spellcheck="false" ng-model="players[playerIndex].pronouns">
+                  <!-- <input type="text" id="p{{playerIndex}}Twitter" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{playerNumber}}'s Twitter here" spellcheck="false" ng-model="players[playerIndex].twitter"> -->
+                  <!-- <input type="text" id="p{{playerIndex}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{playerNumber}}'s Pronouns here" spellcheck="false" ng-model="players[playerIndex].pronouns"> -->
                 </div>
               </div>
 
@@ -176,16 +187,17 @@
           <div class="sideEditor">
 
             <div class="row" id="row1-2">
-
+              
               <input ng-if="gamemode=='Teams'" type="text" id="teamName2" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 2 name" spellcheck="false" contenteditable="true" ng-model="sides.right.teamName">
 
               <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo2">
-                <input type="text" id="p2Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here." spellcheck="false" ng-model="players[1].tag">
+                <modal-window player="players[1]" index="1" number="2"></modal-window>
+                <!-- <input type="text" id="p2Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here." spellcheck="false" ng-model="players[1].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox2">
                   <input type="text" id="p2Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 2" title="Insert P2's name here." spellcheck="false" ng-model="players[1].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(1)" ng-change="checkPlayerPreset(1)">
                   <div class="playerFinder" id="pFinder2"></div>
-                  <input type="text" id="p2Twitter" class="textInput mousetrap twitterInput" tabindex="2" placeholder="Twitter" title="Insert P2's Twitter here" spellcheck="false" ng-model="players[1].twitter">
-                  <input type="text" id="p2Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P2's Pronouns here" spellcheck="false" ng-model="players[1].pronouns">
+                  <!-- <input type="text" id="p2Twitter" class="textInput mousetrap twitterInput" tabindex="2" placeholder="Twitter" title="Insert P2's Twitter here" spellcheck="false" ng-model="players[1].twitter"> -->
+                  <!-- <input type="text" id="p2Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P2's Pronouns here" spellcheck="false" ng-model="players[1].pronouns"> -->
                 </div>
               </div>
 
@@ -210,12 +222,13 @@
 
             <div class="row" id="row2-2" ng-repeat="player in players | limitTo: -players.length/2">
               <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{getPlayerIndexRightSide($index)}}">
-                <input type="text" id="p{{getPlayerIndexRightSide($index)}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[getPlayerIndexRightSide($index)].tag">
+                <modal-window player="players[getPlayerIndexRightSide($index)]" index="getPlayerIndexRightSide($index)"  number="$index + players.length/2 + 1"></modal-window>
+                <!-- <input type="text" id="p{{getPlayerIndexRightSide($index)}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[getPlayerIndexRightSide($index)].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox{{getPlayerIndexRightSide($index)}}">
                   <input type="text" id="p{{getPlayerIndexRightSide($index)}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{$index + players.length/2 + 1}}" ng-attr-title="Player {{$index + players.length/2 + 1}}" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(getPlayerIndexRightSide($index))" ng-change="checkPlayerPreset(getPlayerIndexRightSide($index))">
                   <div class="playerFinder" id="pFinder{{getPlayerIndexRightSide($index)}}"></div>
-                  <input type="text" id="p{{getPlayerIndexRightSide($index)}}Twitter" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{$index + players.length/2 + 1}}'s Twitter here" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].twitter">
-                  <input type="text" id="p{{getPlayerIndexRightSide($index)}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{$index + players.length/2 + 1}}'s Pronouns here" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].pronouns">
+                  <!-- <input type="text" id="p{{getPlayerIndexRightSide($index)}}Twitter" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{$index + players.length/2 + 1}}'s Twitter here" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].twitter"> -->
+                  <!-- <input type="text" id="p{{getPlayerIndexRightSide($index)}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{$index + players.length/2 + 1}}'s Pronouns here" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].pronouns"> -->
                 </div>
               </div>
 

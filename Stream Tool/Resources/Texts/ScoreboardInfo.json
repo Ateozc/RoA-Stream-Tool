@@ -1,172 +1,18 @@
 {
   "player": [
     {
-      "name": "Arya",
-      "twitter": "",
-      "pronouns": "She/Her",
-      "tag": "Stark",
-      "character": "Arya",
-      "characterIndex": 1,
+      "name": "Test",
+      "twitter": "test1234",
+      "pronouns": "They/It",
+      "tag": "etc",
+      "character": "Bugs",
+      "characterIndex": 3,
       "skin": "Default",
       "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
-      "defaultSkinPath": "Resources/Games/Multiversus/Arya/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Multiversus/Arya/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Multiversus/Arya/Default.png",
-      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          }
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": 50,
-            "y": 80,
-            "scale": 3.5
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -500,
-            "y": 300,
-            "scale": 2.5
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": 15,
-            "y": 30,
-            "scale": 3.5
-          }
-        }
-      },
-      "teamColor": {
-        "name": "Red",
-        "hex": "#ed1c23"
-      },
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
-      "team": 0
-    },
-    {
-      "name": "Batman",
-      "twitter": "",
-      "pronouns": "Justice",
-      "tag": "The",
-      "character": "Batman",
-      "characterIndex": 2,
-      "skin": "Default",
-      "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
-      "defaultSkinPath": "Resources/Games/Multiversus/Batman/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Multiversus/Batman/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Multiversus/Batman/Default.png",
-      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          }
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": 10,
-            "y": 150,
-            "scale": 4.5
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -500,
-            "y": 400,
-            "scale": 2.5
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": 0,
-            "y": 60,
-            "scale": 4.5
-          }
-        }
-      },
-      "teamColor": {
-        "name": "Red",
-        "hex": "#ed1c23"
-      },
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
-      "team": 0
-    },
-    {
-      "name": "Finn",
-      "twitter": "",
-      "pronouns": "He/Him",
-      "tag": "HMN",
-      "character": "Finn",
-      "characterIndex": 4,
-      "skin": "Default",
-      "skinIndex": 0,
-      "defaultSkinPath": "Resources/Games/Multiversus/Finn/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Multiversus/Finn/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Multiversus/Finn/Default.png",
-      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          }
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": 50,
-            "y": 30,
-            "scale": 3
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -500,
-            "y": 0,
-            "scale": 2.5
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": 15,
-            "y": 10,
-            "scale": 3
-          }
-        }
-      },
-      "teamColor": {
-        "name": "Blue",
-        "hex": "#00b7ef"
-      },
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
-      "team": 1
-    },
-    {
-      "name": "Giant",
-      "twitter": "",
-      "pronouns": "It",
-      "tag": "Iron",
-      "character": "Iron Giant",
-      "characterIndex": 7,
-      "skin": "Default",
-      "skinIndex": 0,
-      "defaultSkinPath": "Resources/Games/Multiversus/Iron Giant/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Multiversus/Iron Giant/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Multiversus/Iron Giant/Default.png",
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Multiversus/Bugs/Default.png",
+      "defaultSkinPath": "Resources/Games/Multiversus/Bugs/Default.png",
+      "vsScreenSkinPath": "Resources/Games/Multiversus/Bugs/Default.png",
+      "scoreboardSkinPath": "Resources/Games/Multiversus/Bugs/Default.png",
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": {
         "skinList": [
@@ -179,31 +25,98 @@
         "scoreboard": {
           "neutral": {
             "x": 35,
-            "y": 170,
-            "scale": 4.5
+            "y": 10,
+            "scale": 3
           }
         },
         "vsScreen": {
           "neutral": {
             "x": -500,
-            "y": 400,
+            "y": 0,
             "scale": 2.5
           }
         },
         "gui": {
           "neutral": {
             "x": 10,
-            "y": 70,
-            "scale": 4.5
+            "y": 5,
+            "scale": 3
           }
         }
       },
       "teamColor": {
-        "name": "Blue",
-        "hex": "#00b7ef"
+        "name": "Red",
+        "hex": "#ed1c23"
       },
       "vsScreenSkin": "Default",
       "scoreboardSkin": "Default",
+      "team": 0
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
+      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
+      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
+      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
+      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
+      "info": null,
+      "teamColor": {
+        "name": "Blue",
+        "hex": "#00b7ef"
+      },
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
+      "team": 1
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
+      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
+      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
+      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
+      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
+      "info": null,
+      "teamColor": {
+        "name": "Blue",
+        "hex": "#00b7ef"
+      },
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
+      "team": 1
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
+      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
+      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
+      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
+      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
+      "info": null,
+      "teamColor": {
+        "name": "Blue",
+        "hex": "#00b7ef"
+      },
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 1
     }
   ],
@@ -230,9 +143,9 @@
     ""
   ],
   "bestOf": "Bo3",
-  "gamemode": "Teams",
+  "gamemode": "Singles",
   "round": "Friendlies",
-  "tournamentName": "Test",
+  "tournamentName": "",
   "caster": [
     {
       "name": "",

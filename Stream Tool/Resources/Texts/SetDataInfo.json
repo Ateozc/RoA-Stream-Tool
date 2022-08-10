@@ -1,45 +1,49 @@
 {
   "player": [
     {
-      "name": "Arya",
-      "twitter": "",
-      "pronouns": "She/Her",
-      "tag": "Stark",
+      "name": "Test",
+      "twitter": "test1234",
+      "pronouns": "They/It",
+      "tag": "etc",
       "characters": [
-        "Arya"
+        "Lebron",
+        "Arya",
+        "Garnet",
+        "Finn",
+        "Bugs"
       ]
     },
     {
-      "name": "Batman",
+      "name": "",
       "twitter": "",
-      "pronouns": "Justice",
-      "tag": "The",
+      "pronouns": "",
+      "tag": "",
       "characters": [
-        "Batman"
+        "Random"
       ]
     },
     {
-      "name": "Finn",
+      "name": "",
       "twitter": "",
-      "pronouns": "He/Him",
-      "tag": "HMN",
+      "pronouns": "",
+      "tag": "",
       "characters": [
-        "Finn"
+        "Random"
       ]
     },
     {
-      "name": "Giant",
+      "name": "",
       "twitter": "",
-      "pronouns": "It",
-      "tag": "Iron",
+      "pronouns": "",
+      "tag": "",
       "characters": [
-        "Iron Giant"
+        "Random"
       ]
     }
   ],
-  "tournamentName": "Test",
+  "tournamentName": "",
   "round": "Friendlies",
-  "gamemode": "Teams",
+  "gamemode": "Singles",
   "useTeamNames": false,
   "teamNames": [
     "Red Team",

@@ -869,3 +869,102 @@ input[type="number"] {
   z-index: 100;
   display: none;
 }
+
+
+
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+/* body,.btn {
+  font-family: 'Raleway';
+} */
+
+/* .btn {
+  background: teal;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: normal;
+  outline: none;
+} */
+
+.trans-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  width: 100%;
+  height: 100%;
+  
+  background: rgba(0,0,0,.5);
+  z-index: 1000;
+}
+
+.modal-container {
+  width: 40%;
+  
+  position: absolute;
+  /* left: 30%; */
+  top: 30%;
+  z-index: 1001;
+
+  color: black;
+   
+  opacity: 0;
+  border-radius: 3px;
+  background: white;
+  border: 1px solid teal;
+  
+  /* transform: translate(0,-200%); */
+  -webkit-transform: translate(200%,0);
+  
+  transition: opacity ease-in-out .3s, transform ease-in-out .3s;
+  -webkit-transition: opacity ease-in-out .3s, transform ease-in-out .3s;
+}
+
+.modal-btn:hover {
+  border-color: var(--selected);
+}
+
+.modal-btn:focus {
+  border-color: var(--focused);
+  background-color: var(--bg2);
+}
+
+.modal-btn {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: var(--bg4);
+  color: var(--text1);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border: 1px solid var(--bg4);
+  box-sizing: border-box;
+  outline: none;
+}
+
+.modal-heading {
+  background: #eaeaea;
+  text-align: center;
+  padding: 10px;
+}
+
+.modal-cont {
+  padding: 15px;
+}
+
+.modalactive {
+  opacity: 1;
+  /* transform: translate(0,0);
+  -webkit-transform: translate(0,0); */
+  /* z-index: -1; */
+  width: 20%;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
