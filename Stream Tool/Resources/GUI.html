@@ -64,7 +64,7 @@
               <input ng-if="gamemode=='Teams'" type="text" id="teamName1" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 1 name" spellcheck="false" contenteditable="true" ng-model="sides.left.teamName">
 
               <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo0">
-                <modal-window player="players[0]" index="0" number="1"></modal-window>
+                <modal-window player="players[0]" index="0" number="1" fields="playerFields"></modal-window>
                 <!-- <input type="text" id="p0Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[0].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox0">
                   <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 1" title="Insert P1's name here" spellcheck="false" ng-model="players[0].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(0)" ng-change="checkPlayerPreset(0)">
@@ -93,7 +93,7 @@
             <div class="row" id="row2-1" ng-repeat="player in players | limitTo: players.length/2" ng-init="playerIndex = $index; playerNumber = $index + 1">
               
               <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{playerIndex}}">
-                <modal-window player="players[playerIndex]" index="playerIndex" number="playerNumber"></modal-window>
+                <modal-window player="players[playerIndex]" index="playerIndex" number="playerNumber" fields="playerFields"></modal-window>
                 <!-- <input type="text" id="p{{playerIndex}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[playerIndex].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox{{playerIndex}}">
                   <input type="text" id="p{{playerIndex}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{playerNumber}}" title="Insert P{{playerNumber}}'s name here" spellcheck="false" ng-model="players[playerIndex].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(playerIndex)" ng-change="checkPlayerPreset(playerIndex)">
@@ -191,7 +191,7 @@
               <input ng-if="gamemode=='Teams'" type="text" id="teamName2" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 2 name" spellcheck="false" contenteditable="true" ng-model="sides.right.teamName">
 
               <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo2">
-                <modal-window player="players[1]" index="1" number="2"></modal-window>
+                <modal-window player="players[1]" index="1" number="2" fields="playerFields"></modal-window>
                 <!-- <input type="text" id="p2Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here." spellcheck="false" ng-model="players[1].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox2">
                   <input type="text" id="p2Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 2" title="Insert P2's name here." spellcheck="false" ng-model="players[1].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(1)" ng-change="checkPlayerPreset(1)">
@@ -222,7 +222,7 @@
 
             <div class="row" id="row2-2" ng-repeat="player in players | limitTo: -players.length/2">
               <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{getPlayerIndexRightSide($index)}}">
-                <modal-window player="players[getPlayerIndexRightSide($index)]" index="getPlayerIndexRightSide($index)"  number="$index + players.length/2 + 1"></modal-window>
+                <modal-window player="players[getPlayerIndexRightSide($index)]" index="getPlayerIndexRightSide($index)" number="$index + players.length/2 + 1" fields="playerFields"></modal-window>
                 <!-- <input type="text" id="p{{getPlayerIndexRightSide($index)}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[getPlayerIndexRightSide($index)].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox{{getPlayerIndexRightSide($index)}}">
                   <input type="text" id="p{{getPlayerIndexRightSide($index)}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{$index + players.length/2 + 1}}" ng-attr-title="Player {{$index + players.length/2 + 1}}" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(getPlayerIndexRightSide($index))" ng-change="checkPlayerPreset(getPlayerIndexRightSide($index))">

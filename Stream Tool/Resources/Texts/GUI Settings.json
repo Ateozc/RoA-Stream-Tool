@@ -9,7 +9,7 @@
   "noLoAHD": false,
   "forceWL": false,
   "usePips": true,
-  "alwaysOnTop": true,
+  "alwaysOnTop": false,
   "useCustomRound": false,
   "maxPlayers": 4,
   "showOnDeck": false,

@@ -19,15 +19,23 @@
 <div ng-hide='hidden' class='trans-layer'></div>
 <div ng-hide='hidden' class='modal-container' ng-class='{modalactive: !hidden}' ng-transclude>
     <div class='modal-heading'>{{player.name}}</div>
-    <div class='modal-cont'></div>
+    <div class='modal-cont'>
+        <div ng-repeat="field in fields">
+            <div style="display: inline-flex;width: 40%;">
+                <label for="p{{index}}{{field.field}}" style="width: 100%; text-align-last: right;">
+                    {{field.label}}
+                </label>
+            </div>
+            <div style="width: 75%;display: inline;">
+                <input type="text" id="p{{index}}{{field.label}}" class="mousetrap" tabindex="2" placeholder="{{field.label}}"
+                    title="{{field.title}}" spellcheck="false" contenteditable="true"
+                    ng-model="player[field.field]">
+            </div>
+        </div>
+    </div>
 
-    <input type="text" id="p{{index}}Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="player.tag">
-    <!-- <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 1" title="Insert P1's name here" spellcheck="false" ng-model="players[0].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(0)" ng-change="checkPlayerPreset(0)"> -->
-    <!-- <div class="playerFinder" id="pFinder0"></div> -->
-    <input type="text" id="p{{index}}Twitter" class="textInput mousetrap twitterInput" tabindex="2" placeholder="Twitter" title="Insert P{{number}}'s Twitter here" spellcheck="false" ng-model="player.twitter">
-    <input type="text" id="p{{index}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{number}}'s Pronouns here" spellcheck="false" ng-model="player.pronouns">
     <!-- <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div> -->
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div> -->
 </div>

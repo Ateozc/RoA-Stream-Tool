@@ -112,6 +112,14 @@ app.controller('AngularAppCtrl', function ($scope) {
     c.seasonalSkin = c.seasonalSkins[0];
     c.forceHDChoice = c.hdOptions[0];
 
+    c.playerFields = [
+        {'label': 'Tag',        'field': 'tag',     'title':"Insert the tag/team/sponsor here"},
+        {'label': 'Twitter',    'field': 'twitter', 'title':"Insert the Player's Twitter here"},
+        {'label': 'Pronouns',   'field': 'pronouns','title':"Insert the Player's pronouns here"},
+        {'label': 'Youtube',    'field': 'youtube', 'title':"Insert the Player's Youtube here"},
+        {'label': 'Discord',    'field': 'discord', 'title':"Insert the Player's Discord here"}
+    ]
+
 
     c.obsSettings = {
         useObsAutomation: false,
@@ -1723,7 +1731,8 @@ app.directive("modalWindow", function () {
         scope: {
             'player': '=',
             'index':'@',
-            'number':'@'
+            'number':'@',
+            'fields':'='
         },
         transclude: true,
         controller: function ($scope) {
