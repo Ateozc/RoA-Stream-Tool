@@ -1,20 +1,20 @@
-<button ng-click='open()' class='btn btn-info modal-btn'>
+<button ng-click='open()' class='btn btn-info player-info-modal-btn'>
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="4 0 25 25" fill="white">
         <path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z" />
         <path d="M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z" />
     </svg>
 </button>
 <div ng-hide='hidden' class='trans-layer'></div>
-<div ng-hide='hidden' class='modal-container' ng-class='{modalactive: !hidden}' ng-transclude>
-    <div class='modal-heading'>{{player.name}}</div>
-    <div class='modal-cont'>
+<div ng-hide='hidden' class='player-info-modal-container' ng-class='{"player-info-modalactive": !hidden}' ng-transclude>
+    <div class='player-info-modal-heading'>{{player.name}}</div>
+    <div class='player-info-modal-cont'>
         <div ng-repeat="field in fields">
-            <div style="display: inline-flex;width: 40%;">
-                <label for="p{{index}}{{field.field}}" style="width: 100%; text-align-last: right;">
+            <div class="player-info-modal-labeldiv">
+                <label for="p{{index}}{{field.field}}">
                     {{field.label}}
                 </label>
             </div>
-            <div style="width: 75%;display: inline;">
+            <div class="player-info-modal-fielddiv">
                 <input type="text" id="p{{index}}{{field.label}}" class="mousetrap" tabindex="2" placeholder="{{field.label}}"
                     title="{{field.title}}" spellcheck="false" contenteditable="true"
                     ng-model="player[field.field]">

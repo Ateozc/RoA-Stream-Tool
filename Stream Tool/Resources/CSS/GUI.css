@@ -902,7 +902,7 @@ input[type="number"] {
   z-index: 1000;
 }
 
-.modal-container {
+.player-info-modal-container {
   width: 40%;
   
   position: absolute;
@@ -924,16 +924,16 @@ input[type="number"] {
   -webkit-transition: opacity ease-in-out .3s, transform ease-in-out .3s;
 }
 
-.modal-btn:hover {
+.player-info-modal-btn:hover {
   border-color: var(--selected);
 }
 
-.modal-btn:focus {
+.player-info-modal-btn:focus {
   border-color: var(--focused);
   background-color: var(--bg2);
 }
 
-.modal-btn {
+.player-info-modal-btn {
   float: left;
   width: 30px;
   height: 30px;
@@ -946,17 +946,17 @@ input[type="number"] {
   outline: none;
 }
 
-.modal-heading {
+.player-info-modal-heading {
   background: #eaeaea;
   text-align: center;
   padding: 10px;
 }
 
-.modal-cont {
+.player-info-modal-cont {
   padding: 15px;
 }
 
-.modalactive {
+.player-info-modalactive {
   opacity: 1;
   /* transform: translate(0,0);
   -webkit-transform: translate(0,0); */
@@ -967,4 +967,19 @@ input[type="number"] {
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.player-info-modal-labeldiv {
+  display: inline-flex;
+  width: 40%;
+}
+
+.player-info-modal-labeldiv > label{
+  width: 100%; 
+  text-align-last: right;
+}
+
+.player-info-modal-fielddiv {
+  width: 75%;
+  display: inline;
 }
