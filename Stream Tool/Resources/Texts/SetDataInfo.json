@@ -1,53 +1,49 @@
 {
   "player": [
     {
-      "name": "Test",
-      "twitter": "test1234",
-      "pronouns": "They/It",
-      "tag": "etc",
+      "name": "Ateozc",
+      "twitter": "@ateozc",
+      "pronouns": "He/Him",
+      "tag": "",
       "characters": [
-        "Lebron",
-        "Arya",
-        "Garnet",
-        "Finn",
-        "Bugs"
+        "Absa"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "Demitus",
+      "twitter": "@demitustouch",
+      "pronouns": "He/Him",
       "tag": "",
       "characters": [
-        "Random"
+        "Forsburn"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
+      "name": "Olympia Inflation",
+      "twitter": "@methodmode",
       "pronouns": "",
-      "tag": "",
+      "tag": "troll",
       "characters": [
-        "Random"
+        "Olympia"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
+      "name": "Seggo",
+      "twitter": "@SeggoAhmet",
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Random"
+        "Elliana"
       ]
     }
   ],
   "tournamentName": "",
   "round": "Friendlies",
-  "gamemode": "Singles",
+  "gamemode": "Teams",
   "useTeamNames": false,
   "teamNames": [
     "Red Team",
     "Blue Team"
   ],
-  "game": "Multiversus"
+  "game": "Rivals of Aether"
 }

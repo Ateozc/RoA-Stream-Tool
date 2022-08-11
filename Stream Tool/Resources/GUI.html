@@ -64,13 +64,10 @@
               <input ng-if="gamemode=='Teams'" type="text" id="teamName1" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 1 name" spellcheck="false" contenteditable="true" ng-model="sides.left.teamName">
 
               <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo0">
-                <modal-window player="players[0]" index="0" number="1" fields="playerFields"></modal-window>
-                <!-- <input type="text" id="p0Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[0].tag"> -->
+                <player-info-modal player="players[0]" index="0" number="1" fields="playerFields"></player-info-modal>
                 <div class="pFinderPosition" id="pFinderBox0">
                   <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 1" title="Insert P1's name here" spellcheck="false" ng-model="players[0].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(0)" ng-change="checkPlayerPreset(0)">
                   <div class="playerFinder" id="pFinder0"></div>
-                  <!-- <input type="text" id="p0Twitter" class="textInput mousetrap twitterInput" tabindex="2" placeholder="Twitter" title="Insert P1's Twitter here" spellcheck="false" ng-model="players[0].twitter"> -->
-                  <!-- <input type="text" id="p0Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P1's Pronouns here" spellcheck="false" ng-model="players[0].pronouns"> -->
                 </div>
               </div>
 
@@ -93,28 +90,12 @@
             <div class="row" id="row2-1" ng-repeat="player in players | limitTo: players.length/2" ng-init="playerIndex = $index; playerNumber = $index + 1">
               
               <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{playerIndex}}">
-                <modal-window player="players[playerIndex]" index="playerIndex" number="playerNumber" fields="playerFields"></modal-window>
-                <!-- <input type="text" id="p{{playerIndex}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[playerIndex].tag"> -->
+                <player-info-modal player="players[playerIndex]" index="playerIndex" number="playerNumber" fields="playerFields"></player-info-modal>
                 <div class="pFinderPosition" id="pFinderBox{{playerIndex}}">
                   <input type="text" id="p{{playerIndex}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{playerNumber}}" title="Insert P{{playerNumber}}'s name here" spellcheck="false" ng-model="players[playerIndex].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(playerIndex)" ng-change="checkPlayerPreset(playerIndex)">
                   <div class="playerFinder" id="pFinder{{playerIndex}}"></div>
-                  <!-- <input type="text" id="p{{playerIndex}}Twitter" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{playerNumber}}'s Twitter here" spellcheck="false" ng-model="players[playerIndex].twitter"> -->
-                  <!-- <input type="text" id="p{{playerIndex}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{playerNumber}}'s Pronouns here" spellcheck="false" ng-model="players[playerIndex].pronouns"> -->
                 </div>
               </div>
-
-              <!-- <input list="p{{playerIndex}}Char" ng-model="players[playerIndex].character" ng-change="markCharacterIndex(playerIndex)">
-              <datalist ng-if="playerIndex==0 || gamemode=='Teams'" id="p{{playerIndex}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[playerIndex].character" ng-change="markCharacterIndex(playerIndex)">
-                <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
-              </datalist> -->
-
-
-              <!-- <div ng-if="playerIndex==0 || gamemode=='Teams'">
-                <div ng-repeat="character in characterList" ng-click="players[playerIndex].character = character.name">
-                  <img ng-src="X:\OBS\RoA-Stream-Tool\Stream Tool\Resources/Games/Rivals of Aether/{{character.name}}/icon.png">
-                  <span>{{character.name}}</span>
-                </div>
-              </div> -->
 
               <div ng-if="playerIndex==0 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
                 <div class="selector">
@@ -191,13 +172,10 @@
               <input ng-if="gamemode=='Teams'" type="text" id="teamName2" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 2 name" spellcheck="false" contenteditable="true" ng-model="sides.right.teamName">
 
               <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo2">
-                <modal-window player="players[1]" index="1" number="2" fields="playerFields"></modal-window>
-                <!-- <input type="text" id="p2Tag" class="textInput mousetrap tagInput" tabindex="2" placeholder="Tag" title="Insert the tag/team/sponsor here." spellcheck="false" ng-model="players[1].tag"> -->
+                <player-info-modal player="players[1]" index="1" number="2" fields="playerFields"></player-info-modal>
                 <div class="pFinderPosition" id="pFinderBox2">
                   <input type="text" id="p2Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 2" title="Insert P2's name here." spellcheck="false" ng-model="players[1].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(1)" ng-change="checkPlayerPreset(1)">
                   <div class="playerFinder" id="pFinder2"></div>
-                  <!-- <input type="text" id="p2Twitter" class="textInput mousetrap twitterInput" tabindex="2" placeholder="Twitter" title="Insert P2's Twitter here" spellcheck="false" ng-model="players[1].twitter"> -->
-                  <!-- <input type="text" id="p2Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P2's Pronouns here" spellcheck="false" ng-model="players[1].pronouns"> -->
                 </div>
               </div>
 
@@ -222,24 +200,13 @@
 
             <div class="row" id="row2-2" ng-repeat="player in players | limitTo: -players.length/2">
               <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{getPlayerIndexRightSide($index)}}">
-                <modal-window player="players[getPlayerIndexRightSide($index)]" index="getPlayerIndexRightSide($index)" number="$index + players.length/2 + 1" fields="playerFields"></modal-window>
-                <!-- <input type="text" id="p{{getPlayerIndexRightSide($index)}}Tag" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="players[getPlayerIndexRightSide($index)].tag"> -->
+                <player-info-modal player="players[getPlayerIndexRightSide($index)]" index="getPlayerIndexRightSide($index)" number="$index + players.length/2 + 1" fields="playerFields"></player-info-modal>
                 <div class="pFinderPosition" id="pFinderBox{{getPlayerIndexRightSide($index)}}">
                   <input type="text" id="p{{getPlayerIndexRightSide($index)}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{$index + players.length/2 + 1}}" ng-attr-title="Player {{$index + players.length/2 + 1}}" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(getPlayerIndexRightSide($index))" ng-change="checkPlayerPreset(getPlayerIndexRightSide($index))">
                   <div class="playerFinder" id="pFinder{{getPlayerIndexRightSide($index)}}"></div>
-                  <!-- <input type="text" id="p{{getPlayerIndexRightSide($index)}}Twitter" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{$index + players.length/2 + 1}}'s Twitter here" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].twitter"> -->
-                  <!-- <input type="text" id="p{{getPlayerIndexRightSide($index)}}Pronouns" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{$index + players.length/2 + 1}}'s Pronouns here" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].pronouns"> -->
                 </div>
               </div>
 
-
-
-
-<!-- 
-              <select ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" id="p{{getPlayerIndexRightSide($index)}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="players[getPlayerIndexRightSide($index)].character" ng-change="markCharacterIndex(getPlayerIndexRightSide($index))">
-                <option class="theEntry" ng-repeat="character in characterList" value={{character.name}}>{{character.name}}</option>
-              </select>
-               -->
 
               <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="playerIndex=getPlayerIndexRightSide($index); filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
                 <div class="selector">
@@ -256,10 +223,6 @@
                   </div>
                 </div>
               </div>
-<!-- 
-              <select ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" id="p{{getPlayerIndexRightSide($index)}}Skin" class="charCombo mousetrap skinList" tabindex="-1" ng-model="players[getPlayerIndexRightSide($index)].skinIndex" ng-change="setSkinBasedOnIndex(getPlayerIndexRightSide($index))">
-                <option class="theEntry" ng-repeat="skin in characterList[players[getPlayerIndexRightSide($index)].characterIndex].skins" ng-value={{skin.index}}>{{skin.label}}</option>
-              </select> -->
 
               <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" style="position: relative;"  ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
                 <div class="selector">
@@ -368,19 +331,20 @@
           <span ng-if="!showOnDeck">---------- On Deck Information (Click to Show) ----------</span>
         </div>
 
-        <div id="onDeckInfo" ng-show="showOnDeck">
+        <div id="onDeckInfo" ng-show="showOnDeck" style="padding:0px">
 
-          <div class="row">
+          <div class="row" style="display:inline;width:50%;padding: 0px;">
             <div class="onDeckPlayerInfo" id="pInfo{{$index}}OnDeck" ng-repeat="player in onDeckPlayers" ng-if="$index == 0 || $index == 1 || gamemode=='Teams'">
 
 
               <div class="playerInfo" id="pInfo{{$index}}OnDeck">
-                <input type="text" id="p{{$index}}TagOnDeck" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="onDeckPlayers[$index].tag">
+                <player-info-modal player="player" index="$index" number="$index+1" fields="playerFields"></player-info-modal>
+                <!-- <input type="text" id="p{{$index}}TagOnDeck" class="textInput mousetrap tagInput" tabindex="3" placeholder="Tag" title="Insert the tag/team/sponsor here" spellcheck="false" contenteditable="true" ng-model="onDeckPlayers[$index].tag"> -->
                 <div class="pFinderPosition" id="pFinderBox{{$index}}OnDeck">
                   <input type="text" id="p{{$index}}NameOnDeck" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{$index + 1}}" ng-attr-title="Player {{$index + 1}}" spellcheck="false" ng-model="onDeckPlayers[$index].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset($index, true)" ng-change="checkPlayerPreset($index, true)">
                   <div class="playerFinder" id="pFinder{{$index}}"></div>
-                  <input type="text" id="p{{$index}}TwitterOnDeck" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{$index + 1}}'s Twitter here" spellcheck="false" ng-model="onDeckPlayers[$index].twitter">
-                  <input type="text" id="p{{$index}}PronounsOnDeck" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{$index + 1}}'s Pronouns here" spellcheck="false" ng-model="onDeckPlayers[$index].pronouns">
+                  <!-- <input type="text" id="p{{$index}}TwitterOnDeck" class="textInput mousetrap nameInput" tabindex="2" placeholder="Twitter" title="Insert P{{$index + 1}}'s Twitter here" spellcheck="false" ng-model="onDeckPlayers[$index].twitter"> -->
+                  <!-- <input type="text" id="p{{$index}}PronounsOnDeck" class="textInput mousetrap pronounInput" tabindex="2" placeholder="Pronouns" title="Insert P{{$index + 1}}'s Pronouns here" spellcheck="false" ng-model="onDeckPlayers[$index].pronouns"> -->
                 </div>
               </div>
               <select id="p{{$index}}Char" class="charCombo mousetrap charList" title="Everyone is here!" tabindex="-1" ng-model="onDeckPlayers[$index].character" ng-change="markCharacterIndex($index, true, true)">
@@ -391,11 +355,11 @@
               </select>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="padding:0px">
             <button id="onDeckToStream" title="Move to stream setup" ng-click="onDeckToStream()">
               Move On Deck to Stream
             </button>
-            <div id="onDeckRoundInfo">
+            <div id="onDeckRoundInfo" style="padding:0px">
               <div ng-if="usePips" id="onDeckBestOf">
                 <div id="onDeckBo3Div" class="bestOfBox" ng-class="{'buttonSelected' : onDeckRoundInfo.bestOf == 'Bo3'}" ng-click="setBestOf('Bo3', true)">Bo3</div>
                 <div id="onDeckBo5Div" class="bestOfBox" ng-class="{'buttonSelected' : onDeckRoundInfo.bestOf == 'Bo5'}" ng-click="setBestOf('Bo5', true)">Bo5</div>

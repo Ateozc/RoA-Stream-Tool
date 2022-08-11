@@ -12,7 +12,7 @@
   "alwaysOnTop": false,
   "useCustomRound": false,
   "maxPlayers": 4,
-  "showOnDeck": false,
+  "showOnDeck": true,
   "game": "Rivals of Aether",
   "useCustomColors": false,
   "useTeamNames": false,

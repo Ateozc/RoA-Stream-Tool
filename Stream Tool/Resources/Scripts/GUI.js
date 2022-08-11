@@ -1723,10 +1723,10 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 
 });
-app.directive("modalWindow", function () {
+app.directive("playerInfoModal", function () {
     return {
         restrict: "E",
-        templateUrl: "Scripts/modalContent.html",
+        templateUrl: "Scripts/playerInfoModal.html",
         // scope: true,
         scope: {
             'player': '=',
