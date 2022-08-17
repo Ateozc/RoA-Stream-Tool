@@ -1,45 +1,54 @@
 {
   "player": [
     {
-      "name": "Test",
-      "twitter": "test1234",
-      "pronouns": "They/It",
-      "tag": "etc",
+      "name": "Ateozc",
+      "twitter": "@ateozc",
+      "pronouns": "He/Him",
+      "tag": "",
       "characters": [
         "Absa"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "name": "Test",
+      "twitter": "verylongtwitter",
+      "pronouns": "They/It",
+      "tag": "test",
       "characters": [
-        "Random"
+        "Forsburn",
+        "Elliana",
+        "Absa",
+        "Clairen"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "name": "Test",
+      "twitter": "verylongtwitter",
+      "pronouns": "They/It",
+      "tag": "test",
       "characters": [
-        "Random"
+        "Forsburn",
+        "Absa",
+        "Clairen",
+        "Elliana"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "name": "Test",
+      "twitter": "verylongtwitter",
+      "pronouns": "They/It",
+      "tag": "test",
       "characters": [
-        "Random"
+        "Elliana",
+        "Absa",
+        "Clairen",
+        "Forsburn"
       ]
     }
   ],
   "tournamentName": "",
   "round": "Friendlies",
-  "gamemode": "Singles",
+  "gamemode": "Teams",
   "useTeamNames": false,
   "teamNames": [
     "Red Team",

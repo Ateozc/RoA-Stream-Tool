@@ -11,7 +11,7 @@
 </head>
 
 <body ng-app="angularapp" ng-controller="AngularAppCtrl">
-    <div ng-if="loaded" ng-style="fadeInScreen()">
+    <div ng-show="loaded" ng-style="fadeInScreen()">
         <div id="bgVids">
             <video autoplay loop class="absol bgVid vidTopLeft" ng-src="{{prev.players[0].backgroundWebm}}" id="vidBGP1" ng-style="fadeInBGVid(0)"></video>
             <video autoplay loop class="absol bgVid" id="vidBGP2" ng-src="{{prev.players[1].backgroundWebm}}" ng-style="fadeInBGVid(1)" ng-class="{'vidTopRight': prev.gamemode=='Singles', 'vidBotLeft' : prev.gamemode=='Teams'}"></video>
@@ -61,19 +61,22 @@
         </div>
 
         <div id="playerTexts">
+            <player-socials-wrapper player="prev.players[0]" index="0" number="1" fields="playerFields" gamemode="{{prev.gamemode}}"></player-socials-wrapper>
             <span id="p1Wrapper" class="wrappers" ng-style="{'background-image': getGradientBackground(0)}" ng-class="{'wrappersDoubles topLeftDubs': prev.gamemode=='Teams', 'p1WSingles wrappersSingles': prev.gamemode=='Singles'}">
                 <div ng-style="fadeInPlayerName(0)" ng-class="{'wrapperInnerSingles' : prev.gamemode == 'Singles'}">
+                    <!-- <player-name-wrapper player="prev.players[0]" index="0" number="1"></player-name-wrapper> -->
                     <span id="p1Tag" class="tag" style="font-size:50px; display: inline">{{prev.players[0].tag}}</span>
                     <span id="p1Name" class="name" style="font-size:90px; display: inline;">{{prev.players[0].name}}</span>
-                    <span id="p1Pronouns" class="pronouns" style="font-size:50px; display: inline">{{prev.players[0].pronouns}}</span>
+                    <!-- <span id="p1Pronouns" class="pronouns" style="font-size:50px; display: inline">{{prev.players[0].pronouns}}</span> -->
                 </div>
             </span>
 
+            <player-socials-wrapper player="prev.players[1]" index="1" number="2" fields="playerFields" gamemode="{{prev.gamemode}}"></player-socials-wrapper>
             <span id="p2Wrapper" class="wrappers" ng-style="{'background-image': getGradientBackground(1)}" ng-class="{'wrappersDoubles botLeftDubs': prev.gamemode=='Teams', 'p2WSingles wrappersSingles': prev.gamemode=='Singles'}">
                 <div ng-style="fadeInPlayerName(1)" ng-class="{'wrapperInnerSingles' : prev.gamemode == 'Singles'}">
                     <span id="p2Tag" class="tag" style="font-size:50px; display: inline;">{{prev.players[1].tag}}</span>
                     <span id="p2Name" class="name" style="font-size:90px; display: inline;">{{prev.players[1].name}}</span>
-                    <span id="p2Pronouns" class="pronouns" style="font-size:50px; display: inline;">{{prev.players[1].pronouns}}</span>
+                    <!-- <span id="p2Pronouns" class="pronouns" style="font-size:50px; display: inline;">{{prev.players[1].pronouns}}</span> -->
                 </div>
             </span>
 
@@ -83,7 +86,7 @@
                     <div ng-style="fadeInPlayerName(2)">
                         <span id="p3Tag" class="tag" style="font-size:50px; display: inline;">{{prev.players[2].tag}}</span>
                         <span id="p3Name" class="name" style="font-size:90px; display: inline;">{{prev.players[2].name}}</span>
-                        <span id="p3Pronouns" class="pronouns" style="font-size:50px; display: inline;">{{prev.players[2].pronouns}}</span>
+                        <!-- <span id="p3Pronouns" class="pronouns" style="font-size:50px; display: inline;">{{prev.players[2].pronouns}}</span> -->
                     </div>
                 </span>
 
@@ -91,7 +94,7 @@
                     <div ng-style="fadeInPlayerName(3)">
                         <span id="p4Tag" class="tag" style="font-size:50px; display: inline;">{{prev.players[3].tag}}</span>
                         <span id="p4Name" class="name" style="font-size:90px; display: inline;">{{prev.players[3].name}}</span>
-                        <span id="p4Pronouns" class="pronouns" style="font-size:50px; display: inline;">{{prev.players[3].pronouns}}</span>
+                        <!-- <span id="p4Pronouns" class="pronouns" style="font-size:50px; display: inline;">{{prev.players[3].pronouns}}</span> -->
                     </div>
                 </span>
 
@@ -134,7 +137,7 @@
         </div>
 
         <div id="scores" class="absol" ng-class="{'scoreDuringDubs' : prev.gamemode=='Teams'}">
-            <img class="absol" ng-class="(prev.usePips)? 'scoreBorder' : 'scoreBorderNumber'" alt=""  ng-show="!scoreEmpty" ng-src="{{getScoreBorderOverlay()}}">
+            <img class="absol" ng-class="(prev.usePips)? 'scoreBorder' : 'scoreBorderNumber'" alt="" ng-show="!scoreEmpty" ng-src="{{getScoreBorderOverlay()}}">
             <div id="scoresNumbers" ng-show="!prev.usePips && !scoreEmpty">
                 <span id="scoreNumberL" class="scoreNumber">{{prev.score[0]}}</span>
                 <span id="scoreNumberC" class="scoreNumber">|</span>

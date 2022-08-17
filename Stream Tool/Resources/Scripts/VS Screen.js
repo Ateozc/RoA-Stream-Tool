@@ -1,27 +1,7 @@
 'use strict';
-
-angular.module('angularapp', []);
-angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
+var app = angular.module('angularapp', []);
+app.controller('AngularAppCtrl', function ($scope) {
 	var c = $scope;
-
-
-
-	// function LoadSVGElement() {
-	// 	var ref = Reflect.construct(HTMLElement, [], this.constructor);
-	// 	return ref;
-	// }
-
-	// LoadSVGElement.prototype = Object.create(HTMLElement.prototype);
-	// LoadSVGElement.prototype.constructor = LoadSVGElement;
-	// LoadSVGElement.prototype.connectedCallback = async function (
-	// 	shadowRoot = this.shadowRoot || this.attachShadow({
-	// 		mode: "open"
-	// 	})
-	// ) {
-	// 	shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
-	// 	$scope.$apply();
-	// };
-	// customElements.define('load-svg', LoadSVGElement);
 
 	customElements.define("load-svg", class extends HTMLElement {
 		async connectedCallback(
@@ -30,14 +10,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 			})
 		) {
 			shadowRoot.innerHTML = await (await fetch(this.getAttribute("src"))).text()
-			// let svgClass = this.getAttribute('class');
-			// let style = getComputedStyle(this);
-			// // this.setAttribute('class', '');
-
-			// if (svgClass) {
-			// 	shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg style="height:' + style.height + '; width: ' + style.width + ';" ');
-			// 	// shadowRoot.innerHTML = shadowRoot.innerHTML.replace('<svg ', '<svg class="' + svgClass + '" ');
-			// }
 			$scope.$apply();
 		}
 	})
@@ -45,6 +17,15 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
 	c.loaded = false;
 
+	//TODO: Move all player socials data into a socials heirarchy instead of needing this garbage.
+    c.playerFields = [
+        {'label': 'Pronouns',   'field': 'pronouns','title':"Insert the Player's pronouns here"},
+        {'label': 'Tag',        'field': 'tag',     'title':"Insert the tag/team/sponsor here"},
+        {'label': 'Twitter',    'field': 'twitter', 'title':"Insert the Player's Twitter here"},
+        {'label': 'Twitch',     'field': 'twitch',  'title':"Insert the Player's Twitch here"},
+        {'label': 'Youtube',    'field': 'youtube', 'title':"Insert the Player's Youtube here"},
+        {'label': 'Discord',    'field': 'discord', 'title':"Insert the Player's Discord here"}
+    ];
 	c.gui = {};
 
 	c.gui.players = [];
@@ -350,8 +331,8 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		try {
 			if (
 				c.gui.players[player].name != c.prev.players[player].name ||
-				c.gui.players[player].tag != c.prev.players[player].tag ||
-				c.gui.players[player].pronouns != c.prev.players[player].pronouns
+				c.gui.players[player].tag != c.prev.players[player].tag
+				// c.gui.players[player].pronouns != c.prev.players[player].pronouns
 			) {
 				prevSameAsGui = false;
 				return {
@@ -363,7 +344,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 				}
 				c.resizeText('p' + (player + 1) + "Wrapper", true);
 				return {
-					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
+					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .42}s both`
 				};
 			}
 		} catch (e) {
@@ -371,13 +352,52 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		}
 
 	}
+
 	c.setPlayerFontSizeToDefault = function (player) {
 		let p = player + 1;
 
 		document.getElementById('p' + p + 'Tag').style.fontSize = tagSize;
 		document.getElementById('p' + p + 'Name').style.fontSize = playerSize;
-		document.getElementById('p' + p + 'Pronouns').style.fontSize = tagSize;
+		// document.getElementById('p' + p + 'Pronouns').style.fontSize = tagSize;
 
+	}
+
+	c.fadeInPlayerFields = function (player) {
+		try {
+			for (let i in c.playerFields) {
+				if (c.playerFields[i].field == 'tag') {
+					continue;
+				}
+				if (c.gui.players[player][c.playerFields[i].field] != c.prev.players[player][c.playerFields[i].field]) {
+					prevSameAsGui = false;
+					return {
+						animation: `fadeOut ${c.fadeOutTime}s both`
+					};
+				}
+			}
+
+			if (prevDifFromGuiCount == -1) {
+				c.setPlayerFieldsFontSizeToDefault(player);
+			}
+			c.resizeText('p' + (player + 1) + "Wrapper", true);
+			return {
+				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .42}s both`
+			};
+		} catch (e) {
+			
+		}
+
+	}
+
+	c.setPlayerFieldsFontSizeToDefault = function (player) {
+		let p = player + 1;
+
+		for (let i in c.playerFields) {
+			if (c.playerFields[i].field == 'tag') {
+				continue;
+			}
+			document.getElementById('p' + p + c.playerFields[i].tag).style.fontSize = tagSize;
+		}
 	}
 
 	c.fadeInTeamName = function (team) {
@@ -622,55 +642,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		
 	}
 
-
-
-	// //max text sizes (used when resizing back)
-	// const playerSize = '90px';
-	// const tagSize = '50px';
-	// const teamSize = '80px';
-	// const roundSize = '38px';
-	// const tournamentSize = '28px';
-	// const casterSize = '25px';
-	// const twitterSize = '20px';
-
-	// //to store the current character info
-	// const pCharInfo = [];
-
-	// //the characters image file path will change depending if they're workshop or not
-	// let charPath;
-	// const charPathBase = "Resources/Characters/";
-
-	// c.randomSkinPath = charPathBase + "/Random/P1.png";
-
-	// //to consider how many loops will we do
-	// let maxPlayers = 2; //will change when doubles comes
-	// const maxSides = 2;
-
-	// let startup = true;
-
-
-	// let prevDifFromGuiCount = 0;
-	// const iterationsBeforePrevUpdate = 1;
-	// let prevSameAsGui = false;
-
-	// let socialChangeTimer = 0;
-	// const socialChangeTimerMax = 8;
-
-	// let showTwitter = true;
-
-	// c.scoreEmpty = true;
-
-	// /* script begin */
-	// let gettingScene = false;
-
-	// let firstRun = true;
-	// c.mainLoop = async function () {
-	// 	const scInfo = await getInfo();
-	// 	// const guiInfo = await getGuiInfo();
-	// 	c.getData(scInfo);
-	// }
-
-
 	c.mainLoop();
 	setInterval(() => {
 
@@ -710,22 +681,7 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		c.gui.tournament = scInfo['tournamentName'];
 		c.gui.casters = scInfo['caster'];
 		c.gui.game = scInfo['game'];
-		// let obsSettings = scInfo['obsSettings'];
-		// let addressRockerSettings = scInfo['addressRockerSettings'];
 
-		// if (obsSettings.useObsAutomation && addressRockerSettings.useAddressRocker && obsSettings.autoChangeScenes != 'manualFromOBS' && obsSettings.currentScene && !gettingScene) {
-		// 	window.obsstudio.getCurrentScene(function(scene) {
-		// 		if (scene.name != obsSettings.currentScene) {
-		// 			gettingScene = true;
-		// 			window.obsstudio.setCurrentScene(obsSettings.currentScene);
-		// 			return;
-		// 		}
-		// 	});
-		// }
-		// if (gettingScene) {
-		// 	return;
-		// }
-		
 		if (prevDifFromGuiCount == iterationsBeforePrevUpdate) {
 			c.prev.usePips = c.gui.usePips;
 			c.prev.players = c.gui.players;
@@ -880,38 +836,6 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 
 		}
 	}
-	//function to decide when to change to what
-	function updateSocial(mainSocial, mainText, mainWrapper, otherSocial, otherWrapper) {
-		//check if this is for twitch or twitter
-		let localSwitch = socialSwitch;
-		if (mainText == twitchEL[0] || mainText == twitchEL[1]) {
-			localSwitch = !localSwitch;
-		}
-		//check if this is their turn so we fade out the other one
-		if (localSwitch) {
-			fadeOut(otherWrapper)
-		}
-
-		//now do the classics
-		fadeOut(mainWrapper).then(() => {
-			updateSocialText(mainText, mainSocial, twitterSize, mainWrapper);
-			//check if its twitter's turn to show up
-			if (otherSocial == "" && mainSocial != "") {
-				fadeIn(mainWrapper, .2);
-			} else if (localSwitch && mainSocial != "") {
-				fadeIn(mainWrapper, .2);
-			} else if (otherSocial != "") {
-				fadeIn(otherWrapper, .2);
-			}
-		});
-	}
-
-	//social text changer
-	function updateSocialText(textEL, textToType, maxSize, wrapperEL) {
-		textEL.style.fontSize = maxSize; //set original text size
-		textEL.textContent = textToType; //change the actual text
-		resizeText(wrapperEL); //resize it if it overflows
-	}
 
 	c.resizeText = function (elementId, playerWrapper = false) {
 		let el = document.getElementById(elementId);
@@ -958,4 +882,41 @@ angular.module('angularapp').controller('AngularAppCtrl', function ($scope) {
 		})
 		//i would gladly have used fetch, but OBS local files wont support that :(
 	}
+});
+app.directive("playerNameWrapper", function () {
+    return {
+        restrict: "E",
+        templateUrl: "Resources/Scripts/vsScreenPlayerNameDisplay.html",
+        // scope: true,
+        scope: {
+            'player': '=',
+            'index':'@',
+            'number':'@'
+		},
+        transclude: true,
+        controller: function ($scope) {
+        },
+        link: function (scope, ele, attrs) {
+        }
+    }
+});
+
+app.directive("playerSocialsWrapper", function () {
+    return {
+        restrict: "E",
+        templateUrl: "Resources/Scripts/vsScreenPlayerSocials.html",
+        // scope: true,
+        scope: {
+            'player': '=',
+            'index':'@',
+            'number':'@',
+			'fields':'=',
+			'gamemode':'@'
+		},
+        transclude: true,
+        controller: function ($scope) {
+        },
+        link: function (scope, ele, attrs) {
+		}
+    }
 });

@@ -13,6 +13,7 @@ app.controller('AngularAppCtrl', function ($scope) {
     // $scope.body = "Welcome Modal";
     $scope.test = 'testing';
 
+    //TODO: Rework this as a directive. It would make it more consistent.
     // this is a weird way to have file svg's that can be recolored by css
     customElements.define("load-svg", class extends HTMLElement {
         async connectedCallback(
@@ -52,15 +53,17 @@ app.controller('AngularAppCtrl', function ($scope) {
     let charPath;
     let charPathRel;
 
-    // "/Resources/Games/Rivals of Aether/Characters"
-    // "/Resources/Games/Rivals Workshop/Characters"
+    /*
+        "/Resources/Games/Rivals of Aether/Characters"
+        "/Resources/Games/Rivals Workshop/Characters"
+        "/Resources/Games/Multiversus/Characters"
+    */
 
     const randomSkinPath = gamePath + "/Defaults/Random.png";
     const randomIconPath = gamePath + "/Defaults/icon.png"
     const randomSkinPathRel = "/Games/Defaults/Random.png";
     const defaultWbBackground = "/Games/Defaults/BG.webm";
 
-    // const defaultWbLoABackground = gamePath + "/BG LoA.webm";
 
     //Angular Scoped Variables (to be used on HTML)
     c.characterList = [];
@@ -112,13 +115,15 @@ app.controller('AngularAppCtrl', function ($scope) {
     c.seasonalSkin = c.seasonalSkins[0];
     c.forceHDChoice = c.hdOptions[0];
 
+    //TODO: Move all player socials data into a socials heirarchy instead of needing this garbage.
     c.playerFields = [
+        {'label': 'Pronouns',   'field': 'pronouns','title':"Insert the Player's pronouns here"},
         {'label': 'Tag',        'field': 'tag',     'title':"Insert the tag/team/sponsor here"},
         {'label': 'Twitter',    'field': 'twitter', 'title':"Insert the Player's Twitter here"},
-        {'label': 'Pronouns',   'field': 'pronouns','title':"Insert the Player's pronouns here"},
+        {'label': 'Twitch',     'field': 'twitch',  'title':"Insert the Player's Twitch here"},
         {'label': 'Youtube',    'field': 'youtube', 'title':"Insert the Player's Youtube here"},
         {'label': 'Discord',    'field': 'discord', 'title':"Insert the Player's Discord here"}
-    ]
+    ];
 
 
     c.obsSettings = {
@@ -235,9 +240,12 @@ app.controller('AngularAppCtrl', function ($scope) {
                     if (char.game == c.game) {
                         let profile = {
                             name: playerInfo.name,
+                            pronouns: playerInfo.pronouns,
                             tag: playerInfo.tag,
                             twitter: playerInfo.twitter,
-                            pronouns: playerInfo.pronouns,
+                            twitch: playerInfo.twitch,
+                            youtube: playerInfo.youtube,
+                            discord: playerInfo.discord,
                             character: char.character,
                             skin: char.skin,
                         }
@@ -265,9 +273,12 @@ app.controller('AngularAppCtrl', function ($scope) {
                     if (c.characterList[i].name == char.character) {
                         let profile = {
                             name: playerInfo.name,
+                            pronouns: playerInfo.pronouns,
                             tag: playerInfo.tag,
                             twitter: playerInfo.twitter,
-                            pronouns: playerInfo.pronouns,
+                            twitch: playerInfo.twitch,
+                            youtube: playerInfo.youtube,
+                            discord: playerInfo.discord,
                             character: char.character,
                             skin: char.skin
                         }
@@ -294,10 +305,16 @@ app.controller('AngularAppCtrl', function ($scope) {
             return;
         }
 
+        for (let i in c.playerFields) {
+            c[playerType][c.playerFocus][c.playerFields[i].field] = c.playerProfiles[index][c.playerFields[i].field];
+        }
         c[playerType][c.playerFocus].name = c.playerProfiles[index].name;
-        c[playerType][c.playerFocus].tag = c.playerProfiles[index].tag;
-        c[playerType][c.playerFocus].twitter = c.playerProfiles[index].twitter;
-        c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].pronouns;
+        // c[playerType][c.playerFocus].tag = c.playerProfiles[index].tag;
+        // c[playerType][c.playerFocus].twitter = c.playerProfiles[index].twitter;
+        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].pronouns;
+        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].twitch;
+        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].youtube;
+        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].discord;
         c[playerType][c.playerFocus].character = c.playerProfiles[index].character;
         c[playerType][c.playerFocus].skin = c.playerProfiles[index].skin;
         c.markCharacterIndex(c.playerFocus, false, c.playerFocusOnDeck);
@@ -1336,55 +1353,6 @@ app.controller('AngularAppCtrl', function ($scope) {
         return style;
     }
 
-
-    //visual feedback to navigate the player presets menu
-    function addActive(x) {
-        //clears active from all entries
-        for (let i = 0; i < x.length; i++) {
-            x[i].classList.remove("finderEntry-active");
-        }
-
-        //if end of list, cicle
-        if (currentFocus >= x.length) currentFocus = 0;
-        if (currentFocus < 0) currentFocus = (x.length - 1);
-
-        //add to the selected entry the active class
-        x[currentFocus].classList.add("finderEntry-active");
-    }
-
-
-    function checkCustomSkin(pNum) {
-
-        pNum -= 1
-
-        //get the player preset list for the current text
-        const playerList = getJson(textPath + "/Player Info/" + pNameInps[pNum].value);
-
-        if (playerList != null) { //safety check
-
-            playerList.characters.forEach(char => { //for each possible character
-
-                //if the current character is on the list
-                if (char.character == charLists[pNum].selectedOptions[0].text) {
-                    if (char.character != "Random") {
-
-                        //first, check if theres a custom skin already
-                        if (skinLists[pNum].selectedOptions[0].className == "playerCustom") {
-                            skinLists[pNum].remove(skinLists[pNum].selectedIndex);
-                        }
-
-                        const option = document.createElement('option'); //create new entry
-                        option.className = "playerCustom"; //set class so the background changes
-                        option.text = char.skin; //set the text of entry
-                        skinLists[pNum].add(option, 0); //add the entry to the beginning of the list
-                        skinLists[pNum].selectedIndex = 0; //leave it selected
-                        skinChange(skinLists[pNum]); //update the image
-                    }
-                }
-            });
-        }
-    }
-
     c.onDeckToStream = function () {
         for (let i = 0; i < c.players.length; i++) {
             for (let field in c.players[i]) {
@@ -1448,16 +1416,6 @@ app.controller('AngularAppCtrl', function ($scope) {
         c[playerType] = setupPlayersVar();
     }
 
-    //to force the list to use a specific entry
-    function changeListValue(list, name) {
-        for (let i = 0; i < list.length; i++) {
-            if (list.options[i].text == name) {
-                list.selectedIndex = i;
-            }
-        }
-    }
-
-
     c.copyToClipboard = function () {
 
         //initialize the string
@@ -1500,6 +1458,7 @@ app.controller('AngularAppCtrl', function ($scope) {
         navigator.clipboard.writeText(copiedText);
     }
 
+    //TODO: Split scoreboard from players/gui. 
     function updatePlayerJson(player, deleteSpot = false, forceUpdate = false) {
         if (!player) {
             return;
@@ -1511,6 +1470,9 @@ app.controller('AngularAppCtrl', function ($scope) {
             playerInfo = {
                 "name": player.name,
                 "twitter": player.twitter,
+                "twitch": player.twitch,
+                "youtube": player.youtube,
+                "discord": player.discord,
                 "pronouns": player.pronouns,
                 "tag": player.tag,
                 "characters": [{
@@ -1520,9 +1482,9 @@ app.controller('AngularAppCtrl', function ($scope) {
                 "game": c.game
             }
         } else {
-            playerInfo.twitter = player.twitter;
-            playerInfo.tag = player.tag;
-            playerInfo.pronouns = player.pronouns;
+            for (let i in c.playerFields) {
+                playerInfo[c.playerFields[i].field] = player[c.playerFields[i].field];
+            }
 
             let newCharacter = true;
 
@@ -1614,6 +1576,7 @@ app.controller('AngularAppCtrl', function ($scope) {
     }
 
 
+    //TODO: Split scoreboard from players/gui. 
     //time to write it down
     c.writeScoreboard = function () {
         c.getPathsForOverlays();

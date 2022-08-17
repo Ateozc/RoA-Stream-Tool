@@ -1,6 +1,6 @@
 {
   "name": "Test",
-  "tag": "etc",
+  "tag": "test",
   "characters": [
     {
       "character": "Absa",
@@ -182,6 +182,9 @@
       "game": "Multiversus"
     }
   ],
-  "twitter": "test1234",
-  "pronouns": "They/It"
+  "twitter": "verylongtwitter",
+  "pronouns": "They/It",
+  "twitch": "verylongtwitch",
+  "youtube": "testYT",
+  "discord": "testD"
 }

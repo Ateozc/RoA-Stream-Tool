@@ -121,6 +121,24 @@ body {
   font-size: 20px;
 }
 
+.p1WrapperFields {
+  left: -4px !important;
+  /* color:white;
+  bottom: 205px;
+  height: 6%;
+  width: 48%;
+  border-radius: 10px; */
+}
+
+.p2WrapperFields {
+  left: 960px !important;
+  /* color:white;
+  bottom: 205px;
+  height: 6%;
+  width: 48%;
+  border-radius: 10px; */
+}
+
 
 
 .wrappersSingles {
@@ -138,6 +156,7 @@ body {
 }
 .wrapperInnerSingles {
   line-height: 110px;
+  opacity:0;
 }
 
 .wrappersDoubles {
@@ -399,6 +418,7 @@ body {
 .dubEL {
   display: flex;
 }
+
 
 /* Animations! */
 
