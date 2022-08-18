@@ -1,6 +1,231 @@
 {
   "player": [
     {
+      "name": "Test",
+      "twitter": "verylongtwitter",
+      "pronouns": "They/It",
+      "tag": "test",
+      "character": "Absa",
+      "characterIndex": 1,
+      "skin": "LoA",
+      "skinIndex": 16,
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Rivals of Aether/Absa/LoA.png",
+      "twitch": "verylongtwitch",
+      "youtube": "testYT",
+      "discord": "asdfasdfasdfasdf",
+      "defaultSkinPath": "Resources/Games/Rivals of Aether/Absa/LoA.png",
+      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Absa/LoA.png",
+      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Absa/LoA.png",
+      "backgroundWebm": "Resources/Games/Rivals of Aether/BG LoA.webm",
+      "info": {
+        "skinList": [
+          {
+            "label": "Default",
+            "fileName": "Default",
+            "index": 0
+          },
+          {
+            "label": "Blue",
+            "fileName": "Blue",
+            "index": 1
+          },
+          {
+            "label": "Red",
+            "fileName": "Red",
+            "index": 2
+          },
+          {
+            "label": "Green",
+            "fileName": "Green",
+            "index": 3
+          },
+          {
+            "label": "Grey",
+            "fileName": "Grey",
+            "index": 4
+          },
+          {
+            "label": "Purple",
+            "fileName": "Purple",
+            "index": 5
+          },
+          {
+            "label": "Seasonal",
+            "fileName": "Calendar",
+            "index": 6
+          },
+          {
+            "label": "Default Custom 1",
+            "fileName": "Default Custom 1",
+            "index": 8
+          },
+          {
+            "label": "Default Custom 2",
+            "fileName": "Default Custom 2",
+            "index": 9
+          },
+          {
+            "label": "Twitch",
+            "fileName": "Twitch",
+            "index": 11
+          },
+          {
+            "label": "Champion",
+            "fileName": "Champion",
+            "index": 12
+          },
+          {
+            "label": "Abyss",
+            "fileName": "Abyss",
+            "index": 13
+          },
+          {
+            "label": "Early Access",
+            "fileName": "Early Access",
+            "index": 14
+          },
+          {
+            "label": "Penguin",
+            "fileName": "Penguin",
+            "index": 15
+          },
+          {
+            "label": "LoA",
+            "fileName": "LoA",
+            "index": 16
+          },
+          {
+            "label": "Golden",
+            "fileName": "Golden",
+            "index": 17
+          },
+          {
+            "label": "Ranked",
+            "fileName": "Ranked",
+            "index": 18
+          },
+          {
+            "label": "Steampunk",
+            "fileName": "Steampunk",
+            "index": 19
+          },
+          {
+            "label": "High Roller",
+            "fileName": "High Roller",
+            "index": 20
+          },
+          {
+            "label": "HD",
+            "fileName": "HD",
+            "index": 100
+          },
+          {
+            "label": "LoA HD",
+            "fileName": "LoA HD",
+            "index": 101
+          }
+        ],
+        "skinListOld": [
+          "Default",
+          "Blue",
+          "Red",
+          "Green",
+          "Grey",
+          "Purple",
+          "Halloween",
+          "Christmas",
+          "Valentines",
+          "Summer",
+          "Default Custom 1",
+          "Default Custom 2",
+          "Twitch",
+          "Champion",
+          "Abyss",
+          "Early Access",
+          "Penguin",
+          "LoA",
+          "Golden",
+          "Ranked",
+          "Steampunk",
+          "HD",
+          "LoA HD"
+        ],
+        "scoreboard": {
+          "neutral": {
+            "x": 5,
+            "y": 70,
+            "scale": 4.3
+          },
+          "LoA": {
+            "x": 30,
+            "y": 105,
+            "scale": 4.7
+          },
+          "LoA HD": {
+            "x": 18,
+            "y": 133,
+            "scale": 5.75
+          },
+          "HD": {
+            "x": 12,
+            "y": 78,
+            "scale": 4.5
+          }
+        },
+        "vsScreen": {
+          "neutral": {
+            "x": -550,
+            "y": 200,
+            "scale": 1.35
+          },
+          "LoA": {
+            "x": -495,
+            "y": 240,
+            "scale": 1.35
+          },
+          "LoA HD": {
+            "x": -510,
+            "y": 260,
+            "scale": 1.5
+          },
+          "HD": {
+            "x": -535,
+            "y": 165,
+            "scale": 1.3
+          }
+        },
+        "gui": {
+          "neutral": {
+            "x": 5,
+            "y": 38,
+            "scale": 5
+          },
+          "LoA": {
+            "x": 10,
+            "y": 47,
+            "scale": 4.8
+          },
+          "LoA HD": {
+            "x": 18,
+            "y": 58,
+            "scale": 5.75
+          },
+          "HD": {
+            "x": 6,
+            "y": 45,
+            "scale": 5.5
+          }
+        }
+      },
+      "teamColor": {
+        "name": "Red",
+        "hex": "#ed1c23"
+      },
+      "vsScreenSkin": "LoA",
+      "scoreboardSkin": "LoA",
+      "team": 0
+    },
+    {
       "name": "Ateozc",
       "twitter": "@ateozc",
       "pronouns": "He/Him",
@@ -12,7 +237,7 @@
       "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Rivals of Aether/Absa/Grey.png",
       "twitch": "Ateozc",
       "youtube": "Ateozc",
-      "discord": "",
+      "discord": "d",
       "defaultSkinPath": "Resources/Games/Rivals of Aether/Absa/Grey.png",
       "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Absa/Grey.png",
       "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Absa/Grey.png",
@@ -218,685 +443,56 @@
         }
       },
       "teamColor": {
-        "name": "Red",
-        "hex": "#ed1c23"
+        "name": "Blue",
+        "hex": "#00b7ef"
       },
       "vsScreenSkin": "Grey",
       "scoreboardSkin": "Grey",
-      "team": 0
+      "team": 1
     },
     {
-      "name": "Test",
-      "twitter": "verylongtwitter",
-      "pronouns": "They/It",
-      "tag": "test",
-      "character": "Clairen",
-      "characterIndex": 2,
-      "skin": "LoA 1 HD",
-      "skinIndex": 102,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Rivals of Aether/Clairen/LoA 1 HD.png",
-      "twitch": "verylongtwitch",
-      "youtube": "testYT",
-      "discord": "testD",
-      "defaultSkinPath": "Resources/Games/Rivals of Aether/Clairen/LoA 1 HD.png",
-      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Clairen/LoA 1 HD.png",
-      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Clairen/LoA 1 HD.png",
-      "backgroundWebm": "Resources/Games/Rivals of Aether/BG LoA.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          },
-          {
-            "label": "Blue",
-            "fileName": "Blue",
-            "index": 1
-          },
-          {
-            "label": "Orange",
-            "fileName": "Orange",
-            "index": 2
-          },
-          {
-            "label": "Green",
-            "fileName": "Green",
-            "index": 3
-          },
-          {
-            "label": "Purple",
-            "fileName": "Purple",
-            "index": 4
-          },
-          {
-            "label": "White",
-            "fileName": "White",
-            "index": 5
-          },
-          {
-            "label": "Seasonal",
-            "fileName": "Calendar",
-            "index": 6
-          },
-          {
-            "label": "Default Custom 1",
-            "fileName": "Default Custom 1",
-            "index": 8
-          },
-          {
-            "label": "Default Custom 2",
-            "fileName": "Default Custom 2",
-            "index": 9
-          },
-          {
-            "label": "Genesis",
-            "fileName": "Genesis",
-            "index": 11
-          },
-          {
-            "label": "Hero",
-            "fileName": "Hero",
-            "index": 12
-          },
-          {
-            "label": "Abyss",
-            "fileName": "Abyss",
-            "index": 13
-          },
-          {
-            "label": "Early Access",
-            "fileName": "Early Access",
-            "index": 14
-          },
-          {
-            "label": "Arcade Green",
-            "fileName": "Arcade Green",
-            "index": 15
-          },
-          {
-            "label": "Infamous",
-            "fileName": "Infamous",
-            "index": 16
-          },
-          {
-            "label": "Champion",
-            "fileName": "Champion",
-            "index": 17
-          },
-          {
-            "label": "Ranked",
-            "fileName": "Ranked",
-            "index": 18
-          },
-          {
-            "label": "Golden",
-            "fileName": "Golden",
-            "index": 19
-          },
-          {
-            "label": "Heat Wave",
-            "fileName": "Heat Wave",
-            "index": 20
-          },
-          {
-            "label": "HD",
-            "fileName": "HD",
-            "index": 100
-          },
-          {
-            "label": "LoA HD",
-            "fileName": "LoA HD",
-            "index": 101
-          },
-          {
-            "label": "LoA 1 HD",
-            "fileName": "LoA 1 HD",
-            "index": 102
-          }
-        ],
-        "skinListOld": [
-          "Default",
-          "Blue",
-          "Orange",
-          "Green",
-          "Purple",
-          "White",
-          "Halloween",
-          "Christmas",
-          "Valentines",
-          "Summer",
-          "Default Custom 1",
-          "Default Custom 2",
-          "Genesis",
-          "Hero",
-          "Abyss",
-          "Early Access",
-          "Arcade Green",
-          "Arcade Pink",
-          "Arcade Blue",
-          "Infamous",
-          "Champion",
-          "Ranked",
-          "Golden",
-          "Heat Wave",
-          "HD",
-          "LoA HD",
-          "LoA 1 HD"
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": -90,
-            "y": 79,
-            "scale": 4
-          },
-          "LoA 1 HD": {
-            "x": 23,
-            "y": 140,
-            "scale": 4.8
-          },
-          "LoA HD": {
-            "x": 15,
-            "y": 145,
-            "scale": 4.8
-          },
-          "HD": {
-            "x": -107,
-            "y": 86,
-            "scale": 4.7
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -820,
-            "y": 185,
-            "scale": 1.17
-          },
-          "LoA HD": {
-            "x": -510,
-            "y": 310,
-            "scale": 1.4
-          },
-          "LoA 1 HD": {
-            "x": -475,
-            "y": 275,
-            "scale": 1.4
-          },
-          "HD": {
-            "x": -845,
-            "y": 135,
-            "scale": 1.07
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": -50,
-            "y": 45,
-            "scale": 4
-          },
-          "LoA HD": {
-            "x": 20,
-            "y": 72,
-            "scale": 5.8
-          },
-          "LoA 1 HD": {
-            "x": 20,
-            "y": 65,
-            "scale": 5.5
-          },
-          "HD": {
-            "x": -50,
-            "y": 45,
-            "scale": 4
-          }
-        }
-      },
-      "teamColor": {
-        "name": "Red",
-        "hex": "#ed1c23"
-      },
-      "vsScreenSkin": "LoA 1 HD",
-      "scoreboardSkin": "LoA 1 HD",
-      "team": 0
-    },
-    {
-      "name": "Test",
-      "twitter": "verylongtwitter",
-      "pronouns": "They/It",
-      "tag": "test",
-      "character": "Elliana",
-      "characterIndex": 3,
-      "skin": "LoA HD",
-      "skinIndex": 101,
-      "defaultSkinPath": "Resources/Games/Rivals of Aether/Elliana/LoA HD.png",
-      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Elliana/LoA HD.png",
-      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Elliana/LoA HD.png",
-      "backgroundWebm": "Resources/Games/Rivals of Aether/BG LoA.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          },
-          {
-            "label": "Blue",
-            "fileName": "Blue",
-            "index": 1
-          },
-          {
-            "label": "Red",
-            "fileName": "Red",
-            "index": 2
-          },
-          {
-            "label": "Green",
-            "fileName": "Green",
-            "index": 3
-          },
-          {
-            "label": "Grey",
-            "fileName": "Grey",
-            "index": 4
-          },
-          {
-            "label": "Pink",
-            "fileName": "Pink",
-            "index": 5
-          },
-          {
-            "label": "Seasonal",
-            "fileName": "Calendar",
-            "index": 6
-          },
-          {
-            "label": "Default Custom 1",
-            "fileName": "Default Custom 1",
-            "index": 8
-          },
-          {
-            "label": "Default Custom 2",
-            "fileName": "Default Custom 2",
-            "index": 9
-          },
-          {
-            "label": "Arcade Green",
-            "fileName": "Arcade Green",
-            "index": 11
-          },
-          {
-            "label": "Ayala",
-            "fileName": "Ayala",
-            "index": 12
-          },
-          {
-            "label": "Abyss",
-            "fileName": "Abyss",
-            "index": 13
-          },
-          {
-            "label": "Early Access",
-            "fileName": "Early Access",
-            "index": 14
-          },
-          {
-            "label": "Infamous",
-            "fileName": "Infamous",
-            "index": 15
-          },
-          {
-            "label": "On The Edge",
-            "fileName": "On The Edge",
-            "index": 16
-          },
-          {
-            "label": "Champion",
-            "fileName": "Champion",
-            "index": 17
-          },
-          {
-            "label": "Ranked",
-            "fileName": "Ranked",
-            "index": 18
-          },
-          {
-            "label": "Golden",
-            "fileName": "Golden",
-            "index": 19
-          },
-          {
-            "label": "HD",
-            "fileName": "HD",
-            "index": 100
-          },
-          {
-            "label": "LoA HD",
-            "fileName": "LoA HD",
-            "index": 101
-          }
-        ],
-        "skinListOld": [
-          "Default",
-          "Blue",
-          "Red",
-          "Green",
-          "Grey",
-          "Pink",
-          "Halloween",
-          "Christmas",
-          "Valentines",
-          "Summer",
-          "Default Custom 1",
-          "Default Custom 2",
-          "Arcade Green",
-          "Arcade Pink",
-          "Arcade Blue",
-          "Ayala",
-          "Abyss",
-          "Early Access",
-          "Infamous",
-          "On The Edge",
-          "Champion",
-          "Ranked",
-          "Golden",
-          "HD",
-          "LoA HD"
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": -93,
-            "y": 98,
-            "scale": 5.5
-          },
-          "Ayala": {
-            "x": -43,
-            "y": 150,
-            "scale": 6
-          },
-          "LoA HD": {
-            "x": -75,
-            "y": 62,
-            "scale": 3.9
-          },
-          "HD": {
-            "x": -102,
-            "y": 108,
-            "scale": 6
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -780,
-            "y": 200,
-            "scale": 1.34
-          },
-          "Ayala": {
-            "x": -605,
-            "y": 260,
-            "scale": 1.3
-          },
-          "LoA HD": {
-            "x": -680,
-            "y": 140,
-            "scale": 1.1
-          },
-          "HD": {
-            "x": -780,
-            "y": 190,
-            "scale": 1.34
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": -40,
-            "y": 50,
-            "scale": 5.5
-          },
-          "Ayala": {
-            "x": -20,
-            "y": 72,
-            "scale": 6.5
-          },
-          "LoA HD": {
-            "x": -40,
-            "y": 33,
-            "scale": 4
-          },
-          "HD": {
-            "x": -58,
-            "y": 60,
-            "scale": 7
-          }
-        }
-      },
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
+      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
+      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
+      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
+      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
+      "info": null,
       "teamColor": {
         "name": "Blue",
         "hex": "#00b7ef"
       },
-      "vsScreenSkin": "LoA HD",
-      "scoreboardSkin": "LoA HD",
-      "team": 1,
-      "twitch": "verylongtwitch",
-      "youtube": "testYT",
-      "discord": "testD"
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
+      "team": 1
     },
     {
-      "name": "Test",
-      "twitter": "verylongtwitter",
-      "pronouns": "They/It",
-      "tag": "test",
-      "character": "Forsburn",
-      "characterIndex": 5,
-      "skin": "LoA",
-      "skinIndex": 17,
-      "defaultSkinPath": "Resources/Games/Rivals of Aether/Forsburn/LoA.png",
-      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Forsburn/LoA.png",
-      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Forsburn/LoA.png",
-      "backgroundWebm": "Resources/Games/Rivals of Aether/BG LoA.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          },
-          {
-            "label": "Blue",
-            "fileName": "Blue",
-            "index": 1
-          },
-          {
-            "label": "Red",
-            "fileName": "Red",
-            "index": 2
-          },
-          {
-            "label": "Green",
-            "fileName": "Green",
-            "index": 3
-          },
-          {
-            "label": "White",
-            "fileName": "White",
-            "index": 4
-          },
-          {
-            "label": "Purple",
-            "fileName": "Purple",
-            "index": 5
-          },
-          {
-            "label": "Seasonal",
-            "fileName": "Calendar",
-            "index": 6
-          },
-          {
-            "label": "Default Custom 1",
-            "fileName": "Default Custom 1",
-            "index": 8
-          },
-          {
-            "label": "Default Custom 2",
-            "fileName": "Default Custom 2",
-            "index": 9
-          },
-          {
-            "label": "Genesis",
-            "fileName": "Genesis",
-            "index": 11
-          },
-          {
-            "label": "Heatwave",
-            "fileName": "Heatwave",
-            "index": 12
-          },
-          {
-            "label": "Abyss",
-            "fileName": "Abyss",
-            "index": 13
-          },
-          {
-            "label": "Early Access",
-            "fileName": "Early Access",
-            "index": 14
-          },
-          {
-            "label": "Champion",
-            "fileName": "Champion",
-            "index": 15
-          },
-          {
-            "label": "Dreamscape",
-            "fileName": "Dreamscape",
-            "index": 16
-          },
-          {
-            "label": "LoA",
-            "fileName": "LoA",
-            "index": 17
-          },
-          {
-            "label": "Ranked",
-            "fileName": "Ranked",
-            "index": 18
-          },
-          {
-            "label": "Golden",
-            "fileName": "Golden",
-            "index": 19
-          },
-          {
-            "label": "HD",
-            "fileName": "HD",
-            "index": 100
-          },
-          {
-            "label": "LoA HD",
-            "fileName": "LoA HD",
-            "index": 101
-          }
-        ],
-        "skinListOld": [
-          "Default",
-          "Blue",
-          "Red",
-          "Green",
-          "White",
-          "Purple",
-          "Halloween",
-          "Christmas",
-          "Valentines",
-          "Summer",
-          "Default Custom 1",
-          "Default Custom 2",
-          "Genesis",
-          "Heatwave",
-          "Abyss",
-          "Early Access",
-          "Champion",
-          "Dreamscape",
-          "LoA",
-          "Ranked",
-          "HD",
-          "LoA HD"
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": -145,
-            "y": 25,
-            "scale": 4.5
-          },
-          "LoA": {
-            "x": -105,
-            "y": 73,
-            "scale": 4.5
-          },
-          "LoA HD": {
-            "x": -80,
-            "y": 135,
-            "scale": 5.8
-          },
-          "HD": {
-            "x": -155,
-            "y": 25,
-            "scale": 5
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -830,
-            "y": 30,
-            "scale": 1.27
-          },
-          "LoA": {
-            "x": -686,
-            "y": 194,
-            "scale": 1.2
-          },
-          "LoA HD": {
-            "x": -525,
-            "y": 230,
-            "scale": 1.35
-          },
-          "HD": {
-            "x": -830,
-            "y": 30,
-            "scale": 1.27
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": -80,
-            "y": 18,
-            "scale": 6.5
-          },
-          "LoA": {
-            "x": -50,
-            "y": 40,
-            "scale": 5.5
-          },
-          "LoA HD": {
-            "x": -17,
-            "y": 55,
-            "scale": 6
-          },
-          "HD": {
-            "x": -88,
-            "y": 18,
-            "scale": 6.5
-          }
-        }
-      },
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
+      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
+      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
+      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
+      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
+      "info": null,
       "teamColor": {
         "name": "Blue",
         "hex": "#00b7ef"
       },
-      "vsScreenSkin": "LoA",
-      "scoreboardSkin": "LoA",
-      "team": 1,
-      "twitch": "verylongtwitch",
-      "youtube": "testYT",
-      "discord": "testD"
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
+      "team": 1
     }
   ],
   "teamName": [
@@ -922,7 +518,7 @@
     ""
   ],
   "bestOf": "Bo3",
-  "gamemode": "Teams",
+  "gamemode": "Singles",
   "round": "Friendlies",
   "tournamentName": "",
   "caster": [

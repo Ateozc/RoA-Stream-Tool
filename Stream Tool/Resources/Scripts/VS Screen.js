@@ -341,8 +341,9 @@ app.controller('AngularAppCtrl', function ($scope) {
 			} else {
 				if (prevDifFromGuiCount == -1) {
 					c.setPlayerFontSizeToDefault(player);
+					c.resizeText('p' + (player + 1) + "Wrapper", true);
 				}
-				c.resizeText('p' + (player + 1) + "Wrapper", true);
+				
 				return {
 					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .42}s both`
 				};
@@ -378,16 +379,20 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 			if (prevDifFromGuiCount == -1) {
 				c.setPlayerFieldsFontSizeToDefault(player);
+				// c.resizeText('p' + (player + 1) + "FieldsWrapper", true);
+				
 			}
-			c.resizeText('p' + (player + 1) + "Wrapper", true);
+			
 			return {
 				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .42}s both`
 			};
 		} catch (e) {
-			
+			console.log(e);
 		}
 
 	}
+
+
 
 	c.setPlayerFieldsFontSizeToDefault = function (player) {
 		let p = player + 1;
@@ -396,7 +401,9 @@ app.controller('AngularAppCtrl', function ($scope) {
 			if (c.playerFields[i].field == 'tag') {
 				continue;
 			}
-			document.getElementById('p' + p + c.playerFields[i].tag).style.fontSize = tagSize;
+			console.log(c.playerFields[i])
+			console.log('p' + p + c.playerFields[i].label);
+			// document.getElementById('p' + p + c.playerFields[i].label).style.fontSize = tagSize;
 		}
 	}
 
@@ -410,8 +417,8 @@ app.controller('AngularAppCtrl', function ($scope) {
 		} else {
 			if (prevDifFromGuiCount == -1) {
 				document.getElementById(teamId + 'Text').style.fontSize = teamSize;
+				c.resizeText(teamId);
 			}
-			c.resizeText(teamId);
 			return {
 				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 			};
@@ -427,8 +434,8 @@ app.controller('AngularAppCtrl', function ($scope) {
 		} else {
 			if (prevDifFromGuiCount == -1) {
 				document.getElementById('roundText').style.fontSize = roundSize;
+				c.resizeText('round');
 			}
-			c.resizeText('round');
 			return {
 				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 			};
@@ -444,8 +451,9 @@ app.controller('AngularAppCtrl', function ($scope) {
 		} else {
 			if (prevDifFromGuiCount == -1) {
 				document.getElementById('tournamentText').style.fontSize = tournamentSize;
+				c.resizeText('tournament');
 			}
-			c.resizeText('tournament');
+
 			return {
 				animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 			};
@@ -461,8 +469,8 @@ app.controller('AngularAppCtrl', function ($scope) {
 			} else {
 				if (prevDifFromGuiCount == -1) {
 					document.getElementById('caster' + (caster + 1) + 'Text').style.fontSize = casterSize;
+					c.resizeText('caster' + (caster + 1));
 				}
-				c.resizeText('caster' + (caster + 1));
 				return {
 					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 				};
@@ -487,8 +495,9 @@ app.controller('AngularAppCtrl', function ($scope) {
 			} else {
 				if (prevDifFromGuiCount == -1) {
 					document.getElementById('twitter' + (caster + 1) + 'Text').style.fontSize = twitterSize;
+					c.resizeText('twitter' + (caster + 1));
 				}
-				c.resizeText('twitter' + (caster + 1));
+				
 				return {
 					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 				};
@@ -513,8 +522,9 @@ app.controller('AngularAppCtrl', function ($scope) {
 			} else {
 				if (prevDifFromGuiCount == -1) {
 					document.getElementById('twitch' + (caster + 1) + 'Text').style.fontSize = twitterSize;
+					c.resizeText('twitch' + (caster + 1));
 				}
-				c.resizeText('twitch' + (caster + 1));
+				
 				return {
 					animation: `fadeIn ${c.fadeInTime + .1}s ${delay + .2}s both`
 				};
@@ -838,28 +848,39 @@ app.controller('AngularAppCtrl', function ($scope) {
 	}
 
 	c.resizeText = function (elementId, playerWrapper = false) {
-		let el = document.getElementById(elementId);
-		resizeText(el, playerWrapper);
+		try {
+			let el = document.getElementById(elementId);
+			resizeText(el, playerWrapper);
+		} catch (e) {
+			console.log(e);
+		}
+		
 	}
 
 	//text resize, keeps making the text smaller until it fits
 	function resizeText(textEL, playerWrapper = false) {
-		let childrens = "";
-		if (playerWrapper) {
-			childrens = textEL.children[0].children;
-		} else {
-			childrens = textEL.children
-		}
-		while (textEL.scrollWidth > textEL.offsetWidth || textEL.scrollHeight > textEL.offsetHeight) {
-			if (childrens.length > 0) { //for tag+player texts
-				Array.from(childrens).forEach(function (child) {
-					child.style.fontSize = getFontSize(child);
-				});
+		console.log('Hit resize');
+		try {
+			let childrens = "";
+			if (playerWrapper) {
+				childrens = textEL.children[0].children;
 			} else {
-
-				textEL.style.fontSize = getFontSize(textEL);
+				childrens = textEL.children
 			}
+			while (textEL.scrollWidth > textEL.offsetWidth || textEL.scrollHeight > textEL.offsetHeight) {
+				if (childrens.length > 0) { //for tag+player texts
+					Array.from(childrens).forEach(function (child) {
+						child.style.fontSize = getFontSize(child);
+					});
+				} else {
+	
+					textEL.style.fontSize = getFontSize(textEL);
+				}
+			}
+		} catch (e) {
+			console.log(e);
 		}
+
 	}
 
 	//returns a smaller fontSize for the given element
@@ -911,7 +932,8 @@ app.directive("playerSocialsWrapper", function () {
             'index':'@',
             'number':'@',
 			'fields':'=',
-			'gamemode':'@'
+			'gamemode':'@',
+			'fadeControl': '&'
 		},
         transclude: true,
         controller: function ($scope) {

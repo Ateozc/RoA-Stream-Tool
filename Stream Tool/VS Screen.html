@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>RoA VS Screen</title>
-    <script src="Resources/Scripts/VS Screen.js" defer></script>
-    <link rel="stylesheet" href="Resources/CSS/VS Screen.css">
+    <script src="jquery.fittext.js"></script>
     <script src="Resources/Scripts/angular.min.js"></script>
     <script src="Resources/Scripts/jquery.min.js"></script>
+    <script src="Resources/Scripts/VS Screen.js" defer></script>
+    <link rel="stylesheet" href="Resources/CSS/VS Screen.css">
+
+    
 </head>
 
 <body ng-app="angularapp" ng-controller="AngularAppCtrl">
@@ -61,7 +64,9 @@
         </div>
 
         <div id="playerTexts">
-            <player-socials-wrapper player="prev.players[0]" index="0" number="1" fields="playerFields" gamemode="{{prev.gamemode}}"></player-socials-wrapper>
+            <div ng-style="fadeInPlayerFields(0)">
+                <player-socials-wrapper player="prev.players[0]" index="0" number="1" fields="playerFields" gamemode="{{prev.gamemode}}"></player-socials-wrapper>
+            </div>
             <span id="p1Wrapper" class="wrappers" ng-style="{'background-image': getGradientBackground(0)}" ng-class="{'wrappersDoubles topLeftDubs': prev.gamemode=='Teams', 'p1WSingles wrappersSingles': prev.gamemode=='Singles'}">
                 <div ng-style="fadeInPlayerName(0)" ng-class="{'wrapperInnerSingles' : prev.gamemode == 'Singles'}">
                     <!-- <player-name-wrapper player="prev.players[0]" index="0" number="1"></player-name-wrapper> -->
