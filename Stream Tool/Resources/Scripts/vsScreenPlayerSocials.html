@@ -1,14 +1,8 @@
-<span ng-show="gamemode=='Singles'" id="p{{number}}FieldsWrapper" class="wrappers" style="
-            color:white;
-            bottom: 215px;
-            height: 6%;
-            width: 48%;
-            display:inline;
-            border-radius: 10px;
-            background: transparent;
-            text-align: left;
-            font-size:20px"
-            ng-class="{'wrappersDoubles topLeftDubs': gamemode=='Teams', 'p{{number}}WSingles wrappersSingles': gamemode=='Singles', 'p1WrapperFields' : number==1, 'p2WrapperFields' : number==2}">
+<span id="p{{number}}FieldsWrapper" class="wrappers fieldWrapper "
+            ng-class="{'wrappersDoubles p{{number}}WrapperFields': gamemode=='Teams', 'p{{number}}WSingles wrappersSingles': gamemode=='Singles'}">
+
+            <!-- ng-class="{'wrappersDoubles topLeftDubs': gamemode=='Teams', 'p{{number}}WSingles wrappersSingles': gamemode=='Singles', 'p1WrapperFields' : number==1, 'p2WrapperFields' : number==2}"> -->
+
     <span ng-repeat="field in fields" id="p{{number}}{{field.label}}" style="display:inline; margin: 1%; padding:8px" ng-if="field.field != 'tag'" ng-show="player[field.field]" ng-style="{'background': player.teamColor.hex}">
         <span ng-show="field.field == 'twitter'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 0 16 16" height="24px" width="24px" fill="white" style="overflow: visible;">

@@ -13,6 +13,19 @@
   src: url('../Fonts/Urban-Nation.ttf');
 }
 
+.team1 > img.character {
+  transform: scaleX(1);
+}
+
+.team2 > img.character {
+  transform: scaleX(-1);
+}
+
+
+
+
+
+
 body {
   width: 1920px;
   height: 1080px;
@@ -121,25 +134,6 @@ body {
   font-size: 20px;
 }
 
-.p1WrapperFields {
-  left: -4px !important;
-  /* color:white;
-  bottom: 205px;
-  height: 6%;
-  width: 48%;
-  border-radius: 10px; */
-}
-
-.p2WrapperFields {
-  left: 960px !important;
-  /* color:white;
-  bottom: 205px;
-  height: 6%;
-  width: 48%;
-  border-radius: 10px; */
-}
-
-
 
 .wrappersSingles {
   transform: rotate(-3deg);
@@ -214,6 +208,65 @@ body {
   /* font-size:50px; */
   display: block;
 }
+
+.fieldWrapper {
+  color:white;
+  bottom: 215px;
+  height: 6%;
+  width: 48%;
+  display:inline;
+  border-radius: 10px;
+  background: transparent;
+  text-align: left;
+  font-size:20px"
+}
+
+
+.p1WrapperFields {
+  /* left: -4px !important; */
+  top: 0px;
+  display: flex;
+  align-items: flex-start;
+  align-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translateY(185px);  
+}
+
+.p2WrapperFields {
+  top: 400px;
+  display: flex;
+  align-items: flex-start;
+  align-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translateY(185px);
+}
+
+.p3WrapperFields {
+  /* left: -4px !important; */
+  left: 1000px;
+  top: 0px;
+  display: flex;
+  align-items: flex-end;
+  align-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translateY(185px);
+  
+}
+
+.p4WrapperFields {
+  left: 1000px;
+  top: 400px;
+  display: flex;
+  align-items: flex-end;
+  align-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translateY(185px);
+}
+
 
 .teamName {
   position: absolute;
@@ -365,6 +418,8 @@ body {
   fill: #414141;
   font-size: 85px;
   font-family: "Deansgate";
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
 }
 
 #scoreNumberL {

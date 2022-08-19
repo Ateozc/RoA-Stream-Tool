@@ -1,15 +1,6 @@
 {
   "player": [
     {
-      "name": "Test",
-      "twitter": "verylongtwitter",
-      "pronouns": "They/It",
-      "tag": "test",
-      "characters": [
-        "Absa"
-      ]
-    },
-    {
       "name": "Ateozc",
       "twitter": "@ateozc",
       "pronouns": "He/Him",
@@ -20,21 +11,30 @@
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "name": "Test",
+      "twitter": "verylongtwitter",
+      "pronouns": "They/It",
+      "tag": "test",
       "characters": [
-        "Random"
+        "Absa"
       ]
     },
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
+      "name": "Demitus",
+      "twitter": "@demitustouch",
+      "pronouns": "He/Him",
       "tag": "",
       "characters": [
-        "Random"
+        "Forsburn"
+      ]
+    },
+    {
+      "name": "Serris",
+      "twitter": "@serrisfroon",
+      "pronouns": "He/HIm",
+      "tag": "UGS",
+      "characters": [
+        "Ranno"
       ]
     }
   ],
