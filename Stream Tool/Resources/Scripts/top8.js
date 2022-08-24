@@ -57,10 +57,10 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 	c.gui.game = 'Rivals of Aether';
 	c.gui.top8Settings = {
-        useP1Background: true,
-        useCustomBackground: false,
-        customBackground: ""
-    };
+		useP1Background: true,
+		useCustomBackground: false,
+		customBackground: ""
+	};
 
 
 	c.prev = {};
@@ -71,10 +71,10 @@ app.controller('AngularAppCtrl', function ($scope) {
 	c.prev.game = 'Rivals of Aether';
 
 	c.prev.top8Settings = {
-        useP1Background: true,
-        useCustomBackground: false,
-        customBackground: ""
-    };
+		useP1Background: true,
+		useCustomBackground: false,
+		customBackground: ""
+	};
 
 
 
@@ -113,24 +113,24 @@ app.controller('AngularAppCtrl', function ($scope) {
 	}
 	c.mainLoop();
 
-	c.displayCustomVideoBackground = function() {
+	c.displayCustomVideoBackground = function () {
 		return (
-				!c.prev.top8Settings.useP1Background 
-				&& c.prev.top8Settings.useCustomBackground 
-				&& c.prev.top8Settings.customBackground
-				&& c.prev.top8Settings.customBackground.indexOf('.webm') != -1
-				&& c.prev.top8Settings.customBackground
-			);
+			!c.prev.top8Settings.useP1Background &&
+			c.prev.top8Settings.useCustomBackground &&
+			c.prev.top8Settings.customBackground &&
+			c.prev.top8Settings.customBackground.indexOf('.webm') != -1 &&
+			c.prev.top8Settings.customBackground
+		);
 	}
 
-	c.displayCustomImageBackground = function() {
+	c.displayCustomImageBackground = function () {
 		return (
-				!c.prev.top8Settings.useP1Background 
-				&& c.prev.top8Settings.useCustomBackground 
-				&& c.prev.top8Settings.customBackground
-				&& c.prev.top8Settings.customBackground.indexOf('.webm') == -1
-				&& c.prev.top8Settings.customBackground
-			);
+			!c.prev.top8Settings.useP1Background &&
+			c.prev.top8Settings.useCustomBackground &&
+			c.prev.top8Settings.customBackground &&
+			c.prev.top8Settings.customBackground.indexOf('.webm') == -1 &&
+			c.prev.top8Settings.customBackground
+		);
 	}
 
 	c.fadeInCharacter = function (player) {
@@ -313,12 +313,13 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 
 	c.getTransformInformation = function (player) {
+		return;
 		try {
 			let info = "";
-			if (c.prev.players[player].info) {
-				info = c.prev.players[player].info.vsScreen;
+			if (player.info) {
+				info = player.info.top8;
 			}
-			let skin = c.prev.players[player].vsScreenSkin;
+			let skin = player.vsScreenSkin;
 
 			let usePixelation = true;
 
@@ -327,10 +328,10 @@ app.controller('AngularAppCtrl', function ($scope) {
 			} else if (c.prev.game != 'Rivals Workshop' && c.prev.game != 'Rivals of Aether') {
 				usePixelation = false;
 			}
-			let x, y = 0;
-			let scale = 1;
-			let scaleX = 1;
-			let imageRendering = (usePixelation) ? 'pixelated' : 'auto';
+			let x = 0;
+			let y = 0;
+			let scale = 1.25;
+			// let imageRendering = (usePixelation) ? 'pixelated' : 'auto';
 			//CB - Combo Breaker
 			// let filter =  "grayscale(1)" + c.getDropShadowWithHex(player);
 
@@ -345,35 +346,18 @@ app.controller('AngularAppCtrl', function ($scope) {
 					y = info.neutral.y;
 					scale = info.neutral.scale;
 				}
-			} else {
-				if (c.prev.gamemode == 'Singles') {
-					if (player == 0) {
-						x = -475;
-					} else {
-						x = -500;
-					}
-					if (skin == 'Random' && player == 1) {
-						scaleX = -1;
-					}
-				} else {
-					y = -125;
-					if (player < c.prev.players.length / 2) {
-						x = -475;
-					} else {
-						x = -500;
-						scaleX = -1;
-					}
-				}
-				scale = .8;
 			}
 
-			scaleX = scale * scaleX;
+
+
 			let style = {
-				transform: `translate(${x}px, ${y}px) scale(${scaleX} , ${scale})`,
-				imageRendering: imageRendering,
-				filter: filter,
+				// 'object-position': `${x}px, ${y}px`
+				transform: `translate(${x}px, ${y}px) scale(${scale})`,
+
+				// imageRendering: imageRendering,
 				// animation: `charaMoveIn ${fadeInTime + .1}s ${delay + .2}s both, fadeIn ${fadeInTime + .1}s ${delay + .2}s both`
 			}
+
 			return style;
 		} catch (e) {
 			return {};
@@ -421,7 +405,7 @@ app.controller('AngularAppCtrl', function ($scope) {
 				continue;
 			}
 
-			
+
 
 			if (object1[property] != object2[property]) {
 				return false;
@@ -462,7 +446,7 @@ app.controller('AngularAppCtrl', function ($scope) {
 			c.prev.game = c.gui.game;
 			c.prev.top8Settings = c.gui.top8Settings
 			prevSameAsGui = true;
-			
+
 
 			// firstRun = false;
 			prevDifFromGuiCount = -2;

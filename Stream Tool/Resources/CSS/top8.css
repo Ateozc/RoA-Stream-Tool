@@ -113,18 +113,20 @@ body {
     height: 100%;
     width: 100%;
     object-fit: contain;
-    object-position: 31px 25px;
-    transform: scale(1.25);
+    /* object-position: 31px 25px; */
+    /* transform: scale(1.25); */
     filter: drop-shadow(-5px 2px 3px white);
-
+    transform: translate(-20px, 36px) scale(1.25);
 }
 
 .playerContainer.p1 > img {
-    object-position: 0px 48px;
+    /* object-position: 0px 48px; */
+    transform: translate(-58px, 63px) scale(1.25);
 }
 
 img.charImgRandom {
-    object-position: center;
+    /* object-position: center; */
+    transform: translate(0, 0) scale(1.25);
 }
 
 .placing {

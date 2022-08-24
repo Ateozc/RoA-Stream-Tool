@@ -25,7 +25,7 @@
         <div style="filter: drop-shadow(0px 70px 70px black); position: absolute; top:0px;">
             <div ng-repeat="player in prev.players" ng-init="playerIndex = $index; playerNumber = $index + 1" class="playerContainer p{{$index +1}}" id="p{{$index +1}}" ng-class="">
                 <span class="placing p{{playerNumber}}" >{{player.placement}}</span>
-                <img class="character char" id="charP{{playerNumber}}" ng-src="{{player.vsScreenSkinPath}}" ng-class="{'charImgRandom' : player.vsScreenSkinPath.indexOf('Random.png') != -1}" ng-style="getCharacterPosition(player)"/>
+                <img class="character char" id="charP{{playerNumber}}" ng-src="{{player.vsScreenSkinPath}}" ng-class="{'charImgRandom' : player.vsScreenSkinPath.indexOf('Random.png') != -1}" ng-style="{{getTransformInformation(player)}}"/>
                 <span class="playerInfo p{{playerNumber}}">
                     <span ng-if="player.tag" class="playerTag">{{player.tag}} | </span><span class="playerName">{{player.name}}</span>
                 </span>

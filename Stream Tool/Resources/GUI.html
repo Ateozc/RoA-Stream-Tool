@@ -58,14 +58,14 @@
                 <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player {{playerNumber}}" title="Insert P{{playerNumber}}'s name here" spellcheck="false" ng-model="player.name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(playerIndex)" ng-change="checkPlayerPreset(playerIndex)">
                 <div class="playerFinder" id="pFinder{{playerIndex}}"></div>
               </div>
-              <div title="Everyone is here!" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+              <div title="Everyone is here!" style="position: relative;" ng-init="charFilter=''; charShow=false; charFocused=false" ng-click="(!charFocused) ? charShow=!charShow : ''; charFilter=''">
                 <div class="selector">
                   <img ng-src="{{getIconPath(player.character)}}">
                   <span>{{player.character}}</span>
-                  <div class="finder" ng-show="show || focused || filter">
-                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false;">
+                  <div class="finder" ng-show="charShow || charFocused || charFilter">
+                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="charFilter" ng-focus="charFocused=true" ng-blur="charFocused=false;">
                     <div class="searchList">
-                      <div class="finderEntry" ng-repeat="character in characterList | filter: {name: filter}" ng-click="players[playerIndex].character = character.name; markCharacterIndex(playerIndex)">
+                      <div class="finderEntry" ng-repeat="character in characterList | filter: {name: charFilter}" ng-click="player.character = character.name; markCharacterIndex(playerIndex)">
                         <img ng-src="{{getIconPath(character.name)}}">
                         <span>{{character.name}}</span>
                       </div>
@@ -75,13 +75,13 @@
 
               </div>
 
-              <div ng-hide="player.character == 'Random'" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+              <div ng-hide="player.character == 'Random'" style="position: relative;" ng-init="skinFilter=''; skinShow=false; skinFocused=false" ng-click="(!skinFocused) ? skinShow=!skinShow : ''; skinFilter=''">
                 <div class="selector">
                   {{player.skin}}
-                  <div class="skinFinder finder" ng-show="show || focused || filter">
-                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
+                  <div class="skinFinder finder" ng-show="skinShow || skinFocused || skinFilter">
+                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="skinFilter" ng-focus="skinFocused=true" ng-blur="skinFocused=false">
                     <div class="searchList">
-                      <div class="finderEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins | filter: {label: filter}" ng-click="player.skinIndex = skin.index; setSkinBasedOnIndex(playerIndex);">
+                      <div class="finderEntry" ng-repeat="skin in characterList[player.characterIndex].skins | filter: {label: skinFilter}" ng-click="player.skinIndex = skin.index; setSkinBasedOnIndex(playerIndex);">
                         <span class="pfName">{{skin.label}}</span>
                         <div class="pfCharImgBox">
                           <img class="pfCharImg" ng-src='{{getSkinPath(player.character, skin.label)}}' ng-style="{{getTransformForCharImage(player.character, skin.label)}}">
