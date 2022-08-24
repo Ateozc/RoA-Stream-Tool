@@ -63,6 +63,8 @@ body {
     width: 25%;
     height: 511px;
     transform: translate(140px, 284.5px);
+    min-width: 480px;
+    min-height: 511px;
 }
 
 .playerContainer.p2 {
