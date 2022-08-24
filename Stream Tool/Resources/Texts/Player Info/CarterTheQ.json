@@ -1,12 +1,13 @@
 {
   "name": "CarterTheQ",
-  "twitter": "",
-  "pronouns": "",
+  "twitter": "@CarterTheQ",
+  "pronouns": "He/Him",
   "tag": "",
   "characters": [
     {
       "character": "Kragg",
-      "skin": "Summit"
+      "skin": "Summit",
+      "game": "Rivals of Aether"
     }
   ],
   "game": "Rivals of Aether"

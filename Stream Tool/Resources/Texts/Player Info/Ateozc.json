@@ -5,11 +5,26 @@
   "characters": [
     {
       "character": "Absa",
-      "skin": "Grey",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Genesis",
       "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Elliana",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
@@ -19,18 +34,78 @@
       "game": "Rivals Workshop"
     },
     {
-      "character": "Harley",
-      "skin": "Default",
-      "game": "Multiversus"
+      "character": "Shovel Knight",
+      "skin": "Abyss",
+      "game": "Rivals of Aether"
     },
     {
-      "character": "Bugs",
+      "character": "Random",
+      "skin": "",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetterburn",
       "skin": "Default",
-      "game": "Multiversus"
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Grey",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Mollo",
+      "skin": "Red",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Kragg",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Pomme",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Sylvanos",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Wrastor",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
+      "skin": "Cyan",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Maypul",
+      "skin": "Purple",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Etalus",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Forsburn",
+      "skin": "Dreamscape",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him",
   "twitch": "Ateozc",
   "youtube": "Ateozc",
-  "discord": "d"
+  "discord": "Ateozc"
 }

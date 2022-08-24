@@ -5,7 +5,7 @@
   "characters": [
     {
       "character": "Ranno",
-      "skin": "Blue",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -20,6 +20,11 @@
     },
     {
       "character": "Hodan",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
       "skin": "Default",
       "game": "Rivals of Aether"
     }

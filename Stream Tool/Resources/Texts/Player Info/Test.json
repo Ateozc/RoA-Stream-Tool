@@ -4,27 +4,27 @@
   "characters": [
     {
       "character": "Absa",
-      "skin": "LoA",
+      "skin": "Green",
       "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "LoA 1 HD",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
-      "skin": "LoA HD",
+      "skin": "Summer",
       "game": "Rivals of Aether"
     },
     {
       "character": "Etalus",
-      "skin": "LoA HD",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Forsburn",
-      "skin": "LoA",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "character": "Ori and Sein",
-      "skin": "Default",
+      "skin": "Cyan",
       "game": "Rivals of Aether"
     },
     {
@@ -59,17 +59,17 @@
     },
     {
       "character": "Sylvanos",
-      "skin": "Abyss",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Wrastor",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
+      "character": "Wrastor",
+      "skin": "Collegiate",
+      "game": "Rivals of Aether"
+    },
+    {
       "character": "Zetterburn",
-      "skin": "LoA",
+      "skin": "Abyss",
       "game": "Rivals of Aether"
     },
     {
@@ -78,7 +78,7 @@
     },
     {
       "character": "Olympia",
-      "skin": "Default",
+      "skin": "Dark Purple",
       "game": "Rivals of Aether"
     },
     {
@@ -87,104 +87,21 @@
       "game": "Rivals of Aether"
     },
     {
-      "character": "Arya",
-      "skin": "Default",
-      "game": "Multiversus"
+      "character": "Hodan",
+      "skin": "Summer",
+      "game": "Rivals of Aether"
     },
     {
-      "character": "Batman",
+      "character": "Pomme",
       "skin": "Default",
-      "game": "Multiversus"
+      "game": "Rivals of Aether"
     },
     {
-      "character": "Bugs",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Finn",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Garnet",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Harley",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Iron Giant",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Jake",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Lebron",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Morty",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Reindog",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Rick",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Shaggy",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Steven",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Superman",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Taz",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Tom and Jerry",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Velma",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Wonder Woman",
-      "skin": "Default",
-      "game": "Multiversus"
+      "character": "Mollo",
+      "skin": "Abyss",
+      "game": "Rivals of Aether"
     }
   ],
-  "twitter": "verylongtwitter",
-  "pronouns": "They/It",
-  "twitch": "verylongtwitch",
-  "youtube": "testYT",
-  "discord": "asdfasdfasdfasdf"
+  "twitter": "@test",
+  "pronouns": "test"
 }

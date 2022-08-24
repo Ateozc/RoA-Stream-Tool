@@ -1,0 +1,79 @@
+{
+  "name": "Toobu",
+  "twitter": "@Toobu11",
+  "pronouns": "He/Him",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Zetterburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Forsburn",
+      "skin": "Dreamscape",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Absa",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Elliana",
+      "skin": "Grey",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Shovel Knight",
+      "skin": "Abyss",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Grey",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Pomme",
+      "skin": "Purple",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Pool Party",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Sylvanos",
+      "skin": "Genesis",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Mollo",
+      "skin": "White",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Maypul",
+      "skin": "Purple",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Summer",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Kragg",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    }
+  ],
+  "game": "Rivals of Aether"
+}

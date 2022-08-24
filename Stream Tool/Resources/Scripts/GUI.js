@@ -116,13 +116,36 @@ app.controller('AngularAppCtrl', function ($scope) {
     c.forceHDChoice = c.hdOptions[0];
 
     //TODO: Move all player socials data into a socials heirarchy instead of needing this garbage.
-    c.playerFields = [
-        {'label': 'Pronouns',   'field': 'pronouns','title':"Insert the Player's pronouns here"},
-        {'label': 'Tag',        'field': 'tag',     'title':"Insert the tag/team/sponsor here"},
-        {'label': 'Twitter',    'field': 'twitter', 'title':"Insert the Player's Twitter here"},
-        {'label': 'Twitch',     'field': 'twitch',  'title':"Insert the Player's Twitch here"},
-        {'label': 'Youtube',    'field': 'youtube', 'title':"Insert the Player's Youtube here"},
-        {'label': 'Discord',    'field': 'discord', 'title':"Insert the Player's Discord here"}
+    c.playerFields = [{
+            'label': 'Pronouns',
+            'field': 'pronouns',
+            'title': "Insert the Player's pronouns here"
+        },
+        {
+            'label': 'Tag',
+            'field': 'tag',
+            'title': "Insert the tag/team/sponsor here"
+        },
+        {
+            'label': 'Twitter',
+            'field': 'twitter',
+            'title': "Insert the Player's Twitter here"
+        },
+        {
+            'label': 'Twitch',
+            'field': 'twitch',
+            'title': "Insert the Player's Twitch here"
+        },
+        {
+            'label': 'Youtube',
+            'field': 'youtube',
+            'title': "Insert the Player's Youtube here"
+        },
+        {
+            'label': 'Discord',
+            'field': 'discord',
+            'title': "Insert the Player's Discord here"
+        }
     ];
 
 
@@ -135,7 +158,7 @@ app.controller('AngularAppCtrl', function ($scope) {
         startScene: "",
         endScene: "",
         currentScene: "",
-    }
+    };
 
     let currentIntervalForVsScreen = 0;
     const intervalBeforeVsScreenShows = 8;
@@ -149,7 +172,23 @@ app.controller('AngularAppCtrl', function ($scope) {
         inSet: false,
         showInfo: false,
         setTeamColor: false
-    }
+    };
+
+    c.showTop8 = false;
+
+    c.top8Settings = {
+        useTopText:false,
+        topText:"",
+        useBottomText: false,
+        bottomTextBracket: "",
+        bottomTextYoutube:"",
+        bottomTextTwitch:"",
+        bottomTextTwitter:"",
+        top8Ties: true,
+        useP1Background: true,
+        useCustomBackground: false,
+        customBackground: ""
+    };
 
     c.obsSetScreen = function (scene, forced = false) {
         if (!scene) {
@@ -298,6 +337,10 @@ app.controller('AngularAppCtrl', function ($scope) {
             playerType = 'onDeckPlayers';
         }
 
+        if (c.showTop8) {
+            playerType = 'top8Players'
+        }
+
         if (event.altKey && event.ctrlKey) {
             updatePlayerJson(c.playerProfiles[index], true);
             c.inPlayerField = false;
@@ -350,6 +393,7 @@ app.controller('AngularAppCtrl', function ($scope) {
     c.setMaxPlayers = function () {
         c.players = setupPlayersVar();
         c.onDeckPlayers = setupPlayersVar();
+        c.top8Players = setupPlayersVar(true);
         c.saveGUISettings();
     }
 
@@ -358,6 +402,11 @@ app.controller('AngularAppCtrl', function ($scope) {
         if (onDeck) {
             playerType = "onDeckPlayers";
         }
+
+        if (c.showTop8) {
+            playerType = 'top8Players';
+        }
+
 
         c[playerType][player].characterIndex = c.characterList.map(e => e.name).indexOf(c[playerType][player].character);
         if (updateSkin) {
@@ -371,6 +420,9 @@ app.controller('AngularAppCtrl', function ($scope) {
         let playerType = 'players';
         if (c.playerFocusOnDeck) {
             playerType = 'onDeckPlayers';
+        }
+        if (c.showTop8) {
+            playerType = 'top8Players'
         }
 
         let skins = c.characterList[c[playerType][player].characterIndex].skins;
@@ -436,13 +488,18 @@ app.controller('AngularAppCtrl', function ($scope) {
         return fs.existsSync(path) ? path : randomIconPath;
     }
 
-    c.getPathsForOverlays = function () {
+    c.getPathsForOverlays = function (top8 = false) {
         let random = c.relativePathOfFile(randomSkinPathRel);
-        for (let i in c.players) {
-            let character = c.players[i].character;
-            let skin = c.players[i].skin;
+
+        var players = c.players;
+        if (top8) {
+            players = c.top8Players;
+        }
+        for (let i in players) {
+            let character = players[i].character;
+            let skin = players[i].skin;
             let teamColor = "";
-            let altSkin = c.players[i].skin;
+            let altSkin = players[i].skin;
             let vsScreenSkin = skin;
             let scoreboardSkin = skin;
             let playerTeam = 0;
@@ -453,21 +510,24 @@ app.controller('AngularAppCtrl', function ($scope) {
             let backgroundPath = c.relativePathOfFile(defaultWbBackground);
             let characterInfo = getJson(charPath + character + "/_Info");
 
-            if (c.gamemode == 'Singles') {
-                if (i == 0) {
-                    teamColor = c.sides.left.color;
+            if (!top8) {
+                if (c.gamemode == 'Singles') {
+                    if (i == 0) {
+                        teamColor = c.sides.left.color;
+                    } else {
+                        playerTeam = 1;
+                        teamColor = c.sides.right.color;
+                    }
                 } else {
-                    playerTeam = 1;
-                    teamColor = c.sides.right.color;
-                }
-            } else {
-                if (i < c.maxPlayers / 2) {
-                    teamColor = c.sides.left.color;
-                } else {
-                    teamColor = c.sides.right.color;
-                    playerTeam = 1;
+                    if (i < c.maxPlayers / 2) {
+                        teamColor = c.sides.left.color;
+                    } else {
+                        teamColor = c.sides.right.color;
+                        playerTeam = 1;
+                    }
                 }
             }
+
 
             if (character == 'Random') {
                 defaultSkinPath = random;
@@ -537,15 +597,15 @@ app.controller('AngularAppCtrl', function ($scope) {
             }
 
 
-            c.players[i].defaultSkinPath = defaultSkinPath;
-            c.players[i].vsScreenSkinPath = vsScreenSkinPath;
-            c.players[i].scoreboardSkinPath = scoreboardSkinPath;
-            c.players[i].backgroundWebm = backgroundPath;
-            c.players[i].info = characterInfo;
-            c.players[i].teamColor = teamColor;
-            c.players[i].vsScreenSkin = vsScreenSkin;
-            c.players[i].scoreboardSkin = scoreboardSkin;
-            c.players[i].team = playerTeam;
+            players[i].defaultSkinPath = defaultSkinPath;
+            players[i].vsScreenSkinPath = vsScreenSkinPath;
+            players[i].scoreboardSkinPath = scoreboardSkinPath;
+            players[i].backgroundWebm = backgroundPath;
+            players[i].info = characterInfo;
+            players[i].teamColor = teamColor;
+            players[i].vsScreenSkin = vsScreenSkin;
+            players[i].scoreboardSkin = scoreboardSkin;
+            players[i].team = playerTeam;
         }
     }
 
@@ -814,6 +874,9 @@ app.controller('AngularAppCtrl', function ($scope) {
 
     // called whenever the used clicks on a settings checkbox
     c.saveGUISettings = function () {
+
+        c.saveTop8Settings();
+        c.saveOBSSettings();
         // read the file
         const guiSettings = JSON.parse(fs.readFileSync(textPath + "/GUI Settings.json", "utf-8"));
 
@@ -843,6 +906,7 @@ app.controller('AngularAppCtrl', function ($scope) {
 
     // called whenever the used clicks on a settings checkbox
     c.saveOBSSettings = function () {
+    
         // read the file
         const obsSettings = JSON.parse(fs.readFileSync(textPath + "/OBS Settings.json", "utf-8"));
 
@@ -861,6 +925,40 @@ app.controller('AngularAppCtrl', function ($scope) {
         // save the file
         fs.writeFileSync(textPath + "/OBS Settings.json", JSON.stringify(obsSettings, null, 2));
     }
+
+
+    // called whenever the used clicks on a settings checkbox
+    c.saveTop8Settings = function () {
+        // read the file
+        const top8Settings = JSON.parse(fs.readFileSync(textPath + "/Top 8 Settings.json", "utf-8"));
+
+        if (c.top8Settings.top8Ties) {
+            
+        }
+        for (let i = 0; i < c.top8Players.length; i++) {
+            c.top8Players[i].placement = i+1;
+            if (c.top8Settings.top8Ties) {
+                if (i == 5 || i == 7) {
+                    c.top8Players[i].placement = i
+                }
+            }
+        }
+        top8Settings.useTopText = c.top8Settings.useTopText;
+        top8Settings.topText = c.top8Settings.topText;
+        top8Settings.useBottomText = c.top8Settings.useBottomText;
+        top8Settings.bottomTextBracket = c.top8Settings.bottomTextBracket;
+        top8Settings.bottomTextYoutube = c.top8Settings.bottomTextYoutube;
+        top8Settings.bottomTextTwitch = c.top8Settings.bottomTextTwitch;
+        top8Settings.bottomTextTwitter = c.top8Settings.bottomTextTwitter;
+        top8Settings.top8Ties = c.top8Settings.top8Ties;
+        top8Settings.useP1Background = c.top8Settings.useP1Background;
+        top8Settings.useCustomBackground = c.top8Settings.useCustomBackground;
+        top8Settings.customBackground = c.top8Settings.customBackground;
+
+        // save the file
+        fs.writeFileSync(textPath + "/Top 8 Settings.json", JSON.stringify(top8Settings, null, 2));
+    }
+
 
 
     // c.showPlayerFinder = function() {
@@ -887,9 +985,13 @@ app.controller('AngularAppCtrl', function ($scope) {
     const goBackDiv = document.getElementById('goBack');
 
 
-    function setupPlayersVar() {
+    function setupPlayersVar(top8 = false) {
         let playerArray = [];
-        for (let i = 0; i < c.maxPlayers; i++) {
+        var maxPlayers = c.maxPlayers;
+        if (top8) {
+            maxPlayers = 8;
+        }
+        for (let i = 0; i < maxPlayers; i++) {
             let player = {
                 name: "",
                 twitter: "",
@@ -899,6 +1001,15 @@ app.controller('AngularAppCtrl', function ($scope) {
                 characterIndex: 0,
                 skin: "",
                 skinIndex: 0
+            }
+            if (top8) {
+                player['placement'] = i +1;
+                if (c.top8Settings.top8Ties) {
+                    if (i == 5 || i == 7) {
+                        player['placement'] = i
+                    }
+                }
+
             }
             playerArray.push(player);
         }
@@ -987,6 +1098,11 @@ app.controller('AngularAppCtrl', function ($scope) {
             c.obsSettings[key] = obsSettings[key];
         }
 
+        const top8Settings = JSON.parse(fs.readFileSync(textPath + "/Top 8 Settings.json", "utf-8"));
+        for (var key in top8Settings) {
+            c.top8Settings[key] = top8Settings[key];
+        }
+
         c.setMaxPlayers();
 
         c.alwaysOnTopToggle();
@@ -1040,6 +1156,11 @@ app.controller('AngularAppCtrl', function ($scope) {
         });
         Mousetrap.bind('f2', () => {
             c.setScore('right', c.sides.left.score + 1);
+        });
+
+        Mousetrap.bind('ctrl+8', () => {
+            c.showTop8 = !c.showTop8;
+            $scope.$apply();
         });
 
         // //up/down, to navigate the player presets menu (only when a menu is shown)
@@ -1254,7 +1375,7 @@ app.controller('AngularAppCtrl', function ($scope) {
 
     function moveViewport() {
         if (!movedSettings) {
-            viewport.style.transform = "translateX(calc(-140% / 3))";
+            viewport.style.transform = "translateX(-40%)";
             overlayDiv.style.opacity = ".25";
             goBackDiv.style.display = "block"
             movedSettings = true;
@@ -1262,7 +1383,7 @@ app.controller('AngularAppCtrl', function ($scope) {
     }
 
     function goBack() {
-        viewport.style.transform = "translateX(calc(-100% / 3))";
+        viewport.style.transform = "translateX(0)";
         overlayDiv.style.opacity = "1";
         goBackDiv.style.display = "none";
         movedSettings = false;
@@ -1285,6 +1406,9 @@ app.controller('AngularAppCtrl', function ($scope) {
         c.playerFocusOnDeck = onDeck;
         if (onDeck) {
             playerType = 'onDeckPlayers';
+        }
+        if (c.showTop8) {
+            playerType = 'top8Players'
         }
         c.playerProfiles = c.getPlayerProfiles(c[playerType][playerIndex].name);
     }
@@ -1377,6 +1501,7 @@ app.controller('AngularAppCtrl', function ($scope) {
         if (onDeckPlayers) {
             playerType = 'onDeckPlayers';
         }
+
 
         let playersPerSide = c.maxPlayers / 2;
 
@@ -1579,10 +1704,13 @@ app.controller('AngularAppCtrl', function ($scope) {
     //TODO: Split scoreboard from players/gui. 
     //time to write it down
     c.writeScoreboard = function () {
+        c.saveGUISettings();
         c.getPathsForOverlays();
+        c.getPathsForOverlays(true);
         //this is what's going to be in the json file
         const scoreboardJson = {
             player: [], //more lines will be added below
+            top8Players: [],
             teamName: [
                 (c.sides.left.teamName) ? (c.sides.left.teamName) : c.sides.left.color.name + " Team",
                 (c.sides.right.teamName) ? (c.sides.right.teamName) : c.sides.right.color.name + " Team"
@@ -1621,7 +1749,8 @@ app.controller('AngularAppCtrl', function ($scope) {
             seasonalSkin: c.seasonalSkin,
             externalUpdate: false,
             addressRockerSettings: c.addressRockerSettings,
-            obsSettings: c.obsSettings
+            obsSettings: c.obsSettings,
+            top8Settings: c.top8Settings
         };
         //add the player's info to the player section of the json
         for (let i = 0; i < c.players.length; i++) {
@@ -1634,6 +1763,17 @@ app.controller('AngularAppCtrl', function ($scope) {
             scoreboardJson.player.push(player);
 
             updatePlayerJson(scoreboardJson.player[i])
+        }
+
+        for (let i = 0; i < c.top8Players.length; i++) {
+            let player = {};
+            for (let field in c.top8Players[i]) {
+                if (field != "$$hashKey") {
+                    player[field] = c.top8Players[i][field];
+                }
+            }
+            scoreboardJson.top8Players.push(player);
+
         }
 
         for (let i = 0; i < c.casters.length; i++) {
@@ -1693,9 +1833,9 @@ app.directive("playerInfoModal", function () {
         // scope: true,
         scope: {
             'player': '=',
-            'index':'@',
-            'number':'@',
-            'fields':'='
+            'index': '@',
+            'number': '@',
+            'fields': '='
         },
         transclude: true,
         controller: function ($scope) {
@@ -1712,3 +1852,26 @@ app.directive("playerInfoModal", function () {
         }
     }
 });
+
+app.directive("fileread", [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                scope.$apply(function () {
+                    let origPath = changeEvent.target.files[0].path
+                    if (origPath.indexOf('Stream Tool\\') == -1) {
+                        console.log('Must be within a Stream Tool folder');
+                        scope.fileread = "";
+                    } else {
+                        scope.fileread = origPath.split('Stream Tool\\')[1];
+                    }
+                    // or all selected files:
+                    // scope.fileread = changeEvent.target.files;
+                });
+            });
+        }
+    }
+}]);

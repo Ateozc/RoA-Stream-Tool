@@ -2,12 +2,27 @@
   "name": "Gus",
   "twitter": "",
   "pronouns": "",
-  "tag": "",
+  "tag": "UGS",
   "characters": [
     {
       "character": "Hodan",
       "skin": "Default",
       "game": "Rivals Workshop"
+    },
+    {
+      "character": "Maypul",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Bugs",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Velma",
+      "skin": "Default",
+      "game": "Multiversus"
     }
   ]
 }

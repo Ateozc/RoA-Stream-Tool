@@ -1,13 +1,18 @@
 {
   "name": "Viri",
   "twitter": "@ViriROB",
-  "pronouns": "",
+  "pronouns": "He/Him",
   "tag": "",
   "characters": [
     {
       "character": "Pomme",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ]
 }

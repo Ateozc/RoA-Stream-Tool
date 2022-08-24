@@ -5,14 +5,15 @@
   "characters": [
     {
       "character": "Ranno",
-      "skin": "Tuxedo",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Olympia",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     }
   ],
-  "pronouns": "He/Him"
+  "pronouns": "He/Him",
+  "twitch": "Swaissey"
 }

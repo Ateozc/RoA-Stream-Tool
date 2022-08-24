@@ -1,12 +1,12 @@
 {
   "name": "Seggo",
   "twitter": "@SeggoAhmet",
-  "tag": "",
+  "tag": "Sprecher",
   "characters": [
     {
       "character": "Random",
       "skin": "",
-      "game": "Rivals of Aether"
+      "game": "Rivals Workshop"
     },
     {
       "character": "Elliana",
@@ -30,7 +30,12 @@
     },
     {
       "character": "Olympia",
-      "skin": "Abyss",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ],

@@ -5,12 +5,12 @@
   "characters": [
     {
       "character": "Zetterburn",
-      "skin": "LoA",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Absa",
-      "skin": "Default",
+      "skin": "LoA",
       "game": "Rivals of Aether"
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "character": "Pomme",
-      "skin": "Purple",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "character": "Wrastor",
-      "skin": "Default",
+      "skin": "Spangled",
       "game": "Rivals of Aether"
     },
     {
@@ -71,6 +71,11 @@
     {
       "character": "Hodan",
       "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Maypul",
+      "skin": "GoTE",
       "game": "Rivals of Aether"
     }
   ],

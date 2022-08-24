@@ -96,17 +96,18 @@ input[type="number"] {
 /* main viewport */
 #viewport {
   position: relative;
-  width: 300%;
+  width: 100%;
   height: 100%;
   z-index: 2;
   display: flex;
-  transform: translateX(calc(-100% / 3));
+  /* transform: translateX(calc(-100% / 3)); */
   transition: transform 300ms ease;
 }
 
 /* where all the magic happens */
 #overlay {
-  width: calc(100% / 3);
+  position: absolute;
+  width: 100%;
   height: 100%;
   transition: opacity 300ms;
   display: flex;
@@ -804,17 +805,20 @@ input[type="number"] {
 }
 
 /* bracket section */
-#bracket {
+/* #bracket {
   width: calc(100% / 3);
   height: 200px;
-}
+} */
 
 /* settings section */
 #settings {
-  width: calc(100% / 3);
+  position: absolute;
+  width: 100%;
   height: 100%;
   background-color: var(--bg5);
   z-index: 2;
+  transform: translateX(100%);
+
 }
 
 #settingsTitle {
@@ -863,9 +867,9 @@ input[type="number"] {
 /* clickable area that gets enabled when moving the viewport */
 #goBack {
   position: absolute;
-  width: calc(100% / 3);
+  width: 100%;
   height: 100%;
-  left: calc(100% / 3);
+  /* left: calc(100% / 3); */
   z-index: 100;
   display: none;
 }
@@ -961,7 +965,7 @@ input[type="number"] {
   /* transform: translate(0,0);
   -webkit-transform: translate(0,0); */
   /* z-index: -1; */
-  width: 20%;
+  width: 40%;
   position: fixed;
   top: 25%;
   left: 50%;

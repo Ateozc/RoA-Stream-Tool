@@ -1,0 +1,18 @@
+{
+  "name": "Other",
+  "twitter": "@other2D",
+  "pronouns": "He/Him",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Random",
+      "skin": ""
+    },
+    {
+      "character": "Maypul",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    }
+  ],
+  "game": "Rivals of Aether"
+}

@@ -10,7 +10,27 @@
     },
     {
       "character": "Pomme",
-      "skin": "Red",
+      "skin": "Summer",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Sylvanos",
+      "skin": "Summer",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Velma",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ],

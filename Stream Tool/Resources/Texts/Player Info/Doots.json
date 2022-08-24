@@ -2,7 +2,7 @@
   "name": "Doots",
   "twitter": "",
   "pronouns": "",
-  "tag": "DMMTV",
+  "tag": "LITE",
   "characters": [
     {
       "character": "Orcane",
@@ -16,7 +16,7 @@
     },
     {
       "character": "Zetterburn",
-      "skin": "Abyss",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -27,7 +27,7 @@
     {
       "character": "Hodan",
       "skin": "Default",
-      "game": "Rivals of Aether"
+      "game": "Rivals Workshop"
     },
     {
       "character": "Etalus",
@@ -36,12 +36,7 @@
     },
     {
       "character": "Forsburn",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Kragg",
-      "skin": "Grey",
+      "skin": "Valentines",
       "game": "Rivals of Aether"
     }
   ]

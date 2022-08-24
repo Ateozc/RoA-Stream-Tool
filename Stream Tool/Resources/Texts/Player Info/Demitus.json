@@ -5,7 +5,7 @@
   "characters": [
     {
       "character": "Forsburn",
-      "skin": "Red",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -44,6 +44,5 @@
       "game": "Rivals of Aether"
     }
   ],
-  "pronouns": "He/Him",
-  "twitch": "demi"
+  "pronouns": "He/Him"
 }

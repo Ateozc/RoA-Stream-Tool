@@ -1,12 +1,22 @@
 {
   "name": "w0wells",
-  "twitter": "",
+  "twitter": "@w0wells",
   "pronouns": "He/Him",
-  "tag": "Kiwi",
+  "tag": "BE",
   "characters": [
     {
       "character": "Wrastor",
-      "skin": "Champion",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Zetterburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ],

@@ -45,7 +45,7 @@
     },
     {
       "character": "Mollo",
-      "skin": "Abyss",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -84,7 +84,7 @@
     },
     {
       "character": "Pomme",
-      "skin": "Default",
+      "skin": "Summer",
       "game": "Rivals of Aether"
     },
     {
@@ -94,12 +94,12 @@
     },
     {
       "character": "Olympia",
-      "skin": "White",
+      "skin": "Summer",
       "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
-      "skin": "Grey",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -109,7 +109,7 @@
     },
     {
       "character": "Clairen",
-      "skin": "Default",
+      "skin": "Summer",
       "game": "Rivals of Aether"
     },
     {
@@ -119,7 +119,7 @@
     },
     {
       "character": "Maypul",
-      "skin": "GoTE",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -129,7 +129,7 @@
     },
     {
       "character": "Kragg",
-      "skin": "Summit",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "character": "Sylvanos",
-      "skin": "Abyss",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -244,13 +244,48 @@
     },
     {
       "character": "Zetterburn",
-      "skin": "Green",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Ranno",
       "skin": "Default",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Arya",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Batman",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Iron Giant",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Morty",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Jake",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Superman",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Tom and Jerry",
+      "skin": "Default",
+      "game": "Multiversus"
     }
   ],
   "pronouns": ""

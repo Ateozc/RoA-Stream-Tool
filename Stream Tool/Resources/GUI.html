@@ -18,16 +18,16 @@
     <!-- so we can move the viewport easily -->
 
 
-    <div id="bracket">
+    <!-- <div id="bracket">
 
-    </div>
+    </div> -->
 
 
-    
+
 
 
     <div id="overlay">
-      
+
       <div id="playerRegion">
         <div class="playerFinder" id="pFinder" ng-show="showProfileList()">
           <div class="finderEntry" ng-repeat="profile in playerProfiles" ng-mouseout="setProfileSelectorFocus(false)" ng-mouseover="setProfileSelectorFocus(true)" ng-click="applyProfile($index, $event)">
@@ -47,60 +47,21 @@
             </div>
           </div>
         </div>
-        
-        
 
-
-        <div id="lSide" class="side" ng-style="getBackgroundGradient('left')">
-          <div class="charImgBox">
-            <img ng-if="gamemode=='Singles'" id="p1CharImg" class="charImg" ng-class="{'charImgRandom' : players[0].guiSkinPath.indexOf('Random.png') != -1}" ng-src="{{getSkinPathForPlayer(0)}}" />
-          </div>
-
-          
-          <div class="sideEditor">
-            
-            <div class="row" id="row1-1">
-              
-              <input ng-if="gamemode=='Teams'" type="text" id="teamName1" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 1 name" spellcheck="false" contenteditable="true" ng-model="sides.left.teamName">
-
-              <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo0">
-                <player-info-modal player="players[0]" index="0" number="1" fields="playerFields"></player-info-modal>
-                <div class="pFinderPosition" id="pFinderBox0">
-                  <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 1" title="Insert P1's name here" spellcheck="false" ng-model="players[0].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(0)" ng-change="checkPlayerPreset(0)">
-                  <div class="playerFinder" id="pFinder0"></div>
-                </div>
+        <div ng-show="showTop8" style="width: 100%;height: 100%;display: flex;">
+          <div style="width: 100%;">
+            <h1>Top 8</h1>
+            <div ng-repeat="player in top8Players" ng-init="playerIndex = $index; playerNumber = $index + 1" style='display:flex'>
+              {{playerNumber}}
+              <player-info-modal player="player" index="playerIndex" number="playerNumber" fields="playerFields"></player-info-modal>
+              <div class="pFinderPosition" id="pFinderBox{{playerIndex}}">
+                <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player {{playerNumber}}" title="Insert P{{playerNumber}}'s name here" spellcheck="false" ng-model="player.name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(playerIndex)" ng-change="checkPlayerPreset(playerIndex)">
+                <div class="playerFinder" id="pFinder{{playerIndex}}"></div>
               </div>
-
-              <input type="color" class="textInput" ng-model="sides.left.color.hex" ng-show="useCustomColors" ng-change="setSideColorFromHex('left')">
-              <button class="textInput" ng-click="saveColorPreset('left')" ng-show="useCustomColors">Save Preset</button>
-
-              <div id="lColor" class="pColor" tabindex="-1" title="Change the color slot for this player" ng-show="!useCustomColors">
-                <div class="colorContainer">
-                  <div id="lColorRect" class="pColorRect" ng-style="{'background-color': sides.left.color.hex}"></div>
-                </div>
-                <div class="dropdownColor" id="dropdownColorL">
-                  <div ng-repeat="color in colorList" title="Also known as {{color.hex}}" class="colorEntry" ng-click="setSideColor('left', color.name, color.hex)">
-                    <div style="width: 13px; height: 13px; margin: 5px;" ng-style="{'background-color': color.hex}"></div>
-                    <div>{{color.name}}</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="row" id="row2-1" ng-repeat="player in players | limitTo: players.length/2" ng-init="playerIndex = $index; playerNumber = $index + 1">
-              
-              <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{playerIndex}}">
-                <player-info-modal player="players[playerIndex]" index="playerIndex" number="playerNumber" fields="playerFields"></player-info-modal>
-                <div class="pFinderPosition" id="pFinderBox{{playerIndex}}">
-                  <input type="text" id="p{{playerIndex}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{playerNumber}}" title="Insert P{{playerNumber}}'s name here" spellcheck="false" ng-model="players[playerIndex].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(playerIndex)" ng-change="checkPlayerPreset(playerIndex)">
-                  <div class="playerFinder" id="pFinder{{playerIndex}}"></div>
-                </div>
-              </div>
-
-              <div ng-if="playerIndex==0 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+              <div title="Everyone is here!" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
                 <div class="selector">
-                  <img ng-src="{{getIconPath(players[playerIndex].character)}}">
-                  <span>{{players[playerIndex].character}}</span>
+                  <img ng-src="{{getIconPath(player.character)}}">
+                  <span>{{player.character}}</span>
                   <div class="finder" ng-show="show || focused || filter">
                     <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false;">
                     <div class="searchList">
@@ -114,126 +75,158 @@
 
               </div>
 
-              <div ng-if="playerIndex==0 || gamemode=='Teams'" ng-hide="players[playerIndex].character == 'Random'" style="position: relative;"  ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+              <div ng-hide="player.character == 'Random'" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
                 <div class="selector">
-                  {{players[playerIndex].skin}}
+                  {{player.skin}}
                   <div class="skinFinder finder" ng-show="show || focused || filter">
-                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
-                    <div class="searchList" >
-                      <div class="finderEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins | filter: {label: filter}" ng-click="players[playerIndex].skinIndex = skin.index; setSkinBasedOnIndex(playerIndex);">
-                        <span class="pfName">{{skin.label}}</span>
-                        <div class="pfCharImgBox">
-                          <img class="pfCharImg" ng-src='{{getSkinPath(players[playerIndex].character, skin.label)}}' ng-style="{{getTransformForCharImage(players[playerIndex].character, skin.label)}}">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row" id="row3-1">
-              <div class="scoreBox" id="scoreBox1" title="Press F1 to increase the score" ng-if="usePips">
-                <span id="scoreText1">Wins</span>
-                <input type="checkbox" id="leftWin1" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.left.checkboxes[0]" ng-change="scoreboxChanged('left', 0)">
-                <input type="checkbox" id="leftWin2" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.left.checkboxes[1]" ng-change="scoreboxChanged('left', 1)">
-                <input type="checkbox" id="leftWin3" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.left.checkboxes[2]" ng-change="scoreboxChanged('left', 2)" ng-if="roundInfo.bestOf=='Bo5'">
-              </div>
-              <input type="number" id="playerWins1" class="textInput mousetrap" placeholder="0" spellcheck="false" tabindex="4" min=0 value=0 ng-model="sides.left.score" ng-if="!usePips" ng-change="updateCheckboxes('left')">
-
-              <div class="wlButtons" id="wlButtons1" ng-if="showWLBoxes()">
-                <div id="p1W" class="wlBox" ng-class="{'buttonSelected' : sides.left.wl == 'W'}" ng-click="setWL('left', 'W')">[W]</div>
-                <div id="p1L" class="wlBox" ng-class="{'buttonSelected' : sides.left.wl == 'L'}" ng-click="setWL('left', 'L')">[L]</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="sideSep">
-          <div id="swapButton" title="Swap P1's and P2's values" ng-click="swap()">
-            <load-svg src="SVGs/Swap.svg" class="icon midIcon" id="swapIcon"></load-svg>
-          </div>
-          <div id="clearButton" title="Clear player names, character and win values. [Shortcut: Esc]" ng-click="clearPlayers()">
-            <load-svg src="SVGs/Trash.svg" class="icon midIcon" id="clearIcon"></load-svg>
-          </div>
-        </div>
-
-
-        <div id="rSide" class="side" ng-style="getBackgroundGradient('right')">
-
-          <div class="charImgBox">
-            <img ng-if="gamemode=='Singles'" id="p2CharImg" class="charImg" ng-class="{'charImgRandom' : players[1].character == 'Random'}" ng-src="{{getSkinPathForPlayer(1)}}" />
-          </div>
-
-          <div class="sideEditor">
-
-            <div class="row" id="row1-2">
-              
-              <input ng-if="gamemode=='Teams'" type="text" id="teamName2" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 2 name" spellcheck="false" contenteditable="true" ng-model="sides.right.teamName">
-
-              <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo2">
-                <player-info-modal player="players[1]" index="1" number="2" fields="playerFields"></player-info-modal>
-                <div class="pFinderPosition" id="pFinderBox2">
-                  <input type="text" id="p2Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 2" title="Insert P2's name here." spellcheck="false" ng-model="players[1].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(1)" ng-change="checkPlayerPreset(1)">
-                  <div class="playerFinder" id="pFinder2"></div>
-                </div>
-              </div>
-
-
-              <input type="color" class="textInput" ng-model="sides.right.color.hex" ng-show="useCustomColors" ng-change="setSideColorFromHex('right')">
-              <button class="textInput" ng-click="saveColorPreset('right')" ng-show="useCustomColors">Save Preset</button>
-
-              <div id="rColor" class="pColor" tabindex="-1" ng-show="!useCustomColors">
-
-                <div class="colorContainer" title="Change the color slot for this player">
-                  <div id="rColorRect" class="pColorRect" ng-style="{'background-color': sides.right.color.hex}"></div>
-                </div>
-                <div class="dropdownColor" id="dropdownColorR">
-                  <div ng-repeat="color in colorList" title="Also known as {{color.hex}}" class="colorEntry" ng-click="setSideColor('right', color.name, color.hex)">
-                    <div style="width: 13px; height: 13px; margin: 5px;" ng-style="{'background-color': color.hex}"></div>
-                    <div>{{color.name}}</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="row" id="row2-2" ng-repeat="player in players | limitTo: -players.length/2">
-              <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{getPlayerIndexRightSide($index)}}">
-                <player-info-modal player="players[getPlayerIndexRightSide($index)]" index="getPlayerIndexRightSide($index)" number="$index + players.length/2 + 1" fields="playerFields"></player-info-modal>
-                <div class="pFinderPosition" id="pFinderBox{{getPlayerIndexRightSide($index)}}">
-                  <input type="text" id="p{{getPlayerIndexRightSide($index)}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{$index + players.length/2 + 1}}" ng-attr-title="Player {{$index + players.length/2 + 1}}" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(getPlayerIndexRightSide($index))" ng-change="checkPlayerPreset(getPlayerIndexRightSide($index))">
-                  <div class="playerFinder" id="pFinder{{getPlayerIndexRightSide($index)}}"></div>
-                </div>
-              </div>
-
-
-              <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="playerIndex=getPlayerIndexRightSide($index); filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
-                <div class="selector">
-                  <img ng-src="{{getIconPath(players[getPlayerIndexRightSide($index)].character)}}">
-                  <span>{{players[getPlayerIndexRightSide($index)].character}}</span>
-                  <div class="finder" ng-show="show || focused || filter">
                     <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
                     <div class="searchList">
-                      <div class="finderEntry" ng-repeat="character in characterList | filter: {name: filter}" ng-click="players[getPlayerIndexRightSide($parent.$index)].character = character.name; markCharacterIndex(getPlayerIndexRightSide($parent.$index))">
-                        <img ng-src="{{getIconPath(character.name)}}">
-                        <span>{{character.name}}</span>
+                      <div class="finderEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins | filter: {label: filter}" ng-click="player.skinIndex = skin.index; setSkinBasedOnIndex(playerIndex);">
+                        <span class="pfName">{{skin.label}}</span>
+                        <div class="pfCharImgBox">
+                          <img class="pfCharImg" ng-src='{{getSkinPath(player.character, skin.label)}}' ng-style="{{getTransformForCharImage(player.character, skin.label)}}">
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" style="position: relative;"  ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
-                <div class="selector">
-                  {{players[getPlayerIndexRightSide($parent.$index)].skin}}
-                  <div class="skinFinder finder" ng-show="show || focused || filter">
-                    <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
-                    <div class="searchList" >
-                      <div class="finderEntry" ng-repeat="skin in characterList[players[getPlayerIndexRightSide($parent.$index)].characterIndex].skins | filter: {label: filter}" ng-click="players[getPlayerIndexRightSide($parent.$index)].skinIndex = skin.index; setSkinBasedOnIndex(getPlayerIndexRightSide($parent.$index));">
-                        <span class="pfName">{{skin.label}}</span>
-                        <div class="pfCharImgBox">
-                          <img class="pfCharImg" ng-src='{{getSkinPath(players[getPlayerIndexRightSide($parent.$index)].character, skin.label)}}' ng-style="{{getTransformForCharImage(players[getPlayerIndexRightSide($parent.$index)].character, skin.label)}}">
+          <div style="width: 100%;">
+            <h1>Top 8 Settings</h1>
+            <div class="settingBox" title="Use Top Text">
+              <input type="checkbox" id="useTopText" class="settingsCheck" tabindex="-1" ng-model="top8Settings.useTopText" ng-change="saveGUISettings()">
+              <label for="useTopText" class="settingsText">Use Top Text?</label>
+            </div>
+            <div ng-show="top8Settings.useTopText">
+              <input type="text" id="topText" style="width: 98%;" class="textInput mousetrap" placeholder="Text to display at the top" spellcheck="false" tabindex="4" ng-model="top8Settings.topText" ng-change="saveGUISettings()">
+            </div>
+
+            <div class="settingBox" title="Use Bottom Text">
+              <input type="checkbox" id="useBottomText" class="settingsCheck" tabindex="-1" ng-model="top8Settings.useBottomText" ng-change="saveGUISettings()">
+              <label for="useBottomText" class="settingsText">Use Bottom Text?</label>
+            </div>
+            <div ng-show="top8Settings.useBottomText" title="Startgg bracket link">
+              <input type="text" id="bottomTextBracket" style="width: 98%;" class="textInput mousetrap" placeholder="Text to display for StartGG" spellcheck="false" tabindex="4" ng-model="top8Settings.bottomTextBracket" ng-change="saveGUISettings()">
+            </div>
+            <div ng-show="top8Settings.useBottomText" title="Youtube Channel">
+              <input type="text" id="bottomTextYoutube" style="width: 98%;" class="textInput mousetrap" placeholder="Text to display for Youtube" spellcheck="false" tabindex="4" ng-model="top8Settings.bottomTextYoutube" ng-change="saveGUISettings()">
+            </div>
+            <div ng-show="top8Settings.useBottomText" title="Twitch Channel">
+              <input type="text" id="bottomTextTwitch" style="width: 98%;" class="textInput mousetrap" placeholder="Text to display for Twitch" spellcheck="false" tabindex="4" ng-model="top8Settings.bottomTextTwitch" ng-change="saveGUISettings()">
+            </div>
+            <div ng-show="top8Settings.useBottomText" title="Twitter">
+              <input type="text" id="bottomTextTwitter" style="width: 98%;" class="textInput mousetrap" placeholder="Text to display for Twitter" spellcheck="false" tabindex="4" ng-model="top8Settings.bottomTextTwitter" ng-change="saveGUISettings()">
+            </div>
+
+            
+            <div class="settingBox" title="If true, uses standard two 5th and 7th placements.">
+              <input type="checkbox" id="top8Ties" class="settingsCheck" tabindex="-1" ng-model="top8Settings.top8Ties" ng-change="saveGUISettings()">
+              <label for="top8Ties" class="settingsText">5th/7th place tie?</label>
+            </div>
+            <div class="settingBox" title="If true, uses the 1st place character background.">
+              <input type="checkbox" id="useP1Background" class="settingsCheck" tabindex="-1" ng-model="top8Settings.useP1Background" ng-change="saveGUISettings()">
+              <label for="useP1Background" class="settingsText">Use 1st character background</label>
+            </div>
+            <div ng-show="!top8Settings.useP1Background" class="settingBox" title="Use Custom Background. if false, it will use a transparent background. If true, you can select a file to load.">
+              <input type="checkbox" id="useCustomBackground" class="settingsCheck" tabindex="-1" ng-model="top8Settings.useCustomBackground" ng-change="saveGUISettings()">
+              <label for="useCustomBackground" class="settingsText">Use a custom background?</label>
+            </div>
+            <div ng-show="!top8Settings.useP1Background && top8Settings.useCustomBackground" class="settingBox" title="Use Custom Background. if false, it will use a transparent background. If true, you can select a file to load.">
+              <label for="customBackground" style="
+              padding: 4px;
+              border: 2px solid;
+              cursor: pointer;">Choose a file...</label>
+              <input hidden type="file" id="customBackground" class="settingsCheck" tabindex="-1" ng-model="top8Settings.customBackground" ng-change="saveGUISettings()" fileread="top8Settings.customBackground" accept="image/png, image/jpeg, video/webm">
+            </div>
+            <div>
+              <label for="chosenFile">Current File:</label>
+              <br/>
+              <input id="chosenFile" type="text" ng-model="top8Settings.customBackground" readonly style="width: 98%;background: gray;"/>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div ng-show="!showTop8" style="width: 100%;height: 100%;display: flex;">
+          <div id="lSide" class="side" ng-style="getBackgroundGradient('left')">
+            <div class="charImgBox">
+              <img ng-if="gamemode=='Singles'" id="p1CharImg" class="charImg" ng-class="{'charImgRandom' : players[0].guiSkinPath.indexOf('Random.png') != -1}" ng-src="{{getSkinPathForPlayer(0)}}" />
+            </div>
+
+
+            <div class="sideEditor">
+
+              <div class="row" id="row1-1">
+
+                <input ng-if="gamemode=='Teams'" type="text" id="teamName1" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 1 name" spellcheck="false" contenteditable="true" ng-model="sides.left.teamName">
+
+                <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo0">
+                  <player-info-modal player="players[0]" index="0" number="1" fields="playerFields"></player-info-modal>
+                  <div class="pFinderPosition" id="pFinderBox0">
+                    <input type="text" id="p0Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 1" title="Insert P1's name here" spellcheck="false" ng-model="players[0].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(0)" ng-change="checkPlayerPreset(0)">
+                    <div class="playerFinder" id="pFinder0"></div>
+                  </div>
+                </div>
+
+                <input type="color" class="textInput" ng-model="sides.left.color.hex" ng-show="useCustomColors" ng-change="setSideColorFromHex('left')">
+                <button class="textInput" ng-click="saveColorPreset('left')" ng-show="useCustomColors">Save Preset</button>
+
+                <div id="lColor" class="pColor" tabindex="-1" title="Change the color slot for this player" ng-show="!useCustomColors">
+                  <div class="colorContainer">
+                    <div id="lColorRect" class="pColorRect" ng-style="{'background-color': sides.left.color.hex}"></div>
+                  </div>
+                  <div class="dropdownColor" id="dropdownColorL">
+                    <div ng-repeat="color in colorList" title="Also known as {{color.hex}}" class="colorEntry" ng-click="setSideColor('left', color.name, color.hex)">
+                      <div style="width: 13px; height: 13px; margin: 5px;" ng-style="{'background-color': color.hex}"></div>
+                      <div>{{color.name}}</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row" id="row2-1" ng-repeat="player in players | limitTo: players.length/2" ng-init="playerIndex = $index; playerNumber = $index + 1">
+
+                <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{playerIndex}}">
+                  <player-info-modal player="players[playerIndex]" index="playerIndex" number="playerNumber" fields="playerFields"></player-info-modal>
+                  <div class="pFinderPosition" id="pFinderBox{{playerIndex}}">
+                    <input type="text" id="p{{playerIndex}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{playerNumber}}" title="Insert P{{playerNumber}}'s name here" spellcheck="false" ng-model="players[playerIndex].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(playerIndex)" ng-change="checkPlayerPreset(playerIndex)">
+                    <div class="playerFinder" id="pFinder{{playerIndex}}"></div>
+                  </div>
+                </div>
+
+                <div ng-if="playerIndex==0 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                  <div class="selector">
+                    <img ng-src="{{getIconPath(players[playerIndex].character)}}">
+                    <span>{{players[playerIndex].character}}</span>
+                    <div class="finder" ng-show="show || focused || filter">
+                      <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false;">
+                      <div class="searchList">
+                        <div class="finderEntry" ng-repeat="character in characterList | filter: {name: filter}" ng-click="players[playerIndex].character = character.name; markCharacterIndex(playerIndex)">
+                          <img ng-src="{{getIconPath(character.name)}}">
+                          <span>{{character.name}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div ng-if="playerIndex==0 || gamemode=='Teams'" ng-hide="players[playerIndex].character == 'Random'" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                  <div class="selector">
+                    {{players[playerIndex].skin}}
+                    <div class="skinFinder finder" ng-show="show || focused || filter">
+                      <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
+                      <div class="searchList">
+                        <div class="finderEntry" ng-repeat="skin in characterList[players[playerIndex].characterIndex].skins | filter: {label: filter}" ng-click="players[playerIndex].skinIndex = skin.index; setSkinBasedOnIndex(playerIndex);">
+                          <span class="pfName">{{skin.label}}</span>
+                          <div class="pfCharImgBox">
+                            <img class="pfCharImg" ng-src='{{getSkinPath(players[playerIndex].character, skin.label)}}' ng-style="{{getTransformForCharImage(players[playerIndex].character, skin.label)}}">
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -241,41 +234,152 @@
                 </div>
               </div>
 
+              <div class="row" id="row3-1">
+                <div class="scoreBox" id="scoreBox1" title="Press F1 to increase the score" ng-if="usePips">
+                  <span id="scoreText1">Wins</span>
+                  <input type="checkbox" id="leftWin1" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.left.checkboxes[0]" ng-change="scoreboxChanged('left', 0)">
+                  <input type="checkbox" id="leftWin2" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.left.checkboxes[1]" ng-change="scoreboxChanged('left', 1)">
+                  <input type="checkbox" id="leftWin3" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.left.checkboxes[2]" ng-change="scoreboxChanged('left', 2)" ng-if="roundInfo.bestOf=='Bo5'">
+                </div>
+                <input type="number" id="playerWins1" class="textInput mousetrap" placeholder="0" spellcheck="false" tabindex="4" min=0 value=0 ng-model="sides.left.score" ng-if="!usePips" ng-change="updateCheckboxes('left')">
 
-            </div>
-            
-
-            <div class="row" id="row3-2">
-              <div class="scoreBox" id="scoreBox2" title="Press F2 to increase the score" ng-if="usePips">
-                <span id="scoreText2">Wins</span>
-                <input type="checkbox" id="rightWin1" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.right.checkboxes[0]" ng-change="scoreboxChanged('right', 0)">
-                <input type="checkbox" id="rightWin2" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.right.checkboxes[1]" ng-change="scoreboxChanged('right', 1)">
-                <input type="checkbox" id="rightWin3" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.right.checkboxes[2]" ng-change="scoreboxChanged('right', 2)" ng-if="roundInfo.bestOf=='Bo5'">
+                <div class="wlButtons" id="wlButtons1" ng-if="showWLBoxes()">
+                  <div id="p1W" class="wlBox" ng-class="{'buttonSelected' : sides.left.wl == 'W'}" ng-click="setWL('left', 'W')">[W]</div>
+                  <div id="p1L" class="wlBox" ng-class="{'buttonSelected' : sides.left.wl == 'L'}" ng-click="setWL('left', 'L')">[L]</div>
+                </div>
               </div>
-              <input type="number" id="playerWins2" class="textInput mousetrap" placeholder="0" spellcheck="false" tabindex="4" min=0 value=0 ng-model="sides.right.score" ng-if="!usePips" ng-change="updateCheckboxes('right')">
+            </div>
+          </div>
 
-              <div class="wlButtons" id="wlButtons2" ng-if="showWLBoxes()">
-                <div id="p2W" class="wlBox" ng-class="{'buttonSelected' : sides.right.wl == 'W'}" ng-click="setWL('right', 'W')">[W]</div>
-                <div id="p2L" class="wlBox" ng-class="{'buttonSelected' : sides.right.wl == 'L'}" ng-click="setWL('right', 'L')">[L]</div>
+          <div id="sideSep">
+            <div id="swapButton" title="Swap P1's and P2's values" ng-click="swap()">
+              <load-svg src="SVGs/Swap.svg" class="icon midIcon" id="swapIcon"></load-svg>
+            </div>
+            <div id="clearButton" title="Clear player names, character and win values. [Shortcut: Esc]" ng-click="clearPlayers()">
+              <load-svg src="SVGs/Trash.svg" class="icon midIcon" id="clearIcon"></load-svg>
+            </div>
+          </div>
+
+
+          <div id="rSide" class="side" ng-style="getBackgroundGradient('right')">
+
+            <div class="charImgBox">
+              <img ng-if="gamemode=='Singles'" id="p2CharImg" class="charImg" ng-class="{'charImgRandom' : players[1].character == 'Random'}" ng-src="{{getSkinPathForPlayer(1)}}" />
+            </div>
+
+            <div class="sideEditor">
+
+              <div class="row" id="row1-2">
+
+                <input ng-if="gamemode=='Teams'" type="text" id="teamName2" class="teamName textInput mousetrap" tabindex="1" placeholder="Team 2 name" spellcheck="false" contenteditable="true" ng-model="sides.right.teamName">
+
+                <div ng-if="gamemode=='Singles'" class="playerInfo" id="pInfo2">
+                  <player-info-modal player="players[1]" index="1" number="2" fields="playerFields"></player-info-modal>
+                  <div class="pFinderPosition" id="pFinderBox2">
+                    <input type="text" id="p2Name" class="textInput mousetrap nameInput" tabindex="2" placeholder="Player 2" title="Insert P2's name here." spellcheck="false" ng-model="players[1].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(1)" ng-change="checkPlayerPreset(1)">
+                    <div class="playerFinder" id="pFinder2"></div>
+                  </div>
+                </div>
+
+
+                <input type="color" class="textInput" ng-model="sides.right.color.hex" ng-show="useCustomColors" ng-change="setSideColorFromHex('right')">
+                <button class="textInput" ng-click="saveColorPreset('right')" ng-show="useCustomColors">Save Preset</button>
+
+                <div id="rColor" class="pColor" tabindex="-1" ng-show="!useCustomColors">
+
+                  <div class="colorContainer" title="Change the color slot for this player">
+                    <div id="rColorRect" class="pColorRect" ng-style="{'background-color': sides.right.color.hex}"></div>
+                  </div>
+                  <div class="dropdownColor" id="dropdownColorR">
+                    <div ng-repeat="color in colorList" title="Also known as {{color.hex}}" class="colorEntry" ng-click="setSideColor('right', color.name, color.hex)">
+                      <div style="width: 13px; height: 13px; margin: 5px;" ng-style="{'background-color': color.hex}"></div>
+                      <div>{{color.name}}</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row" id="row2-2" ng-repeat="player in players | limitTo: -players.length/2">
+                <div ng-if="gamemode=='Teams'" class="playerInfo" id="pInfo{{getPlayerIndexRightSide($index)}}">
+                  <player-info-modal player="players[getPlayerIndexRightSide($index)]" index="getPlayerIndexRightSide($index)" number="$index + players.length/2 + 1" fields="playerFields"></player-info-modal>
+                  <div class="pFinderPosition" id="pFinderBox{{getPlayerIndexRightSide($index)}}">
+                    <input type="text" id="p{{getPlayerIndexRightSide($index)}}Name" class="textInput mousetrap nameInput" tabindex="3" placeholder="Player {{$index + players.length/2 + 1}}" ng-attr-title="Player {{$index + players.length/2 + 1}}" spellcheck="false" ng-model="players[getPlayerIndexRightSide($index)].name" ng-blur="setPlayerFieldFocus(false)" ng-focus="setPlayerFieldFocus(true); checkPlayerPreset(getPlayerIndexRightSide($index))" ng-change="checkPlayerPreset(getPlayerIndexRightSide($index))">
+                    <div class="playerFinder" id="pFinder{{getPlayerIndexRightSide($index)}}"></div>
+                  </div>
+                </div>
+
+
+                <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" title="Everyone is here!" style="position: relative;" ng-init="playerIndex=getPlayerIndexRightSide($index); filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                  <div class="selector">
+                    <img ng-src="{{getIconPath(players[getPlayerIndexRightSide($index)].character)}}">
+                    <span>{{players[getPlayerIndexRightSide($index)].character}}</span>
+                    <div class="finder" ng-show="show || focused || filter">
+                      <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
+                      <div class="searchList">
+                        <div class="finderEntry" ng-repeat="character in characterList | filter: {name: filter}" ng-click="players[getPlayerIndexRightSide($parent.$index)].character = character.name; markCharacterIndex(getPlayerIndexRightSide($parent.$index))">
+                          <img ng-src="{{getIconPath(character.name)}}">
+                          <span>{{character.name}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div ng-if="getPlayerIndexRightSide($index)==1 || gamemode=='Teams'" ng-hide="players[getPlayerIndexRightSide($index)].character == 'Random'" style="position: relative;" ng-init="filter=''; show=false; focused=false" ng-click="(!focused) ? show=!show : ''; filter=''">
+                  <div class="selector">
+                    {{players[getPlayerIndexRightSide($parent.$index)].skin}}
+                    <div class="skinFinder finder" ng-show="show || focused || filter">
+                      <input type="text" placeholder="Type to filter..." class="listSearch mousetrap" ng-model="filter" ng-focus="focused=true" ng-blur="focused=false">
+                      <div class="searchList">
+                        <div class="finderEntry" ng-repeat="skin in characterList[players[getPlayerIndexRightSide($parent.$index)].characterIndex].skins | filter: {label: filter}" ng-click="players[getPlayerIndexRightSide($parent.$index)].skinIndex = skin.index; setSkinBasedOnIndex(getPlayerIndexRightSide($parent.$index));">
+                          <span class="pfName">{{skin.label}}</span>
+                          <div class="pfCharImgBox">
+                            <img class="pfCharImg" ng-src='{{getSkinPath(players[getPlayerIndexRightSide($parent.$index)].character, skin.label)}}' ng-style="{{getTransformForCharImage(players[getPlayerIndexRightSide($parent.$index)].character, skin.label)}}">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+
+              <div class="row" id="row3-2">
+                <div class="scoreBox" id="scoreBox2" title="Press F2 to increase the score" ng-if="usePips">
+                  <span id="scoreText2">Wins</span>
+                  <input type="checkbox" id="rightWin1" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.right.checkboxes[0]" ng-change="scoreboxChanged('right', 0)">
+                  <input type="checkbox" id="rightWin2" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.right.checkboxes[1]" ng-change="scoreboxChanged('right', 1)">
+                  <input type="checkbox" id="rightWin3" class="scoreCheck mousetrap" tabindex="-1" ng-model="sides.right.checkboxes[2]" ng-change="scoreboxChanged('right', 2)" ng-if="roundInfo.bestOf=='Bo5'">
+                </div>
+                <input type="number" id="playerWins2" class="textInput mousetrap" placeholder="0" spellcheck="false" tabindex="4" min=0 value=0 ng-model="sides.right.score" ng-if="!usePips" ng-change="updateCheckboxes('right')">
+
+                <div class="wlButtons" id="wlButtons2" ng-if="showWLBoxes()">
+                  <div id="p2W" class="wlBox" ng-class="{'buttonSelected' : sides.right.wl == 'W'}" ng-click="setWL('right', 'W')">[W]</div>
+                  <div id="p2L" class="wlBox" ng-class="{'buttonSelected' : sides.right.wl == 'L'}" ng-click="setWL('right', 'L')">[L]</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div id="addressRockerInfo" ng-show="addressRockerSettings.useAddressRocker && addressRockerSettings.showInfo && !showTop8">
+          <div class="row">Address Rocker information: </div>
+          <div class="row">Auto Update Characters: {{addressRockerSettings.enableCharacterUpdate}}</div>
+          <div class="row">Auto Update Skins: {{addressRockerSettings.enableSkinUpdate}}</div>
+          <div class="row">Auto Update Best Of: {{addressRockerSettings.enableBestOfUpdate}}</div>
+          <div class="row">Auto Update Scores: {{addressRockerSettings.enableScoreUpdate}}</div>
+          <div class="row">Currently in Match: {{addressRockerSettings.inMatch}}</div>
+          <div class="row">Currently in Set: {{addressRockerSettings.inSet}}</div>
+        </div>
       </div>
 
-      <div id="addressRockerInfo" ng-show="addressRockerSettings.useAddressRocker && addressRockerSettings.showInfo">
-        <div class="row">Address Rocker information: </div>
-        <div class="row">Auto Update Characters: {{addressRockerSettings.enableCharacterUpdate}}</div>
-        <div class="row">Auto Update Skins: {{addressRockerSettings.enableSkinUpdate}}</div>
-        <div class="row">Auto Update Best Of: {{addressRockerSettings.enableBestOfUpdate}}</div>
-        <div class="row">Auto Update Scores: {{addressRockerSettings.enableScoreUpdate}}</div>
-        <div class="row">Currently in Match: {{addressRockerSettings.inMatch}}</div>
-        <div class="row">Currently in Set: {{addressRockerSettings.inSet}}</div>
-      </div>
 
       <div id="botRegion">
 
-        <div id="roundInfo">
+        <div id="roundInfo" ng-show="!showTop8">
 
           <div ng-if="usePips" id="bestOf">
             <div id="bo3Div" class="bestOfBox" ng-class="{'buttonSelected' : roundInfo.bestOf == 'Bo3'}" ng-click="setBestOf('Bo3')">Best of 3</div>
@@ -298,12 +402,12 @@
         </div>
 
 
-        <div style="text-align: center;justify-content: center;" ng-click="showCasterInfo = !showCasterInfo; saveGUISettings()">
+        <div style="text-align: center;justify-content: center;" ng-click="showCasterInfo = !showCasterInfo; saveGUISettings()" ng-show="!showTop8">
           <span ng-if="showCasterInfo">---------- Caster Information (Click to Hide) ----------</span>
           <span ng-if="!showCasterInfo">---------- Caster Information (Click to Show) ----------</span>
         </div>
 
-        <div id=casterInfo ng-show="showCasterInfo">
+        <div id=casterInfo ng-show="showCasterInfo" ng-show="!showTop8">
           <div ng-repeat="caster in casters" ng-init="casterNumber = $index + 1">
             <div id="caster{{casterNumber}}" class="caster">
 
@@ -326,12 +430,12 @@
           </div>
         </div>
 
-        <div class="row" style="text-align: center;justify-content: center;" ng-click="showOnDeck = !showOnDeck; saveGUISettings()">
+        <div class="row" style="text-align: center;justify-content: center;" ng-click="showOnDeck = !showOnDeck; saveGUISettings()" ng-show="!showTop8">
           <span ng-if="showOnDeck">---------- On Deck Information (Click to Hide) ----------</span>
           <span ng-if="!showOnDeck">---------- On Deck Information (Click to Show) ----------</span>
         </div>
 
-        <div id="onDeckInfo" ng-show="showOnDeck" style="padding:0px">
+        <div id="onDeckInfo" ng-show="showOnDeck && !showTop8" style="padding:0px">
 
           <div class="row" style="display:inline;width:50%;padding: 0px;">
             <div class="onDeckPlayerInfo" id="pInfo{{$index}}OnDeck" ng-repeat="player in onDeckPlayers" ng-if="$index == 0 || $index == 1 || gamemode=='Teams'">
@@ -395,31 +499,36 @@
 
         <div ng-show="settingsPageNumber==1">
           <div class="settingBox" title="Select a game to use.">
-            <label for="gameSelect" class="settingsText">Game</span>
-              <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="-1" ng-model="game" ng-change="gameChanged();">
-                <option ng-repeat="game in games" value="{{game}}">{{game}}</option>
-              </select>
+            <label for="gameSelect" class="settingsText">Game</label>
+            <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="-1" ng-model="game" ng-change="gameChanged();">
+              <option ng-repeat="game in games" value="{{game}}">{{game}}</option>
+            </select>
           </div>
 
           <div class="settingBox" title="Fixes profiles for currently selected game">
             <!-- <button id="fixProfiles" class="" tabindex="-1" ng-model="fixProfiles" ng-click="fixProfilesForCurrentGame()">Fix Profiles</button> -->
           </div>
 
+          <!-- <div class="settingBox" title="Toggle top8">
+            <input type="checkbox" id="top8Toggle" class="settingsCheck" tabindex="-1" ng-model="showTop8">
+            <label for="top8Toggle" class="settingsText">Toggle Top 8</span>
+          </div> -->
+
           <div class="settingBox" title="Plays an intro on 'RoA Scoreboard.html' whenever the file loads.">
             <input type="checkbox" id="allowIntro" class="settingsCheck" tabindex="-1" ng-model="allowIntro" ng-change="saveGUISettings()">
-            <label for="allowIntro" class="settingsText">Allow Intro</span>
+            <label for="allowIntro" class="settingsText">Allow Intro</label>
           </div>
 
           <div ng-show="game=='Rivals of Aether'" class="settingBox" title="Select a game to use.">
-            <label for="curSeasonalSkin" class="settingsText">Seasonal Skin Select</span>
-              <select id="curSeasonalSkin" class="textInput mousetrap" title="Seasonal Skin Select" tabindex="-1" ng-model="seasonalSkin" ng-change="updateSeasonalSkins();">
-                <option ng-repeat="skin in seasonalSkins" value="{{skin}}">{{skin}}</option>
-              </select>
+            <label for="curSeasonalSkin" class="settingsText">Seasonal Skin Select</label>
+            <select id="curSeasonalSkin" class="textInput mousetrap" title="Seasonal Skin Select" tabindex="-1" ng-model="seasonalSkin" ng-change="updateSeasonalSkins();">
+              <option ng-repeat="skin in seasonalSkins" value="{{skin}}">{{skin}}</option>
+            </select>
           </div>
 
           <div class="settingBox" title="Forces HD renders to appear on the VS screen,
   while keeping the regular renders for the scoreboard." ng-show="game=='Rivals of Aether'">
-            <label for="forceHD" class="settingsText">Display HD renders</span>
+            <label for="forceHD" class="settingsText">Display HD renders</label>
             <select id="forceHD" class="textInput mousetrap" title="Select when you want to display HD Renders" tabindex="-1" ng-model="forceHDChoice" ng-change="HDtoggle();">
               <option ng-repeat="option in hdOptions" value="{{option}}">{{option}}</option>
             </select>
@@ -428,38 +537,38 @@
           <div class="settingBox" title="Will just show regular HD renders in the
   VS Screen even when LoA skins are selected." ng-show="game=='Rivals of Aether'">
             <input type="checkbox" id="noLoAHD" class="settingsCheck" ng-disabled="!forceHD" tabindex="-1" ng-model="noLoAHD" ng-change="saveGUISettings()">
-            <label for="noLoAHD" class="settingsText">No LoA HD renders</span>
+            <label for="noLoAHD" class="settingsText">No LoA HD renders</label>
           </div>
 
           <div class="settingBox" title="Forces the [W]/[L] buttons to appear on the interface.
   They will always appear when typing 'Grand' in the round box.">
             <input type="checkbox" id="forceWLToggle" class="settingsCheck" tabindex="-1" ng-model="forceWL" ng-change="saveGUISettings()">
-            <label for="forceWLToggle" class="settingsText">Force [W] / [L]</span>
+            <label for="forceWLToggle" class="settingsText">Force [W] / [L]</label>
           </div>
 
           <div class="settingBox" title="When toggled on, score will be displayed using pips. When toggled off, score will be displayed with a number.">
             <input type="checkbox" id="pipsToggle" class="settingsCheck" tabindex="-1" ng-disabled='!checkIfRoundSupportsPips()' ng-model="usePips" ng-change="saveGUISettings()">
-            <label for="pipsToggle" class="settingsText">Use Score Pips</span>
+            <label for="pipsToggle" class="settingsText">Use Score Pips</label>
           </div>
 
           <div class="settingBox" title="Prevents other windows to be displayed on top of this one.">
             <input type="checkbox" id="alwaysOnTop" class="settingsCheck" tabindex="-1" ng-model="alwaysOnTop" ng-change="alwaysOnTopToggle()">
-            <label for="alwaysOnTop" class="settingsText">Window always on top</span>
+            <label for="alwaysOnTop" class="settingsText">Window always on top</label>
           </div>
 
           <div class="settingBox" title="Use a custom Round Name instead of a pre-made list.">
             <input type="checkbox" id="useCustomRound" class="settingsCheck" tabindex="-1" ng-model="useCustomRound" ng-change="saveGUISettings()">
-            <label for="useCustomRound" class="settingsText">Use Custom Round Name</span>
+            <label for="useCustomRound" class="settingsText">Use Custom Round Name</label>
           </div>
 
           <div class="settingBox" title="Use a custom Color instead of a color preset.">
             <input type="checkbox" id="useCustomColors" class="settingsCheck" tabindex="-1" ng-model="useCustomColors" ng-change="saveGUISettings()">
-            <label for="useCustomColors" class="settingsText">Use Custom Colors</span>
+            <label for="useCustomColors" class="settingsText">Use Custom Colors</label>
           </div>
 
           <div class="settingBox" title="Use Team names instead of Player names for clipboard (teams only)" ng-show="gamemode == 'Teams'">
             <input type="checkbox" id="useTeamNames" class="settingsCheck" tabindex="-1" ng-model="useTeamNames" ng-change="saveGUISettings()">
-            <label for="useTeamNames" class="settingsText">Use Team Names for Clipboard</span>
+            <label for="useTeamNames" class="settingsText">Use Team Names for Clipboard</label>
           </div>
 
           <button id="copyMatch" tabindex="-1" title='"Tournament Name - Round - Player1 (Character1) VS Player2 (Character2)"' ng-click="copyToClipboard()">
@@ -471,31 +580,31 @@
           <div ng-show="game=='Rivals of Aether' || game=='Rivals Workshop'">
             <div class="settingBox" title="Toggle the ability to use the Address Rocker Json file">
               <input type="checkbox" id="useAddressRocker" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.useAddressRocker" ng-change="toggleSetStop(); saveGUISettings();">
-              <label for="useAddressRocker" class="settingsText">Use Address Rocker for Tool Control</span>
+              <label for="useAddressRocker" class="settingsText">Use Address Rocker for Tool Control</label>
             </div>
             <div class="settingBox" title="Toggle showing info on tool">
               <input type="checkbox" id="showAddressRockerInfo" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.showInfo" ng-change="saveGUISettings()">
-              <label for="showAddressRockerInfo" class="settingsText">Toggle AddressRocker info display</span>
+              <label for="showAddressRockerInfo" class="settingsText">Toggle AddressRocker info display</label>
             </div>
             <div class="settingBox" title="Toggle automatic character updates" ng-hide="game != 'Rivals of Aether'">
               <input type="checkbox" id="enableCharacterUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableCharacterUpdate" ng-change="saveGUISettings()">
-              <label for="enableCharacterUpdate" class="settingsText">Toggle Automatic Character update</span>
+              <label for="enableCharacterUpdate" class="settingsText">Toggle Automatic Character update</label>
             </div>
             <div class="settingBox" title="Toggle automatic skin color updates" ng-hide="game != 'Rivals of Aether'">
               <input type="checkbox" id="enableSkinUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableSkinUpdate" ng-change="saveGUISettings()">
-              <label for="enableSkinUpdate" class="settingsText">Toggle Automatic Skin update</span>
+              <label for="enableSkinUpdate" class="settingsText">Toggle Automatic Skin update</label>
             </div>
             <div class="settingBox" title="Toggle automatic best of updates">
               <input type="checkbox" id="enableBestOfUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableBestOfUpdate" ng-change="saveGUISettings()">
-              <label for="enableBestOfUpdate" class="settingsText">Toggle Automatic Best Of update</span>
+              <label for="enableBestOfUpdate" class="settingsText">Toggle Automatic Best Of update</label>
             </div>
             <div class="settingBox" title="Toggle automatic score updates">
               <input type="checkbox" id="enableScoreUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableScoreUpdate" ng-change="saveGUISettings()">
-              <label for="enableScoreUpdate" class="settingsText">Toggle Automatic Score update</span>
+              <label for="enableScoreUpdate" class="settingsText">Toggle Automatic Score update</label>
             </div>
             <div class="settingBox" title="Toggle automatic team color updates">
               <input type="checkbox" id="enableTeamColorUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.setTeamColor" ng-change="saveGUISettings()">
-              <label for="enableTeamColorUpdate" class="settingsText">Toggle Automatic Team Color update</span>
+              <label for="enableTeamColorUpdate" class="settingsText">Toggle Automatic Team Color update</label>
             </div>
             <button id="startSet" class="addressRockerSetButtons" tabindex="-1" title='Start the Set to begin automated checks' ng-if="addressRockerSettings.useAddressRocker && addressRockerSettings.inSet == false" ng-click="toggleSetStart()">
               Start Set (Enables Auto Check for Changes)
@@ -513,7 +622,7 @@
         <div ng-show="settingsPageNumber==3">
           <div class="settingBox" title="Toggle the ability to use OBS Auto Control. You must use Auto Stream Tool feature.">
             <input type="checkbox" id="useObsAutomation" class="settingsCheck" tabindex="-1" ng-model="obsSettings.useObsAutomation" ng-change="saveOBSSettings()">
-            <label for="useObsAutomation" class="settingsText">OBS Auto Control</span>
+            <label for="useObsAutomation" class="settingsText">OBS Auto Control</label>
           </div>
           <div>
             <!-- <div class="settingBox" title="Toggle automatic set recording.">
@@ -521,38 +630,38 @@
               <label for="autoRecordSets" class="settingsText">Toggle automatic set recording</span>
             </div> -->
             <div class="settingBox" title="This sets how scenes will change on OBS.">
-              <label for="autoChangeScenes" class="settingsText">OBS Scene Control:</span>
-                <select id="autoChangeScenes" class="textInput mousetrap" title="This sets how scenes will change on OBS." tabindex="-1" ng-model="obsSettings.autoChangeScenes" ng-change="saveOBSSettings()">
-                  <option value="manualFromOBS">Manual from OBS</option>
-                  <option value="manualFromTool">Manual from Stream Tool</option>
-                  <option value="addressRockerAuto" ng-if="game=='Rivals of Aether' || game=='Rivals Workshop'">Auto from Address Rocker</option>
-                </select>
+              <label for="autoChangeScenes" class="settingsText">OBS Scene Control:</label>
+              <select id="autoChangeScenes" class="textInput mousetrap" title="This sets how scenes will change on OBS." tabindex="-1" ng-model="obsSettings.autoChangeScenes" ng-change="saveOBSSettings()">
+                <option value="manualFromOBS">Manual from OBS</option>
+                <option value="manualFromTool">Manual from Stream Tool</option>
+                <option value="addressRockerAuto" ng-if="game=='Rivals of Aether' || game=='Rivals Workshop'">Auto from Address Rocker</option>
+              </select>
             </div>
             <div class="settingBox" title="This sets how scenes will change on OBS." ng-show="obsSettings.autoChangeScenes == 'manualFromTool'">
-              <label for="obsCurrentScene" class="settingsText">Change OBS Scene</span>
-                <select id="obsCurrentScene" class="textInput mousetrap" title="This sets the current Scene in OBS." tabindex="-1" ng-model="selectedScene" ng-change="obsSetScreen(selectedScene, true)">
-                  <option value="startScene">Start Scene</option>
-                  <option value="vsScreenName">Vs Screen Scene</option>
-                  <option value="scoreboardSceneName">Scoreboard Scene</option>
-                  <option value="endScene">End Scene</option>
+              <label for="obsCurrentScene" class="settingsText">Change OBS Scene</label>
+              <select id="obsCurrentScene" class="textInput mousetrap" title="This sets the current Scene in OBS." tabindex="-1" ng-model="selectedScene" ng-change="obsSetScreen(selectedScene, true)">
+                <option value="startScene">Start Scene</option>
+                <option value="vsScreenName">Vs Screen Scene</option>
+                <option value="scoreboardSceneName">Scoreboard Scene</option>
+                <option value="endScene">End Scene</option>
 
-                </select>
+              </select>
             </div>
             <div class="settingBox" title="The name as it appears in OBS for the scene to be used when a set starts.">
-              <label for="startScene" class="settingsText">Set Start Scene</span>
-                <input type="text" id="startScene" class="settingsCheck" tabindex="-1" ng-model="obsSettings.startScene" ng-change="saveOBSSettings()">
+              <label for="startScene" class="settingsText">Set Start Scene</label>
+              <input type="text" id="startScene" class="settingsCheck" tabindex="-1" ng-model="obsSettings.startScene" ng-change="saveOBSSettings()">
             </div>
             <div class="settingBox" title="The name as it appears in OBS for the scene to be used when players are not fighting.">
-              <label for="vsScreenName" class="settingsText">VS Screen Scene</span>
-                <input type="text" id="vsScreenName" class="settingsCheck" tabindex="-1" ng-model="obsSettings.vsScreenName" ng-change="saveOBSSettings()">
+              <label for="vsScreenName" class="settingsText">VS Screen Scene</label>
+              <input type="text" id="vsScreenName" class="settingsCheck" tabindex="-1" ng-model="obsSettings.vsScreenName" ng-change="saveOBSSettings()">
             </div>
             <div class="settingBox" title="The name as it appears in OBS for the scene to be used when you are showing the players fight.">
-              <label for="scoreboardSceneName" class="settingsText">Scoreboard Scene</span>
-                <input type="text" id="scoreboardSceneName" class="settingsCheck" tabindex="-1" ng-model="obsSettings.scoreboardSceneName" ng-change="saveOBSSettings()">
+              <label for="scoreboardSceneName" class="settingsText">Scoreboard Scene</label>
+              <input type="text" id="scoreboardSceneName" class="settingsCheck" tabindex="-1" ng-model="obsSettings.scoreboardSceneName" ng-change="saveOBSSettings()">
             </div>
             <div class="settingBox" title="The name as it appears in OBS for the scene to be used when a set ends.">
-              <label for="endScene" class="settingsText">Set End Scene</span>
-                <input type="text" id="endScene" class="settingsCheck" tabindex="-1" ng-model="obsSettings.endScene" ng-change="saveOBSSettings()">
+              <label for="endScene" class="settingsText">Set End Scene</label>
+              <input type="text" id="endScene" class="settingsCheck" tabindex="-1" ng-model="obsSettings.endScene" ng-change="saveOBSSettings()">
             </div>
           </div>
         </div>

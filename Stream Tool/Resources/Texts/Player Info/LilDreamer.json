@@ -1,7 +1,7 @@
 {
   "name": "LilDreamer",
   "twitter": "",
-  "pronouns": "She/Her",
+  "pronouns": "",
   "tag": "",
   "characters": [
     {
@@ -11,8 +11,13 @@
     },
     {
       "character": "Ranno",
-      "skin": "Pink",
+      "skin": "Default",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Shaggy",
+      "skin": "Default",
+      "game": "Multiversus"
     }
   ]
 }

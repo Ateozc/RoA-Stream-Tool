@@ -1,40 +1,39 @@
 {
   "player": [
     {
-      "name": "Ateozc",
-      "twitter": "@ateozc",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
       "characters": [
-        "Olympia",
-        "Absa"
+        "Random"
       ]
     },
     {
-      "name": "Test",
-      "twitter": "verylongtwitter",
-      "pronouns": "They/It",
-      "tag": "test",
-      "characters": [
-        "Absa"
-      ]
-    },
-    {
-      "name": "Demitus",
-      "twitter": "@demitustouch",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
       "characters": [
-        "Forsburn"
+        "Random"
       ]
     },
     {
-      "name": "Serris",
-      "twitter": "@serrisfroon",
-      "pronouns": "He/HIm",
-      "tag": "UGS",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
       "characters": [
-        "Ranno"
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Random"
       ]
     }
   ],

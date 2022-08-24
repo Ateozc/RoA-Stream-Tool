@@ -2,7 +2,7 @@
   "name": "Foxtrot",
   "twitter": "@AuralisFoxtrot",
   "pronouns": "He/Him",
-  "tag": "",
+  "tag": "4ME",
   "characters": [
     {
       "character": "Shovel Knight",
@@ -11,8 +11,14 @@
     },
     {
       "character": "Olympia",
-      "skin": "Citrine",
-      "game": "Rivals Workshop"
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
-  ]
+  ],
+  "discord": "Foxtrot#4831"
 }

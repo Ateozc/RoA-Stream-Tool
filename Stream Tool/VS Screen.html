@@ -21,8 +21,8 @@
             <video autoplay loop class="absol bgVid dubEL vidBotRight" ng-src="{{prev.players[3].backgroundWebm}}" ng-style="fadeInBGVid(3)" id="vidBGP4" ng-show="prev.gamemode=='Teams'"></video>
         </div>
         <div id="colorGrads">
-            <img class="absol colorBG" id="colorBGP1" alt="" src="Resources/Overlay/VS Screen/Grads/CPU.png" style="filter: brightness(50%) sepia(1)" ng-style="{'filter': getAdjustedColorFilter(0)}" />
-            <img class="mirror colorBG" id="colorBGP2" alt="" src="Resources/Overlay/VS Screen/Grads/CPU.png" style="filter: brightness(50%) sepia(1)" ng-style="{'filter': getAdjustedColorFilter(1)}" />
+            <img class="absol colorBG team1Color" id="colorBGP1" alt="" src="Resources/Overlay/VS Screen/Grads/CPU.png"/>
+            <img class="mirror colorBG team2Color" id="colorBGP2" alt="" src="Resources/Overlay/VS Screen/Grads/CPU.png" />
         </div>
 
         <div id="charas">
@@ -65,7 +65,7 @@
         <div id="playerTexts">
             <div>
                 <player-socials-wrapper player="prev.players[0]" index="0" number="1" fields="playerFields" gamemode="{{prev.gamemode}}" ng-style="fadeInPlayerFields(0)"></player-socials-wrapper>
-                <span id="p1Wrapper" class="wrappers" ng-style="{'background-image': getGradientBackground(0)}" ng-class="{'wrappersDoubles topLeftDubs': prev.gamemode=='Teams', 'p1WSingles wrappersSingles': prev.gamemode=='Singles'}">
+                <span id="p1Wrapper" class="wrappers" ng-class="{'wrappersDoubles topLeftDubs team1Color': prev.gamemode=='Teams', 'p1WSingles wrappersSingles team1Color': prev.gamemode=='Singles'}">
                     <div ng-style="fadeInPlayerName(0)" ng-class="{'wrapperInnerSingles' : prev.gamemode == 'Singles'}">
                         <span id="p1Tag" class="tag" style="font-size:50px; display: inline">{{prev.players[0].tag}}</span>
                         <span id="p1Name" class="name" style="font-size:90px; display: inline;">{{prev.players[0].name}}</span>
@@ -73,7 +73,7 @@
                 </span>
     
                 <player-socials-wrapper player="prev.players[1]" index="1" number="2" fields="playerFields" gamemode="{{prev.gamemode}}" ng-style="fadeInPlayerFields(1)"></player-socials-wrapper>
-                <span id="p2Wrapper" class="wrappers" ng-style="{'background-image': getGradientBackground(1)}" ng-class="{'wrappersDoubles botLeftDubs': prev.gamemode=='Teams', 'p2WSingles wrappersSingles': prev.gamemode=='Singles'}">
+                <span id="p2Wrapper" class="wrappers" ng-class="{'wrappersDoubles botLeftDubs team1Color': prev.gamemode=='Teams', 'p2WSingles wrappersSingles team2Color': prev.gamemode=='Singles'}">
                     <div ng-style="fadeInPlayerName(1)" ng-class="{'wrapperInnerSingles' : prev.gamemode == 'Singles'}">
                         <span id="p2Tag" class="tag" style="font-size:50px; display: inline;">{{prev.players[1].tag}}</span>
                         <span id="p2Name" class="name" style="font-size:90px; display: inline;">{{prev.players[1].name}}</span>
@@ -83,7 +83,7 @@
             
             <div ng-show="prev.gamemode=='Teams'">
                 <player-socials-wrapper player="prev.players[2]" index="2" number="3" fields="playerFields" gamemode="{{prev.gamemode}}" ng-style="fadeInPlayerFields(2)"></player-socials-wrapper>
-                <span id="p3Wrapper" class="wrappers wrappersDoubles topRightDubs" ng-style="{'background-image': getGradientBackground(3)}">
+                <span id="p3Wrapper" class="wrappers wrappersDoubles topRightDubs team2Color">
                     <div ng-style="fadeInPlayerName(2)">
                         <span id="p3Tag" class="tag" style="font-size:50px; display: inline;">{{prev.players[2].tag}}</span>
                         <span id="p3Name" class="name" style="font-size:90px; display: inline;">{{prev.players[2].name}}</span>
@@ -91,15 +91,15 @@
                 </span>
 
                 <player-socials-wrapper player="prev.players[3]" index="3" number="4" fields="playerFields" gamemode="{{prev.gamemode}}" ng-style="fadeInPlayerFields(3)"></player-socials-wrapper>
-                <span id="p4Wrapper" class="wrappers wrappersDoubles botRightDubs" ng-style="{'background-image': getGradientBackground(4)}">
+                <span id="p4Wrapper" class="wrappers wrappersDoubles botRightDubs team2Color">
                     <div ng-style="fadeInPlayerName(3)">
                         <span id="p4Tag" class="tag" style="font-size:50px; display: inline;">{{prev.players[3].tag}}</span>
                         <span id="p4Name" class="name" style="font-size:90px; display: inline;">{{prev.players[3].name}}</span>
                     </div>
                 </span>
 
-                <span id="teamNameL" class="teamName dubEL" ng-style="{'background-image': getGradientBackground(0)}"><span id='teamNameLText' ng-style="fadeInTeamName(0)" style="font-size: 80px;">{{prev.teams[0]}}</span></span>
-                <span id="teamNameR" class="teamName dubEL" ng-style="{'background-image': getGradientBackground(2)}"><span id='teamNameRText' ng-style="fadeInTeamName(1)" style="font-size: 80px;">{{prev.teams[1]}}</span></span>
+                <span id="teamNameL" class="teamName dubEL team1Color"><span id='teamNameLText' ng-style="fadeInTeamName(0)" style="font-size: 80px;">{{prev.teams[0]}}</span></span>
+                <span id="teamNameR" class="teamName dubEL team2Color"><span id='teamNameRText' ng-style="fadeInTeamName(1)" style="font-size: 80px;">{{prev.teams[1]}}</span></span>
             </div>
 
         </div>
@@ -139,9 +139,9 @@
         <div id="scores" class="absol" ng-class="{'scoreDuringDubs' : prev.gamemode=='Teams'}">
             <img class="absol" ng-class="(prev.usePips)? 'scoreBorder' : 'scoreBorderNumber'" alt="" ng-show="!scoreEmpty" ng-src="{{getScoreBorderOverlay()}}">
             <div id="scoresNumbers" ng-show="!prev.usePips && !scoreEmpty">
-                <span id="scoreNumberL" class="scoreNumber" ng-style="{'-webkit-text-stroke-color': getHexColor(0)}">{{prev.score[0]}}</span>
+                <span id="scoreNumberL" class="scoreNumber team1Color">{{prev.score[0]}}</span>
                 <span id="scoreNumberC" class="scoreNumber">|</span>
-                <span id="scoreNumberR" class="scoreNumber" ng-style="{'-webkit-text-stroke-color': getHexColor(1)}">{{prev.score[1]}}</span>
+                <span id="scoreNumberR" class="scoreNumber team2Color">{{prev.score[1]}}</span>
             </div>
 
             <div id="scoresPips" ng-show="prev.usePips && !scoreEmpty">

@@ -5,13 +5,18 @@
   "characters": [
     {
       "character": "Kragg",
-      "skin": "Summit",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
       "character": "Mollo",
       "skin": "Blue",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Jake",
+      "skin": "Default",
+      "game": "Multiversus"
     }
   ],
   "pronouns": "He/Him"

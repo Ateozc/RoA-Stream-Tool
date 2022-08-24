@@ -24,7 +24,14 @@
 
 
 
-
+:root {
+  --team1Color: red;
+  --team1ColorGradient: linear-gradient(-180deg, rgb(237, 28, 35), rgb(238, 55, 59), rgb(239, 72, 75), rgb(240, 85, 88), rgb(241, 96, 99), rgb(242, 106, 108));
+  --team1ColorFilter: brightness(50%) sepia(1);
+  --team2Color: blue;
+  --team2ColorGradient: linear-gradient(-180deg, rgb(0, 183, 239), rgb(48, 186, 240), rgb(67, 189, 241), rgb(81, 192, 242), rgb(93, 195, 242), rgb(103, 197, 242));
+  --team2ColorFilter: brightness(50%) sepia(1);
+}
 
 body {
   width: 1920px;
@@ -65,6 +72,14 @@ body {
 
 #bgVids {
   filter: grayscale(0.8);
+}
+
+.colorBG.team1Color {
+  filter: var(--team1ColorFilter);
+}
+
+.colorBG.team2Color {
+  filter: var(--team2ColorFilter);
 }
 
 .vidTopLeft {
@@ -148,6 +163,13 @@ body {
   border-right: 28px solid transparent;
   border-top: 10px solid transparent;
 }
+.wrappersSingles.team1Color {
+  background-image: var(--team1ColorGradient);
+}
+.wrappersSingles.team2Color {
+  background-image: var(--team2ColorGradient);
+}
+
 .wrapperInnerSingles {
   line-height: 110px;
   opacity:0;
@@ -159,6 +181,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.wrappersDoubles.team1Color {
+  background-image: var(--team1ColorGradient);
+}
+
+.wrappersDoubles.team2Color {
+  background-image: var(--team2ColorGradient);
 }
 
 .p1WSingles {
@@ -285,6 +315,14 @@ body {
   background-image: linear-gradient(45deg, black, transparent);
   width: 40%;
   text-align: center;
+}
+
+.teamName.team1Color{
+  background-image: var(--team1ColorGradient);
+}
+
+.teamName.team2Color{
+  background-image: var(--team2ColorGradient);
 }
 
 #teamNameL {
@@ -420,6 +458,14 @@ body {
   font-family: "Deansgate";
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
+}
+
+.scoreNumber.team1Color {
+  -webkit-text-stroke-color: var(--team1Color);
+}
+
+.scoreNumber.team2Color {
+  -webkit-text-stroke-color: var(--team2Color);
 }
 
 #scoreNumberL {

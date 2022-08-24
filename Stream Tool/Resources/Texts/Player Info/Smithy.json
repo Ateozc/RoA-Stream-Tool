@@ -1,16 +1,26 @@
 {
   "name": "Smithy",
-  "twitter": "",
-  "pronouns": "He/Hikm",
+  "twitter": "@SmithyGuy21",
+  "pronouns": "He/Him",
   "tag": "",
   "characters": [
     {
-      "character": "Random",
-      "skin": "",
+      "character": "Zetterburn",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Zetterburn",
+      "character": "Shovel Knight",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Wrastor",
       "skin": "Default",
       "game": "Rivals of Aether"
     }

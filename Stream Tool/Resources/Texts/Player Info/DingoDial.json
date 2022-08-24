@@ -1,12 +1,17 @@
 {
   "name": "DingoDial",
   "twitter": "",
-  "pronouns": "",
+  "pronouns": "He/Him",
   "tag": "",
   "characters": [
     {
       "character": "Pomme",
-      "skin": "Default",
+      "skin": "Summer",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Elliana",
+      "skin": "Summer",
       "game": "Rivals of Aether"
     }
   ],

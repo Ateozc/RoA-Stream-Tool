@@ -6,12 +6,12 @@
   "characters": [
     {
       "character": "Zetterburn",
-      "skin": "Red",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Shovel Knight",
-      "skin": "Cyan",
+      "character": "Kragg",
+      "skin": "Genesis",
       "game": "Rivals of Aether"
     }
   ],

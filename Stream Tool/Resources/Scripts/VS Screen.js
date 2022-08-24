@@ -213,23 +213,13 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 	c.getAdjustedColorFilter = function (team) {
 		try {
-			return "brightness(50%) sepia(1) " + hexToFilter(c.prev.colors[team].hex);
+			return "brightness(50%) sepia(1) " + hexToFilter(c.getHexColor(team));
 		} catch (err) {
 			return "brightness(50%) sepia(1)";
 		}
 	}
 
-	c.getGradientBackground = function (player, iterations = 5) {
-		let team = 0;
-		if (player == 0) {
-			team = 0;
-		} else if (player == 1 && c.prev.gamemode == 'Singles') {
-			team = 1;
-		} else if (player > 1) {
-			team = 1;
-		} else {
-			team = 0;
-		}
+	c.getTeamGradientBackground = function (team, iterations = 5) {
 		let hex = c.getHexColor(team);
 		if (hex) {
 			let gradients = hex + ", ";
@@ -293,20 +283,6 @@ app.controller('AngularAppCtrl', function ($scope) {
 		} else {
 			return "Resources/Overlay/VS Screen/VS Overlay Dubs.png";
 		}
-	}
-
-	c.getSkinPathForPlayer = function (player) {
-		return c.getSkinPath(c.prev.players[player].character, c.prev.players[player].vsScreenSkin);
-	}
-
-	c.getSkinPath = function (character, skin) {
-		let path = "";
-		if (character == "Random") {
-			path = c.randomSkinPath;
-		} else {
-			path = charPath + "/" + character + "/" + skin + ".png";
-		}
-		return path;
 	}
 
 	c.fadeInCharacter = function (player) {
@@ -401,8 +377,6 @@ app.controller('AngularAppCtrl', function ($scope) {
 			if (c.playerFields[i].field == 'tag') {
 				continue;
 			}
-			console.log(c.playerFields[i])
-			console.log('p' + p + c.playerFields[i].label);
 			// document.getElementById('p' + p + c.playerFields[i].label).style.fontSize = tagSize;
 		}
 	}
@@ -714,6 +688,7 @@ app.controller('AngularAppCtrl', function ($scope) {
 				c.scoreEmpty = true;
 			}
 			c.loaded = true
+			c.setTeamColorsOnRoot();
 		}
 
 		if (
@@ -729,6 +704,16 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 		$scope.$apply();
 
+	}
+
+	c.setTeamColorsOnRoot = function (){
+		document.documentElement.style.setProperty('--team1Color', c.getHexColor(0));
+		document.documentElement.style.setProperty('--team1ColorGradient', c.getTeamGradientBackground(0));
+		document.documentElement.style.setProperty('--team1ColorFilter', c.getAdjustedColorFilter(0));
+		document.documentElement.style.setProperty('--team2Color', c.getHexColor(1));
+		document.documentElement.style.setProperty('--team2ColorGradient', c.getTeamGradientBackground(1));
+		document.documentElement.style.setProperty('--team2ColorFilter', c.getAdjustedColorFilter(1));
+		
 	}
 
 	function hexToFilter(H) {
@@ -859,7 +844,6 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 	//text resize, keeps making the text smaller until it fits
 	function resizeText(textEL, playerWrapper = false) {
-		console.log('Hit resize');
 		try {
 			let childrens = "";
 			if (playerWrapper) {
