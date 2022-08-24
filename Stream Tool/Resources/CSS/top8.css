@@ -120,14 +120,21 @@ body {
 }
 
 .playerContainer.p1 > img {
-    /* object-position: 0px 48px; */
-    transform: translate(-58px, 63px) scale(1.25);
+  /* object-position: 0px 48px; */
+  transform: translate(-58px, 63px) scale(1.25);
+}
+
+.playerContainer.p1 > img.charImgRandom {
+  /* object-position: 0px 48px; */
+  transform: translate(0, 0) scale(1.25);
 }
 
 img.charImgRandom {
     /* object-position: center; */
     transform: translate(0, 0) scale(1.25);
 }
+
+
 
 .placing {
     font-size: 75px;
