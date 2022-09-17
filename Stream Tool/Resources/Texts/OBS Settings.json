@@ -1,5 +1,5 @@
 {
-  "useObsAutomation": false,
+  "useObsAutomation": true,
   "autoChangeScenes": "manualFromOBS",
   "vsScreenName": "Vs Screen (Between Games)",
   "scoreboardSceneName": "Main Screen with overlay",

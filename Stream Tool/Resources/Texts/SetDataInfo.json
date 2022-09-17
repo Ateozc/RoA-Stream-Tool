@@ -6,6 +6,17 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Random",
+        "Arya"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Arya",
         "Random"
       ]
     },
@@ -15,6 +26,7 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Arya",
         "Random"
       ]
     },
@@ -24,26 +36,18 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Random"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
+        "Arya",
         "Random"
       ]
     }
   ],
-  "tournamentName": "",
-  "round": "Friendlies",
+  "tournamentName": "Test",
+  "round": "Grand Finals",
   "gamemode": "Singles",
   "useTeamNames": false,
   "teamNames": [
     "Red Team",
     "Blue Team"
   ],
-  "game": "Rivals of Aether"
+  "game": "Multiversus"
 }

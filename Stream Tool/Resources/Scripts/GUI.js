@@ -177,13 +177,13 @@ app.controller('AngularAppCtrl', function ($scope) {
     c.showTop8 = false;
 
     c.top8Settings = {
-        useTopText:false,
-        topText:"",
+        useTopText: false,
+        topText: "",
         useBottomText: false,
         bottomTextBracket: "",
-        bottomTextYoutube:"",
-        bottomTextTwitch:"",
-        bottomTextTwitter:"",
+        bottomTextYoutube: "",
+        bottomTextTwitch: "",
+        bottomTextTwitter: "",
         top8Ties: true,
         useP1Background: true,
         useCustomBackground: false,
@@ -352,12 +352,6 @@ app.controller('AngularAppCtrl', function ($scope) {
             c[playerType][c.playerFocus][c.playerFields[i].field] = c.playerProfiles[index][c.playerFields[i].field];
         }
         c[playerType][c.playerFocus].name = c.playerProfiles[index].name;
-        // c[playerType][c.playerFocus].tag = c.playerProfiles[index].tag;
-        // c[playerType][c.playerFocus].twitter = c.playerProfiles[index].twitter;
-        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].pronouns;
-        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].twitch;
-        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].youtube;
-        // c[playerType][c.playerFocus].pronouns = c.playerProfiles[index].discord;
         c[playerType][c.playerFocus].character = c.playerProfiles[index].character;
         c[playerType][c.playerFocus].skin = c.playerProfiles[index].skin;
         c.markCharacterIndex(c.playerFocus, false, c.playerFocusOnDeck);
@@ -906,7 +900,7 @@ app.controller('AngularAppCtrl', function ($scope) {
 
     // called whenever the used clicks on a settings checkbox
     c.saveOBSSettings = function () {
-    
+
         // read the file
         const obsSettings = JSON.parse(fs.readFileSync(textPath + "/OBS Settings.json", "utf-8"));
 
@@ -933,10 +927,10 @@ app.controller('AngularAppCtrl', function ($scope) {
         const top8Settings = JSON.parse(fs.readFileSync(textPath + "/Top 8 Settings.json", "utf-8"));
 
         if (c.top8Settings.top8Ties) {
-            
+
         }
         for (let i = 0; i < c.top8Players.length; i++) {
-            c.top8Players[i].placement = i+1;
+            c.top8Players[i].placement = i + 1;
             if (c.top8Settings.top8Ties) {
                 if (i == 5 || i == 7) {
                     c.top8Players[i].placement = i
@@ -1003,7 +997,7 @@ app.controller('AngularAppCtrl', function ($scope) {
                 skinIndex: 0
             }
             if (top8) {
-                player['placement'] = i +1;
+                player['placement'] = i + 1;
                 if (c.top8Settings.top8Ties) {
                     if (i == 5 || i == 7) {
                         player['placement'] = i
@@ -1184,6 +1178,38 @@ app.controller('AngularAppCtrl', function ($scope) {
 
     c.updateInterval = 1000;
 
+    c.setColorBasedOnSlot = function (slot, state) {
+        var color = {
+            name: "CPU",
+            hex: "808080"
+        }
+        if (state == 'HMN') {
+            if (slot == 0) {
+                color = {
+                    name: "Red",
+                    hex: "#ed1c23"
+                }
+            } else if (slot == 1) {
+                color = {
+                    name: "Blue",
+                    hex: "#00b7ef"
+                }
+            } else if (slot == 2) {
+                color = {
+                    name: "Pink",
+                    hex: "#ffa3b1"
+                }
+            } else if (slot == 3) {
+                color = {
+                    name: "Green",
+                    hex: "#a8e61d"
+                }
+            }
+        }
+
+        return color;
+    }
+
 
     c.init();
     c.mainLoop = async function () {
@@ -1203,11 +1229,12 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 
     c.externalUpdateCheck = function (scInfo) {
-        if (c.addressRockerSettings.useAddressRocker && c.addressRockerSettings.inSet) {
+        if (c.addressRockerSettings.useAddressRocker && c.addressRockerSettings.inSet && c.game == 'Rivals of Aether') {
             let addressRockerData = JSON.parse(fs.readFileSync(textPath + "/RoAState.json", "utf-8"));
-            if (addressRockerData.TourneySet.TourneyModeBestOf == -1) {
+            if (addressRockerData.TourneySet.TourneyModeBestOf == -1 || addressRockerData.TourneySet.TourneyModeBestOf == 0) {
                 return;
             }
+
             c.addressRockerSettings.inMatch = addressRockerData.TourneySet.InMatch;
 
             if (currentIntervalForVsScreen >= intervalBeforeVsScreenShows && c.addressRockerSettings.inMatch == false) {
@@ -1222,79 +1249,90 @@ app.controller('AngularAppCtrl', function ($scope) {
                 currentIntervalForVsScreen++;
             }
 
-
-            if (c.addressRockerSettings.enableCharacterUpdate) {
-                for (let i = 0; i < c.characterList.length; i++) {
-                    if (addressRockerData.P1Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase() && addressRockerData.P1Character.SlotState != 'OFF') {
-                        c.players[0].character = c.characterList[i].name;
-                        c.markCharacterIndex(0);
-                        c.players[0].skin = "Default";
-                        if (c.gamemode == 'Singles' && c.addressRockerSettings.setTeamColor) {
-                            if (addressRockerData.P1Character.SlotState == 'HMN') {
-                                c.sides.left.color = {
-                                    name: "Red",
-                                    hex: "#ed1c23"
-                                }
-                            }
-
-                            if (addressRockerData.P1Character.SlotState == 'CPU') {
-                                c.sides.left.color = {
-                                    name: "CPU",
-                                    hex: "#808080"
-                                }
-                            }
-                        }
-
-
-                        if (c.addressRockerSettings.enableSkinUpdate) {
-                            for (let j = 0; j < c.characterList[i].skins.length; j++) {
-                                if (addressRockerData.P1Character.Skin.SkinIndex == c.characterList[i].skins[j].index) {
-                                    c.players[0].skinIndex = c.characterList[i].skins[j].index;
-                                    c.setSkinBasedOnIndex(0);
-                                }
-                            }
-                        }
-                    }
-                    if (addressRockerData.P2Character.Character.toLocaleLowerCase() == c.characterList[i].name.toLocaleLowerCase() && addressRockerData.P2Character.SlotState != 'OFF') {
-                        c.players[1].character = c.characterList[i].name;
-                        c.markCharacterIndex(1);
-                        c.players[1].skin = "Default";
-
-                        if (c.gamemode == 'Singles' && c.addressRockerSettings.setTeamColor) {
-                            if (addressRockerData.P2Character.SlotState == 'HMN') {
-                                c.sides.right.color = {
-                                    name: "Blue",
-                                    hex: "#00b7ef"
-                                }
-                            }
-
-                            if (addressRockerData.P2Character.SlotState == 'CPU') {
-                                c.sides.right.color = {
-                                    name: "CPU",
-                                    hex: "#808080"
-                                }
-                            }
-                        }
-
-                        if (c.addressRockerSettings.enableSkinUpdate) {
-                            for (let j = 0; j < c.characterList[i].skins.length; j++) {
-                                if (addressRockerData.P2Character.Skin.SkinIndex == c.characterList[i].skins[j].index) {
-                                    c.players[1].skinIndex = c.characterList[i].skins[j].index;
-                                    c.setSkinBasedOnIndex(1);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
             if (c.addressRockerSettings.enableBestOfUpdate) {
                 c.roundInfo.bestOf = "Bo" + addressRockerData.TourneySet.TourneyModeBestOf;
             }
 
-            if (c.addressRockerSettings.enableScoreUpdate) {
-                c.setScore('left', addressRockerData.TourneySet.P1GameCount);
-                c.setScore('right', addressRockerData.TourneySet.P2GameCount);
+            //new stuff
+            let playerCount = 0;
+            for (let i = 0; i < addressRockerData.Characters.length; i++) {
+                let player = addressRockerData.Characters[i];
+                if (player.SlotState != 'OFF') {
+                    playerCount++;
+                }
+            }
+            if (playerCount > 2) {
+                c.gamemode = 'Teams';
+            } else {
+                c.gamemode = 'Singles';
+            }
+
+            let playerIndex = 0;
+            for (let i = 0; i < addressRockerData.Characters.length; i++) {
+                let player = addressRockerData.Characters[i];
+                if (playerCount > 2 || player.SlotState != 'OFF') {
+                    //check to ensure character exists
+                    let slotCharacter = (player.Character) ? player.Character : "Random";
+                    let character = c.characterList.find(e => e.name.toLocaleLowerCase() === slotCharacter.toLocaleLowerCase());
+                    if (character != undefined && c.addressRockerSettings.enableCharacterUpdate) {
+                        c.players[playerIndex].character = character.name;
+                        if (c.addressRockerSettings.enableSkinUpdate) {
+                            break; //Currently does not work because we dont pull this yet.
+                            for (let j = 0; j < character.skins.length; j++) {
+                                if (player.Skin.SkinIndex == character.skins[j].index) {
+                                    c.players[playerIndex].skinIndex = character.skins[j].index;
+                                    c.setSkinBasedOnIndex(playerIndex);
+                                }
+                            }
+                        } else {
+                            let skinSet = false;
+                            if (c.players[playerIndex].name && c.players[playerIndex].character != 'Random') { //Check to see if the player uses a specific Skin before we apply default.
+                                c.playerProfiles = c.getPlayerProfiles(c.players[playerIndex].name);
+                                for (let j = 0; j < c.playerProfiles.length; j++) {
+                                    let playerProfile = c.playerProfiles[j];
+                                    // console.log(playerProfile);
+                                    if (playerProfile.name == c.players[playerIndex].name && playerProfile.character == c.players[playerIndex].character) {
+                                        let charSkin = character.skins.find(e => e.label == playerProfile.skin);
+                                        if (charSkin.label && charSkin.index) {
+                                            c.players[playerIndex].skin = charSkin.label;
+                                            c.players[playerIndex].skinIndex = charSkin.index;
+                                            skinSet = true;
+                                        }
+                                    }
+                                }
+                            }
+                            if (!skinSet) {
+                                c.markCharacterIndex(playerIndex);
+                            }
+                        }
+                    }
+
+                    if (c.addressRockerSettings.setTeamColor) {
+                        if (playerIndex == 0) {
+                            if (playerCount > 2) { //force red on teams
+                                c.sides.left.color = c.setColorBasedOnSlot(0, 'HMN');
+                            } else {
+                                c.sides.left.color = c.setColorBasedOnSlot(i, player.SlotState);
+                            }
+                        } else if (playerIndex == 1 && playerCount < 3) {
+                            c.sides.right.color = c.setColorBasedOnSlot(i, player.SlotState);
+                        } else if (playerIndex == 2 && playerCount > 2) {
+                            c.sides.right.color = c.setColorBasedOnSlot(1, 'HMN'); //If teams, force Red Vs Blue
+                        }
+                    }
+
+                    if (c.addressRockerSettings.enableScoreUpdate) {
+                        if (playerIndex == 0) {
+                            c.setScore('left', player.GameCount);
+                        } else if (playerIndex == 1 && playerCount < 3) {
+                            c.setScore('right', player.GameCount);
+                        } else if (playerIndex == 2 && playerCount == 4) {
+                            c.setScore('right', player.GameCount);
+                        }
+                    }
+
+                    playerIndex++;
+                }
             }
 
             if (c.roundInfo.bestOf == 'Bo3') {

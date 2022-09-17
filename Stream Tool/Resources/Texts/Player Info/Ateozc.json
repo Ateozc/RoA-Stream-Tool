@@ -5,7 +5,7 @@
   "characters": [
     {
       "character": "Absa",
-      "skin": "Default",
+      "skin": "Grey",
       "game": "Rivals of Aether"
     },
     {
@@ -15,7 +15,7 @@
     },
     {
       "character": "Olympia",
-      "skin": "Default",
+      "skin": "White",
       "game": "Rivals of Aether"
     },
     {
@@ -45,7 +45,7 @@
     },
     {
       "character": "Zetterburn",
-      "skin": "Default",
+      "skin": "Ranked",
       "game": "Rivals of Aether"
     },
     {
@@ -80,7 +80,7 @@
     },
     {
       "character": "Orcane",
-      "skin": "Cyan",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {

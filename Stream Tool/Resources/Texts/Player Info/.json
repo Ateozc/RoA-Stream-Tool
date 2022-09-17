@@ -6,7 +6,7 @@
     {
       "character": "Random",
       "skin": "",
-      "game": "Rivals of Aether"
+      "game": "Multiversus"
     },
     {
       "character": "Absa",
@@ -94,7 +94,7 @@
     },
     {
       "character": "Olympia",
-      "skin": "Summer",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -284,6 +284,11 @@
     },
     {
       "character": "Tom and Jerry",
+      "skin": "Default",
+      "game": "Multiversus"
+    },
+    {
+      "character": "Bugs",
       "skin": "Default",
       "game": "Multiversus"
     }

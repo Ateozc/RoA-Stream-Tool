@@ -1,24 +1,43 @@
 {
-  "P1Character": {
-    "Character": "MOLLO",
-    "Skin": {
-      "SkinDescription": "DEFAULT",
-      "SkinIndex": 0
+  "ScreenName": "",
+  "Characters": [
+    {
+      "Character": "",
+      "SlotNumber": 1,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
     },
-    "SlotState": "HMN"
-  },
-  "P2Character": {
-    "Character": "ZETTERBURN",
-    "Skin": {
-      "SkinDescription": "DEFAULT",
-      "SkinIndex": 0
+    {
+      "Character": "",
+      "SlotNumber": 2,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
     },
-    "SlotState": "HMN"
-  },
+    {
+      "Character": "",
+      "SlotNumber": 3,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    },
+    {
+      "Character": "",
+      "SlotNumber": 4,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    }
+  ],
   "TourneySet": {
     "InMatch": false,
-    "TourneyModeBestOf": 3,
-    "P1GameCount": 0,
-    "P2GameCount": 0
+    "TourneyModeBestOf": 0,
+    "Stocks": 0,
+    "Time": 0
   }
 }

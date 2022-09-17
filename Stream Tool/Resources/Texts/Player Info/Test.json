@@ -1,6 +1,6 @@
 {
   "name": "Test",
-  "tag": "test",
+  "tag": "",
   "characters": [
     {
       "character": "Absa",
@@ -19,7 +19,7 @@
     },
     {
       "character": "Etalus",
-      "skin": "Default",
+      "skin": "LoA HD",
       "game": "Rivals of Aether"
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "character": "Orcane",
-      "skin": "Default",
+      "skin": "Steampunk",
       "game": "Rivals of Aether"
     },
     {
@@ -83,12 +83,7 @@
     },
     {
       "character": "Random",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Hodan",
-      "skin": "Summer",
+      "skin": "",
       "game": "Rivals of Aether"
     },
     {
@@ -100,8 +95,18 @@
       "character": "Mollo",
       "skin": "Abyss",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Hodan",
+      "skin": "Default Custom 1",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Arya",
+      "skin": "Default",
+      "game": "Multiversus"
     }
   ],
-  "twitter": "@test",
-  "pronouns": "test"
+  "twitter": "",
+  "pronouns": ""
 }

@@ -1,6 +1,6 @@
 {
   "name": "Arya",
-  "twitter": "",
+  "twitter": "Stark",
   "pronouns": "She/Her",
   "tag": "Stark",
   "characters": [
@@ -10,5 +10,8 @@
       "game": "Multiversus"
     }
   ],
-  "game": "Multiversus"
+  "game": "Multiversus",
+  "twitch": "Stark",
+  "youtube": "Stark",
+  "discord": "Stark"
 }
