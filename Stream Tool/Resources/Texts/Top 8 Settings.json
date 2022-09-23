@@ -1,7 +1,7 @@
 {
   "top8Ties": true,
-  "useP1Background": true,
-  "useCustomBackground": false,
+  "useP1Background": false,
+  "useCustomBackground": true,
   "customBackground": "Resources\\Games\\Rivals of Aether\\Absa\\Blue.png",
   "useTopText": true,
   "topText": "Ignition 281 - 5 Entrants - August 24th, 2022 - Every Wednesday",

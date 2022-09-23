@@ -48,7 +48,8 @@
         {
             "label": "Golden",
             "fileName" : "Golden",
-            "index": 11
+            "index": 11,
+            "background": "BG Golden.webm"
         },
         {
             "label": "Infamous",

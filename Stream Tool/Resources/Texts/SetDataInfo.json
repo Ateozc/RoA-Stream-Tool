@@ -6,8 +6,17 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Chun Li",
+        "Alex",
+        "Dudley",
+        "Bridget",
+        "Axl Low",
+        "Baiken",
+        "Anji",
+        "Akuma",
         "Random",
-        "Arya"
+        "Steve",
+        "Kazuya"
       ]
     },
     {
@@ -16,7 +25,35 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Arya",
+        "Chun Li",
+        "Alex",
+        "Dudley",
+        "Bridget",
+        "Axl Low",
+        "Baiken",
+        "Anji",
+        "Akuma",
+        "Random",
+        "Kazuya",
+        "Steve"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Chun Li",
+        "Alex",
+        "Dudley",
+        "Bridget",
+        "Axl Low",
+        "Baiken",
+        "Anji",
+        "Akuma",
+        "Kazuya",
+        "Steve",
         "Random"
       ]
     },
@@ -26,28 +63,27 @@
       "pronouns": "",
       "tag": "",
       "characters": [
-        "Arya",
-        "Random"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Arya",
+        "Chun Li",
+        "Alex",
+        "Dudley",
+        "Bridget",
+        "Axl Low",
+        "Baiken",
+        "Anji",
+        "Akuma",
+        "Kazuya",
+        "Steve",
         "Random"
       ]
     }
   ],
-  "tournamentName": "Test",
-  "round": "Grand Finals",
+  "tournamentName": "",
+  "round": "Friendlies",
   "gamemode": "Singles",
   "useTeamNames": false,
   "teamNames": [
     "Red Team",
     "Blue Team"
   ],
-  "game": "Multiversus"
+  "game": "Super Smash Bros Ultimate"
 }

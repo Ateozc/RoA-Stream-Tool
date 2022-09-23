@@ -15,10 +15,14 @@
 <body ng-app="angularapp" ng-controller="AngularAppCtrl">
     <div ng-show="loaded" ng-style="fadeInScreen()">
         <div id="bgVids">
-            <video autoplay loop class="absol bgVid vidTopLeft" ng-src="{{prev.players[0].backgroundWebm}}" id="vidBGP1" ng-style="fadeInBGVid(0)"></video>
-            <video autoplay loop class="absol bgVid" id="vidBGP2" ng-src="{{prev.players[1].backgroundWebm}}" ng-style="fadeInBGVid(1)" ng-class="{'vidTopRight': prev.gamemode=='Singles', 'vidBotLeft' : prev.gamemode=='Teams'}"></video>
-            <video autoplay loop class="absol bgVid dubEL vidTopRight" ng-src="{{prev.players[2].backgroundWebm}} " ng-style="fadeInBGVid(2)" id="vidBGP3" ng-show="prev.gamemode=='Teams'"></video>
-            <video autoplay loop class="absol bgVid dubEL vidBotRight" ng-src="{{prev.players[3].backgroundWebm}}" ng-style="fadeInBGVid(3)" id="vidBGP4" ng-show="prev.gamemode=='Teams'"></video>
+            <video autoplay loop class="absol bgVid vidTopLeft" ng-if="prev.players[0].backgroundWebm.indexOf('png') == -1" ng-src="{{prev.players[0].backgroundWebm}}" id="vidBGP1" ng-style="fadeInBGVid(0)"></video>
+            <img class="absol bgVid vidTopLeft" ng-if="prev.players[0].backgroundWebm.indexOf('png') != -1" ng-src="{{prev.players[0].backgroundWebm}}" id="vidBGP1" ng-style="fadeInBGVid(0)"></img>
+            <video autoplay loop class="absol bgVid" id="vidBGP2" ng-if="prev.players[1].backgroundWebm.indexOf('png') == -1" ng-src="{{prev.players[1].backgroundWebm}}" ng-style="fadeInBGVid(1)" ng-class="{'vidTopRight': prev.gamemode=='Singles', 'vidBotLeft' : prev.gamemode=='Teams'}"></video>
+            <img class="absol bgVid" ng-if="prev.players[1].backgroundWebm.indexOf('png') != -1" ng-src="{{prev.players[1].backgroundWebm}}" id="vidBGP2" ng-style="fadeInBGVid(1)" ng-class="{'vidTopRight': prev.gamemode=='Singles', 'vidBotLeft' : prev.gamemode=='Teams'}"></img>
+            <video autoplay loop class="absol bgVid dubEL vidTopRight" ng-src="{{prev.players[2].backgroundWebm}} " ng-style="fadeInBGVid(2)" id="vidBGP3" ng-if="prev.players[2].backgroundWebm.indexOf('png') == -1" ng-show="prev.gamemode=='Teams'"></video>
+            <img class="absol bgVid dubEL vidTopRight" ng-src="{{prev.players[2].backgroundWebm}} " ng-style="fadeInBGVid(2)" id="vidBGP3" ng-if="prev.players[2].backgroundWebm.indexOf('png') != -1" ng-show="prev.gamemode=='Teams'"></img>
+            <video autoplay loop class="absol bgVid dubEL vidBotRight" ng-src="{{prev.players[3].backgroundWebm}}" ng-style="fadeInBGVid(3)" id="vidBGP4" ng-if="prev.players[3].backgroundWebm.indexOf('png') == -1" ng-show="prev.gamemode=='Teams'"></video>
+            <img class="absol bgVid dubEL vidTopRight" ng-src="{{prev.players[3].backgroundWebm}} " ng-style="fadeInBGVid(3)" id="vidBGP3" ng-if="prev.players[3].backgroundWebm.indexOf('png') != -1" ng-show="prev.gamemode=='Teams'"></img>
         </div>
         <div id="colorGrads">
             <img class="absol colorBG team1Color" id="colorBGP1" alt="" src="Resources/Overlay/VS Screen/Grads/CPU.png"/>

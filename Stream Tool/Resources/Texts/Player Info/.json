@@ -6,7 +6,7 @@
     {
       "character": "Random",
       "skin": "",
-      "game": "Multiversus"
+      "game": "Super Smash Bros Ultimate"
     },
     {
       "character": "Absa",
@@ -104,12 +104,12 @@
     },
     {
       "character": "Shovel Knight",
-      "skin": "Default",
+      "skin": "Golden",
       "game": "Rivals of Aether"
     },
     {
       "character": "Clairen",
-      "skin": "Summer",
+      "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
@@ -291,6 +291,56 @@
       "character": "Bugs",
       "skin": "Default",
       "game": "Multiversus"
+    },
+    {
+      "character": "Anji",
+      "skin": "Default",
+      "game": "Guilty Gear Strive"
+    },
+    {
+      "character": "Baiken",
+      "skin": "Default",
+      "game": "Guilty Gear Strive"
+    },
+    {
+      "character": "Axl Low",
+      "skin": "Default",
+      "game": "Guilty Gear Strive"
+    },
+    {
+      "character": "Bridget",
+      "skin": "Default",
+      "game": "Guilty Gear Strive"
+    },
+    {
+      "character": "Akuma",
+      "skin": "Default",
+      "game": "Street Fighter 3rd Strike"
+    },
+    {
+      "character": "Dudley",
+      "skin": "Default",
+      "game": "Street Fighter 3rd Strike"
+    },
+    {
+      "character": "Alex",
+      "skin": "Default",
+      "game": "Street Fighter 3rd Strike"
+    },
+    {
+      "character": "Chun Li",
+      "skin": "Default",
+      "game": "Street Fighter 3rd Strike"
+    },
+    {
+      "character": "Kazuya",
+      "skin": "Default",
+      "game": "Super Smash Bros Ultimate"
+    },
+    {
+      "character": "Steve",
+      "skin": "Default",
+      "game": "Super Smash Bros Ultimate"
     }
   ],
   "pronouns": ""

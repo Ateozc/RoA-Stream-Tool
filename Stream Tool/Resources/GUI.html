@@ -500,14 +500,14 @@
         <div ng-show="settingsPageNumber==1">
           <div class="settingBox" title="Select a game to use.">
             <label for="gameSelect" class="settingsText">Game</label>
-            <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="-1" ng-model="game" ng-change="gameChanged();">
-              <option ng-repeat="game in games" value="{{game}}">{{game}}</option>
+            <select id="gameSelect" class="textInput mousetrap" title="Game Select" tabindex="-1" ng-model="game.name" ng-change="gameChanged();">
+              <option ng-repeat="game in games" value="{{game.name}}">{{game.abbr}}</option>
             </select>
           </div>
 
-          <div class="settingBox" title="Fixes profiles for currently selected game">
-            <!-- <button id="fixProfiles" class="" tabindex="-1" ng-model="fixProfiles" ng-click="fixProfilesForCurrentGame()">Fix Profiles</button> -->
-          </div>
+          <!-- <div class="settingBox" title="Fixes profiles for currently selected game">
+            <button id="fixProfiles" class="" tabindex="-1" ng-model="fixProfiles" ng-click="fixProfilesForCurrentGame()">Fix Profiles</button>
+          </div> -->
 
           <!-- <div class="settingBox" title="Toggle top8">
             <input type="checkbox" id="top8Toggle" class="settingsCheck" tabindex="-1" ng-model="showTop8">
@@ -519,7 +519,7 @@
             <label for="allowIntro" class="settingsText">Allow Intro</label>
           </div>
 
-          <div ng-show="game=='Rivals of Aether'" class="settingBox" title="Select a game to use.">
+          <div ng-show="game.name=='Rivals of Aether'" class="settingBox" title="Select a game to use.">
             <label for="curSeasonalSkin" class="settingsText">Seasonal Skin Select</label>
             <select id="curSeasonalSkin" class="textInput mousetrap" title="Seasonal Skin Select" tabindex="-1" ng-model="seasonalSkin" ng-change="updateSeasonalSkins();">
               <option ng-repeat="skin in seasonalSkins" value="{{skin}}">{{skin}}</option>
@@ -527,7 +527,7 @@
           </div>
 
           <div class="settingBox" title="Forces HD renders to appear on the VS screen,
-  while keeping the regular renders for the scoreboard." ng-show="game=='Rivals of Aether'">
+  while keeping the regular renders for the scoreboard." ng-show="game.name=='Rivals of Aether'">
             <label for="forceHD" class="settingsText">Display HD renders</label>
             <select id="forceHD" class="textInput mousetrap" title="Select when you want to display HD Renders" tabindex="-1" ng-model="forceHDChoice" ng-change="HDtoggle();">
               <option ng-repeat="option in hdOptions" value="{{option}}">{{option}}</option>
@@ -535,7 +535,7 @@
           </div>
 
           <div class="settingBox" title="Will just show regular HD renders in the
-  VS Screen even when LoA skins are selected." ng-show="game=='Rivals of Aether'">
+  VS Screen even when LoA skins are selected." ng-show="game.name=='Rivals of Aether'">
             <input type="checkbox" id="noLoAHD" class="settingsCheck" ng-disabled="!forceHD" tabindex="-1" ng-model="noLoAHD" ng-change="saveGUISettings()">
             <label for="noLoAHD" class="settingsText">No LoA HD renders</label>
           </div>
@@ -577,7 +577,7 @@
         </div>
         <!-- Page 2, Automated Stream Tool -->
         <div ng-show="settingsPageNumber==2">
-          <div ng-show="game=='Rivals of Aether' || game=='Rivals Workshop'">
+          <div ng-show="game.name=='Rivals of Aether' || game.name=='Rivals Workshop'">
             <div class="settingBox" title="Toggle the ability to use the Address Rocker Json file">
               <input type="checkbox" id="useAddressRocker" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.useAddressRocker" ng-change="toggleSetStop(); saveGUISettings();">
               <label for="useAddressRocker" class="settingsText">Use Address Rocker for Tool Control</label>
@@ -586,11 +586,11 @@
               <input type="checkbox" id="showAddressRockerInfo" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.showInfo" ng-change="saveGUISettings()">
               <label for="showAddressRockerInfo" class="settingsText">Toggle AddressRocker info display</label>
             </div>
-            <div class="settingBox" title="Toggle automatic character updates" ng-hide="game != 'Rivals of Aether'">
+            <div class="settingBox" title="Toggle automatic character updates" ng-hide="game.name != 'Rivals of Aether'">
               <input type="checkbox" id="enableCharacterUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableCharacterUpdate" ng-change="saveGUISettings()">
               <label for="enableCharacterUpdate" class="settingsText">Toggle Automatic Character update</label>
             </div>
-            <div class="settingBox" title="Toggle automatic skin color updates" ng-hide="game != 'Rivals of Aether'">
+            <div class="settingBox" title="Toggle automatic skin color updates" ng-hide="game.name != 'Rivals of Aether'">
               <input type="checkbox" id="enableSkinUpdate" class="settingsCheck" tabindex="-1" ng-model="addressRockerSettings.enableSkinUpdate" ng-change="saveGUISettings()">
               <label for="enableSkinUpdate" class="settingsText">Toggle Automatic Skin update</label>
             </div>
@@ -614,7 +614,7 @@
             </button>
           </div>
 
-          <div ng-hide="game=='Rivals of Aether' || game=='Rivals Workshop'">Cant use Address Rocker with this game. Full support on Rivals of Aether. Score and Best Of support for Rivals Workshop.</div>
+          <div ng-hide="game.name=='Rivals of Aether' || game.name=='Rivals Workshop'">Cant use Address Rocker with this game. Full support on Rivals of Aether. Score and Best Of support for Rivals Workshop.</div>
 
         </div>
 
@@ -634,7 +634,7 @@
               <select id="autoChangeScenes" class="textInput mousetrap" title="This sets how scenes will change on OBS." tabindex="-1" ng-model="obsSettings.autoChangeScenes" ng-change="saveOBSSettings()">
                 <option value="manualFromOBS">Manual from OBS</option>
                 <option value="manualFromTool">Manual from Stream Tool</option>
-                <option value="addressRockerAuto" ng-if="game=='Rivals of Aether' || game=='Rivals Workshop'">Auto from Address Rocker</option>
+                <option value="addressRockerAuto" ng-if="game.name=='Rivals of Aether' || game.name=='Rivals Workshop'">Auto from Address Rocker</option>
               </select>
             </div>
             <div class="settingBox" title="This sets how scenes will change on OBS." ng-show="obsSettings.autoChangeScenes == 'manualFromTool'">

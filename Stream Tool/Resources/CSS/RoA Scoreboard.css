@@ -19,8 +19,52 @@
 }
 
 :root {
+    /* Default */
     --scoreboardX: 470px;
     --scoreboardY: 25px;
+    --roundInfoX: 0px;
+    --roundInfoY: 900px;
+
+    /* SSBU */
+    /* Different good heights: 
+    120 (if center)
+    25 if center and players moved, left would be 430ish for players
+
+    if top left:
+    -750X 0-200Y
+
+    if top right:
+    800X y0 || 100
+     */
+    --scoreboardSSBUX: 470px;
+    --scoreboardSSBUY: 25px;
+    --roundInfoSSBUX: 800px;
+    --roundInfoSSBUY: 100px;
+    
+    /* Third Strike */
+    --scoreboardSF3SX:530px;
+    --scoreboardSF3SY:0px;
+    --roundInfoSF3SX: 0px;
+    --roundInfoSF3SY: 190px;
+    /* GGS */
+    /* 340 if 1scale 620 at .85*/
+    --scoreboardGGSX: 340px; 
+    --scoreboardGGSY: 0px;
+    --roundInfoGGSX: 0px;
+    --roundInfoGGSY: 1000px;
+     /* Tekken 7 */
+    /* 340 if 1scale 620 at .85*/
+    --scoreboardT7X: 450px; 
+    --scoreboardT7Y: 0px;
+    --roundInfoT7X: 0px;
+    --roundInfoT7Y: 15px;
+
+    /* BBCF */
+    /* 340 if 1scale 620 at .85*/
+    --scoreboardBBCFX: 425px; 
+    --scoreboardBBCFY: 0px;
+    --roundInfoBBCFX: 0px;
+    --roundInfoBBCFY: 1000px;
   }
 
 body {
@@ -41,17 +85,93 @@ body {
     position: absolute;
 }
 
-
 .scoreboard {
     top: var(--scoreboardY);
 }
+
+.scoreboard.SSBU {
+    top: var(--scoreboardSSBUY);
+}
+
+.scoreboard.SF3S {
+    top: var(--scoreboardSF3SY);
+}
+
+.scoreboard.GGS {
+    top: var(--scoreboardGGSY);
+}
+
+.scoreboard.BBCF {
+    top: var(--scoreboardBBCFY);
+}
+
+.scoreboard.T7 {
+    top: var(--scoreboardT7Y);
+}
+
+
+
 #scoreboardL {
     left: var(--scoreboardX);
 }
+
+#scoreboardL.SSBU {
+    left: var(--scoreboardSSBUX);
+}
+
+#scoreboardL.SF3S {
+    left: var(--scoreboardSF3SX);
+    transform: scale(0.85);
+}
+
+#scoreboardL.GGS {
+    left: var(--scoreboardGGSX);
+    /* transform: scale(0.85); */
+}
+
+#scoreboardL.BBCF {
+    left: var(--scoreboardBBCFX);
+    /* transform: scale(0.9); */
+}
+
+#scoreboardL.T7 {
+    left: var(--scoreboardT7X);
+    transform: scale(0.85);
+}
+
+
+
 #scoreboardR {
     right: var(--scoreboardX);
     transform: scaleX(-1);
 }
+
+#scoreboardR.SSBU {
+    right: var(--scoreboardSSBUX);
+    transform: scaleX(-1);
+}
+
+#scoreboardR.SF3S {
+    right: var(--scoreboardSF3SX);
+    transform: scale(-0.85, 0.85)
+}
+
+#scoreboardR.GGS {
+    right: var(--scoreboardGGSX);
+    /* transform: scale(-0.85, 0.85) */
+}
+
+#scoreboardR.BBCF {
+    right: var(--scoreboardBBCFX);
+    /* transform: scale(-0.9, 0.9) */
+}
+
+#scoreboardR.T7 {
+    right: var(--scoreboardT7X);
+    transform: scale(-0.85, 0.85)
+}
+
+
 
 .scoreNumbers {
     position:absolute;
@@ -181,7 +301,33 @@ body {
     width: 1920px;
     display: flex;
     justify-content: center;
-    top: 900px;
+    top: var(--roundInfoY);
+    left: var(--roundInfoX);
+}
+
+#overlayRound.SSBU {
+    top: var(--roundInfoSSBUY);
+    left: var(--roundInfoSSBUX);
+}
+
+#overlayRound.SF3S {
+    top: var(--roundInfoSF3SY);
+    left: var(--roundInfoSF3SX);
+}
+
+#overlayRound.GGS {
+    top: var(--roundInfoGGSY);
+    left: var(--roundInfoGGSX);
+}
+
+#overlayRound.BBCF {
+    top: var(--roundInfoBBCFY);
+    left: var(--roundInfoBBCFX);
+}
+
+#overlayRound.T7 {
+    top: var(--roundInfoT7Y);
+    left: var(--roundInfoT7X);
 }
 
 #round {

@@ -276,7 +276,7 @@ app.controller('AngularAppCtrl', function ($scope) {
                 const playerInfo = getJson(textPath + "/Player Info/" + file);
                 //for each character that player plays
                 playerInfo.characters.forEach(char => {
-                    if (char.game == c.game) {
+                    if (char.game == c.game.name) {
                         let profile = {
                             name: playerInfo.name,
                             pronouns: playerInfo.pronouns,
@@ -374,6 +374,23 @@ app.controller('AngularAppCtrl', function ($scope) {
         } else {
             c.gamemode = "Singles";
         }
+    }
+
+    c.getGameAbbr = function(game) {
+        let abbr = "RoA";
+        if (game == 'Rivals Workshop') {
+            return "RoAWS";
+        }
+        let exp = /\b[a-zA-Z\d]|[A-Z]/g; //gets the first letter of each and capital letters
+
+        let abbrArr = game.match(exp);
+        
+
+        if (abbrArr.length > 0) {
+            abbr = abbrArr.toString().replaceAll(',', '');
+        }
+
+        return abbr;
     }
 
     c.setBestOf = function (value, onDeck = false) {
@@ -501,8 +518,12 @@ app.controller('AngularAppCtrl', function ($scope) {
             let defaultSkinPath = "";
             let vsScreenSkinPath = "";
             let scoreboardSkinPath = "";
-            let backgroundPath = c.relativePathOfFile(defaultWbBackground);
+            let defaultBackground = c.relativePathOfFile(defaultWbBackground);
+            let gameDefaultBackground = c.relativePathOfFile(charPathRel + 'BG.webm');
+
+            defaultBackground = (gameDefaultBackground) ? gameDefaultBackground : defaultBackground;
             let characterInfo = getJson(charPath + character + "/_Info");
+            let backgroundPath = "";
 
             if (!top8) {
                 if (c.gamemode == 'Singles') {
@@ -530,17 +551,23 @@ app.controller('AngularAppCtrl', function ($scope) {
                 skin = 'Random';
                 vsScreenSkin = skin;
                 scoreboardSkin = skin;
+                backgroundPath = defaultBackground;
             } else {
                 let defaultPath = c.relativePathOfFile(charPathRel + character + "/" + skin + ".png");
 
                 defaultSkinPath = (defaultPath) ? defaultPath : random;
 
-                let defaultBackground = c.relativePathOfFile(charPathRel + character + "/BG.webm");
+                backgroundPath = c.relativePathOfFile(charPathRel + character + "/BG.webm");
 
-                backgroundPath = (defaultBackground) ? defaultBackground : backgroundPath;
+
+                let skinBackgroundFilename = characterInfo.skinList.find(({ label }) => label == skin).background;
+                let skinSpecificBackground = c.relativePathOfFile(charPathRel + character + "/" + skinBackgroundFilename);
+
+                backgroundPath = (skinSpecificBackground) ? skinSpecificBackground : backgroundPath;
+                backgroundPath = (backgroundPath && skinBackgroundFilename != 'USE_DEFAULT') ? backgroundPath : defaultBackground;
 
                 let altPath = "";
-                if (c.game == 'Rivals of Aether') {
+                if (c.game.name == 'Rivals of Aether') {
                     if (c.forceHD) {
                         if (skin.indexOf('LoA') != -1 && !c.noLoAHD && skin.indexOf('HD') == -1) {
                             altPath = c.relativePathOfFile(charPathRel + character + "/LoA HD.png");
@@ -576,16 +603,10 @@ app.controller('AngularAppCtrl', function ($scope) {
 
             }
 
-            if (c.game == 'Rivals of Aether') {
+            if (c.game.name == 'Rivals of Aether') {
                 if (vsScreenSkinPath.indexOf('LoA') != -1) {
                     backgroundPath = c.relativePathOfFile(charPathRel + "BG LoA.webm");
-                } else if (skin == 'Ragnir') {
-                    backgroundPath = c.relativePathOfFile(defaultWbBackground);
-                } else if (character == 'Shovel Knight' && skin == 'Golden') {
-                    let checkSpecialPath = c.relativePathOfFile(charPathRel + character + "/BG Golden.webm");
-                    backgroundPath = (checkSpecialPath) ? checkSpecialPath : backgroundPath;
-                }
-
+                } 
                 //City of the Elements (cote)
                 // backgroundPath = c.relativePathOfFile(charPathRel + "Clairen/BG.webm");
             }
@@ -623,7 +644,17 @@ app.controller('AngularAppCtrl', function ($scope) {
             }
         });
 
-        c.games = gameList;
+        let games = [];
+
+        for (let i = 0; i < gameList.length; i++) {
+            let game = {
+                name: gameList[i],
+                abbr: c.getGameAbbr(gameList[i])
+            }
+            games.push(game);
+        }
+
+        c.games = games;
     }
     c.loadGames();
 
@@ -680,13 +711,14 @@ app.controller('AngularAppCtrl', function ($scope) {
     }
 
     c.gameChanged = function () {
-        charPath = gamePath + "/" + c.game + "/";
-        charPathRel = gamePathRel + "/" + c.game + "/";
-        if (c.game != 'Rivals of Aether') {
+        c.game.abbr = c.games.find(({ name }) => name == c.game.name).abbr;;
+        charPath = gamePath + "/" + c.game.name + "/";
+        charPathRel = gamePathRel + "/" + c.game.name + "/";
+        if (c.game.name != 'Rivals of Aether') {
             c.addressRockerSettings.useAddressRocker = false;
             c.addressRockerSettings.enableCharacterUpdate = false;
             c.addressRockerSettings.enableSkinUpdate = false;
-            if (c.game != 'Rivals Workshop') {
+            if (c.game.name != 'Rivals Workshop') {
                 c.obsSettings.autoChangeScenes = 'manualFromOBS';
             }
             c.forceHDChoice = c.hdOptions[0];
@@ -703,7 +735,7 @@ app.controller('AngularAppCtrl', function ($scope) {
     }
 
     c.profileFilter = function (item) {
-        if (item.game == c.game) {
+        if (item.game == c.game.name) {
             return true;
         }
         return false;
@@ -1067,7 +1099,11 @@ app.controller('AngularAppCtrl', function ($scope) {
     c.usePips = false;
     c.alwaysOnTop = false;
     c.showOnDeck = true;
-    c.game = "Rivals of Aether";
+    c.game = {
+        name: "Rivals of Aether",
+        abbr: "RoA"
+    };
+
 
     c.init = function () {
         c.setScore('left', 0);
@@ -1102,8 +1138,8 @@ app.controller('AngularAppCtrl', function ($scope) {
         c.alwaysOnTopToggle();
 
 
-        charPath = gamePath + "/" + c.game + "/";
-        charPathRel = gamePathRel + "/" + c.game + "/";
+        charPath = gamePath + "/" + c.game.name + "/";
+        charPathRel = gamePathRel + "/" + c.game.name + "/";
 
         c.loadCharacters();
 
@@ -1229,7 +1265,7 @@ app.controller('AngularAppCtrl', function ($scope) {
 
 
     c.externalUpdateCheck = function (scInfo) {
-        if (c.addressRockerSettings.useAddressRocker && c.addressRockerSettings.inSet && c.game == 'Rivals of Aether') {
+        if (c.addressRockerSettings.useAddressRocker && c.addressRockerSettings.inSet && c.game.name == 'Rivals of Aether') {
             let addressRockerData = JSON.parse(fs.readFileSync(textPath + "/RoAState.json", "utf-8"));
             if (addressRockerData.TourneySet.TourneyModeBestOf == -1 || addressRockerData.TourneySet.TourneyModeBestOf == 0) {
                 return;
@@ -1290,7 +1326,6 @@ app.controller('AngularAppCtrl', function ($scope) {
                                 c.playerProfiles = c.getPlayerProfiles(c.players[playerIndex].name);
                                 for (let j = 0; j < c.playerProfiles.length; j++) {
                                     let playerProfile = c.playerProfiles[j];
-                                    // console.log(playerProfile);
                                     if (playerProfile.name == c.players[playerIndex].name && playerProfile.character == c.players[playerIndex].character) {
                                         let charSkin = character.skins.find(e => e.label == playerProfile.skin);
                                         if (charSkin.label && charSkin.index) {
@@ -1642,7 +1677,7 @@ app.controller('AngularAppCtrl', function ($scope) {
                     "character": player.character,
                     "skin": player.skin
                 }],
-                "game": c.game
+                "game": c.game.name
             }
         } else {
             for (let i in c.playerFields) {
@@ -1658,7 +1693,7 @@ app.controller('AngularAppCtrl', function ($scope) {
             for (let i = 0; i < playerInfo.characters.length; i++) {
                 if (playerInfo.characters[i].character == player.character) {
                     playerInfo.characters[i].skin = player.skin;
-                    playerInfo.characters[i].game = c.game;
+                    playerInfo.characters[i].game = c.game.name;
                     newCharacter = false;
                     foundCount++;
                     foundIndexLast = i;
@@ -1677,7 +1712,7 @@ app.controller('AngularAppCtrl', function ($scope) {
                 playerInfo.characters.push({
                     "character": player.character,
                     "skin": player.skin,
-                    "game": c.game
+                    "game": c.game.name
                 });
             }
         }
@@ -1703,7 +1738,7 @@ app.controller('AngularAppCtrl', function ($scope) {
                 "gamemode": gamemode,
                 "useTeamNames": useTeamNames,
                 "teamNames": teamNames,
-                "game": game
+                "game": game.name
             };
             for (let i = 0; i < players.length; i++) {
                 data.player.push({
@@ -1783,7 +1818,10 @@ app.controller('AngularAppCtrl', function ($scope) {
             useCustomColors: c.useCustomColors,
             useTeamNames: c.useTeamNames,
             showOnDeck: c.showOnDeck,
-            game: c.game,
+            game: {
+                name: c.game.name,
+                abbr: c.game.abbr
+            },
             seasonalSkin: c.seasonalSkin,
             externalUpdate: false,
             addressRockerSettings: c.addressRockerSettings,
@@ -1900,11 +1938,11 @@ app.directive("fileread", [function () {
             element.bind("change", function (changeEvent) {
                 scope.$apply(function () {
                     let origPath = changeEvent.target.files[0].path
-                    if (origPath.indexOf('Stream Tool\\') == -1) {
+                    if (origPath.indexOf('\\Stream Tool\\') == -1) {
                         console.log('Must be within a Stream Tool folder');
                         scope.fileread = "";
                     } else {
-                        scope.fileread = origPath.split('Stream Tool\\')[1];
+                        scope.fileread = origPath.split('\\Stream Tool\\')[1];
                     }
                     // or all selected files:
                     // scope.fileread = changeEvent.target.files;

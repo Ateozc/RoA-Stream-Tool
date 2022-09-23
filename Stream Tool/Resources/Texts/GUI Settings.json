@@ -13,7 +13,10 @@
   "useCustomRound": false,
   "maxPlayers": 4,
   "showOnDeck": false,
-  "game": "Multiversus",
+  "game": {
+    "name": "Super Smash Bros Ultimate",
+    "abbr": "SSBU"
+  },
   "useCustomColors": false,
   "useTeamNames": false,
   "addressRockerSettings": {

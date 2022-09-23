@@ -1,0 +1,43 @@
+{
+  "ScreenName": "",
+  "Characters": [
+    {
+      "Character": "",
+      "SlotNumber": 1,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    },
+    {
+      "Character": "",
+      "SlotNumber": 2,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    },
+    {
+      "Character": "",
+      "SlotNumber": 3,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    },
+    {
+      "Character": "",
+      "SlotNumber": 4,
+      "SlotState": "",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    }
+  ],
+  "TourneySet": {
+    "InMatch": false,
+    "TourneyModeBestOf": 0,
+    "Stocks": 0,
+    "Time": 0
+  }
+}

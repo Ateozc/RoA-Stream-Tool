@@ -5,15 +5,15 @@
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Arya",
+      "character": "Kazuya",
       "characterIndex": 1,
       "skin": "Default",
       "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Multiversus/Arya/Default.png",
-      "defaultSkinPath": "Resources/Games/Multiversus/Arya/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Multiversus/Arya/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Multiversus/Arya/Default.png",
-      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
+      "defaultSkinPath": "Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
+      "vsScreenSkinPath": "Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
+      "scoreboardSkinPath": "Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
+      "backgroundWebm": "Resources/Games/Super Smash Bros Ultimate/Kazuya/BG.webm",
       "info": {
         "skinList": [
           {
@@ -22,25 +22,35 @@
             "index": 0
           }
         ],
+        "skinListOld": [
+          "Default"
+        ],
         "scoreboard": {
           "neutral": {
-            "x": 50,
-            "y": 80,
-            "scale": 3.5
+            "x": 20,
+            "y": 90,
+            "scale": 2.8
           }
         },
         "vsScreen": {
           "neutral": {
-            "x": -500,
-            "y": 300,
-            "scale": 2.5
+            "x": -460,
+            "y": 340,
+            "scale": 1.6
           }
         },
         "gui": {
           "neutral": {
-            "x": 15,
-            "y": 30,
-            "scale": 3.5
+            "x": 5,
+            "y": 18,
+            "scale": 4.5
+          }
+        },
+        "top8": {
+          "neutral": {
+            "x": -60,
+            "y": 8,
+            "scale": 1.25
           }
         }
       },
@@ -57,22 +67,61 @@
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Random",
-      "characterIndex": 0,
-      "skin": "",
+      "character": "Steve",
+      "characterIndex": 2,
+      "skin": "Default",
       "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
-      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
-      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
-      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
+      "defaultSkinPath": "Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
+      "vsScreenSkinPath": "Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
+      "scoreboardSkinPath": "Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
-      "info": null,
+      "info": {
+        "skinList": [
+          {
+            "label": "Default",
+            "fileName": "Default",
+            "index": 0
+          }
+        ],
+        "skinListOld": [
+          "Default"
+        ],
+        "scoreboard": {
+          "neutral": {
+            "x": 10,
+            "y": 40,
+            "scale": 1.8
+          }
+        },
+        "vsScreen": {
+          "neutral": {
+            "x": -660,
+            "y": 250,
+            "scale": 1.3
+          }
+        },
+        "gui": {
+          "neutral": {
+            "x": 5,
+            "y": 18,
+            "scale": 4.5
+          }
+        },
+        "top8": {
+          "neutral": {
+            "x": -60,
+            "y": 8,
+            "scale": 1.25
+          }
+        }
+      },
       "teamColor": {
         "name": "Blue",
         "hex": "#00b7ef"
       },
-      "vsScreenSkin": "Random",
-      "scoreboardSkin": "Random",
+      "vsScreenSkin": "Default",
+      "scoreboardSkin": "Default",
       "team": 1
     },
     {
@@ -122,14 +171,14 @@
   ],
   "top8Players": [
     {
-      "name": "Ateozc",
-      "twitter": "@ateozc",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
-      "character": "Shovel Knight",
-      "characterIndex": 15,
-      "skin": "Golden",
-      "skinIndex": 11,
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
       "placement": 1,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
       "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
@@ -137,21 +186,18 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Golden",
-      "scoreboardSkin": "Golden",
-      "team": 0,
-      "twitch": "Ateozc",
-      "youtube": "Ateozc",
-      "discord": "Ateozc"
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
+      "team": 0
     },
     {
-      "name": "Demitus",
-      "twitter": "@demitustouch",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
-      "character": "Forsburn",
-      "characterIndex": 5,
-      "skin": "Halloween",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
       "skinIndex": 0,
       "placement": 2,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
@@ -160,18 +206,18 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Halloween",
-      "scoreboardSkin": "Halloween",
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 0
     },
     {
-      "name": "Sparx21",
-      "twitter": "@Sparx21RoA",
-      "pronouns": "He/Him",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
       "tag": "",
-      "character": "Maypul",
-      "characterIndex": 8,
-      "skin": "Default",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
       "skinIndex": 0,
       "placement": 3,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
@@ -180,18 +226,18 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 0
     },
     {
-      "name": "Bookworm",
-      "twitter": "@BookwormRoA",
-      "pronouns": "She/Her",
-      "tag": "Gooshi",
-      "character": "Elliana",
-      "characterIndex": 3,
-      "skin": "Default",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
       "skinIndex": 0,
       "placement": 4,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
@@ -200,19 +246,19 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 0
     },
     {
-      "name": "Seggo",
-      "twitter": "@SeggoAhmet",
+      "name": "",
+      "twitter": "",
       "pronouns": "",
-      "tag": "Sprecher",
-      "character": "Shovel Knight",
-      "characterIndex": 15,
-      "skin": "Infamous",
-      "skinIndex": 12,
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
       "placement": 5,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
       "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
@@ -220,19 +266,19 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Infamous",
-      "scoreboardSkin": "Infamous",
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 0
     },
     {
-      "name": "w0wells",
-      "twitter": "@w0wells",
-      "pronouns": "He/Him",
-      "tag": "BE",
-      "character": "Wrastor",
-      "characterIndex": 17,
-      "skin": "Champion",
-      "skinIndex": 12,
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
+      "skinIndex": 0,
       "placement": 5,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
       "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
@@ -240,18 +286,18 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Champion",
-      "scoreboardSkin": "Champion",
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 0
     },
     {
-      "name": "Foxtrot",
-      "twitter": "@AuralisFoxtrot",
-      "pronouns": "He/Him",
-      "tag": "4ME",
-      "character": "Shovel Knight",
-      "characterIndex": 15,
-      "skin": "Default",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
       "skinIndex": 0,
       "placement": 7,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
@@ -260,19 +306,18 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
-      "team": 0,
-      "discord": "Foxtrot#4831"
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
+      "team": 0
     },
     {
-      "name": "Serris",
-      "twitter": "@serrisfroon",
-      "pronouns": "He/HIm",
-      "tag": "UGS",
-      "character": "Ranno",
-      "characterIndex": 14,
-      "skin": "Default",
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
       "skinIndex": 0,
       "placement": 7,
       "defaultSkinPath": "Resources/Games/Defaults/Random.png",
@@ -281,8 +326,8 @@
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
       "info": null,
       "teamColor": "",
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 0
     }
   ],
@@ -305,23 +350,23 @@
     0
   ],
   "wl": [
-    "W",
-    "L"
+    "",
+    ""
   ],
   "bestOf": "Bo3",
   "gamemode": "Singles",
-  "round": "Grand Finals",
-  "tournamentName": "Test",
+  "round": "Friendlies",
+  "tournamentName": "",
   "caster": [
     {
-      "name": "Teateat",
-      "twitter": "asdfas",
-      "twitch": "asdf"
+      "name": "",
+      "twitter": "",
+      "twitch": ""
     },
     {
-      "name": "astasdfasdf",
-      "twitter": "fdsa",
-      "twitch": "fdas"
+      "name": "",
+      "twitter": "",
+      "twitch": ""
     }
   ],
   "allowIntro": true,
@@ -337,7 +382,10 @@
   "useCustomColors": false,
   "useTeamNames": false,
   "showOnDeck": false,
-  "game": "Multiversus",
+  "game": {
+    "name": "Super Smash Bros Ultimate",
+    "abbr": "SSBU"
+  },
   "seasonalSkin": "Halloween",
   "externalUpdate": false,
   "addressRockerSettings": {
@@ -372,8 +420,8 @@
     "bottomTextTwitch": "twitch.tv/ateozc",
     "bottomTextTwitter": "@ateozc",
     "top8Ties": true,
-    "useP1Background": true,
-    "useCustomBackground": false,
+    "useP1Background": false,
+    "useCustomBackground": true,
     "customBackground": "Resources\\Games\\Rivals of Aether\\Absa\\Blue.png"
   }
 }

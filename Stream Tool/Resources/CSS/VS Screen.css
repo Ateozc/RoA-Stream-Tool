@@ -251,6 +251,14 @@ body {
   font-size:20px"
 }
 
+#p1FieldsWrapper {
+  left: 0px;
+}
+
+#p2FieldsWrapper {
+  right: 0px;
+}
+
 
 .p1WrapperFields {
   /* left: -4px !important; */
