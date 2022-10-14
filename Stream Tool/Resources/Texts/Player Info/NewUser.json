@@ -1,0 +1,16 @@
+{
+  "name": "NewUser",
+  "twitter": "c",
+  "twitch": "d",
+  "youtube": "e",
+  "discord": "f",
+  "pronouns": "a",
+  "tag": "b",
+  "characters": [
+    {
+      "character": "Random",
+      "skin": "",
+      "game": "Rivals of Aether"
+    }
+  ]
+}

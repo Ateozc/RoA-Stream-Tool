@@ -1,127 +1,52 @@
 {
   "player": [
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "character": "Kazuya",
-      "characterIndex": 1,
-      "skin": "Default",
+      "name": "NewUser",
+      "twitter": "c",
+      "pronouns": "a",
+      "tag": "b",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
       "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
-      "defaultSkinPath": "Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Super Smash Bros Ultimate/Kazuya/Default.png",
-      "backgroundWebm": "Resources/Games/Super Smash Bros Ultimate/Kazuya/BG.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          }
-        ],
-        "skinListOld": [
-          "Default"
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": 20,
-            "y": 90,
-            "scale": 2.8
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -460,
-            "y": 340,
-            "scale": 1.6
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": 5,
-            "y": 18,
-            "scale": 4.5
-          }
-        },
-        "top8": {
-          "neutral": {
-            "x": -60,
-            "y": 8,
-            "scale": 1.25
-          }
-        }
-      },
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
+      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
+      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
+      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
+      "backgroundWebm": "Resources/Games/Defaults/BG.webm",
+      "info": null,
       "teamColor": {
         "name": "Red",
         "hex": "#ed1c23"
       },
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
-      "team": 0
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
+      "team": 0,
+      "twitch": "d",
+      "youtube": "e",
+      "discord": "f"
     },
     {
       "name": "",
       "twitter": "",
       "pronouns": "",
       "tag": "",
-      "character": "Steve",
-      "characterIndex": 2,
-      "skin": "Default",
+      "character": "Random",
+      "characterIndex": 0,
+      "skin": "",
       "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
-      "defaultSkinPath": "Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Super Smash Bros Ultimate/Steve/Default.png",
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Defaults/Random.png",
+      "defaultSkinPath": "Resources/Games/Defaults/Random.png",
+      "vsScreenSkinPath": "Resources/Games/Defaults/Random.png",
+      "scoreboardSkinPath": "Resources/Games/Defaults/Random.png",
       "backgroundWebm": "Resources/Games/Defaults/BG.webm",
-      "info": {
-        "skinList": [
-          {
-            "label": "Default",
-            "fileName": "Default",
-            "index": 0
-          }
-        ],
-        "skinListOld": [
-          "Default"
-        ],
-        "scoreboard": {
-          "neutral": {
-            "x": 10,
-            "y": 40,
-            "scale": 1.8
-          }
-        },
-        "vsScreen": {
-          "neutral": {
-            "x": -660,
-            "y": 250,
-            "scale": 1.3
-          }
-        },
-        "gui": {
-          "neutral": {
-            "x": 5,
-            "y": 18,
-            "scale": 4.5
-          }
-        },
-        "top8": {
-          "neutral": {
-            "x": -60,
-            "y": 8,
-            "scale": 1.25
-          }
-        }
-      },
+      "info": null,
       "teamColor": {
         "name": "Blue",
         "hex": "#00b7ef"
       },
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
+      "vsScreenSkin": "Random",
+      "scoreboardSkin": "Random",
       "team": 1
     },
     {
@@ -383,8 +308,8 @@
   "useTeamNames": false,
   "showOnDeck": false,
   "game": {
-    "name": "Super Smash Bros Ultimate",
-    "abbr": "SSBU"
+    "name": "Rivals of Aether",
+    "abbr": "RoA"
   },
   "seasonalSkin": "Halloween",
   "externalUpdate": false,

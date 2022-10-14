@@ -291,6 +291,20 @@ app.controller('AngularAppCtrl', function ($scope) {
                         playerProfiles.push(profile);
                     }
                 });
+                if (playerProfiles.length == 0) {
+                    let profile = {
+                        name: playerInfo.name,
+                        pronouns: playerInfo.pronouns,
+                        tag: playerInfo.tag,
+                        twitter: playerInfo.twitter,
+                        twitch: playerInfo.twitch,
+                        youtube: playerInfo.youtube,
+                        discord: playerInfo.discord,
+                        character: "Random",
+                        skin: ""
+                    }
+                    playerProfiles.push(profile);
+                }
             }
         });
         return playerProfiles;
@@ -376,7 +390,7 @@ app.controller('AngularAppCtrl', function ($scope) {
         }
     }
 
-    c.getGameAbbr = function(game) {
+    c.getGameAbbr = function (game) {
         let abbr = "RoA";
         if (game == 'Rivals Workshop') {
             return "RoAWS";
@@ -384,7 +398,7 @@ app.controller('AngularAppCtrl', function ($scope) {
         let exp = /\b[a-zA-Z\d]|[A-Z]/g; //gets the first letter of each and capital letters
 
         let abbrArr = game.match(exp);
-        
+
 
         if (abbrArr.length > 0) {
             abbr = abbrArr.toString().replaceAll(',', '');
@@ -560,7 +574,9 @@ app.controller('AngularAppCtrl', function ($scope) {
                 backgroundPath = c.relativePathOfFile(charPathRel + character + "/BG.webm");
 
 
-                let skinBackgroundFilename = characterInfo.skinList.find(({ label }) => label == skin).background;
+                let skinBackgroundFilename = characterInfo.skinList.find(({
+                    label
+                }) => label == skin).background;
                 let skinSpecificBackground = c.relativePathOfFile(charPathRel + character + "/" + skinBackgroundFilename);
 
                 backgroundPath = (skinSpecificBackground) ? skinSpecificBackground : backgroundPath;
@@ -606,7 +622,7 @@ app.controller('AngularAppCtrl', function ($scope) {
             if (c.game.name == 'Rivals of Aether') {
                 if (vsScreenSkinPath.indexOf('LoA') != -1) {
                     backgroundPath = c.relativePathOfFile(charPathRel + "BG LoA.webm");
-                } 
+                }
                 //City of the Elements (cote)
                 // backgroundPath = c.relativePathOfFile(charPathRel + "Clairen/BG.webm");
             }
@@ -711,7 +727,9 @@ app.controller('AngularAppCtrl', function ($scope) {
     }
 
     c.gameChanged = function () {
-        c.game.abbr = c.games.find(({ name }) => name == c.game.name).abbr;;
+        c.game.abbr = c.games.find(({
+            name
+        }) => name == c.game.name).abbr;;
         charPath = gamePath + "/" + c.game.name + "/";
         charPathRel = gamePathRel + "/" + c.game.name + "/";
         if (c.game.name != 'Rivals of Aether') {
@@ -1675,9 +1693,10 @@ app.controller('AngularAppCtrl', function ($scope) {
                 "tag": player.tag,
                 "characters": [{
                     "character": player.character,
-                    "skin": player.skin
+                    "skin": player.skin,
+                    "game": c.game.name
                 }],
-                "game": c.game.name
+
             }
         } else {
             for (let i in c.playerFields) {

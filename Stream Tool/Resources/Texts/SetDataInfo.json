@@ -1,59 +1,11 @@
 {
   "player": [
     {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "name": "NewUser",
+      "twitter": "c",
+      "pronouns": "a",
+      "tag": "b",
       "characters": [
-        "Chun Li",
-        "Alex",
-        "Dudley",
-        "Bridget",
-        "Axl Low",
-        "Baiken",
-        "Anji",
-        "Akuma",
-        "Random",
-        "Steve",
-        "Kazuya"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Chun Li",
-        "Alex",
-        "Dudley",
-        "Bridget",
-        "Axl Low",
-        "Baiken",
-        "Anji",
-        "Akuma",
-        "Random",
-        "Kazuya",
-        "Steve"
-      ]
-    },
-    {
-      "name": "",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Chun Li",
-        "Alex",
-        "Dudley",
-        "Bridget",
-        "Axl Low",
-        "Baiken",
-        "Anji",
-        "Akuma",
-        "Kazuya",
-        "Steve",
         "Random"
       ]
     },
@@ -71,8 +23,46 @@
         "Baiken",
         "Anji",
         "Akuma",
-        "Kazuya",
         "Steve",
+        "Kazuya",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Chun Li",
+        "Alex",
+        "Dudley",
+        "Bridget",
+        "Axl Low",
+        "Baiken",
+        "Anji",
+        "Akuma",
+        "Steve",
+        "Kazuya",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Chun Li",
+        "Alex",
+        "Dudley",
+        "Bridget",
+        "Axl Low",
+        "Baiken",
+        "Anji",
+        "Akuma",
+        "Steve",
+        "Kazuya",
         "Random"
       ]
     }
@@ -85,5 +75,5 @@
     "Red Team",
     "Blue Team"
   ],
-  "game": "Super Smash Bros Ultimate"
+  "game": "Rivals of Aether"
 }

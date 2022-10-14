@@ -14,8 +14,8 @@
   "maxPlayers": 4,
   "showOnDeck": false,
   "game": {
-    "name": "Super Smash Bros Ultimate",
-    "abbr": "SSBU"
+    "name": "Rivals of Aether",
+    "abbr": "RoA"
   },
   "useCustomColors": false,
   "useTeamNames": false,
