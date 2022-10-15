@@ -86,6 +86,11 @@
             "index": 18
         },
         {
+            "label": "Street Wave",
+            "fileName" : "Street Wave",
+            "index": 19
+        },
+        {
             "label": "HD",
             "fileName" : "HD",
             "index": 100

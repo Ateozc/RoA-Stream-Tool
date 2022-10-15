@@ -15,7 +15,7 @@
     {
       "character": "Elliana",
       "skin": "Summer",
-      "game": "Rivals of Aether"
+      "game": true
     },
     {
       "character": "Etalus",
@@ -64,7 +64,7 @@
     },
     {
       "character": "Wrastor",
-      "skin": "Collegiate",
+      "skin": "Street Wave",
       "game": "Rivals of Aether"
     },
     {

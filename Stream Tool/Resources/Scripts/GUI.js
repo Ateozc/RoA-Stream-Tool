@@ -574,6 +574,12 @@ app.controller('AngularAppCtrl', function ($scope) {
                 backgroundPath = c.relativePathOfFile(charPathRel + character + "/BG.webm");
 
 
+
+                var curSeasonalSkin = skin;
+                if (c.game.name == "Rivals of Aether" && c.seasonalSkins.indexOf(skin) != -1) {
+                    skin = "Seasonal";
+                }
+
                 let skinBackgroundFilename = characterInfo.skinList.find(({
                     label
                 }) => label == skin).background;
@@ -622,6 +628,8 @@ app.controller('AngularAppCtrl', function ($scope) {
             if (c.game.name == 'Rivals of Aether') {
                 if (vsScreenSkinPath.indexOf('LoA') != -1) {
                     backgroundPath = c.relativePathOfFile(charPathRel + "BG LoA.webm");
+                } else if (skin.indexOf('Seasonal') != -1) {
+                    backgroundPath = c.relativePathOfFile(charPathRel + "BG " + curSeasonalSkin + ".webm");
                 }
                 //City of the Elements (cote)
                 // backgroundPath = c.relativePathOfFile(charPathRel + "Clairen/BG.webm");

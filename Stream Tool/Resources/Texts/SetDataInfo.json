@@ -1,12 +1,12 @@
 {
   "player": [
     {
-      "name": "NewUser",
-      "twitter": "c",
-      "pronouns": "a",
-      "tag": "b",
+      "name": "Test",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
       "characters": [
-        "Random"
+        "Wrastor"
       ]
     },
     {
