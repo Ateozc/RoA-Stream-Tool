@@ -7,7 +7,7 @@
     {
       "character": "Random",
       "skin": "",
-      "game": "Rivals of Aether"
+      "game": "Guilty Gear Xrd Rev 2"
     },
     {
       "character": "Olympia",
@@ -88,6 +88,16 @@
       "character": "Sylvanos",
       "skin": "Default",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Answer",
+      "skin": "Default",
+      "game": "Guilty Gear Xrd Rev 2"
+    },
+    {
+      "character": "Axl",
+      "skin": "Default",
+      "game": "Guilty Gear Xrd Rev 2"
     }
   ],
   "game": "Rivals of Aether"

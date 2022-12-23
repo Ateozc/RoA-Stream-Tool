@@ -303,16 +303,16 @@
   "useCustomRound": false,
   "useCustomColors": false,
   "useTeamNames": false,
-  "showOnDeck": false,
+  "showOnDeck": true,
   "game": {
-    "name": "Rivals of Aether",
-    "abbr": "RoA"
+    "name": "Guilty Gear Xrd Rev 2",
+    "abbr": "GGXR2"
   },
   "seasonalSkin": "Christmas",
   "externalUpdate": false,
   "addressRockerSettings": {
     "useAddressRocker": false,
-    "enableCharacterUpdate": true,
+    "enableCharacterUpdate": false,
     "enableSkinUpdate": false,
     "enableBestOfUpdate": true,
     "enableScoreUpdate": true,

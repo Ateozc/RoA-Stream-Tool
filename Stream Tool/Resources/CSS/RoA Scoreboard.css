@@ -52,6 +52,14 @@
     --scoreboardGGSY: 0px;
     --roundInfoGGSX: 0px;
     --roundInfoGGSY: 1000px;
+
+    /* GGxrdRev2 */
+    /* 340 if 1scale 620 at .85*/
+    --scoreboardGGXR2X: 495px; 
+    --scoreboardGGXR2Y: 0px;
+    --roundInfoGGXR2X: 0px;
+    --roundInfoGGXR2Y: 1000px;
+
      /* Tekken 7 */
     /* 340 if 1scale 620 at .85*/
     --scoreboardT7X: 450px; 
@@ -101,6 +109,10 @@ body {
     top: var(--scoreboardGGSY);
 }
 
+.scoreboard.GGXR2 {
+    top: var(--scoreboardGGXR2Y);
+}
+
 .scoreboard.BBCF {
     top: var(--scoreboardBBCFY);
 }
@@ -128,6 +140,12 @@ body {
     left: var(--scoreboardGGSX);
     /* transform: scale(0.85); */
 }
+
+#scoreboardL.GGXR2 {
+    left: var(--scoreboardGGXR2X);
+    transform: scale(0.75);
+}
+
 
 #scoreboardL.BBCF {
     left: var(--scoreboardBBCFX);
@@ -159,6 +177,11 @@ body {
 #scoreboardR.GGS {
     right: var(--scoreboardGGSX);
     /* transform: scale(-0.85, 0.85) */
+}
+
+#scoreboardR.GGXR2 {
+    right: var(--scoreboardGGXR2X);
+    transform: scale(-0.75, 0.75)
 }
 
 #scoreboardR.BBCF {
@@ -318,6 +341,11 @@ body {
 #overlayRound.GGS {
     top: var(--roundInfoGGSY);
     left: var(--roundInfoGGSX);
+}
+
+#overlayRound.GGXR2 {
+    top: var(--roundInfoGGXR2Y);
+    left: var(--roundInfoGGXR2X);
 }
 
 #overlayRound.BBCF {
