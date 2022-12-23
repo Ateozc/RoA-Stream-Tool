@@ -1,8 +1,8 @@
 {
   "name": "Doots",
   "twitter": "",
-  "pronouns": "",
-  "tag": "LITE",
+  "pronouns": "He/Him",
+  "tag": "Light",
   "characters": [
     {
       "character": "Orcane",
@@ -37,6 +37,11 @@
     {
       "character": "Forsburn",
       "skin": "Valentines",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
   ]

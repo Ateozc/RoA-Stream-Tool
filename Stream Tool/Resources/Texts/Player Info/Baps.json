@@ -1,9 +1,19 @@
 {
-  "name": "w0wells",
+  "name": "Baps",
   "twitter": "",
-  "pronouns": "He/Him",
-  "tag": "BE",
+  "pronouns": "She/Her",
+  "tag": "SOA",
   "characters": [
+    {
+      "character": "Absa",
+      "skin": "Red",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
     {
       "character": "Wrastor",
       "skin": "Default",
@@ -15,15 +25,9 @@
       "game": "Rivals of Aether"
     },
     {
-      "character": "Ranno",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Olympia",
-      "skin": "Default",
+      "character": "Random",
+      "skin": "",
       "game": "Rivals of Aether"
     }
-  ],
-  "game": "Rivals of Aether"
+  ]
 }

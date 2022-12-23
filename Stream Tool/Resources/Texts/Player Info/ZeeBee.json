@@ -1,14 +1,13 @@
 {
-  "name": "r",
+  "name": "ZeeBee",
   "twitter": "",
-  "pronouns": "",
-  "tag": "",
+  "pronouns": "He/Him",
+  "tag": "NE",
   "characters": [
     {
-      "character": "Kragg",
+      "character": "Mollo",
       "skin": "Default",
       "game": "Rivals of Aether"
     }
-  ],
-  "game": "Rivals of Aether"
+  ]
 }

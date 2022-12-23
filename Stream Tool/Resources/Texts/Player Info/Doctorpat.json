@@ -6,11 +6,16 @@
   "characters": [
     {
       "character": "Shovel Knight",
-      "skin": "Default",
+      "skin": "Red",
       "game": "Rivals of Aether"
     },
     {
       "character": "Pomme",
+      "skin": "White",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Ranno",
       "skin": "Default",
       "game": "Rivals of Aether"
     }

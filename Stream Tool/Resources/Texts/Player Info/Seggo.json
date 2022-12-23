@@ -6,7 +6,7 @@
     {
       "character": "Random",
       "skin": "",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
       "character": "Elliana",
@@ -15,7 +15,7 @@
     },
     {
       "character": "Wrastor",
-      "skin": "Red",
+      "skin": "Default Custom 1",
       "game": "Rivals of Aether"
     },
     {
@@ -37,7 +37,12 @@
       "character": "Hodan",
       "skin": "Default",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
   ],
-  "pronouns": ""
+  "pronouns": "He/Him"
 }

@@ -1,6 +1,7 @@
 {
   "name": "",
   "twitter": "",
+  "pronouns": "",
   "tag": "",
   "characters": [
     {
@@ -9,136 +10,12 @@
       "game": "Rivals of Aether"
     },
     {
-      "character": "Absa",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Lumina",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Lyca",
-      "skin": "Red",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Chef",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Nade",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Cosign",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Acid Rainbows",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Mollo",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "N⁄A",
-      "skin": "Void Melanoid"
-    },
-    {
-      "character": "Cinnamon",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Mayu Ashikaga",
-      "skin": "Student President",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Tenru",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Astra",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Epinel",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Fox",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Pomme",
-      "skin": "Summer",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Hodan",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
       "character": "Olympia",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Elliana",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Shovel Knight",
-      "skin": "Golden",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Clairen",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Etalus",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Maypul",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Forsburn",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Kragg",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Orcane",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Ori and Sein",
+      "character": "Hodan",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
@@ -148,102 +25,57 @@
       "game": "Rivals of Aether"
     },
     {
-      "character": "Sylvanos",
+      "character": "Mollo",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Blake",
+      "character": "Kragg",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
-      "character": "Bird Guy",
+      "character": "Clairen",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
-      "character": "Hana",
+      "character": "Shovel Knight",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
-      "character": "Bluey",
+      "character": "Absa",
       "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
-      "character": "Hime Daisho",
+      "character": "Maypul",
       "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Cupcake",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Iroh",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Liz",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Falco",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Katie Helga Vladimir",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Trum. & Alto",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Zetta Ashikaga",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Valkyrie",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Uza Ckater",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Suitcase",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Sandbert",
-      "skin": "Default",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "NA",
-      "skin": "Aqua",
-      "game": "Rivals Workshop"
-    },
-    {
-      "character": "Mycolich",
-      "skin": "Default",
-      "game": "Rivals Workshop"
+      "game": "Rivals of Aether"
     },
     {
       "character": "Zetterburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Forsburn",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Pomme",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Elliana",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Etalus",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
@@ -253,95 +85,10 @@
       "game": "Rivals of Aether"
     },
     {
-      "character": "Arya",
+      "character": "Sylvanos",
       "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Batman",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Iron Giant",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Morty",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Jake",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Superman",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Tom and Jerry",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Bugs",
-      "skin": "Default",
-      "game": "Multiversus"
-    },
-    {
-      "character": "Anji",
-      "skin": "Default",
-      "game": "Guilty Gear Strive"
-    },
-    {
-      "character": "Baiken",
-      "skin": "Default",
-      "game": "Guilty Gear Strive"
-    },
-    {
-      "character": "Axl Low",
-      "skin": "Default",
-      "game": "Guilty Gear Strive"
-    },
-    {
-      "character": "Bridget",
-      "skin": "Default",
-      "game": "Guilty Gear Strive"
-    },
-    {
-      "character": "Akuma",
-      "skin": "Default",
-      "game": "Street Fighter 3rd Strike"
-    },
-    {
-      "character": "Dudley",
-      "skin": "Default",
-      "game": "Street Fighter 3rd Strike"
-    },
-    {
-      "character": "Alex",
-      "skin": "Default",
-      "game": "Street Fighter 3rd Strike"
-    },
-    {
-      "character": "Chun Li",
-      "skin": "Default",
-      "game": "Street Fighter 3rd Strike"
-    },
-    {
-      "character": "Kazuya",
-      "skin": "Default",
-      "game": "Super Smash Bros Ultimate"
-    },
-    {
-      "character": "Steve",
-      "skin": "Default",
-      "game": "Super Smash Bros Ultimate"
+      "game": "Rivals of Aether"
     }
   ],
-  "pronouns": ""
+  "game": "Rivals of Aether"
 }

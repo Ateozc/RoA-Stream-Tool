@@ -1,18 +1,13 @@
 {
-  "name": "TE",
+  "name": "Cas",
   "twitter": "",
   "pronouns": "",
   "tag": "",
   "characters": [
     {
-      "character": "Sylvanos",
-      "skin": "Abyss"
-    },
-    {
       "character": "Elliana",
-      "skin": "Summer",
+      "skin": "Default",
       "game": "Rivals of Aether"
     }
-  ],
-  "game": "Rivals of Aether"
+  ]
 }

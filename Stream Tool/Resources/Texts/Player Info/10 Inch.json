@@ -1,13 +1,14 @@
 {
-  "name": "Foxtrot",
-  "twitter": "@KaosonFoxtrot",
+  "name": "10 Inch",
+  "twitter": "",
   "pronouns": "He/Him",
-  "tag": "4ME",
+  "tag": "AQUA",
   "characters": [
     {
       "character": "Shovel Knight",
-      "skin": "Purple",
+      "skin": "Cyan",
       "game": "Rivals of Aether"
     }
-  ]
+  ],
+  "game": "Rivals of Aether"
 }

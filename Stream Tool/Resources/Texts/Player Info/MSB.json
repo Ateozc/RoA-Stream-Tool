@@ -1,11 +1,12 @@
 {
-  "name": "Bookworm",
-  "twitter": "@BookwormRoA",
-  "tag": "Gooshi",
+  "name": "MSB",
+  "twitter": "",
+  "pronouns": "He/Him",
+  "tag": "SNT",
   "characters": [
     {
-      "character": "Elliana",
-      "skin": "Blue",
+      "character": "Kragg",
+      "skin": "Grey",
       "game": "Rivals of Aether"
     },
     {
@@ -13,6 +14,5 @@
       "skin": "Default",
       "game": "Rivals of Aether"
     }
-  ],
-  "pronouns": "She/Her"
+  ]
 }

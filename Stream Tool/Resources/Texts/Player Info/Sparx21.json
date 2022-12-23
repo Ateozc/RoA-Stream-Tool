@@ -12,6 +12,16 @@
       "character": "Maypul",
       "skin": "Default",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Wrastor",
+      "skin": "Blue",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Random",
+      "skin": "",
+      "game": "Rivals of Aether"
     }
   ],
   "pronouns": "He/Him"

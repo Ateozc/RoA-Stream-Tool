@@ -1,0 +1,21 @@
+{
+  "name": "Wumbariin",
+  "twitter": "@wumbariin",
+  "twitch": "wumbariin",
+  "youtube": "",
+  "pronouns": "He/Him",
+  "tag": "",
+  "characters": [
+    {
+      "character": "Etalus",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Orcane",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    }
+  ],
+  "game": "Rivals of Aether"
+}

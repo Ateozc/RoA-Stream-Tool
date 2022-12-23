@@ -1,13 +1,14 @@
 {
-  "name": "Foxtrot",
-  "twitter": "@KaosonFoxtrot",
+  "name": "AJ3Spritez",
+  "twitter": "@Aj3Spritez",
   "pronouns": "He/Him",
-  "tag": "4ME",
+  "tag": "SW.BC",
   "characters": [
     {
       "character": "Shovel Knight",
-      "skin": "Purple",
+      "skin": "Grey",
       "game": "Rivals of Aether"
     }
-  ]
+  ],
+  "twitch": "aj3spritez"
 }

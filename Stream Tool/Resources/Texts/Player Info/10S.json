@@ -1,16 +1,16 @@
 {
-  "name": "Tuesday",
-  "twitter": "@KittyAndTuesday",
-  "pronouns": "She/Her",
-  "tag": "",
+  "name": "10S",
+  "twitter": "",
+  "pronouns": "He/Him",
+  "tag": "VIBE",
   "characters": [
     {
-      "character": "Sylvanos",
+      "character": "Absa",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Olympia",
+      "character": "Zetterburn",
       "skin": "Default",
       "game": "Rivals of Aether"
     }

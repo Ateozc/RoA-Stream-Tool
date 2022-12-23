@@ -46,6 +46,11 @@
             "index": 9
         },
         {
+            "label": "Champion",
+            "fileName" : "Champion",
+            "index": 11
+        },
+        {
             "label": "Abyss",
             "fileName" : "Abyss",
             "index": 13

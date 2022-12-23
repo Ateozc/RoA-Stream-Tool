@@ -1,11 +1,16 @@
 {
-  "name": "w0wells",
+  "name": "Gizmo",
   "twitter": "",
   "pronouns": "He/Him",
-  "tag": "BE",
+  "tag": "",
   "characters": [
     {
-      "character": "Wrastor",
+      "character": "Olympia",
+      "skin": "Default",
+      "game": "Rivals of Aether"
+    },
+    {
+      "character": "Maypul",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
@@ -13,17 +18,6 @@
       "character": "Zetterburn",
       "skin": "Default",
       "game": "Rivals of Aether"
-    },
-    {
-      "character": "Ranno",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Olympia",
-      "skin": "Default",
-      "game": "Rivals of Aether"
     }
-  ],
-  "game": "Rivals of Aether"
+  ]
 }

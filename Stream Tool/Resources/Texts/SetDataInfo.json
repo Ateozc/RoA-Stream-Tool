@@ -1,20 +1,13 @@
 {
   "player": [
     {
-      "name": "Test",
-      "twitter": "",
-      "pronouns": "",
-      "tag": "",
-      "characters": [
-        "Wrastor"
-      ]
-    },
-    {
       "name": "",
       "twitter": "",
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Hodan",
+        "Absa",
         "Chun Li",
         "Alex",
         "Dudley",
@@ -25,6 +18,8 @@
         "Akuma",
         "Steve",
         "Kazuya",
+        "Sylvanos",
+        "Forsburn",
         "Random"
       ]
     },
@@ -34,6 +29,8 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Hodan",
+        "Absa",
         "Chun Li",
         "Alex",
         "Dudley",
@@ -44,6 +41,8 @@
         "Akuma",
         "Steve",
         "Kazuya",
+        "Sylvanos",
+        "Forsburn",
         "Random"
       ]
     },
@@ -53,6 +52,8 @@
       "pronouns": "",
       "tag": "",
       "characters": [
+        "Hodan",
+        "Absa",
         "Chun Li",
         "Alex",
         "Dudley",
@@ -63,6 +64,31 @@
         "Akuma",
         "Steve",
         "Kazuya",
+        "Sylvanos",
+        "Forsburn",
+        "Random"
+      ]
+    },
+    {
+      "name": "",
+      "twitter": "",
+      "pronouns": "",
+      "tag": "",
+      "characters": [
+        "Hodan",
+        "Absa",
+        "Chun Li",
+        "Alex",
+        "Dudley",
+        "Bridget",
+        "Axl Low",
+        "Baiken",
+        "Anji",
+        "Akuma",
+        "Steve",
+        "Kazuya",
+        "Sylvanos",
+        "Forsburn",
         "Random"
       ]
     }

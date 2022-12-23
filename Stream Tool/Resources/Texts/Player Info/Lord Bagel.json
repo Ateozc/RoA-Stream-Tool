@@ -1,21 +1,16 @@
 {
-  "name": "w0wells",
+  "name": "Lord Bagel",
   "twitter": "",
   "pronouns": "He/Him",
-  "tag": "BE",
+  "tag": "NE",
   "characters": [
     {
-      "character": "Wrastor",
+      "character": "Etalus",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
     {
-      "character": "Zetterburn",
-      "skin": "Default",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Ranno",
+      "character": "Sylvanos",
       "skin": "Default",
       "game": "Rivals of Aether"
     },
@@ -23,7 +18,11 @@
       "character": "Olympia",
       "skin": "Default",
       "game": "Rivals of Aether"
+    },
+    {
+      "character": "Shovel Knight",
+      "skin": "Default",
+      "game": "Rivals of Aether"
     }
-  ],
-  "game": "Rivals of Aether"
+  ]
 }

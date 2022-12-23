@@ -21,7 +21,7 @@
   "useTeamNames": false,
   "addressRockerSettings": {
     "useAddressRocker": false,
-    "enableCharacterUpdate": false,
+    "enableCharacterUpdate": true,
     "enableSkinUpdate": false,
     "enableBestOfUpdate": true,
     "enableScoreUpdate": true,
@@ -30,9 +30,9 @@
     "setTeamColor": true,
     "showInfo": false
   },
-  "seasonalSkin": "Halloween",
+  "seasonalSkin": "Christmas",
   "obsSettings": {
-    "useObsAutomation": true,
+    "useObsAutomation": false,
     "autoChangeScenes": "manualFromOBS",
     "vsScreenName": "Vs Screen (Between Games)",
     "scoreboardSceneName": "Main Screen with overlay",
