@@ -263,6 +263,7 @@ export class Player {
      * @returns Skin data object
      */
     findSkin(name) {
+        console.log(this.charInfo);
         for (let i = 0; i < this.charInfo.skinList.length; i++) {
             if (this.charInfo.skinList[i].name == name) {
                 return this.charInfo.skinList[i];

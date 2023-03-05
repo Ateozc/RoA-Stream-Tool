@@ -8,6 +8,7 @@ import { gamemode } from "./Gamemode Change.mjs";
 import { tournament } from "./Tournament.mjs";
 import { round } from "./Round.mjs";
 import { teams } from "./Team/Teams.mjs";
+import { screenRocker } from "./ScreenRocker.mjs";
 
 
 class GuiSettings {
@@ -31,6 +32,10 @@ class GuiSettings {
     #zoomTextValue = document.getElementById("zoomTextValue");
     #zoomValue = 100;
     #restoreWindowButt = document.getElementById("restoreWindowButt");
+
+
+    //Screen Rocker
+    #screenRockerCheck = document.getElementById("screenRockerToggle");
 
     constructor() {
 
@@ -83,6 +88,8 @@ class GuiSettings {
         document.getElementById('settingsRegion').addEventListener("click", () => {
             viewport.toSettings();
         });
+
+        this.#screenRockerCheck.addEventListener("click", () => this.toggleScreenRocker());
 
     }
 
@@ -289,6 +296,15 @@ class GuiSettings {
         // save current checkbox value to the settings file
         this.save("forceWL", this.isForceWLChecked());
 
+    }
+
+    toggleScreenRocker() {
+        if (screenRocker.toggle()) {
+            this.#screenRockerCheck.checked = true;
+        } else {
+            this.#screenRockerCheck.checked = false;
+        }
+        
     }
 
     isScoreAutoChecked() {
