@@ -20,15 +20,15 @@
     {
       "Character": "FORSBURN",
       "SlotNumber": 3,
-      "SlotState": "OFF",
+      "SlotState": "MHN",
       "Stocks": 0,
       "Damage": 0,
-      "GameCount": 3
+      "GameCount": 2
     },
     {
       "Character": "HODAN",
       "SlotNumber": 4,
-      "SlotState": "HMN",
+      "SlotState": "OFF",
       "Stocks": 0,
       "Damage": 0,
       "GameCount": 1
