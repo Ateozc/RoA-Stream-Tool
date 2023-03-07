@@ -301,7 +301,7 @@ function capitalizeWords(str) {
     return str
       .toLowerCase()
       .split(' ')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => (word != 'and') ? word.charAt(0).toUpperCase() + word.slice(1) : word)
       .join(' ');
   }
 

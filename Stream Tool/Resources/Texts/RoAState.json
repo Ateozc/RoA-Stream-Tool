@@ -2,41 +2,41 @@
   "ScreenName": "LOCAL CSS",
   "Characters": [
     {
-      "Character": "SYLVANOS",
+      "Character": "ORI AND SEIN",
       "SlotNumber": 1,
-      "SlotState": "OFF",
+      "SlotState": "HMN",
       "Stocks": 0,
       "Damage": 0,
-      "GameCount": 1
+      "GameCount": 0
     },
     {
-      "Character": "ABSA",
+      "Character": "RANDOM",
       "SlotNumber": 2,
-      "SlotState": "OFF",
+      "SlotState": "CPU",
       "Stocks": 0,
       "Damage": 0,
-      "GameCount": 2
+      "GameCount": 0
     },
     {
-      "Character": "FORSBURN",
+      "Character": "RANNO",
       "SlotNumber": 3,
-      "SlotState": "OFF",
+      "SlotState": "CPU",
       "Stocks": 0,
       "Damage": 0,
-      "GameCount": 2
+      "GameCount": 0
     },
     {
-      "Character": "HODAN",
+      "Character": "SHOVEL KNIGHT",
       "SlotNumber": 4,
-      "SlotState": "OFF",
+      "SlotState": "CPU",
       "Stocks": 0,
       "Damage": 0,
-      "GameCount": 1
+      "GameCount": 0
     }
   ],
   "TourneySet": {
     "InMatch": false,
-    "TourneyModeBestOf": 5,
+    "TourneyModeBestOf": 0,
     "Stocks": 3,
     "Time": 8
   }
