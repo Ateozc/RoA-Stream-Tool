@@ -12,7 +12,7 @@
     {
       "Character": "ABSA",
       "SlotNumber": 2,
-      "SlotState": "HMN",
+      "SlotState": "OFF",
       "Stocks": 0,
       "Damage": 0,
       "GameCount": 2
@@ -20,7 +20,7 @@
     {
       "Character": "FORSBURN",
       "SlotNumber": 3,
-      "SlotState": "MHN",
+      "SlotState": "OFF",
       "Stocks": 0,
       "Damage": 0,
       "GameCount": 2

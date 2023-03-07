@@ -36,6 +36,12 @@ class GuiSettings {
 
     //Screen Rocker
     #screenRockerCheck = document.getElementById("screenRockerToggle");
+    #screenRockerCharCheck = document.getElementById("screenRockerCharToggle");
+    #screenRockerSkinCheck = document.getElementById("screenRockerSkinToggle");
+    #screenRockerColorCheck = document.getElementById("screenRockerColorToggle");
+    #screenRockerScoreCheck = document.getElementById("screenRockerScoreToggle");
+    #screenRockerBestOfCheck = document.getElementById("screenRockerBestOfToggle");
+    #screenRockerAutoApplyCheck = document.getElementById("screenRockerAutoApplyToggle");
 
     constructor() {
 
@@ -89,7 +95,14 @@ class GuiSettings {
             viewport.toSettings();
         });
 
+        //Screen Rocker Settings
         this.#screenRockerCheck.addEventListener("click", () => this.toggleScreenRocker());
+        this.#screenRockerCharCheck.addEventListener("click", () => this.toggleScreenRockerChar());
+        this.#screenRockerSkinCheck.addEventListener("click", () => this.toggleScreenRockerSkin());
+        this.#screenRockerColorCheck.addEventListener("click", () => this.toggleScreenRockerColor());
+        this.#screenRockerScoreCheck.addEventListener("click", () => this.toggleScreenRockerScore());
+        this.#screenRockerBestOfCheck.addEventListener("click", () => this.toggleScreenRockerBestOf());
+        this.#screenRockerAutoApplyCheck.addEventListener("click", () => this.toggleScreenRockerAutoApply());
 
     }
 
@@ -305,6 +318,25 @@ class GuiSettings {
             this.#screenRockerCheck.checked = false;
         }
         
+    }
+
+    toggleScreenRockerChar() {
+        screenRocker.toggleCharUpdate();
+    }
+    toggleScreenRockerSkin() {
+        screenRocker.toggleSkinUpdate();
+    }
+    toggleScreenRockerColor() {
+        screenRocker.toggleColorUpdate();
+    }
+    toggleScreenRockerScore() {
+        screenRocker.toggleScoreUpdate();
+    }
+    toggleScreenRockerBestOf() {
+        screenRocker.toggleBestOfUpdate();
+    }
+    toggleScreenRockerAutoApply() {
+        screenRocker.toggleAutoApplyUpdate();
     }
 
     isScoreAutoChecked() {

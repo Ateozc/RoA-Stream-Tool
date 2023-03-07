@@ -5,7 +5,7 @@ import { players, playersReady } from './Player/Players.mjs';
 import { bestOf } from "./BestOf.mjs";
 import { scores } from './Score/Scores.mjs';
 import { currentColors, updateColor } from './Colors.mjs';
-import { readyToUpdate, writeScoreboard } from './Write Scoreboard.mjs';
+import { writeScoreboard } from './Write Scoreboard.mjs';
 import { customChange, setCurrentPlayer } from './Custom Skin.mjs';
 
 const colorList = await getJson(stPath.text + "/Color Slots");
@@ -17,6 +17,13 @@ class ScreenRocker {
     #enabled = false;
     #diffFound = false;
 
+    #updateChar = false;
+    #updateSkin = false;
+    #updateColor = false;
+    #updateScore = false;
+    #updateBestOf = false;
+    #updateAutoApply = false;
+
 
     constructor() {
         
@@ -25,6 +32,32 @@ class ScreenRocker {
     enabled() {
         return this.#enabled;
     }
+
+    //The toggles for each piece.
+    toggleCharUpdate() {
+        this.#updateChar = !this.#updateChar;
+    }
+
+    toggleSkinUpdate() {
+        this.#updateSkin = !this.#updateSkin;
+    }
+
+    toggleColorUpdate() {
+        this.#updateColor = !this.#updateColor;
+    }
+
+    toggleScoreUpdate() {
+        this.#updateScore = !this.#updateScore;
+    }
+
+    toggleBestOfUpdate() {
+        this.#updateBestOf = !this.#updateBestOf;
+    }
+
+    toggleAutoApplyUpdate() {
+        this.#updateAutoApply = !this.#updateAutoApply;
+    }
+
 
     hasData() {
         return (this.#data != "" && this.#playerPresets != "")
@@ -41,8 +74,7 @@ class ScreenRocker {
 
     async getData() {
         this.#playerPresets = await getPresetList("Player Info");
-        this.#data = await getJson(stPath.text + "/RoAState");
-        
+        this.#data = await getJson(stPath.text + "/RoAState");  
     }
 
     canToggleOn() {
@@ -58,7 +90,7 @@ class ScreenRocker {
     }
 
     async #setCharAndSkinData(playerIndex, char) {
-        if(true) { // update characters
+        if(this.#updateChar) { // update characters
             let playerPresetSkin = {};
             playerPresetSkin = this.#getSkinPreset(players[playerIndex].nameInp.value, char);
 
@@ -82,28 +114,31 @@ class ScreenRocker {
             hex: "",
             customImg: false
         }
-        for (let i = 0; i < this.#playerPresets.length; i++) {
-            let player = this.#playerPresets[i];
-            if (player.name == name) {
-                for (let j = 0; j < player.characters.length; j++) {
-                    if (char == player.characters[j].character) {
-
-                        skinObj = {
-                            name: player.characters[j].skin,
-                            hex: (player.characters[j].hex) ? player.characters[j].hex : "",
-                            customImg: (player.characters[j].customImg) ? true : false
+        if (this.#updateSkin) {
+            for (let i = 0; i < this.#playerPresets.length; i++) {
+                let player = this.#playerPresets[i];
+                if (player.name == name) {
+                    for (let j = 0; j < player.characters.length; j++) {
+                        if (char == player.characters[j].character) {
+    
+                            skinObj = {
+                                name: player.characters[j].skin,
+                                hex: (player.characters[j].hex) ? player.characters[j].hex : "",
+                                customImg: (player.characters[j].customImg) ? true : false
+                            }
+                            return skinObj;
                         }
-                        return skinObj;
                     }
                 }
             }
         }
+       
         return skinObj;
     }
 
     
     async #setColorData(playerIndex, playerCount, slot, state) {
-        if (true) { //Update team colors
+        if (this.#updateColor) { //Update team colors
             let newColor = {};
             let colorIndex = -1;
             if (playerIndex == 0) {
@@ -159,7 +194,7 @@ class ScreenRocker {
     }
 
     async #setScoreData(playerIndex, playerCount, gameCount) {
-        if (true) { //Update Score
+        if (this.#updateScore) { //Update Score
             let scoreIndex = -1;
             if (playerIndex == 0) {
                 scoreIndex = 0;
@@ -177,7 +212,7 @@ class ScreenRocker {
     }
 
     async #setBoData(newBo) {
-        if (true) {
+        if (this.#updateBestOf) {
             if (newBo == 3 || newBo == 5) {
                 if (!this.#isSame(bestOf.getBo(), newBo)){
                     bestOf.setBo(newBo);
@@ -187,7 +222,7 @@ class ScreenRocker {
     }
 
     #writeData() {
-        if (this.#diffFound && playersReady()) {
+        if (this.#updateAutoApply && this.#diffFound && playersReady()) {
             writeScoreboard();
             document.getElementById('botBar').style.backgroundColor = "var(--bg3)";   
         }
