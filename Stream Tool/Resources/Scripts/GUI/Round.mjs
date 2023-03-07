@@ -22,6 +22,10 @@ class Round {
             const roundOption = document.createElement('option');
             roundOption.value = roundList[i].name;
             roundOption.innerHTML = roundList[i].name;
+            roundOption.style.backgroundColor = "var(--bg5)";
+            if (roundList[i].showNumber) {
+                roundOption.style.backgroundColor = "var(--bg2)";
+            }
             this.#roundSelect.appendChild(roundOption);
         }
 
@@ -33,7 +37,7 @@ class Round {
 
         let roundName = "";
 
-        if (settings.useCustomRound()) { // regular text input
+        if (settings.isCustomRoundChecked()) { // regular text input
             roundName = this.#roundInp.value;
         } else { // round select
             roundName = this.#roundSelect.value;
@@ -54,7 +58,7 @@ class Round {
         this.#roundInp.value = text;
 
         // if using the round select
-        if (!settings.useCustomRound()) {
+        if (!settings.isCustomRoundChecked()) {
 
             // add in the number text to the hidden text input, if needed
             if (this.isNumberNeeded()) {
@@ -67,6 +71,13 @@ class Round {
 
         }
         
+    }
+
+    getIndex() {
+        return this.#roundSelect.selectedIndex;
+    }
+    getNumber() {
+        return this.#roundNumber.value
     }
 
     updateSelect() {
