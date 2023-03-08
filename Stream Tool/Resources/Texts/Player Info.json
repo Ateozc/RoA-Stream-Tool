@@ -41,12 +41,16 @@
   },
   {
     "name": "Test",
-    "pronouns": "",
     "tag": "One",
+    "pronouns": "",
     "twitter": "",
     "twitch": "",
     "yt": "",
     "characters": [
+      {
+        "character": "Forsburn",
+        "skin": "Blue"
+      },
       {
         "character": "Absa",
         "skin": "Default"
@@ -61,10 +65,6 @@
       },
       {
         "character": "Etalus",
-        "skin": "Default"
-      },
-      {
-        "character": "Forsburn",
         "skin": "Default"
       },
       {
