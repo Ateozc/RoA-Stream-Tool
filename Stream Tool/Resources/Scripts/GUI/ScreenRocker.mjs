@@ -251,15 +251,15 @@ class ScreenRocker {
                     newColor = this.getColorBasedOnSlot(slot, state);
                     colorIndex = 0;
                 }
-            } else if (playerIndex == 1 && playerCount < 3) {
+            } else if (playerIndex == 1) {
                 newColor = this.getColorBasedOnSlot(slot, state);
                 colorIndex = 1;
-            } else if (playerIndex == 2 && playerCount > 2) {
+            } else if (playerIndex == 1 && playerCount > 2) {
                 newColor = this.getColorBasedOnSlot(2, "HMN");
                 colorIndex = 1;
             }
 
-            if (!this.#isSame(currentColors[colorIndex], newColor)) {
+            if (colorIndex != -1 && !this.#isSame(currentColors[colorIndex], newColor)) {
                 await updateColor(colorIndex, newColor);
             }
         }
