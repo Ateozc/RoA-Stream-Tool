@@ -1,16 +1,102 @@
-import { stPath } from './Globals.mjs';
-import { settings } from './Settings.mjs';
-import { getJson, getPresetList } from './File System.mjs';
-import { players, playersReady } from './Player/Players.mjs';
+import { stPath } from "./Globals.mjs";
+import { settings } from "./Settings.mjs";
+import { getJson, getPresetList } from "./File System.mjs";
+import { players, playersReady } from "./Player/Players.mjs";
 import { bestOf } from "./BestOf.mjs";
-import { scores } from './Score/Scores.mjs';
-import { currentColors, updateColor } from './Colors.mjs';
-import { writeScoreboard } from './Write Scoreboard.mjs';
-import { customChange, setCurrentPlayer } from './Custom Skin.mjs';
+import { scores } from "./Score/Scores.mjs";
+import { currentColors, updateColor } from "./Colors.mjs";
+import { writeScoreboard } from "./Write Scoreboard.mjs";
+import { customChange, setCurrentPlayer } from "./Custom Skin.mjs";
 
 const colorList = await getJson(stPath.text + "/Color Slots");
 
+const settingElectronDiv = document.getElementById("settingsElectron");
+const newToggles = [
+    {
+        id: "screenRockerToggle",
+        title: "Enable Screen Rocker automated check. Requires Screen Rocker to be updating RoAState.json",
+        innerText: "Enable Screen Rocker",
+        disabled: false
+    },
+    {
+        id: "screenRockerCharToggle",
+        title: "Enables the Skins to be updated based on the players preset skin (if available). If off or no preset found, this will set the skin to default.",
+        innerText: "Enable Character Update",
+        disabled: false
+    },
+    {
+        id: "screenRockerSkinToggle",
+        title: "Enable Screen Rocker automated check. Requires Screen Rocker to be updating RoAState.json",
+        innerText: "Enable Skin Update",
+        disabled: true
+    },
+    {
+        id: "screenRockerColorToggle",
+        title: "Enables the Team Color to be updated based upon the Screen Rocker. This is based on the Slot colors and Active slots (OFF/HMN/CPU)",
+        innerText: "Enable Team Color Update",
+        disabled: false
+    },
+    {
+        id: "screenRockerScoreToggle",
+        title: "Enables the Score to be updated based upon the Screen Rocker.",
+        innerText: "Enable Score Update",
+        disabled: false
+    },
+    {
+        id: "screenRockerBestOfToggle",
+        title: "Enables the Best Of to be updated based upon the Screen Rocker.",
+        innerText: "Enable BestOf Update",
+        disabled: false
+    },
+    {
+        id: "screenRockerAutoApplyToggle",
+        title: "When enabled, all changes immediately get applied to stream. If disabled, you will need to press 'Update' to apply changes.",
+        innerText: "Enable Auto Apply Update",
+        disabled: false
+    }
+]
+
+let screenRockerTitleDiv = document.createElement("div");
+screenRockerTitleDiv.className = "settingsTitle";
+screenRockerTitleDiv.innerHTML = "Screen Rocker";
+settingElectronDiv.before(screenRockerTitleDiv);
+
+let prevDiv = screenRockerTitleDiv;
+
+for (let t = 0; t < newToggles.length; t++) {
+    let toggle = newToggles[t];
+    let toggleDiv = document.createElement("div");
+    toggleDiv.className = "settingBox";
+    toggleDiv.title = toggle.title;
+
+    let toggleInput = document.createElement("input");
+    toggleInput.type = "checkbox";
+    toggleInput.id = toggle.id;
+    toggleInput.className = "settingsCheck";    
+    toggleInput.tabIndex = "-1";
+    toggleInput.disabled = toggle.disabled;
+
+    let inputLabel = document.createElement("label");
+    inputLabel.htmlFor = toggle.id;
+    inputLabel.className = "settingsText";
+    inputLabel.innerHTML = toggle.innerText;
+
+    toggleDiv.appendChild(toggleInput);
+    toggleDiv.appendChild(inputLabel);
+
+    prevDiv.after(toggleDiv);
+    prevDiv = toggleDiv;
+}
+
 class ScreenRocker {
+
+    #screenRockerCheck = document.getElementById("screenRockerToggle");
+    #screenRockerCharCheck = document.getElementById("screenRockerCharToggle");
+    #screenRockerSkinCheck = document.getElementById("screenRockerSkinToggle");
+    #screenRockerColorCheck = document.getElementById("screenRockerColorToggle");
+    #screenRockerScoreCheck = document.getElementById("screenRockerScoreToggle");
+    #screenRockerBestOfCheck = document.getElementById("screenRockerBestOfToggle");
+    #screenRockerAutoApplyCheck = document.getElementById("screenRockerAutoApplyToggle");
 
     #playerPresets = "";
     #data = "";
@@ -26,7 +112,14 @@ class ScreenRocker {
 
 
     constructor() {
-        
+         //Screen Rocker Settings
+         this.#screenRockerCheck.addEventListener("click", () => this.toggle());
+         this.#screenRockerCharCheck.addEventListener("click", () => this.toggleCharUpdate());
+         this.#screenRockerSkinCheck.addEventListener("click", () => this.toggleSkinUpdate());
+         this.#screenRockerColorCheck.addEventListener("click", () => this.toggleColorUpdate());
+         this.#screenRockerScoreCheck.addEventListener("click", () => this.toggleScoreUpdate());
+         this.#screenRockerBestOfCheck.addEventListener("click", () => this.toggleBestOfUpdate());
+         this.#screenRockerAutoApplyCheck.addEventListener("click", () => this.toggleAutoApplyUpdate());
     }
 
     enabled() {
@@ -36,10 +129,19 @@ class ScreenRocker {
     //The toggles for each piece.
     toggleCharUpdate() {
         this.#updateChar = !this.#updateChar;
+        if (!this.#updateChar && this.#updateSkin) {
+            this.#screenRockerSkinCheck.click();
+        }
+        this.#screenRockerSkinCheck.disabled = !this.#updateChar;
     }
 
     toggleSkinUpdate() {
-        this.#updateSkin = !this.#updateSkin;
+        if (!this.#updateChar && this.#screenRockerSkinCheck.checked == true) {
+            this.#screenRockerSkinCheck.checked = false;
+        } else {
+            this.#updateSkin = !this.#updateSkin;
+        }
+        
     }
 
     toggleColorUpdate() {
@@ -110,7 +212,7 @@ class ScreenRocker {
 
     #getSkinPreset(name, char) {
         let skinObj = {
-            name: 'Default',
+            name: "Default",
             hex: "",
             customImg: false
         }
@@ -143,7 +245,7 @@ class ScreenRocker {
             let colorIndex = -1;
             if (playerIndex == 0) {
                 if (playerCount > 2) { //force red on teams
-                    newColor = this.getColorBasedOnSlot(1, 'HMN');
+                    newColor = this.getColorBasedOnSlot(1, "HMN");
                     colorIndex = 0;
                 } else {
                     newColor = this.getColorBasedOnSlot(slot, state);
@@ -153,7 +255,7 @@ class ScreenRocker {
                 newColor = this.getColorBasedOnSlot(slot, state);
                 colorIndex = 1;
             } else if (playerIndex == 2 && playerCount > 2) {
-                newColor = this.getColorBasedOnSlot(2, 'HMN');
+                newColor = this.getColorBasedOnSlot(2, "HMN");
                 colorIndex = 1;
             }
 
@@ -164,23 +266,23 @@ class ScreenRocker {
     }
 
     getColorBasedOnSlot(slot, state) {
-        if (state == 'CPU' || state == 'OFF') {
-            return this.findColorPreset('CPU');
+        if (state == "CPU" || state == "OFF") {
+            return this.findColorPreset("CPU");
         }
         if (slot == 1) {
-            return this.findColorPreset('Red');
+            return this.findColorPreset("Red");
         }
     
         if (slot == 2) {
-            return this.findColorPreset('Blue');
+            return this.findColorPreset("Blue");
         }
     
         if (slot == 3) {
-            return this.findColorPreset('Pink');
+            return this.findColorPreset("Pink");
         }
     
         if (slot == 4) {
-            return this.findColorPreset('Green');
+            return this.findColorPreset("Green");
         }
 
     }
@@ -224,7 +326,7 @@ class ScreenRocker {
     #writeData() {
         if (this.#updateAutoApply && this.#diffFound && playersReady()) {
             writeScoreboard();
-            document.getElementById('botBar').style.backgroundColor = "var(--bg3)";   
+            document.getElementById("botBar").style.backgroundColor = "var(--bg3)";   
         }
     }
 
@@ -251,7 +353,7 @@ class ScreenRocker {
         this.#diffFound = false;
         let playerCount = 0;
         for (let i = 0; i < this.#data.Characters.length; i++) {
-            if (this.#data.Characters[i].SlotState != 'OFF') {
+            if (this.#data.Characters[i].SlotState != "OFF") {
                 playerCount++;
             }
         }
@@ -264,7 +366,7 @@ class ScreenRocker {
             let state = this.#data.Characters[i].SlotState;
             let gameCount = this.#data.Characters[i].GameCount;
 
-            if (playerCount > 2 || state != 'OFF') {
+            if (playerCount > 2 || state != "OFF") {
                 await this.#setCharAndSkinData(playerIndex, char);
                 await this.#setColorData(playerIndex, playerCount, slot, state);
                 await this.#setScoreData(playerIndex, playerCount, gameCount);
@@ -300,9 +402,9 @@ function init() {
 function capitalizeWords(str) {
     return str
       .toLowerCase()
-      .split(' ')
-      .map((word) => (word != 'and') ? word.charAt(0).toUpperCase() + word.slice(1) : word)
-      .join(' ');
+      .split(" ")
+      .map((word) => (word != "and") ? word.charAt(0).toUpperCase() + word.slice(1) : word)
+      .join(" ");
   }
 
 export const screenRocker = new ScreenRocker;
