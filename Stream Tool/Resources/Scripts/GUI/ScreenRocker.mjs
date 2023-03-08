@@ -194,7 +194,7 @@ class ScreenRocker {
     async #setCharAndSkinData(playerIndex, char) {
         if(this.#updateChar) { // update characters
             let playerPresetSkin = {};
-            playerPresetSkin = this.#getSkinPreset(players[playerIndex].nameInp.value, char);
+            playerPresetSkin = this.#getSkinPreset(players[playerIndex].getName(), char);
 
             if (players[playerIndex].char != char || players[playerIndex].skin.name != playerPresetSkin.name) {
                 this.#diffFound = true;
