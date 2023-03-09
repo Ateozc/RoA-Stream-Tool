@@ -8,7 +8,6 @@ import { gamemode } from "./Gamemode Change.mjs";
 import { tournament } from "./Tournament.mjs";
 import { round } from "./Round.mjs";
 import { teams } from "./Team/Teams.mjs";
-import { screenRocker } from "./ScreenRocker.mjs";
 
 
 class GuiSettings {

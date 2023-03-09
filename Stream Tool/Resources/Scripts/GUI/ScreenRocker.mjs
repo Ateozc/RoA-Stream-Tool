@@ -7,7 +7,7 @@ import { scores } from "./Score/Scores.mjs";
 import { currentColors, updateColor } from "./Colors.mjs";
 import { writeScoreboard } from "./Write Scoreboard.mjs";
 import { customChange, setCurrentPlayer } from "./Custom Skin.mjs";
-import { runPythonUpdate } from "./PythonAutomation.mjs";
+import { vodRename } from "./VodRename.mjs";
 
 const colorList = await getJson(stPath.text + "/Color Slots");
 
