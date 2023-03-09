@@ -1,11 +1,9 @@
-import { casters } from './Caster/Casters.mjs';
-import { inside, stPath } from './Globals.mjs';
+import { stPath } from './Globals.mjs';
 import { players } from './Player/Players.mjs';
 import { round } from './Round.mjs';
 import { scores } from './Score/Scores.mjs';
 import { teams } from './Team/Teams.mjs';
 import { tournament } from './Tournament.mjs';
-import { getJson, getPresetList, saveJson, saveSimpleTexts } from "./File System.mjs";
 import { gamemode } from './Gamemode Change.mjs';
 import { settings } from './Settings.mjs';
 
@@ -103,6 +101,7 @@ class VodRename {
     #vodRenameBtn = document.getElementById('vodRenameButton');
     #oldCopyMatchBtn = document.getElementById('copyMatch');
     #copyMatchBtn = this.#oldCopyMatchBtn.cloneNode(true);
+    #recordingDirSettings = stPath.text+ "\\RecordingDir.txt";
     
     #matchString = "";
     #matchInfo = {
@@ -120,10 +119,34 @@ class VodRename {
         updateRegion.addEventListener("click", () => {this.#updateMatchInfo()});
         this.#vodRenameBtn.addEventListener("click", () => this.renameAndMoveFiles());
         this.#copyMatchBtn.addEventListener("click", () => {this.copyMatchInfo();});
+        this.#getDirSettings();
+        
+    }
+
+    #getDirSettings() {
+        this.#recordingDir = fs.readFileSync(this.#recordingDirSettings);
+        this.#vodDirInput.value = this.#recordingDir;
     }
 
     #updateRecordingDir() {
+        try {
+            if(!fs.lstatSync(this.#vodDirInput.value).isDirectory() ) {
+                throw 'Invalid Path.';
+            }
+        } catch (e) {
+            this.#vodDirInput.value = "INVALID PATH";
+            return;
+        }
+        console.log('hit');
         this.#recordingDir = this.#vodDirInput.value;
+        
+        let settingsFile = stPath.text+ '\\' + this.#recordingDirSettings;
+        console.log(settingsFile)
+        fs.writeFile(settingsFile, this.#recordingDir, err => {
+            if (err) {
+                console.log(err);
+            }
+        });
     }
 
     #updateMatchInfo() {       
@@ -211,7 +234,6 @@ class VodRename {
     }
 
     getLatestFileName() {
-        
         return this.#matchString;
     }
 
@@ -222,12 +244,12 @@ class VodRename {
         let newFileName = this.getLatestFileName();
 
 
-        if (!tournament || !game || !this.#recordingDir || !newFileName) {
+        if (!tournament || !game || !this.#recordingDir && this.#recordingDir != 'INVALID PATH' || !newFileName) {
             return;
         }
 
         this.#vodRenameBtn.removeEventListener("click", () => this.renameAndMoveFiles());
-        this.#vodRenameBtn.innerHTML = 'Processing...';
+        this.#vodRenameBtn.title = 'Processing...';
 
 
         let tournamentPath = this.#recordingDir + '\\' + tournament;
@@ -271,7 +293,7 @@ class VodRename {
         }
 
         this.#vodRenameBtn.addEventListener("click", () => this.renameAndMoveFiles());
-        this.#vodRenameBtn.innerHTML = 'Rename Vod Files';
+        this.#vodRenameBtn.title = 'Rename Vod Files';
     }
 
 
