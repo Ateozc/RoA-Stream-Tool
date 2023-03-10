@@ -1,11 +1,12 @@
-import { stPath } from './Globals.mjs';
-import { players } from './Player/Players.mjs';
-import { round } from './Round.mjs';
-import { scores } from './Score/Scores.mjs';
-import { teams } from './Team/Teams.mjs';
-import { tournament } from './Tournament.mjs';
-import { gamemode } from './Gamemode Change.mjs';
-import { settings } from './Settings.mjs';
+import { stPath } from '../GUI/Globals.mjs';
+import { players } from '../GUI/Player/Players.mjs';
+import { round } from '../GUI/Round.mjs';
+import { scores } from '../GUI/Score/Scores.mjs';
+import { teams } from '../GUI/Team/Teams.mjs';
+import { tournament } from '../GUI/Tournament.mjs';
+import { gamemode } from '../GUI/Gamemode Change.mjs';
+import { settings } from '../GUI/Settings.mjs';
+import { displayNotif } from '../GUI/Notifications.mjs';
 
 const fs = require('fs');
 const path = require ('path');
@@ -116,7 +117,7 @@ class VodRename {
         this.#oldCopyMatchBtn.parentNode.replaceChild(this.#copyMatchBtn, this.#oldCopyMatchBtn); //need to destroy the item, cuz it used an empty function. Cant remove the event listener otherwise.
 
         this.#vodDirInput.addEventListener("change", () => this.#updateRecordingDir());
-        updateRegion.addEventListener("click", () => {this.#updateMatchInfo()});
+        updateDiv.addEventListener("click", () => {this.#updateMatchInfo()});
         this.#vodRenameBtn.addEventListener("click", () => this.renameAndMoveFiles());
         this.#copyMatchBtn.addEventListener("click", () => {this.copyMatchInfo();});
         this.#getDirSettings();
@@ -134,14 +135,13 @@ class VodRename {
                 throw 'Invalid Path.';
             }
         } catch (e) {
-            this.#vodDirInput.value = "INVALID PATH";
+            displayNotif('Invalid Path. Please enter a valid path.')
+            this.#vodDirInput.value = "";
             return;
         }
-        console.log('hit');
         this.#recordingDir = this.#vodDirInput.value;
         
         let settingsFile = stPath.text+ '\\' + this.#recordingDirSettings;
-        console.log(settingsFile)
         fs.writeFile(settingsFile, this.#recordingDir, err => {
             if (err) {
                 console.log(err);
@@ -245,6 +245,7 @@ class VodRename {
 
 
         if (!tournament || !game || !this.#recordingDir && this.#recordingDir != 'INVALID PATH' || !newFileName) {
+            displayNotif('Failed to Rename and move Vods. Ensure Tournament, Round, Player Information, and Vod Directory are filled in, then hit "Update" and try again.')
             return;
         }
 
@@ -276,15 +277,7 @@ class VodRename {
                         let newFilePath = newFile + ext;
         
                         fs.renameSync(oldPath, newFilePath);
-
                         counts[ext] ++;
-                        // fs.rename(oldPath, newFilePath, (error) => {
-                        //     if (error) {
-                        //         console.log(error);
-                        //     } else {
-                        //         console.log("\nFile Renamed\n");
-                        //     }
-                        // });
                     }
                 })
             });
@@ -294,6 +287,7 @@ class VodRename {
 
         this.#vodRenameBtn.addEventListener("click", () => this.renameAndMoveFiles());
         this.#vodRenameBtn.title = 'Rename Vod Files';
+        displayNotif('Files have been Renamed and moved');
     }
 
 

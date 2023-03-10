@@ -1,12 +1,12 @@
-import { stPath } from "./Globals.mjs";
-import { settings } from "./Settings.mjs";
-import { getJson, getPresetList } from "./File System.mjs";
-import { players, playersReady } from "./Player/Players.mjs";
-import { bestOf } from "./BestOf.mjs";
-import { scores } from "./Score/Scores.mjs";
-import { currentColors, updateColor } from "./Colors.mjs";
-import { writeScoreboard } from "./Write Scoreboard.mjs";
-import { customChange, setCurrentPlayer } from "./Custom Skin.mjs";
+import { stPath } from "../GUI/Globals.mjs";
+import { settings } from "../GUI/Settings.mjs";
+import { getJson, getPresetList } from "../GUI/File System.mjs";
+import { players, playersReady } from "../GUI/Player/Players.mjs";
+import { bestOf } from "../GUI/BestOf.mjs";
+import { scores } from "../GUI/Score/Scores.mjs";
+import { currentColors, updateColor } from "../GUI/Colors.mjs";
+import { writeScoreboard } from "../GUI/Write Scoreboard.mjs";
+import { customChange, setCurrentPlayer } from "../GUI/Custom Skin.mjs";
 
 const colorList = await getJson(stPath.text + "/Color Slots");
 

@@ -1,4 +1,5 @@
-import { current } from "./Globals.mjs";
+import { current } from "../GUI/Globals.mjs";
+import { displayNotif } from "../GUI/Notifications.mjs";
 import { OBSWebSocket } from "./obs-websocket-js.mjs";
 
 
@@ -119,9 +120,11 @@ class OBSControl {
               rpcVersion: 1
             });
             console.log(`Connected to server ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`)
+            displayNotif('Connected to OBS');
             this.#connected = true;
           } catch (error) {
             console.error('Failed to connect', error.code, error.message);
+            displayNotif('Failed to connect to OBS');
           }
     }
 
