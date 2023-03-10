@@ -2,6 +2,8 @@ import { stPath } from './Globals.mjs';
 import { settings } from "./Settings.mjs";
 import { wl } from "./WinnersLosers.mjs";
 import { getJson } from './File System.mjs';
+import { bestOf } from './BestOf.mjs';
+import { displayNotif } from './Notifications.mjs';
 
 const roundList = await getJson(stPath.text + "/Round Names");
 
@@ -19,16 +21,35 @@ class Round {
         
         // create the round select list
         for (let i = 0; i < roundList.length; i++) {
+
             const roundOption = document.createElement('option');
             roundOption.value = roundList[i].name;
             roundOption.innerHTML = roundList[i].name;
+
+            // add colors to the list
             roundOption.style.backgroundColor = "var(--bg5)";
             if (roundList[i].showNumber) {
                 roundOption.style.backgroundColor = "var(--bg2)";
             }
+
             this.#roundSelect.appendChild(roundOption);
+
         }
 
+        // add in additional custom and none options
+        const customOption = document.createElement('option');
+        customOption.value = "";
+        customOption.innerHTML = "(custom text)";
+        customOption.style.backgroundColor = "var(--bg5)";
+        this.#roundSelect.appendChild(customOption);
+
+        const noneOption = document.createElement('option');
+        noneOption.value = "";
+        noneOption.innerHTML = "(none)";
+        noneOption.style.backgroundColor = "var(--bg5)";
+        this.#roundSelect.appendChild(noneOption);
+
+        // function to call when selecting an option
         this.#roundSelect.addEventListener("change", () => {this.updateSelect()});
         
     }
@@ -45,8 +66,6 @@ class Round {
             if (this.isNumberNeeded()) {
                 roundName += " " + this.#roundNumber.value;
             }
-            // update the hidden text input
-            this.#roundInp.value = roundName;
 
         }
 
@@ -68,6 +87,7 @@ class Round {
             // update the select and number values
             this.#roundSelect.selectedIndex = index;
             this.#roundNumber.value = number;
+            this.updateSelect();
 
         }
         
@@ -82,18 +102,33 @@ class Round {
 
     updateSelect() {
 
-        // set the new name
-        this.#roundSelect.value = roundList[this.#roundSelect.selectedIndex].name;
-
-        // show, or not, the round number input
-        if (this.isNumberNeeded()) {
-            this.showNumberInput();
+        if (this.#roundSelect.selectedIndex == roundList.length) { // custom text
+            displayNotif("You can restore round select in settings");
+            settings.setCustomRound(true);
+            settings.toggleCustomRound();
+            this.#roundSelect.selectedIndex = 0; // to avoid bugs later
         } else {
-            this.hideNumberInput();
-        }
+            
+            if (this.#roundSelect.selectedIndex < roundList.length) {
+    
+                // check if the round forces a bestOf state
+                if (roundList[this.#roundSelect.selectedIndex].forceBestOf) {
+                    bestOf.setBo(roundList[this.#roundSelect.selectedIndex].forceBestOf);
+                }
+    
+            }
+    
+            // show, or not, the round number input
+            if (this.isNumberNeeded()) {
+                this.showNumberInput();
+            } else {
+                this.hideNumberInput();
+            }
+    
+            // of course, check for grands
+            this.checkGrands();
 
-        // of course, check for grands
-        this.checkGrands();
+        }
 
     }
 
@@ -125,7 +160,11 @@ class Round {
      * @returns {Boolean}
      */
     isNumberNeeded() {
-        return roundList[this.#roundSelect.selectedIndex].showNumber;
+        if (this.#roundSelect.selectedIndex < roundList.length - 1) {
+            return roundList[this.#roundSelect.selectedIndex].showNumber;
+        } else {
+            return false;
+        }        
     }
 
     /** Checks if the round text contains "Grands" so it shows/hides W/L buttons */
