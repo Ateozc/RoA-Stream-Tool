@@ -60,6 +60,8 @@ export function genGuiSection(title, otherElement, placeAfter, newToggles) {
         prevDiv = toggleDiv;
     }
 
+    titleDiv.addEventListener('click', () => showHideAllElements(toggleDivs));
+
     return {
         titleDiv: titleDiv,
         toggleDivs: toggleDivs,
@@ -68,14 +70,26 @@ export function genGuiSection(title, otherElement, placeAfter, newToggles) {
 
 }
 
-export function showHideAllElements(elements, show) {
+export function showHideAllElements(elements) {
     for (let i = 0; i < elements.length; i++) {
-        if (show) {
+        if (elements[i].style.display == 'none' && !elements[i].disabled) {
             elements[i].style.display = 'flex';
+            
         } else {
             elements[i].style.display = 'none';
         }
-        
+    }
+}
+
+export function showAllElements(elements) {
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'flex';
+    }
+}
+
+export function hideAllElements(elements) {
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'none';
     }
 }
 

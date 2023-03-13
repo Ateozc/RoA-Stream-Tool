@@ -7,17 +7,15 @@ import { scores } from "../GUI/Score/Scores.mjs";
 import { currentColors, updateColor } from "../GUI/Colors.mjs";
 import { writeScoreboard } from "../GUI/Write Scoreboard.mjs";
 import { customChange, setCurrentPlayer } from "../GUI/Custom Skin.mjs";
-import { genGuiSection, showHideAllElements } from "./EasyGUISection.mjs";
+import { genGuiSection } from "./EasyGUISection.mjs";
 import { obsControl } from "./OBSWebsocketControl.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { vodRename } from "./VodRename.mjs";
 
 /*
 TODO:
-- Fix Hex skin not loading for Readek.
 - Store previously selected scenes. When getting latest, use previously selected if available.
 - On new selection, save them.
-- Fix toggle for Recording when starting Screen Rocker OBS
 */
 const fs = require('fs');
 const stateFile = stPath.text + "/RoAState"
@@ -535,7 +533,6 @@ export class ScreenRocker {
             this.#enabled = false;
         }
         this.#screenRockerCheck.checked = this.#enabled;
-        // showHideAllElements(this.#toggleDivsOBS, this.#enabled);
         return this.#enabled;
     }
 
@@ -571,7 +568,7 @@ export class ScreenRocker {
             let playerPresetSkin = {};
             playerPresetSkin = this.#getSkinPreset(players[playerIndex].getName(), char);
 
-            if (players[playerIndex].char != char || players[playerIndex].skin.name != playerPresetSkin.name) {
+            if (players[playerIndex].char != char || players[playerIndex].skin.name != playerPresetSkin.name || players[playerIndex].skinHex != playerPresetSkin.hex) {
                 this.#diffFound = true;
                 await players[playerIndex].charChange(char, true);
                 if (playerPresetSkin.customImg) {

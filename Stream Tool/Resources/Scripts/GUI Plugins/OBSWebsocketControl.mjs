@@ -118,8 +118,8 @@ class OBSControl {
             displayNotif('Disconnected from OBS');
             this.#toggleConnected();
         } catch (error) {
-            console.error('Failed to connect', error.code, error.message);
-            displayNotif('Failed to connect to OBS');
+            console.error('Failed to disconnect', error.code, error.message);
+            displayNotif('Failed to disconnect from OBS');
         }
         this.#obsDisconnectBtn.innerText = 'Disconnect';
     }
@@ -135,25 +135,30 @@ class OBSControl {
             if (toggleDiv.contains(this.#obsConnectBtn) ) {
                 if (this.#connected) {
                     toggleDiv.style.display = 'none';
+                    toggleDiv.disabled = true;
                 } else {
-                    toggleDiv.style.display = '';
+                    toggleDiv.style.display = 'flex';
+                    toggleDiv.disabled = false;
                 }
             } else if (toggleDiv.contains(this.#obsDisconnectBtn)){
                 if (!this.#connected) {
                     toggleDiv.style.display = 'none';
+                    toggleDiv.disabled = true;
                 } else {
-                    toggleDiv.style.display = '';
+                    toggleDiv.style.display = 'flex';
+                    toggleDiv.disabled = false;
                 }
             } else {
                 if (this.#connected) {
-                    toggleDiv.style.display = '';
+                    toggleDiv.style.display = 'flex';
+                    toggleDiv.disabled = false;
                 } else {
                     toggleDiv.style.display = 'none';
+                    toggleDiv.disabled = true;
                 }
             }
         }
     }
-
 
     async changeScene(newScene, previewChange) {
         if (!this.connected() && newScene) {
@@ -165,7 +170,6 @@ class OBSControl {
         } else {
             await obs.call('SetCurrentProgramScene', {sceneName: newScene});
         }
-        
     }
 
     async toggleRecording() {
@@ -173,13 +177,13 @@ class OBSControl {
             return;
         }
 
-        let response = await obs.call('ToggleRecord');
-        this.#recording = response.outputActive;
-
-        if (this.#recording) {
-            this.#obsRecordingBtn.innerText = 'Recording... Press to stop';
-        } else {
-            this.#obsRecordingBtn.innerText = 'Start Recording';
+        try {
+            let response = await obs.call('ToggleRecord');
+            this.#recording = response.outputActive;
+    
+            this.#changeRecordingBtnText();
+        } catch (err) {
+            this.#wasConnectionLost(err);
         }
     }
 
@@ -187,29 +191,64 @@ class OBSControl {
         if (!this.connected()) {
             return;
         }
-        obs.call('StartRecord');
+
+        try {
+            await obs.call('StartRecord');
+            this.#recording = true;
+            this.#changeRecordingBtnText();
+        } catch (err) {
+            this.#wasConnectionLost(err);
+        }
+        
     }
 
     async stopRecord() {
         if (!this.connected()) {
             return;
         }
-        obs.call('StopRecord');
+        
+        try {
+            this.#recording = false;
+            await obs.call('StopRecord');
+            this.#changeRecordingBtnText();
+        } catch (err) {
+            this.#wasConnectionLost(err);
+        }
+        
     }
 
+    #wasConnectionLost(err) {
+        if (err.message == 'Not connected') {
+            displayNotif('Lost connection to OBS. Please reconnect, then try again.');
+            this.#toggleConnected();
+        }
+    }
+
+    #changeRecordingBtnText() {
+        if (this.#recording) {
+            this.#obsRecordingBtn.innerText = 'Recording... Press to stop';
+        } else {
+            this.#obsRecordingBtn.innerText = 'Start Recording';
+        }
+    }
+    
     async screenShot(sourceName, savePath) {
         if (!this.connected() || !sourceName || savePath) {
             return;
         }
 
-        await obs.call('SaveSourceScreenshot', {
-            "sourceName": sourceName,
-            "imageFormat": "png",
-            "imageFilePath": savePath,
-            "imageWidth": 1920,
-            "imageHeight": 1080,
-            "imageCompressionQuality": 100
-          });
+        try {
+            await obs.call('SaveSourceScreenshot', {
+                "sourceName": sourceName,
+                "imageFormat": "png",
+                "imageFilePath": savePath,
+                "imageWidth": 1920,
+                "imageHeight": 1080,
+                "imageCompressionQuality": 100
+            });
+        } catch (err) {
+            this.#wasConnectionLost(err);
+        }
     }
 
     async vsScreenScreenshot(savePath) {
@@ -229,7 +268,7 @@ class OBSControl {
 
 
         } catch (err) {
-            console.log(err);
+            this.#wasConnectionLost(err);
         }
     }
 
@@ -237,8 +276,13 @@ class OBSControl {
         if (!this.connected()) {
             return;
         }
-        let response = await obs.call('GetSceneList');
-        this.#sceneList = response.scenes;
+        try {
+            let response = await obs.call('GetSceneList');
+            this.#sceneList = response.scenes;
+        } catch (err) {
+            this.#wasConnectionLost(err);
+        }
+        
     }
 
     getSceneList() {
