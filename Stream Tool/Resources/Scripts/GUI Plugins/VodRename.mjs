@@ -7,6 +7,7 @@ import { tournament } from '../GUI/Tournament.mjs';
 import { gamemode } from '../GUI/Gamemode Change.mjs';
 import { settings } from '../GUI/Settings.mjs';
 import { displayNotif } from '../GUI/Notifications.mjs';
+import { genGuiSection } from './EasyGUISection.mjs';
 
 const fs = require('fs');
 const path = require ('path');
@@ -21,7 +22,7 @@ const newToggles = [
         innerText: "Vod Directory",
         type: "text",
         disabled: false,
-        className: "settingsText"
+        className: "textInput"
     },
     {
         id: "vodRenameButton",
@@ -33,68 +34,7 @@ const newToggles = [
     }
 ]
 
-let vodRenameTitleDiv = document.createElement("div");
-vodRenameTitleDiv.className = "settingsTitle";
-vodRenameTitleDiv.innerHTML = "Vod Rename";
-settingElectronDiv.before(vodRenameTitleDiv);
-
-let prevDiv = vodRenameTitleDiv;
-
-for (let t = 0; t < newToggles.length; t++) {
-    let toggle = newToggles[t];
-    let toggleDiv = document.createElement("div");
-    toggleDiv.className = "settingBox";
-    
-
-    let toggleInput = "";
-    if (toggle.type == 'button') {
-        toggleInput = document.createElement("button");
-        toggleInput.innerHTML = toggle.innerText;
-        toggleInput.title = toggle.title;
-    } else {
-        toggleInput = document.createElement("input");
-        toggleInput.type = toggle.type;
-        toggleDiv.title = toggle.title;
-    } 
-    
-    toggleInput.id = toggle.id;
-    toggleInput.className = toggle.className;    
-    toggleInput.tabIndex = "-1";
-    toggleInput.disabled = toggle.disabled;
-
-    let inputLabel = document.createElement("label");
-    inputLabel.htmlFor = toggle.id;
-    inputLabel.className = "settingsText";
-    inputLabel.innerHTML = toggle.innerText;
-
-    if (toggle.type == 'text') {
-        toggleDiv.appendChild(inputLabel);
-        toggleDiv.appendChild(toggleInput);
-    } else if (toggle.type == 'button') {
-        toggleDiv.appendChild(toggleInput);
-    } else {
-        toggleDiv.appendChild(toggleInput);
-        toggleDiv.appendChild(inputLabel);
-    }
-    
-    prevDiv.after(toggleDiv);
-    prevDiv = toggleDiv;
-}
-
-
-
-/**
- * Things to do for this piece
- * - Find a way to get previous characters and such. Maybe just keep the object alive, but if only player character changes we dont count things as "changed"
- * - maybe make a class constructor that can be called elsewhere?
- * - Save the Location of their Recordings (may want to save this into a file for future use).
- * - A toggle to enable this to auto rename recordings (or attempt to) on the clearing of data from the tool
- * - A button to force rename files
- * - a way to be integrated with the OBS Control in the future (so after the recording is done, it can automatically grab the files and move them). FUTURE STUFF
- * 
-  */
-
-
+const divs = genGuiSection('Vod Rename', settingElectronDiv, false, newToggles);
 
 class VodRename {
     #vodDirInput = document.getElementById('vodRenameDir');
@@ -103,6 +43,8 @@ class VodRename {
     #oldCopyMatchBtn = document.getElementById('copyMatch');
     #copyMatchBtn = this.#oldCopyMatchBtn.cloneNode(true);
     #recordingDirSettings = stPath.text+ "\\RecordingDir.txt";
+    #lastElement = divs.prevDiv;
+    #titleElement = divs.titleDiv;
     
     #matchString = "";
     #matchInfo = {
@@ -124,9 +66,32 @@ class VodRename {
         
     }
 
+    getLastGUIElement() {
+        return this.#lastElement;
+    }
+    getTitleGUIElement() {
+        return this.#titleElement;
+    }
+
     #getDirSettings() {
-        this.#recordingDir = fs.readFileSync(this.#recordingDirSettings);
+        this.#recordingDir = fs.readFileSync(this.#recordingDirSettings, 'utf8');
         this.#vodDirInput.value = this.#recordingDir;
+    }
+
+    getRecordingDir() {
+        return this.#recordingDir;
+    }
+
+    getRecordingDirWithFile() {
+        return this.#recordingDir + this.getLatestFileName();
+    }
+
+    canRename() {
+        if (this.getRecordingDir() && this.#matchInfo.tournament && this.#matchInfo.game && this.getLatestFileName()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     #updateRecordingDir() {
@@ -140,9 +105,8 @@ class VodRename {
             return;
         }
         this.#recordingDir = this.#vodDirInput.value;
-        
-        let settingsFile = stPath.text+ '\\' + this.#recordingDirSettings;
-        fs.writeFile(settingsFile, this.#recordingDir, err => {
+
+        fs.writeFile(this.#recordingDirSettings, this.#recordingDir, err => {
             if (err) {
                 console.log(err);
             }
@@ -244,7 +208,7 @@ class VodRename {
         let newFileName = this.getLatestFileName();
 
 
-        if (!tournament || !game || !this.#recordingDir && this.#recordingDir != 'INVALID PATH' || !newFileName) {
+        if (this.canRename()) {
             displayNotif('Failed to Rename and move Vods. Ensure Tournament, Round, Player Information, and Vod Directory are filled in, then hit "Update" and try again.')
             return;
         }

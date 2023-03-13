@@ -1,7 +1,7 @@
 import { current } from "../GUI/Globals.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
+import { genGuiSection } from "./EasyGUISection.mjs";
 import { OBSWebSocket } from "./obs-websocket-js.mjs";
-
 
 const obs = new OBSWebSocket();
 
@@ -10,109 +10,89 @@ const updateDiv = document.getElementById('updateRegion');
 const settingElectronDiv = document.getElementById("settingsElectron");
 const newToggles = [
     {
-        id: "obsChangeScene",
-        title: "Directory where all Vod items are stored.",
-        innerText: "Scene",
-        type: "text",
-        disabled: false,
-        className: "settingsText"
-    },
-    {
-        id: "obsScreenshot",
-        title: "When clicked, will rename all .flv, .mp4, and .png in the specified directory and move them to directory/{tournament}/{game}/",
-        innerText: "screenshot",
+        id: "obsConnect",
+        title: "Attempt to connect to OBS",
+        innerText: "Connect",
         type: "button",
         disabled: false,
         className: "settingsButton"
     },
     {
-        id: "obsStartRecord",
-        title: "When clicked, will rename all .flv, .mp4, and .png in the specified directory and move them to directory/{tournament}/{game}/",
+        id: "obsDisconnect",
+        title: "Disconnect from OBS",
+        innerText: "Disconnect",
+        type: "button",
+        disabled: false,
+        className: "settingsButton"
+    },
+    // {
+    //     id: "obsChangeScene",
+    //     title: "Directory where all Vod items are stored.",
+    //     innerText: "Scene",
+    //     type: "text",
+    //     disabled: false,
+    //     className: "settingsText"
+    // },
+    // {
+    //     id: "obsScreenshot",
+    //     title: "When clicked, will save a screenshot of the current Scene on the Screen to your Vod Directory folder (Check Vod Rename section)",
+    //     innerText: "Screenshot",
+    //     type: "button",
+    //     disabled: false,
+    //     className: "settingsButton"
+    // },
+    {
+        id: "obsRecording",
+        title: "Start/Stop recording",
         innerText: "Start Recording",
-        type: "button",
-        disabled: false,
-        className: "settingsButton"
-    },
-    {
-        id: "obsStopRecord",
-        title: "When clicked, will rename all .flv, .mp4, and .png in the specified directory and move them to directory/{tournament}/{game}/",
-        innerText: "Stop Recording",
         type: "button",
         disabled: false,
         className: "settingsButton"
     }
 ]
 
-let obsTitleDiv = document.createElement("div");
-obsTitleDiv.className = "settingsTitle";
-obsTitleDiv.innerHTML = "OBS Control";
-settingElectronDiv.before(obsTitleDiv);
 
-let prevDiv = obsTitleDiv;
-
-for (let t = 0; t < newToggles.length; t++) {
-    let toggle = newToggles[t];
-    let toggleDiv = document.createElement("div");
-    toggleDiv.className = "settingBox";
-    
-
-    let toggleInput = "";
-    if (toggle.type == 'button') {
-        toggleInput = document.createElement("button");
-        toggleInput.innerHTML = toggle.innerText;
-        toggleInput.title = toggle.title;
-    } else {
-        toggleInput = document.createElement("input");
-        toggleInput.type = toggle.type;
-        toggleDiv.title = toggle.title;
-    } 
-    
-    toggleInput.id = toggle.id;
-    toggleInput.className = toggle.className;    
-    toggleInput.tabIndex = "-1";
-    toggleInput.disabled = toggle.disabled;
-
-    let inputLabel = document.createElement("label");
-    inputLabel.htmlFor = toggle.id;
-    inputLabel.className = "settingsText";
-    inputLabel.innerHTML = toggle.innerText;
-
-    if (toggle.type == 'text') {
-        toggleDiv.appendChild(inputLabel);
-        toggleDiv.appendChild(toggleInput);
-    } else if (toggle.type == 'button') {
-        toggleDiv.appendChild(toggleInput);
-    } else {
-        toggleDiv.appendChild(toggleInput);
-        toggleDiv.appendChild(inputLabel);
-    }
-    
-    prevDiv.after(toggleDiv);
-    prevDiv = toggleDiv;
-}
-
+const divs = genGuiSection('OBS Control', settingElectronDiv, false, newToggles);
 
 class OBSControl {
     #connected = false;
-    #obsSceneInput = document.getElementById('obsChangeScene');
-    #obsScreenshotBtn = document.getElementById('obsScreenshot');
-    #obsStartRecordBtn = document.getElementById('obsStartRecord');
-    #obsStopRecordBtn = document.getElementById('obsStopRecord');
+    #recording = false;
+    #obsConnectBtn = document.getElementById('obsConnect');
+    #obsDisconnectBtn = document.getElementById('obsDisconnect');
+    // #obsSceneInput = document.getElementById('obsChangeScene');
+    // #obsScreenshotBtn = document.getElementById('obsScreenshot');
+    #obsRecordingBtn = document.getElementById('obsRecording');
+    #sceneList = [];
 
-
+    #lastElement = divs.prevDiv;
+    #titleElement = divs.titleDiv;
+    #toggleDivs = divs.toggleDivs;
     
 
     constructor() {
-        this.#obsSceneInput.addEventListener("change", () => this.changeScene());
-        this.#obsScreenshotBtn.addEventListener("click", () => this.screenShot());
-        this.#obsStartRecordBtn.addEventListener("click", () => this.startRecord());
-        this.#obsStopRecordBtn.addEventListener("click", () => this.stopRecord());
+        this.#obsConnectBtn.addEventListener("click", () => this.connect());
+        this.#obsDisconnectBtn.addEventListener("click", () => this.disconnect());
+        // this.#obsSceneInput.addEventListener("change", () => this.changeScene());
+        // this.#obsScreenshotBtn.addEventListener("click", () => this.screenShot());
+        this.#obsRecordingBtn.addEventListener("click", () => this.toggleRecording());
+        this.#toggleOBSConnectionFields();
+    }
 
-        this.connect();
+    connected() {
+        return this.#connected;
+    }
+
+    getLastGUIElement() {
+        return this.#lastElement;
+    }
+    getTitleGUIElement() {
+        return this.#titleElement;
     }
 
     async connect() {
+        this.#obsConnectBtn.innerText = 'Connecting...';
         try {
+            
             const {
               obsWebSocketVersion,
               negotiatedRpcVersion
@@ -121,116 +101,148 @@ class OBSControl {
             });
             console.log(`Connected to server ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`)
             displayNotif('Connected to OBS');
-            this.#connected = true;
+            this.#toggleConnected();
+            this.#getScenes();
           } catch (error) {
             console.error('Failed to connect', error.code, error.message);
             displayNotif('Failed to connect to OBS');
           }
+
+          this.#obsConnectBtn.innerText = 'Connect';
     }
 
-    async changeScene() {
-        if (!this.#connected) {
+    async disconnect() {
+        this.#obsDisconnectBtn.innerText = 'Disconnecting...';
+        try {
+            await obs.disconnect();
+            displayNotif('Disconnected from OBS');
+            this.#toggleConnected();
+        } catch (error) {
+            console.error('Failed to connect', error.code, error.message);
+            displayNotif('Failed to connect to OBS');
+        }
+        this.#obsDisconnectBtn.innerText = 'Disconnect';
+    }
+    
+    #toggleConnected() {
+        this.#connected = !this.#connected;
+        this.#toggleOBSConnectionFields();
+    }
+
+    #toggleOBSConnectionFields() {
+        for (let i = 0; i < this.#toggleDivs.length; i++) {
+            let toggleDiv = this.#toggleDivs[i];
+            if (toggleDiv.contains(this.#obsConnectBtn) ) {
+                if (this.#connected) {
+                    toggleDiv.style.display = 'none';
+                } else {
+                    toggleDiv.style.display = '';
+                }
+            } else if (toggleDiv.contains(this.#obsDisconnectBtn)){
+                if (!this.#connected) {
+                    toggleDiv.style.display = 'none';
+                } else {
+                    toggleDiv.style.display = '';
+                }
+            } else {
+                if (this.#connected) {
+                    toggleDiv.style.display = '';
+                } else {
+                    toggleDiv.style.display = 'none';
+                }
+            }
+        }
+    }
+
+
+    async changeScene(newScene, previewChange) {
+        if (!this.connected() && newScene) {
             return;
         }
 
-        await obs.call('SetCurrentProgramScene', {sceneName: this.#obsSceneInput.value});
+        if (previewChange) {
+            await obs.call('SetCurrentPreviewScene', {sceneName: newScene});
+        } else {
+            await obs.call('SetCurrentProgramScene', {sceneName: newScene});
+        }
+        
     }
 
-    // async changeToEndStream() {
-    //     if (!this.#connected) {
-    //         return;
-    //     }
+    async toggleRecording() {
+        if (!this.connected()) {
+            return;
+        }
 
-    //     await obs.call('SetCurrentProgramScene', {sceneName: 'End  Stream'});
-    // }
+        let response = await obs.call('ToggleRecord');
+        this.#recording = response.outputActive;
+
+        if (this.#recording) {
+            this.#obsRecordingBtn.innerText = 'Recording... Press to stop';
+        } else {
+            this.#obsRecordingBtn.innerText = 'Start Recording';
+        }
+    }
 
     async startRecord() {
-        if (!this.#connected) {
+        if (!this.connected()) {
             return;
         }
         obs.call('StartRecord');
     }
 
     async stopRecord() {
-        if (!this.#connected) {
+        if (!this.connected()) {
             return;
         }
         obs.call('StopRecord');
     }
 
-    async screenShot() {
-        if (!this.#connected) {
+    async screenShot(sourceName, savePath) {
+        if (!this.connected() || !sourceName || savePath) {
             return;
         }
 
         await obs.call('SaveSourceScreenshot', {
-            "sourceName": "VS Screen.html",
+            "sourceName": sourceName,
             "imageFormat": "png",
-            "imageFilePath": "X:\\OBS\\Recordings\\screenshot.png",
+            "imageFilePath": savePath,
             "imageWidth": 1920,
             "imageHeight": 1080,
             "imageCompressionQuality": 100
           });
     }
+
+    async vsScreenScreenshot(savePath) {
+        if (!this.connected() || !savePath) {
+            return;
+        }
+
+        try {
+            await obs.call('SaveSourceScreenshot', {
+                "sourceName": "VS Screen.html",
+                "imageFormat": "png",
+                "imageFilePath": savePath,
+                "imageWidth": 1920,
+                "imageHeight": 1080,
+                "imageCompressionQuality": 100
+            });
+
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async #getScenes() {
+        if (!this.connected()) {
+            return;
+        }
+        let response = await obs.call('GetSceneList');
+        this.#sceneList = response.scenes;
+    }
+
+    getSceneList() {
+        return this.#sceneList;
+    }
 }
 export const obsControl = new OBSControl;
-
-
-
-// // connect to obs-websocket running on localhost with same port
-// await obs.connect();
-
-// // Connect to obs-ws running on 192.168.0.4
-// await obs.connect('ws://192.168.0.4:4455');
-
-// // Connect to localhost with password
-// await obs.connect('ws://127.0.0.1:4455', '85Phkcv7EHdPpCgZ');
-
-// // Connect expecting RPC version 1
-// await obs.connect('ws://127.0.0.1:4455', undefined, {rpcVersion: 1});
-
-// // Connect with request for high-volume event
-// await obs.connect('ws://127.0.0.1:4455', undefined, {
-//   eventSubscriptions: EventSubscription.All | EventSubscription.InputVolumeMeters,
-//   rpcVersion: 1
-// });
-
-// A complete example
-// try {
-//   const {
-//     obsWebSocketVersion,
-//     negotiatedRpcVersion
-//   } = await obs.connect('ws://127.0.0.1:4455', 'i9X2QknoYQAuP6Cv', {
-//     rpcVersion: 1
-//   });
-//   console.log(`Connected to server ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`)
-
-// } catch (error) {
-//   console.error('Failed to connect', error.code, error.message);
-// }
-
-
-
-// //   await obs.call('GetCurrentProgramScene');
-// //   await obs.call('SetCurrentProgramScene', {sceneName: 'Main Screen with overlay'});
-
-// const results = await obs.callBatch([
-//     {
-//       requestType: 'GetVersion',
-//     },
-//     {
-//       requestType: 'SetCurrentPreviewScene',
-//       requestData: {sceneName: 'Main Screen with overlay'},
-//     },
-//     {
-//       requestType: 'SetCurrentSceneTransition',
-//       requestData: {transitionName: 'Fade'},
-//     },
-//     {
-//       requestType: 'Sleep',
-//       requestData: {sleepMillis: 100},
-//     },
-//     {
-//       requestType: 'TriggerStudioModeTransition',
-//     }
-//   ])
