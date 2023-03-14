@@ -1,4 +1,5 @@
 [
+  "EasyGUISection.mjs",
   "Example.mjs",
   "obs-websocket-js.mjs",
   "OBSWebsocketControl.mjs",

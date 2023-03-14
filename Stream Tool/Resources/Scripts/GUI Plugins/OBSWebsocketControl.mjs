@@ -55,6 +55,8 @@ const newToggles = [
 const divs = genGuiSection('OBS Control', settingElectronDiv, false, newToggles);
 
 class OBSControl {
+    #reconnectAttemptsMax = 10;
+    #reconnectAttempts = 0;
     #connected = false;
     #recording = false;
     #obsConnectBtn = document.getElementById('obsConnect');
@@ -89,10 +91,14 @@ class OBSControl {
         return this.#titleElement;
     }
 
-    async connect() {
-        this.#obsConnectBtn.innerText = 'Connecting...';
+    async connect(reconnectAttempt) {
+        if (reconnectAttempt) {
+            this.#obsConnectBtn.innerText = 'Attempting reconnect...';
+        } else {
+            this.#obsConnectBtn.innerText = 'Connecting...';
+        }
+        
         try {
-            
             const {
               obsWebSocketVersion,
               negotiatedRpcVersion
@@ -101,14 +107,35 @@ class OBSControl {
             });
             console.log(`Connected to server ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`)
             displayNotif('Connected to OBS');
+            this.#reconnectAttempts = 0;
             this.#toggleConnected();
             this.#getScenes();
           } catch (error) {
             console.error('Failed to connect', error.code, error.message);
-            displayNotif('Failed to connect to OBS');
+            
+            if (reconnectAttempt) {
+                throw error;
+            } else {
+                displayNotif('Failed to connect to OBS');
+            }
           }
 
           this.#obsConnectBtn.innerText = 'Connect';
+    }
+
+    async #reconnect() {
+        if (this.#reconnectAttempts >= this.#reconnectAttemptsMax) {
+            displayNotif('Failed to reconnect to OBS after ' + this.#reconnectAttemptsMax + ' attempts.');
+            this.#obsConnectBtn.innerText = 'Connect';
+            return;
+        }
+        this.#reconnectAttempts++;
+        try {
+            await this.connect(true);
+        } catch (err) {
+            console.log('Failed to reconnect on attempt ' + this.#reconnectAttempts, err.code, err.message);
+            await this.#reconnect();
+        }
     }
 
     async disconnect() {
@@ -165,11 +192,18 @@ class OBSControl {
             return;
         }
 
-        if (previewChange) {
-            await obs.call('SetCurrentPreviewScene', {sceneName: newScene});
-        } else {
-            await obs.call('SetCurrentProgramScene', {sceneName: newScene});
+        try {
+            if (previewChange) {
+                await obs.call('SetCurrentPreviewScene', {sceneName: newScene});
+            } else {
+                await obs.call('SetCurrentProgramScene', {sceneName: newScene});
+            }
+        } catch (err) {
+            if (this.#wasConnectionLost(err) && this.connected()) {
+                await this.changeScene(newScene, previewChange);
+            }
         }
+        
     }
 
     async toggleRecording() {
@@ -183,7 +217,9 @@ class OBSControl {
     
             this.#changeRecordingBtnText();
         } catch (err) {
-            this.#wasConnectionLost(err);
+            if (this.#wasConnectionLost(err) && this.connected()) {
+                await this.toggleRecording();
+            }
         }
     }
 
@@ -197,7 +233,9 @@ class OBSControl {
             this.#recording = true;
             this.#changeRecordingBtnText();
         } catch (err) {
-            this.#wasConnectionLost(err);
+            if (this.#wasConnectionLost(err) && this.connected()) {
+                await this.startRecord();
+            }
         }
         
     }
@@ -212,15 +250,23 @@ class OBSControl {
             await obs.call('StopRecord');
             this.#changeRecordingBtnText();
         } catch (err) {
-            this.#wasConnectionLost(err);
+            if (this.#wasConnectionLost(err) && this.connected()) {
+                await this.stopRecord();
+            }
         }
         
     }
 
-    #wasConnectionLost(err) {
+    async #wasConnectionLost(err) {
         if (err.message == 'Not connected') {
-            displayNotif('Lost connection to OBS. Please reconnect, then try again.');
+            displayNotif('Lost connection to OBS. Attempting to reconnect...');
             this.#toggleConnected();
+            try {
+                await this.#reconnect();
+            } catch (err)  {
+                console.log('connection lost error', err.code, err.message);
+            }
+            return true;
         }
     }
 
@@ -280,7 +326,9 @@ class OBSControl {
             let response = await obs.call('GetSceneList');
             this.#sceneList = response.scenes;
         } catch (err) {
-            this.#wasConnectionLost(err);
+            if (this.#wasConnectionLost(err) && this.connected()) {
+                await this.stopRecord();
+            }
         }
         
     }

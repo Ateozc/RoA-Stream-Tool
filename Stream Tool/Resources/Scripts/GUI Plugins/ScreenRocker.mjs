@@ -1,6 +1,6 @@
 import { stPath } from "../GUI/Globals.mjs";
 import { settings } from "../GUI/Settings.mjs";
-import { getJson, getPresetList } from "../GUI/File System.mjs";
+import { getJson, getPresetList, saveJson } from "../GUI/File System.mjs";
 import { players, playersReady } from "../GUI/Player/Players.mjs";
 import { bestOf } from "../GUI/BestOf.mjs";
 import { scores } from "../GUI/Score/Scores.mjs";
@@ -12,11 +12,6 @@ import { obsControl } from "./OBSWebsocketControl.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { vodRename } from "./VodRename.mjs";
 
-/*
-TODO:
-- Store previously selected scenes. When getting latest, use previously selected if available.
-- On new selection, save them.
-*/
 const fs = require('fs');
 const stateFile = stPath.text + "/RoAState"
 
@@ -88,6 +83,14 @@ const divs = genGuiSection('Screen Rocker', settingElectronDiv, false, newToggle
 
 const newTogglesOBS = [
     {
+        id: "screenRockerOBSInfo",
+        title: "Screen Rocker OBS Information",
+        innerText: "All of the Screen Rocker OBS items require an active connection with OBS. These items will attempt to reconnect when possible.",
+        type: "div",
+        disabled: false,
+        className: "settingsText"
+    },
+    {
         id: "screenRockerOBSToggle",
         title: "When active, this will allow the Stream Tool to control OBS using the provided scenes. Requires OBS connection and enabling Screen Rocker. (*Recommended to use 'Auto Apply Update' under Screen Rocker settings)",
         innerText: "Start Auto OBS Control",
@@ -122,7 +125,7 @@ const newTogglesOBS = [
     {
         id: "screenRockerSceneInfo",
         title: "Scene selectors",
-        innerText: "Scene selectors <br>1 - Start Scene<br>2 - Transition Scene<br>3 - In Game Scene<br>4 - End Scene",
+        innerText: "Scene selectors <br>1 - Start Scene (REQUIRED)<br>2 - Transition Scene (Optional)<br>3 - In Game Scene (REQUIRED)<br>4 - End Scene (Optional)",
         type: "div",
         disabled: false,
         className: "settingsText"
@@ -186,7 +189,7 @@ export class ScreenRocker {
     #titleElement = divs.titleDiv;
 
     #playerPresets = {};
-    #data = {};
+    #roaStateData = {};
     #enabled = false;
     #diffFound = false;
 
@@ -219,10 +222,13 @@ export class ScreenRocker {
     #prevScene = "";
     #curScene = "";
 
-    #startScene = "";
-    #transitionScene ="";
-    #inGameScene = "";
-    #endScene = "";
+    #sceneData = {
+        startScene: "",
+        transitionScene :"",
+        inGameScene : "",
+        endScene : ""
+
+    }
 
     #finalizingOBS = false;
 
@@ -244,13 +250,17 @@ export class ScreenRocker {
         //OBS Items
         this.#screenRockerOBSBtn.addEventListener("click", () => this.toggleAutoOBSControl());
         this.#getScenesBtn.addEventListener("click", () => this.#setupSelectBoxes());
+        
+        //Scene Selections
+
+        this.#screenRockerStartSceneSelect.addEventListener('change', () => this.#setSelectedScenes(true));
+        this.#screenRockerTransitionScene.addEventListener('change', () => this.#setSelectedScenes(true));
+        this.#screenRockerInGameScene.addEventListener('change', () => this.#setSelectedScenes(true));
+        this.#screenRockerEndScene.addEventListener('change', () => this.#setSelectedScenes(true));
 
         this.#screenRockerAutoThumbnailCheck.addEventListener("click", () => this.toggleAutoThumbnail());
         this.#screenRockerAutoRecordCheck.addEventListener("click", () => this.toggleAutoRecording());
         this.#screenRockerAutoRenameCheck.addEventListener("click", () => this.toggleAutoRename());
-
-
-        // showHideAllToggles(this.#toggleDivsOBS, false);
 
         this.watchFile();
     }
@@ -268,6 +278,12 @@ export class ScreenRocker {
             displayNotif('Must be connected to OBS');
             return;
         }
+
+        if (!this.#sceneData.startScene || !this.#sceneData.inGameScene) {
+            displayNotif('Start Scene and In Game Scene are Required.');
+            return;
+            
+        }
         if (!this.#updateAutoApply) {
             displayNotif('WARNING: Auto Apply Update is off, you must update the data on the Stream Tool manually to allow it on the Stream');
         }
@@ -279,15 +295,17 @@ export class ScreenRocker {
         this.toggleSet();
 
         if (this.#autoOBSControl) {
+            this.#toggleDisableSceneSelects();
             this.#screenRockerOBSBtn.innerText = 'Stop Auto OBS Control'
             this.#writeData()
             this.handleScenes();
+            
         } else {
+            this.#toggleDisableSceneSelects();
             this.#screenRockerOBSBtn.innerText = 'Start Auto OBS Control'
             if (this.#autoRecording) {
                 obsControl.stopRecord();
             }
-            
         }
     }
     
@@ -302,14 +320,34 @@ export class ScreenRocker {
         }
     }
 
-    #setSelectedScenes() {
+    #toggleDisableSceneSelects() {
+        this.#getScenesBtn.disabled = (this.#getScenesBtn.disabled) ? false : true;
+        
+        for (let i = 0; i < this.#toggleDivsOBS.length; i++) {
+            
+            let childDiv = this.#toggleDivsOBS[i].lastChild;
+            if (childDiv.nodeName == 'SELECT') {
+                childDiv.disabled = (childDiv.disabled) ? false : true;
+            }
+        }
+    }
+
+    #setSelectedScenes(saveScenes) {
         //These 2 are mandatory.
-        this.#startScene = this.#screenRockerStartSceneSelect.value;
-        this.#inGameScene = this.#screenRockerInGameScene.value;
+        this.#sceneData.startScene = this.#screenRockerStartSceneSelect.value;
+        this.#sceneData.inGameScene = this.#screenRockerInGameScene.value;
 
         //These 2 are optional.
-        this.#transitionScene = (this.#screenRockerTransitionScene.value) ? this.#screenRockerTransitionScene.value : this.#startScene;
-        this.#endScene = (this.#screenRockerEndScene.value) ? this.#screenRockerEndScene.value : this.#inGameScene;
+        this.#sceneData.transitionScene = (this.#screenRockerTransitionScene.value) ? this.#screenRockerTransitionScene.value : this.#sceneData.startScene;
+        this.#sceneData.endScene = (this.#screenRockerEndScene.value) ? this.#screenRockerEndScene.value : this.#sceneData.inGameScene;
+
+        if (saveScenes) {
+            this.#saveScenes();
+        } 
+    }
+
+    async #saveScenes() {
+        this.#roaStateData = await saveJson("/SelectedScenes", this.#sceneData);  
     }
 
     async handleScenes() {
@@ -321,10 +359,10 @@ export class ScreenRocker {
                 this.toggleAutoThumbnail();
             }
         }
-        this.#setSelectedScenes(); //Do this every time we run it to ensure we have the correct information.
+        this.#setSelectedScenes(false); //Do this every time we run it to ensure we have the correct information.
         let useTimeout = this.#startOfSet;
         let endSceneHit = false;
-        if (this.enabled() && this.#autoOBSControl && this.#startScene && this.#inGameScene) {
+        if (this.enabled() && this.#autoOBSControl && this.#sceneData.startScene && this.#sceneData.inGameScene) {
             if (this.inSet()) {
                 if (this.#startOfSet) {
                     this.#screenshotCreated = false;
@@ -332,18 +370,18 @@ export class ScreenRocker {
                         await obsControl.startRecord();
                     }
                     
-                    this.#curScene = this.#startScene;
+                    this.#curScene = this.#sceneData.startScene;
                     this.#startOfSet = false;
                     
                 } else {
                     if (this.inMatch()) {
-                        this.#curScene = this.#inGameScene;
+                        this.#curScene = this.#sceneData.inGameScene;
                     } else {
-                        this.#curScene = this.#transitionScene;
+                        this.#curScene = this.#sceneData.transitionScene;
                     }
                 }
             } else {
-                this.#curScene = this.#endScene;
+                this.#curScene = this.#sceneData.endScene;
                 endSceneHit = true;
             }
             if (this.#curScene != this.#prevScene || endSceneHit) {
@@ -413,21 +451,47 @@ export class ScreenRocker {
         if (scenes.length <= 0) {
             return;
         }
+
+        const selectedScenes = await getJson(stPath.text + '/SelectedScenes');
+        const selectedScenesArr = [];
+        for (let i in selectedScenes) {
+            selectedScenesArr.push(selectedScenes[i]);
+        }
+
+        let selectIndex = 0;
         for (let i = 0; i < this.#toggleDivsOBS.length; i++) {
+            
             let childDiv = this.#toggleDivsOBS[i].lastChild;
             if (childDiv.nodeName == 'SELECT') {
-                for (let j = 0; j < scenes.length; j++) {
-                    const option = document.createElement('option');
-                    option.value = scenes[j].sceneName;
-                    option.innerHTML = scenes[j].sceneName;
+                childDiv.innerHTML = "";
+                
 
+                for (let j = -1; j < scenes.length; j++) {
+                    const option = document.createElement('option');
+                    if (j == -1) {
+                        option.value = "";
+                        option.innerHTML = "";
+                    } else {
+                        option.value = scenes[j].sceneName;
+                        option.innerHTML = scenes[j].sceneName;
+                    }
+                    
                     // add colors to the list
                     option.style.backgroundColor = "var(--bg5)";
-
                     childDiv.appendChild(option);
+
+                    if (j == -1) {
+                        continue;
+                    }
+
+                    if (scenes[j].sceneName == selectedScenesArr[selectIndex]) {
+                        childDiv.value = selectedScenesArr[selectIndex];
+                    }
                 }
+                selectIndex++;
             }
         }
+        this.#setSelectedScenes();
     }
 
     //The toggles for each piece.
@@ -521,7 +585,7 @@ export class ScreenRocker {
 
 
     hasData() {
-        return (this.#data != "" && this.#playerPresets != "")
+        return (this.#roaStateData != "" && this.#playerPresets != "")
     }
 
     toggleScreenRocker() {
@@ -548,7 +612,7 @@ export class ScreenRocker {
 
     async getData() {
         this.#playerPresets = await getPresetList("Player Info");
-        this.#data = await getJson(stPath.text + "/RoAState");  
+        this.#roaStateData = await getJson(stPath.text + "/RoAState");  
     }
 
     canToggleOn() {
@@ -611,15 +675,15 @@ export class ScreenRocker {
     }
 
     inMatch() {
-        return this.#data.TourneySet.InMatch;
+        return this.#roaStateData.TourneySet.InMatch;
     }
 
     getScreenName() {
-        return this.#data.ScreenName;
+        return this.#roaStateData.ScreenName;
     }
 
     getDataReturn() {
-        return this.#data;
+        return this.#roaStateData;
     }
 
     
@@ -741,33 +805,31 @@ export class ScreenRocker {
     async setData() {
         this.#diffFound = false;
         let playerCount = 0;
-        for (let i = 0; i < this.#data.Characters.length; i++) {
-            if (this.#data.Characters[i].SlotState != "OFF") {
+        for (let i = 0; i < this.#roaStateData.Characters.length; i++) {
+            if (this.#roaStateData.Characters[i].SlotState != "OFF") {
                 playerCount++;
             }
         }
         
         //Player Characters
         let playerIndex = 0;
-        for (let i = 0; i < this.#data.Characters.length; i++) {
-            let slot = this.#data.Characters[i].SlotNumber;
-            let char = capitalizeWords(this.#data.Characters[i].Character);
-            let state = this.#data.Characters[i].SlotState;
-            let gameCount = this.#data.Characters[i].GameCount;
+        for (let i = 0; i < this.#roaStateData.Characters.length; i++) {
+            let slot = this.#roaStateData.Characters[i].SlotNumber;
+            let char = capitalizeWords(this.#roaStateData.Characters[i].Character);
+            let state = this.#roaStateData.Characters[i].SlotState;
+            let gameCount = this.#roaStateData.Characters[i].GameCount;
 
             if (playerCount > 2 || state != "OFF") {
                 await this.#setCharAndSkinData(playerIndex, char);
                 await this.#setColorData(playerIndex, playerCount, slot, state);
                 await this.#setScoreData(playerIndex, playerCount, gameCount);
                 playerIndex++; 
-            }
-
-            
+            }            
         }
 
-        this.#setBoData(this.#data.TourneySet.TourneyModeBestOf);
+        this.#setBoData(this.#roaStateData.TourneySet.TourneyModeBestOf);
         this.#writeData();
-        // screenRockerOBS.dataUpdate(this.#data);
+        // screenRockerOBS.dataUpdate(this.#roaStateData);
         await this.handleScenes();
 
         if(!this.canToggleOn()) {
