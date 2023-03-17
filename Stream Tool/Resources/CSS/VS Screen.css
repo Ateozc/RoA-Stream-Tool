@@ -1,0 +1,512 @@
+@font-face {
+    font-family: "Deansgate";
+    src: url('../Fonts/DeansgateCondensed-Bold.ttf');
+}
+
+@font-face {
+    font-family: "LemonMilk";
+    src: url('../Fonts/LEMONMILK-Medium.otf');
+}
+
+:root {
+    --colorL: #14bb89;
+    --colorR: #14bb89;
+}
+
+
+body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+    text-transform: uppercase;
+}
+
+
+.absol {
+    position: absolute;
+}
+
+.mirror {
+    position: absolute;
+    transform: scaleX(-1);
+}
+
+.bgColorL {
+    background-color: var(--colorL);
+}
+.bgColorR {
+    background-color: var(--colorR);
+}
+
+.singlesClip {
+    width: 1920px;
+    height: 1080px;
+    clip: rect(0px, 960px, 1080px, 0px);
+}
+.dubsClip {
+    width: 1920px;
+    height: 1080px;
+    clip: rect(100px, 960px, 700px, 0px);
+}
+
+.mirrorP2 {
+    position: absolute;
+    transform: scaleX(-1);
+    top: 0px;
+    right: 0px;
+}
+
+
+#bgVids {
+    filter: grayscale(.8);
+}
+
+#vidBGP1 {
+    clip: rect(0px, 960px, 1080px, 0px);
+}
+#vidBGP2 {
+    clip: rect(0px, 1920px, 1080px, 960px);
+}
+#vidBGP3 {
+    clip: rect(540px, 960px, 1080px, 0px);
+}
+#vidBGP4 {
+    clip: rect(540px, 1920px, 1080px, 960px);
+}
+
+
+.playerInfoDiv {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 15px;
+    transform: rotate(-3.3deg);
+    width: 940px;
+    overflow: hidden;
+    font-size: 28px;
+}
+.playerInfoDivL {
+    bottom: 225px;
+    left: 12px;
+    transform-origin: bottom left;
+}
+.playerInfoDivL1 {
+    top: 130px;
+    left: 42px;
+    align-items: flex-start;
+}
+.playerInfo1L {
+    transform: rotate(-3.3deg);
+    transform-origin: top left;
+}
+.playerInfoDivR {
+    right: 12px;
+    bottom: 278px;
+    transform-origin: top right;
+    flex-direction: row-reverse;
+}
+.playerInfoDivR1 {
+    top: 130px;
+    right: 42px;
+    align-items: flex-end;
+}
+.playerInfo1R {
+    transform: rotate(3.3deg);
+    transform-origin: top right;
+}
+
+.playerInfoDiv2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 900px;
+    font-size: 22px;
+}
+#playerInfoDivL2 {
+    bottom: 130px;
+    left: 42px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+}
+.playerInfo2L {
+    transform: rotate(3.3deg);
+    transform-origin: bottom left;
+}
+#playerInfoDivR2 {
+    bottom: 130px;
+    right: 42px;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+.playerInfo2R {
+    transform: rotate(-3.3deg);
+    transform-origin: bottom right;
+}
+
+
+
+.playerInfo {
+    display: none;
+    text-align: center;
+    font-family: "Deansgate";
+    color: white;
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 5px;
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+}
+
+.playerInfoText {
+    filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.5));
+}
+.playerInfoIcon {
+    margin-right: -2px;
+    fill: white;
+    display: inline-block;
+    filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.5));
+}
+.playerInfoIconTwitter {
+    height: 24px;
+    width: 24px;
+    transform: translate(0px, 2px);
+}
+.playerInfoIconTwitch {
+    height: 22px;
+    width: 22px;
+    transform: translate(0px, 1px);
+}
+.playerInfoIconYT {
+    height: 24px;
+    width: 24px;
+    transform: translate(0px, 2px);
+}
+
+
+#textBGP1 {
+    bottom: 0px;
+    left: 0px;
+}
+
+#textBGP2 {
+    bottom: 0px;
+    right: -2px;
+}
+
+
+.character {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    object-fit: scale-down;
+}
+
+.chara {
+    opacity: 0;
+}
+
+#topRow {
+    position: absolute;
+    width: 1920px;
+}
+#botRow {
+    position: absolute;
+    width: 1920px;
+    top: 410px;
+}
+
+
+.wrappers {
+    position: absolute;
+    font-family: "LemonMilk";
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+}
+
+.wrappersSingles {
+    transform: rotate(-3deg);
+    width: 940px;
+    height: 120px;
+    bottom: 90px;
+    line-height: 90px;
+}
+.wrappersDoubles {
+    width: 300px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+    border-radius: 5px;
+}
+
+.p1WSingles {
+    left: 10px;
+}
+.p2WSingles {
+    right: 10px;
+}
+
+.p1WDub {
+    top: 50px;
+    left: 40px;
+    transform: rotate(-3.3deg);
+}
+.p2WDub {
+    top: 50px;
+    right: 40px;
+    transform: rotate(3.3deg);
+}
+#p3Wrapper {
+    bottom: 50px;
+    left: 40px;
+    transform: rotate(3.3deg);
+}
+#p4Wrapper {
+    bottom: 50px;
+    right: 40px;
+    transform: rotate(-3.3deg);
+}
+
+.name {
+    color: white;
+}
+
+.tag {
+    color: lightgray;
+}
+
+
+.teamName {
+    position: absolute;
+    width: 690px;
+    height: 90px;
+    top: 495px;
+    font-family: "LemonMilk";
+    white-space: nowrap;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#teamNameL {
+    left: 25px;
+}
+#teamNameR {
+    right: 25px;
+}
+
+
+.roundInfo {
+    position: absolute;
+    text-align: center;
+    font-family: "Deansgate";
+    white-space: nowrap;
+}
+
+#round {
+    width: 319px;
+    height: 50px;
+    left: 800px;
+    top: 62px;
+    color: black;
+    line-height: 38px;
+}
+
+#tournament {
+    width: 365px;
+    height: 40px;
+    left: 777px;
+    top: 29px;
+    color: rgb(65, 65, 65);
+    line-height: 28px;
+}
+
+
+#casterInfo {
+    position: absolute;
+    width: 1920px;
+}
+
+.caster {
+    position: absolute;
+    width: 170px;
+    height: 34px;
+    top: 130px;
+    text-align: center;
+    font-family: "Deansgate";
+    color: black;
+    line-height: 26px;
+    white-space: nowrap;
+}
+
+#caster1 {
+    left: 765px;
+}
+
+#caster2 {
+    right: 765px;
+}
+
+
+.socialBox {
+    position: absolute;
+    width: 170px;
+    height: 30px;
+    top: 162px;
+    text-align: center;
+    font-family: "Deansgate";
+    color: rgb(65, 65, 65);
+    line-height: 26px;
+    white-space: nowrap;
+    opacity: 0;
+}
+.socialBoxL {
+    left: 765px;
+}
+.socialBoxR {
+    right: 765px;
+}
+
+.twitterIcon {
+    height: 19px;
+    width: 19px;
+    fill: rgb(65, 65, 65);
+    transform: translate(0px, 2px);
+    display: inline-block;
+}
+.twitchIcon {
+    height: 17px;
+    width: 17px;
+    fill: rgb(65, 65, 65);
+    transform: translate(0px, 1px);
+    display: inline-block;
+}
+.ytIcon {
+    height: 19px;
+    width: 19px;
+    fill: rgb(65, 65, 65);
+    transform: translate(2px, 1px);
+    display: inline-block;
+}
+
+
+#scores {
+    position: absolute;
+    width: 1920px;
+}
+
+.scoreTick {
+    position: absolute;
+    top: 212px;
+    fill: #414141;
+}
+
+#scoreL-1 {
+    left: 924px;
+}
+#scoreL-2 {
+    left: 896px;
+}
+#scoreL-3 {
+    left: 866px;
+}
+
+#scoreR-1 {
+    right: 924px;
+    transform: scaleX(-1);
+}
+#scoreR-2 {
+    right: 896px;
+    transform: scaleX(-1);
+}
+#scoreR-3 {
+    right: 866px;
+    transform: scaleX(-1);
+}
+
+#scoreBorder {
+    top: 209px;
+    left: 862px;
+}
+
+#scoreNumerical {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    gap: 12px;
+    top: 182px;
+}
+.scoreNum {
+    width: 50%;
+    height: 66px;
+    font-size: 48px;
+    font-family: "LemonMilk";
+    width: 60px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(24px);
+}
+
+#connErrorDiv {
+    display: none;
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Deansgate";
+    font-size: 28px;
+    color: lightcoral;
+    text-shadow: 0px 0px 5px black;
+}
+
+
+.dubEL {
+    display: none;
+}
+
+/* Animations! */
+
+@keyframes fadeOut {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes charaMoveOut {
+    from {transform: translateX(0)}
+    to {transform: translateX(-30px)}
+}
+
+@keyframes charaMoveIn {
+    from {transform: translateX(-30px)}
+    to {transform: translateX(0)}
+}
+
+@keyframes trailMoveOut { /* cheap trick */
+    from {transform: translateX(-30px)}
+    to {transform: translateX(-30px)}
+}
+
+@keyframes trailMoveIn {
+    from {transform: translateX(0px)}
+    to {transform: translateX(-30px)}
+}

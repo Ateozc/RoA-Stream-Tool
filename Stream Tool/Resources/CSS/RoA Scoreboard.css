@@ -1,0 +1,375 @@
+@font-face {
+    font-family: "Deansgate";
+    src: url('../Fonts/DeansgateCondensed-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('../Fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "LemonMilk";
+    src: url('../Fonts/LEMONMILK-Medium.otf');
+}
+
+:root {
+    --scoreboardX: 470px;
+    --scoreboardY: 25px;
+  }
+
+body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+    text-transform: uppercase;
+    color: white;
+    font-family: "Deansgate";
+}
+
+.absol {
+    position: absolute;
+}
+
+
+.scoreboard {
+    top: var(--scoreboardY);
+}
+#scoreboardL {
+    left: var(--scoreboardX);
+}
+#scoreboardR {
+    right: var(--scoreboardX);
+    transform: scaleX(-1);
+}
+
+
+.mask {
+    position: absolute;
+    -webkit-mask-image: url("../Overlay/Scoreboard/Icon Mask.png");
+    width: 401px;
+    height: 104px;
+}
+
+.charTop {
+    top: 0px;
+    left: 95px;
+}
+
+.charBot {
+    top: 25px;
+    left: -285px;
+}
+
+.pCharacter {
+    width: 100px;
+    height: 100px;
+    object-fit: scale-down;
+    position: absolute;
+    left: 260px;
+    top: 12px;
+}
+
+
+.wrappers {
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    white-space: nowrap;
+}
+.wrappersSingles {
+    width: 246px;
+    height: 36px;   
+    top: 34px;
+    line-height: 32px;
+}
+
+.wrappersDubs {
+    width: 123px;
+    height: 30px;
+    line-height: 30px;
+    top: 32px;
+}
+
+.flipBack {
+    transform: scaleX(-1);
+}
+#p1Wrapper {
+    left: 38px;
+}
+#p2Wrapper {
+    right: 38px;
+}
+#p3Wrapper {
+    left: 106px;
+}
+#p4Wrapper {
+    right: 106px;
+}
+
+.tags {
+    color: lightgray;
+}
+
+.teamName {
+    position: absolute;
+    width: 275px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    top: 67px;
+    opacity: 0;
+    white-space: nowrap;
+}
+#teamNameL {
+    left: 115px;
+}
+#teamNameR {
+    right: 115px;
+}
+
+
+.scoreNum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 44px;
+    top: 27px;
+    left: -12px;
+    color: black;
+    font-family: "LemonMilk";
+}
+
+
+.topBarMask {
+    overflow: hidden;
+    display: flex;
+    width: 380px;
+    height: 25px;
+    transform: translateX(-1px);
+}
+
+.topBarTexts {
+    display: flex;
+    border-image: url('../Overlay/Scoreboard/WL\ BG.png') 0 7 fill / 0 7px;
+    border-right: 10px solid;
+    border-left: 10px solid;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.topBarProns {
+    color: gray;
+}
+
+#overlayRound {
+    opacity: 0;
+    width: 1920px;
+    display: flex;
+    justify-content: center;
+    top: 900px;
+}
+
+#round {
+    position: absolute;
+    width: 215px;
+    height: 34px;
+    top: 13px;
+    line-height: 32px;
+    text-align: center;
+    font-family: "Roboto";
+    white-space: nowrap;
+}
+
+
+#introVid {
+    position: absolute;
+}
+
+
+.pIntro {
+    position: absolute;
+    width: 500px;
+    height: 94px;
+    line-height: 74px;
+    bottom: 485px;
+    opacity: 0;
+    font-family: "LemonMilk";
+    white-space: nowrap;
+}
+
+#p1Intro {
+    text-align: right;
+    left: 355px;
+    text-shadow: 0px 0px 20px;
+}
+
+#p2Intro {
+    text-align: left;
+    right: 355px;
+    text-shadow: 0px 0px 20px;
+}
+
+
+.textIntro {
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+#midTextIntro {
+    width: 1100px;
+    height: 74px;
+    left: 410px;
+    bottom: 505px;
+    font-family: "LemonMilk";
+    line-height: 74px;
+    font-size: 110px;
+}
+
+#rtIntro {
+    line-height: 40px;
+    font-size: 48px;
+}
+
+#roundIntro {
+    left: 510px;
+    width: 900px;
+    height: 40px;
+    top: 406px;
+}
+
+#tNameIntro {
+    left: 510px;
+    width: 900px;
+    height: 40px;
+    bottom: 400px;
+}
+
+#introBG {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.blackBar {
+    position: absolute;
+    width: 1920px;
+    background-color: black;
+}
+
+#introTopBar {
+    height: 100px;
+}
+
+#introBotBar {
+    height: 100px;
+    bottom: 0px;
+}
+
+#superCoolInterrogation {
+    position: absolute;
+    height: 74px;
+    right: 550px;
+    font-family: "LemonMilk";
+    line-height: 74px;
+    bottom: 505px;
+    font-size: 110px;
+    opacity: 0;
+}
+
+#overlayIntro {
+    opacity: 0;
+}
+
+.dubEL {
+    display: none;
+}
+
+
+.tLogos {
+    max-width: 36px;
+    max-height: 36px;
+    top: 33px;
+    object-fit: scale-down;
+}
+#tagLogoP1 {
+    left: 248px;
+}
+#tagLogoP2 {
+    right: 248px;
+}
+
+
+#connErrorDiv {
+    display: none;
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Deansgate";
+    font-size: 28px;
+    color: lightcoral;
+    text-shadow: 0px 0px 5px black;
+}
+
+
+/* Animations! */
+
+@keyframes fadeOut {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes moveOutLeft {
+    from {transform: translateX(0)}
+    to {transform: translateX(40px)}
+}
+@keyframes moveOutRight {
+    from {transform: translateX(0)}
+    to {transform: translateX(-40px)}
+}
+
+@keyframes moveInLeft {
+    from {transform: translateX(-40px)}
+    to {transform: translateX(0)}
+}
+@keyframes moveInRight {
+    from {transform: translateX(40px)}
+    to {transform: translateX(0)}
+}
+
+@keyframes charaMoveOut {
+    from {transform: translateX(0)}
+    to {transform: translateX(-20px)}
+}
+
+@keyframes charaMoveIn {
+    from {transform: translateX(-20px)}
+    to {transform: translateX(0)}
+}
+
+@keyframes wlMoveOut {
+    from {transform: translateY(0)}
+    to {transform: translateY(20px)}
+}
+
+@keyframes wlMoveIn {
+    from {transform: translateY(20px)}
+    to {transform: translateY(0)}
+}

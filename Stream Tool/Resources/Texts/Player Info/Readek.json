@@ -1,0 +1,22 @@
+{
+  "name": "Readek",
+  "pronouns": "",
+  "tag": "",
+  "twitter": "readeku",
+  "twitch": "Readek",
+  "yt": "Readek",
+  "characters": [
+    {
+      "character": "Maypul",
+      "skin": "Default",
+      "hex": "445C-46F5-F5F5-6E23-2342-1515-345B-3065",
+      "customImg": true
+    },
+    {
+      "character": "Ori and Sein",
+      "skin": "Default",
+      "hex": "3B3B-3BC4-FFC4-0000-006F-91FF-62FF-8387",
+      "customImg": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+    "skinList": [
+        {"name": "Default"},
+        {"name": "Blue", "hex": "9D9F-FFE4"},
+        {"name": "Red", "hex": "FF4B-4BAA"},
+        {"name": "Green", "hex": "78FF-783A"},
+        {"name": "Grey", "hex": "B4B4-B428"},
+        {"name": "Yellow", "hex": "EBF8-454A"}
+    ],
+    "colorData" : {
+        "Default" : {
+            "ogColor" : [
+                255, 255, 255, 1
+            ],
+            "colorRange" : [
+                4, 10, 41, 1
+            ]
+        }
+    },
+    "scoreboard": {
+        "neutral": {
+            "x": 5,
+            "y": 53,
+            "scale": 2.5
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -550,
+            "y": 175,
+            "scale": 1
+        },
+        "background": "../Absa"
+    },
+    "gui": {
+        "neutral": {
+            "x": 0,
+            "y": 32,
+            "scale": 3.5
+        }
+    }
+}

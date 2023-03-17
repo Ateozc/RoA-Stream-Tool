@@ -1,0 +1,124 @@
+[
+  {
+    "name": "Ateozc",
+    "tag": "",
+    "pronouns": "He/Him",
+    "twitter": "Ateozc",
+    "twitch": "Ateozc",
+    "yt": "Ateozc",
+    "characters": [
+      {
+        "character": "Absa",
+        "skin": "Grey"
+      }
+    ]
+  },
+  {
+    "name": "Readek",
+    "pronouns": "",
+    "tag": "",
+    "twitter": "readeku",
+    "twitch": "Readek",
+    "yt": "Readek",
+    "characters": [
+      {
+        "character": "Maypul",
+        "skin": "Default",
+        "hex": "445C-46F5-F5F5-6E23-2342-1515-345B-3065",
+        "customImg": true
+      },
+      {
+        "character": "Ori and Sein",
+        "skin": "Default",
+        "hex": "3B3B-3BC4-FFC4-0000-006F-91FF-62FF-8387",
+        "customImg": true
+      }
+    ]
+  },
+  {
+    "name": "Test",
+    "pronouns": "",
+    "tag": "One",
+    "twitter": "",
+    "twitch": "",
+    "yt": "",
+    "characters": [
+      {
+        "character": "Absa",
+        "skin": "Default"
+      },
+      {
+        "character": "Clairen",
+        "skin": "Default"
+      },
+      {
+        "character": "Elliana",
+        "skin": "Default"
+      },
+      {
+        "character": "Etalus",
+        "skin": "Default"
+      },
+      {
+        "character": "Forsburn",
+        "skin": "Default"
+      },
+      {
+        "character": "Hodan",
+        "skin": "Default"
+      },
+      {
+        "character": "Kragg",
+        "skin": "Default"
+      },
+      {
+        "character": "Maypul",
+        "skin": "Default"
+      },
+      {
+        "character": "Mollo",
+        "skin": "Default"
+      },
+      {
+        "character": "Olympia",
+        "skin": "Default"
+      },
+      {
+        "character": "Orcane",
+        "skin": "Default"
+      },
+      {
+        "character": "Ori and Sein",
+        "skin": "Default"
+      },
+      {
+        "character": "Pomme",
+        "skin": "Default"
+      },
+      {
+        "character": "Ranno",
+        "skin": "Default"
+      },
+      {
+        "character": "Shovel Knight",
+        "skin": "Default"
+      },
+      {
+        "character": "Sylvanos",
+        "skin": "Default"
+      },
+      {
+        "character": "Wrastor",
+        "skin": "Default"
+      },
+      {
+        "character": "Zetterburn",
+        "skin": "Default"
+      },
+      {
+        "character": "Error",
+        "skin": "Default"
+      }
+    ]
+  }
+]

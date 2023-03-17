@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RoA VS Screen</title>
+    <script src="Resources/Scripts/VS Screen.js" defer></script>
+    <link rel="stylesheet" href="Resources/CSS/VS Screen.css">
+</head>
+
+<body>
+    <div id="bgVids">
+        <video autoplay loop class="absol bgVid" id="vidBGP1"></video>
+        <video autoplay loop class="absol bgVid" id="vidBGP2"></video>
+        <video autoplay loop class="absol bgVid dubEL" id="vidBGP3"></video>
+        <video autoplay loop class="absol bgVid dubEL" id="vidBGP4"></video>
+    </div>
+
+    <div id="colorGrads">
+        <img class="absol colorBG" id="colorBGP1" alt=""/>
+        <img class="mirror colorBG" id="colorBGP2" alt=""/>
+    </div>
+
+    <div id="charas">
+        
+        <div id="topRow">
+            <div class="absol singlesClip" id="clipP1">
+                <div id="charaP1" class="chara">
+                    <div>
+                        <img class="character trail" id="trailP1" alt=""/>
+                    </div>
+                    <img class="character char" id="charP1"/>
+                </div>
+            </div>
+    
+            <div class="mirrorP2 singlesClip" id="clipP2">
+                <div id="charaP2" class="chara">
+                    <div>
+                        <img class="character trail" id="trailP2" alt=""/>
+                    </div>
+                    <img class="character char" id="charP2"/>
+                </div>
+            </div>
+        </div>
+
+        <div id="botRow" class="dubEL">
+            <div class="absol dubsClip">
+                <div id="charaP3" class="chara">
+                    <div>
+                        <img class="character trail" id="trailP3" alt=""/>
+                    </div>
+                    <img class="character char" id="charP3"/>
+                </div>
+            </div>
+    
+            <div class="mirrorP2 dubsClip">
+                <div id="charaP4" class="chara">
+                    <div>
+                        <img class="character trail" id="trailP4" alt=""/>
+                    </div>
+                    <img class="character char" id="charP4"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="playerInfos">
+
+        <div class="playerInfoDiv playerInfoDivL absol" id="playerInfoDivL">
+
+            <div class="playerInfo bgColorL">
+                <span class="playerInfoText playerInfoProns"></span>
+            </div>
+
+            <div class="playerInfo bgColorL">
+                <load-svg src="Resources/SVGs/Twitter.svg" class="playerInfoIcon playerInfoIconTwitter"></load-svg>
+                <span class="playerInfoText playerInfoTwitter"></span>
+            </div>
+
+            <div class="playerInfo bgColorL">
+                <load-svg src="Resources/SVGs/Twitch.svg" class="playerInfoIcon playerInfoIconTwitch"></load-svg>
+                <span class="playerInfoText playerInfoTwitch"></span>
+            </div>
+
+            <div class="playerInfo bgColorL">
+                <load-svg src="Resources/SVGs/Youtube.svg" class="playerInfoIcon playerInfoIconYT"></load-svg>
+                <span class="playerInfoText playerInfoYt"></span>
+            </div>
+
+        </div>
+
+        <div class="playerInfoDiv playerInfoDivR absol" id="playerInfoDivR">
+
+            <div class="playerInfo bgColorR">
+                <span class="playerInfoText playerInfoProns"></span>
+            </div>
+
+            <div class="playerInfo bgColorR">
+                <load-svg src="Resources/SVGs/Twitter.svg" class="playerInfoIcon playerInfoIconTwitter"></load-svg>
+                <span class="playerInfoText playerInfoTwitter"></span>
+            </div>
+
+            <div class="playerInfo bgColorR">
+                <load-svg src="Resources/SVGs/Twitch.svg" class="playerInfoIcon playerInfoIconTwitch"></load-svg>
+                <span class="playerInfoText playerInfoTwitch"></span>
+            </div>
+
+            <div class="playerInfo bgColorR">
+                <load-svg src="Resources/SVGs/Youtube.svg" class="playerInfoIcon playerInfoIconYT"></load-svg>
+                <span class="playerInfoText playerInfoYt"></span>
+            </div>
+
+        </div>
+
+        <div class="playerInfoDiv2 absol dubEL" id="playerInfoDivL2">
+
+            <div class="playerInfo playerInfo2L bgColorL">
+                <span class="playerInfoText playerInfoProns"></span>
+            </div>
+
+            <div class="playerInfo playerInfo2L bgColorL">
+                <load-svg src="Resources/SVGs/Twitter.svg" class="playerInfoIcon playerInfoIconTwitter"></load-svg>
+                <span class="playerInfoText playerInfoTwitter"></span>
+            </div>
+
+            <div class="playerInfo playerInfo2L bgColorL">
+                <load-svg src="Resources/SVGs/Twitch.svg" class="playerInfoIcon playerInfoIconTwitch"></load-svg>
+                <span class="playerInfoText playerInfoTwitch"></span>
+            </div>
+
+            <div class="playerInfo playerInfo2L bgColorL">
+                <load-svg src="Resources/SVGs/Youtube.svg" class="playerInfoIcon playerInfoIconYT"></load-svg>
+                <span class="playerInfoText playerInfoYt"></span>
+            </div>
+
+        </div>
+
+        <div class="playerInfoDiv2 absol dubEL" id="playerInfoDivR2">
+
+            <div class="playerInfo playerInfo2R bgColorR">
+                <span class="playerInfoText playerInfoProns"></span>
+            </div>
+
+            <div class="playerInfo playerInfo2R bgColorR">
+                <load-svg src="Resources/SVGs/Twitter.svg" class="playerInfoIcon playerInfoIconTwitter"></load-svg>
+                <span class="playerInfoText playerInfoTwitter"></span>
+            </div>
+
+            <div class="playerInfo playerInfo2R bgColorR">
+                <load-svg src="Resources/SVGs/Twitch.svg" class="playerInfoIcon playerInfoIconTwitch"></load-svg>
+                <span class="playerInfoText playerInfoTwitch"></span>
+            </div>
+
+            <div class="playerInfo playerInfo2R bgColorR">
+                <load-svg src="Resources/SVGs/Youtube.svg" class="playerInfoIcon playerInfoIconYT"></load-svg>
+                <span class="playerInfoText playerInfoYt"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="textBGs">
+        <img class="absol textBG" id="textBGP1" alt=""/>
+        <img class="absol textBG" id="textBGP2" alt=""/>
+    </div>
+    
+    <div id="playerTexts">
+        <span id="p1Wrapper" class="wrappers p1WSingles wrappersSingles">
+            <span id="p1Tag" class="tag"></span>
+            <span id="p1Name" class="name"></span>
+        </span>
+
+        <span id="p2Wrapper" class="wrappers p2WSingles wrappersSingles">
+            <span id="p2Tag" class="tag"></span>
+            <span id="p2Name" class="name"></span>
+        </span>
+
+        <span id="p3Wrapper" class="wrappers wrappersDoubles dubEL">
+            <span id="p3Tag" class="tag"></span>
+            <span id="p3Name" class="name"></span>
+        </span>
+
+        <span id="p4Wrapper" class="wrappers wrappersDoubles dubEL">
+            <span id="p4Tag" class="tag"></span>
+            <span id="p4Name" class="name"></span>
+        </span>
+
+        <span id="teamNameL" class="teamName dubEL"></span>
+        <span id="teamNameR" class="teamName dubEL"></span>
+
+    </div>
+
+    <img src="Resources/Overlay/VS Screen/VS Overlay.png" id="vsOverlay" class="absol" alt=""/>
+
+    <div id="roundInfo" class="absol">
+        <span id="round" class="roundInfo"></span>
+        <span id="tournament" class="roundInfo"></span>
+    </div>
+
+    <div id="casterInfo">
+
+        <span id="caster1" class="caster"></span>
+        <span class="socialBox socialBoxL">
+            <load-svg src="Resources/SVGs/Twitter.svg" class="twitterIcon"></load-svg>
+            <span id="twitter1" class="socialText twitter"></span>
+        </span>
+        <span class="socialBox socialBoxL">
+            <load-svg src="Resources/SVGs/Twitch.svg" class="twitchIcon"></load-svg>
+            <span id="twitch1" class="socialText twitch"></span>
+        </span>
+        <span class="socialBox socialBoxL">
+            <load-svg src="Resources/SVGs/Youtube.svg" class="ytIcon"></load-svg>
+            <span id="yt1" class="socialText yt"></span>
+        </span>
+
+        <span id="caster2" class="caster"></span>
+        <span class="socialBox socialBoxR">
+            <load-svg src="Resources/SVGs/Twitter.svg" class="twitterIcon"></load-svg>
+            <span id="twitter2" class="twitterInfo twitter"></span>
+        </span>
+        <span class="socialBox socialBoxR">
+            <load-svg src="Resources/SVGs/Twitch.svg" class="twitchIcon"></load-svg>
+            <span id="twitch2" class="socialText twitch"></span>
+        </span>
+        <span class="socialBox socialBoxR">
+            <load-svg src="Resources/SVGs/Youtube.svg" class="ytIcon"></load-svg>
+            <span id="yt2" class="socialText yt"></span>
+        </span>
+
+    </div>
+
+    <div id="scores" class="absol">
+
+        <div id="scoreTicks">
+
+            <div id="scoresL">
+
+                <svg width="35" height="23" id="scoreL-1" class="scoreTick">
+                    <polygon points="0,0 27,0 35,23 8,23"/>
+                </svg>
+                <svg width="35" height="23" id="scoreL-2" class="scoreTick">
+                    <polygon points="0,0 27,0 35,23 8,23"/>
+                </svg>
+                <svg width="35" height="23" id="scoreL-3" class="scoreTick">
+                    <polygon points="0,0 27,0 35,23 8,23"/>
+                </svg>
+    
+            </div>
+    
+            <div id="scoresR">
+    
+                <svg width="35" height="23" id="scoreR-1" class="scoreTick">
+                    <polygon points="0,0 27,0 35,23 8,23"/>
+                </svg>
+                <svg width="35" height="23" id="scoreR-2" class="scoreTick">
+                    <polygon points="0,0 27,0 35,23 8,23"/>
+                </svg>
+                <svg width="35" height="23" id="scoreR-3" class="scoreTick">
+                    <polygon points="0,0 27,0 35,23 8,23"/>
+                </svg>
+    
+            </div>
+    
+            <img id="scoreBorder" class="absol" alt="">
+
+        </div>
+
+        <div id="scoreNumerical">
+
+            <span id="scoreNumL" class="scoreNum"></span>
+            <span id="scoreNumR" class="scoreNum"></span>
+
+            <img id="scoreNumBorder" class="absol" src="Resources/Overlay/VS Screen/Score Border BoX.png" alt="">
+
+        </div>
+
+    </div>
+
+    <div id="connErrorDiv">
+        Can't connect with GUI, attempting to reconnect every 5 seconds...
+    </div>
+    
+</body>
+</html>
