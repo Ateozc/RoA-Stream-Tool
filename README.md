@@ -1,4 +1,5 @@
 
+Ateozc's Branch. Information below includes both Readek's original writeup as well as my own. For my documentation, please go to the very bottom
 <p align="center">
 
   <img src="https://github.com/Readek/RoA-Stream-Tool/blob/master/preview.png" alt="Preview">
@@ -95,4 +96,34 @@ This project is basically my learning grounds as a web developer. This is actual
 
 *Also, you may wonder, what happened to the old, [lua scripted version](https://drive.google.com/open?id=15o52oz89siOJ5f_toD7zZDjp22dn2t73) of this controller? Well, turns out obs is just not ready for this kind of stuff. Current version of OBS doesn't have any kind of animator, and has to stutter to load every image you want to change, so it was really hard to get around that. Also, was much harder to update. With this javascript version, I wanted to make things better so I could update it with more ease. Anyways, the link of the old version will stay up if you ever want to know about lua obs scripting!*
 
+---
+## Ateozc information section
+
+Welcome. This is going to only go into the specifics of what I built out for this. I will be most likely allowing you all to download each piece of mine as plugins (support not currently on build v9 for Readek, but should be there in v10).
+The items that I have in this update are as follows:
+
+Screen Rocker Bundle (includes the following items)
+- Screen Rocker support (with automation to control OBS and Auto Rename files)
+- Vod Rename support
+- OBS Control support
+
+Individual Items
+- Vod Rename support
+- OBS Control support
+
+I do plan to add more in the future. Each item I add will either be bundled together or separate pieces. Ill list whether or not a few items are a bundle or not. The way this will work is with each release I will do the following:
+- 1 zip that contains just Readeks version
+- 1 zip that contains all my plugins.
+- 1 zip per plugin bundle (you can pick and choose which ones you want)
+- 1 zip containing the Screen Rocker application.
+- 1 zip with a complete version. This will includes: Readeks base Stream Tool, all of my plugins, and the Screen Rocker folder.
+
+##Installation
+Installation is supposed to be as simple as installing Readeks version. My plugins simply add a few files here and there, so no real issues combining the 2.
+Depending on if you already have the stream tool or not will change this slightly.
+
+1. Download the zip containing the items you want.
+2. Find where you want to install the Stream Tool.
+3. Place files into that folder. (If a previous version exists, simply place these files into that folder. Accept any time it asks you to overwrite a file).
+4. Done. 
 ---
