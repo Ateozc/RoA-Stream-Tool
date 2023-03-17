@@ -1,4 +1,5 @@
-import { current } from "../GUI/Globals.mjs";
+import { getJson } from "../GUI/File System.mjs";
+import { current, stPath } from "../GUI/Globals.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { genGuiSection } from "./EasyGUISection.mjs";
 import { OBSWebSocket } from "./obs-websocket-js.mjs";
@@ -6,6 +7,7 @@ import { OBSWebSocket } from "./obs-websocket-js.mjs";
 const obs = new OBSWebSocket();
 
 const updateDiv = document.getElementById('updateRegion');
+const connectInformation = await getJson(stPath.text + "/OBSConnection")
 
 const settingElectronDiv = document.getElementById("settingsElectron");
 const newToggles = [
@@ -102,7 +104,7 @@ class OBSControl {
             const {
               obsWebSocketVersion,
               negotiatedRpcVersion
-            } = await obs.connect('ws://127.0.0.1:4455', 'i9X2QknoYQAuP6Cv', {
+            } = await obs.connect('ws://127.0.0.1:' + connectInformation.port, connectInformation.password, {
               rpcVersion: 1
             });
             console.log(`Connected to server ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`)
