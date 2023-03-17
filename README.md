@@ -119,19 +119,7 @@ I do plan to add more in the future. Each item I add will either be bundled toge
 - 1 zip with a complete version. This will includes: Readeks base Stream Tool, all of my plugins, and the Screen Rocker folder.
 
 ---
-## Installation
-Installation is supposed to be as simple as installing Readeks version. My plugins simply add a few files here and there, so no real issues combining the 2.
-Depending on if you already have the stream tool or not will change this slightly.
-
-1. Download the zip containing the items you want.
-2. Find where you want to install the Stream Tool.
-3. Place files into that folder. (If a previous version exists, simply place these files into that folder. Accept any time it asks you to overwrite a file).
-4. Done. 
----
-## OBS Control Setup
---- 
-## Vod Rename Setup
----
-## Screen Rocker Setup
----
+## Installation/Guides for plugins
+If you are interested in installing any of the above plugins, please navigate to the wiki for a full guide on things!
+[Wiki] (https://github.com/Ateozc/RoA-Stream-Tool/wiki)
 
