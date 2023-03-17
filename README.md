@@ -6,7 +6,7 @@ Ateozc's Branch. Information below includes both Readek's original writeup as we
   
 </p>
 
-<h1 align="center">RoA Stream Tool</h1>
+<h1 align="center">RoA Stream Tool - Ateozc's Version</h1>
 
 So you want to do a Rivals of Aether stream, huh? Well, today is your lucky day, because I have done tons of work so you don’t have to! With this tool, you will be able to set up a RoA tournament stream in no time.
 
@@ -118,7 +118,8 @@ I do plan to add more in the future. Each item I add will either be bundled toge
 - 1 zip containing the Screen Rocker application.
 - 1 zip with a complete version. This will includes: Readeks base Stream Tool, all of my plugins, and the Screen Rocker folder.
 
-##Installation
+---
+## Installation
 Installation is supposed to be as simple as installing Readeks version. My plugins simply add a few files here and there, so no real issues combining the 2.
 Depending on if you already have the stream tool or not will change this slightly.
 
@@ -127,3 +128,10 @@ Depending on if you already have the stream tool or not will change this slightl
 3. Place files into that folder. (If a previous version exists, simply place these files into that folder. Accept any time it asks you to overwrite a file).
 4. Done. 
 ---
+## OBS Control Setup
+--- 
+## Vod Rename Setup
+---
+## Screen Rocker Setup
+---
+
