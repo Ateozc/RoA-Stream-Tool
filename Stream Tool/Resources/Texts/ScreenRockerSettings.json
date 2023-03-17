@@ -1,0 +1,11 @@
+{
+  "enabled": false,
+  "inMatchOverride": false,
+  "inMatch": false,
+  "updateChar": false,
+  "updateSkin": false,
+  "updateColor": false,
+  "updateScore": false,
+  "updateBestOf": false,
+  "updateAutoApply": false
+}

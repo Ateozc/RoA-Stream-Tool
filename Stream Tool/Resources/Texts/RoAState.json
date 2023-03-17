@@ -1,0 +1,43 @@
+{
+  "ScreenName": "LOCAL CSS",
+  "Characters": [
+    {
+      "Character": "ORI AND SEIN",
+      "SlotNumber": 1,
+      "SlotState": "HMN",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 2
+    },
+    {
+      "Character": "ABSA",
+      "SlotNumber": 2,
+      "SlotState": "HMN",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 3
+    },
+    {
+      "Character": "RANNO",
+      "SlotNumber": 3,
+      "SlotState": "OFF",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    },
+    {
+      "Character": "SHOVEL KNIGHT",
+      "SlotNumber": 4,
+      "SlotState": "OFF",
+      "Stocks": 0,
+      "Damage": 0,
+      "GameCount": 0
+    }
+  ],
+  "TourneySet": {
+    "InMatch": true,
+    "TourneyModeBestOf": 5,
+    "Stocks": 3,
+    "Time": 8
+  }
+}
