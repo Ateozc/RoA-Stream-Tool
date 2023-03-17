@@ -30,6 +30,22 @@ const newToggles = [
         className: "settingsCheck"
     },
     {
+        id: "screenRockerInMatchOverrideToggle",
+        title: "Allows you to override whether or not players are in match or not. If enabled, screen rocker will not auto update the In Match checkbox.",
+        innerText: "Enable 'In Match' Override",
+        type: "checkbox",
+        disabled: false,
+        className: "settingsCheck"
+    },
+    {
+        id: "screenRockerInMatchToggle",
+        title: "This determines if the players are fighting. If not checked, this means players are in character/stage select.",
+        innerText: "In Match",
+        type: "checkbox",
+        disabled: true,
+        className: "settingsCheck"
+    },
+    {
         id: "screenRockerCharToggle",
         title: "Enables the Skins to be updated based on the players preset skin (if available). If off or no preset found, this will set the skin to default.",
         innerText: "Character Update",
@@ -144,7 +160,8 @@ const newTogglesOBS = [
         innerText: "1",
         type: "select",
         disabled: false,
-        className: "textInput"
+        className: "textInput",
+        options:[]
     },
     {
         id: "screenRockerTransitionScene",
@@ -152,7 +169,8 @@ const newTogglesOBS = [
         innerText: "2",
         type: "select",
         disabled: false,
-        className: "textInput"
+        className: "textInput",
+        options:[]
     },
     {
         id: "screenRockerInGameScene",
@@ -160,7 +178,8 @@ const newTogglesOBS = [
         innerText: "3",
         type: "select",
         disabled: false,
-        className: "textInput"
+        className: "textInput",
+        options:[]
     },
     {
         id: "screenRockerEndScene",
@@ -168,7 +187,8 @@ const newTogglesOBS = [
         innerText: "4",
         type: "select",
         disabled: false,
-        className: "textInput"
+        className: "textInput",
+        options:[]
     }
 ]
 
@@ -179,6 +199,8 @@ export class ScreenRocker {
 
     //Base items
     #screenRockerCheck = document.getElementById("screenRockerToggle");
+    #screenRockerInMatchOverrideCheck = document.getElementById("screenRockerInMatchOverrideToggle");
+    #screenRockerInMatchCheck = document.getElementById("screenRockerInMatchToggle");
     #screenRockerCharCheck = document.getElementById("screenRockerCharToggle");
     #screenRockerSkinCheck = document.getElementById("screenRockerSkinToggle");
     #screenRockerColorCheck = document.getElementById("screenRockerColorToggle");
@@ -188,17 +210,22 @@ export class ScreenRocker {
     #lastElement = divs.prevDiv;
     #titleElement = divs.titleDiv;
 
+    #settings = {
+        enabled: false,
+        inMatchOverride: false,
+        inMatch: false,
+        updateChar: false,
+        updateSkin: false,
+        updateColor: false,
+        updateScore: false,
+        updateBestOf: false,
+        updateAutoApply: false
+    }
+
+
     #playerPresets = {};
     #roaStateData = {};
-    #enabled = false;
     #diffFound = false;
-
-    #updateChar = false;
-    #updateSkin = false;
-    #updateColor = false;
-    #updateScore = false;
-    #updateBestOf = false;
-    #updateAutoApply = false;
 
     //OBS Items
     #screenRockerOBSBtn = document.getElementById('screenRockerOBSToggle');
@@ -240,6 +267,8 @@ export class ScreenRocker {
     constructor() {
         //Screen Rocker Settings
         this.#screenRockerCheck.addEventListener("click", () => this.toggleScreenRocker());
+        this.#screenRockerInMatchOverrideCheck.addEventListener("click", () => this.toggleInMatchOverride());
+        this.#screenRockerInMatchCheck.addEventListener("click", () => this.#toggleInMatch());
         this.#screenRockerCharCheck.addEventListener("click", () => this.toggleCharUpdate());
         this.#screenRockerSkinCheck.addEventListener("click", () => this.toggleSkinUpdate());
         this.#screenRockerColorCheck.addEventListener("click", () => this.toggleColorUpdate());
@@ -262,6 +291,7 @@ export class ScreenRocker {
         this.#screenRockerAutoRecordCheck.addEventListener("click", () => this.toggleAutoRecording());
         this.#screenRockerAutoRenameCheck.addEventListener("click", () => this.toggleAutoRename());
 
+        this.#loadSettings();
         this.watchFile();
     }
 
@@ -284,10 +314,10 @@ export class ScreenRocker {
             return;
             
         }
-        if (!this.#updateAutoApply) {
+        if (!this.#settings.updateAutoApply) {
             displayNotif('WARNING: Auto Apply Update is off, you must update the data on the Stream Tool manually to allow it on the Stream');
         }
-        if (!this.#updateScore) {
+        if (!this.#settings.updateScore) {
             displayNotif('WARNING: Score Update is off. You must manually update the Score. OBS Control stops when a player wins (based upon Score and Best Of');
         }
         
@@ -308,6 +338,26 @@ export class ScreenRocker {
             }
         }
     }
+
+    async #loadSettings() {
+        this.#settings = await getJson(stPath.text + "/ScreenRockerSettings");
+        this.#settings.enabled = false;
+        
+        this.#screenRockerInMatchOverrideCheck.checked = this.#settings.inMatchOverride;
+        this.#screenRockerInMatchCheck.disabled = !this.#settings.inMatchOverride;
+        this.#screenRockerInMatchCheck.checked = this.#settings.inMatch;
+        this.#screenRockerCharCheck.checked = this.#settings.updateChar;
+        this.#screenRockerSkinCheck.disabled = !this.#settings.updateChar;
+        this.#screenRockerSkinCheck.checked = this.#settings.updateSkin;
+        this.#screenRockerColorCheck.checked = this.#settings.updateColor;
+        this.#screenRockerScoreCheck.checked = this.#settings.updateScore;
+        this.#screenRockerBestOfCheck.checked = this.#settings.updateBestOf;
+        this.#screenRockerAutoApplyCheck.checked = this.#settings.updateAutoApply;
+    }
+
+    async #saveSettings() {
+        await saveJson("/ScreenRockerSettings", this.#settings);
+    }
     
     inSet() {
         return this.#inSet;
@@ -318,6 +368,26 @@ export class ScreenRocker {
         if (this.#inSet) {
             this.#startOfSet = true;
         }
+    }
+
+    async toggleInMatchOverride() {
+        this.#settings.inMatchOverride = !this.#settings.inMatchOverride;
+
+        this.#screenRockerInMatchCheck.disabled = !this.#settings.inMatchOverride;
+
+        this.getSetData();
+        
+    }
+
+    async #toggleInMatch(bool) {
+        if (bool != undefined) {
+            this.#settings.inMatch = bool;
+        } else {
+            this.#settings.inMatch = !this.#settings.inMatch;
+        }
+
+        this.#screenRockerInMatchCheck.checked = this.#settings.inMatch;
+        this.#saveSettings();
     }
 
     #toggleDisableSceneSelects() {
@@ -347,7 +417,7 @@ export class ScreenRocker {
     }
 
     async #saveScenes() {
-        this.#roaStateData = await saveJson("/SelectedScenes", this.#sceneData);  
+        await saveJson("/SelectedScenes", this.#sceneData);  
     }
 
     async handleScenes() {
@@ -439,7 +509,7 @@ export class ScreenRocker {
     }
 
     enabled() {
-        return this.#enabled;
+        return this.#settings.enabled;
     }
 
     async #setupSelectBoxes() {
@@ -495,53 +565,53 @@ export class ScreenRocker {
     }
 
     //The toggles for each piece.
-    toggleCharUpdate() {
-        this.#updateChar = !this.#updateChar;
-        if (!this.#updateChar && this.#updateSkin) {
+    async toggleCharUpdate() {
+        this.#settings.updateChar = !this.#settings.updateChar;
+        if (!this.#settings.updateChar && this.#settings.updateSkin) {
             this.#screenRockerSkinCheck.click();
         }
-        this.#screenRockerCharCheck.checked = this.#updateChar;
-        this.#screenRockerSkinCheck.disabled = !this.#updateChar;
+        this.#screenRockerCharCheck.checked = this.#settings.updateChar;
+        this.#screenRockerSkinCheck.disabled = !this.#settings.updateChar;
         this.getSetData();
     }
 
-    toggleSkinUpdate() {
-        if (!this.#updateChar && this.#screenRockerSkinCheck.checked == true) {
+    async toggleSkinUpdate() {
+        if (!this.#settings.updateChar && this.#screenRockerSkinCheck.checked == true) {
             this.#screenRockerSkinCheck.checked = false;
         } else {
-            this.#updateSkin = !this.#updateSkin;
+            this.#settings.updateSkin = !this.#settings.updateSkin;
         }
 
-        this.#screenRockerSkinCheck.checked = this.#updateSkin;
+        this.#screenRockerSkinCheck.checked = this.#settings.updateSkin;
         this.getSetData();
         
     }
 
-    toggleColorUpdate() {
-        this.#updateColor = !this.#updateColor;
-        this.#screenRockerColorCheck.checked = this.#updateColor;
+    async toggleColorUpdate() {
+        this.#settings.updateColor = !this.#settings.updateColor;
+        this.#screenRockerColorCheck.checked = this.#settings.updateColor;
         this.getSetData();
     }
 
-    toggleScoreUpdate() {
-        this.#updateScore = !this.#updateScore;
-        this.#screenRockerScoreCheck.checked = this.#updateScore;
+    async toggleScoreUpdate() {
+        this.#settings.updateScore = !this.#settings.updateScore;
+        this.#screenRockerScoreCheck.checked = this.#settings.updateScore;
         this.getSetData();
     }
 
-    toggleBestOfUpdate() {
-        this.#updateBestOf = !this.#updateBestOf;
-        this.#screenRockerBestOfCheck.checked = this.#updateBestOf;
+    async toggleBestOfUpdate() {
+        this.#settings.updateBestOf = !this.#settings.updateBestOf;
+        this.#screenRockerBestOfCheck.checked = this.#settings.updateBestOf;
         this.getSetData();
     }
 
-    toggleAutoApplyUpdate() {       
-        this.#updateAutoApply = !this.#updateAutoApply;
-        this.#screenRockerAutoApplyCheck.checked = this.#updateAutoApply;
+    async toggleAutoApplyUpdate() {       
+        this.#settings.updateAutoApply = !this.#settings.updateAutoApply;
+        this.#screenRockerAutoApplyCheck.checked = this.#settings.updateAutoApply;
         this.getSetData();
     }
 
-    toggleAutoThumbnail() {
+    async toggleAutoThumbnail() {
         this.#autoThumbnail = !this.#autoThumbnail;
         if (this.#autoOBSControl && !this.#autoThumbnail) {
             displayNotif('Cannot toggle Auto create Thumbnail On. Auto OBS Control is running.');
@@ -590,17 +660,18 @@ export class ScreenRocker {
 
     toggleScreenRocker() {
         if (this.canToggleOn()) {
-            this.#enabled = !this.#enabled;
+            this.#settings.enabled = !this.#settings.enabled;
             this.getSetData();
             
         } else {
-            this.#enabled = false;
+            this.#settings.enabled = false;
         }
-        this.#screenRockerCheck.checked = this.#enabled;
-        return this.#enabled;
+        this.#screenRockerCheck.checked = this.#settings.enabled;
+        return this.#settings.enabled;
     }
 
-    getSetData() {
+    async getSetData() {
+        await this.#saveSettings();
         if (this.enabled()) {
             screenRocker.getData().then(() => {
                 if (screenRocker.hasData()) {
@@ -628,7 +699,7 @@ export class ScreenRocker {
     }
 
     async #setCharAndSkinData(playerIndex, char) {
-        if(this.#updateChar) { // update characters
+        if(this.#settings.updateChar) { // update characters
             let playerPresetSkin = {};
             playerPresetSkin = this.#getSkinPreset(players[playerIndex].getName(), char);
 
@@ -652,7 +723,7 @@ export class ScreenRocker {
             hex: "",
             customImg: false
         }
-        if (this.#updateSkin) {
+        if (this.#settings.updateSkin) {
             for (let i = 0; i < this.#playerPresets.length; i++) {
                 let player = this.#playerPresets[i];
                 if (player.name == name) {
@@ -675,7 +746,7 @@ export class ScreenRocker {
     }
 
     inMatch() {
-        return this.#roaStateData.TourneySet.InMatch;
+        return this.#settings.inMatch;
     }
 
     getScreenName() {
@@ -688,7 +759,7 @@ export class ScreenRocker {
 
     
     async #setColorData(playerIndex, playerCount, slot, state) {
-        if (this.#updateColor) { //Update team colors
+        if (this.#settings.updateColor) { //Update team colors
             let newColor = {};
             let colorIndex = -1;
             if (playerIndex == 0) {
@@ -744,7 +815,7 @@ export class ScreenRocker {
     }
 
     async #setScoreData(playerIndex, playerCount, gameCount) {
-        if (this.#updateScore) { //Update Score
+        if (this.#settings.updateScore) { //Update Score
             let scoreIndex = -1;
             if (playerIndex == 0) {
                 scoreIndex = 0;
@@ -762,7 +833,7 @@ export class ScreenRocker {
     }
 
     async #setBoData(newBo) {
-        if (this.#updateBestOf) {
+        if (this.#settings.updateBestOf) {
             if (newBo == 3 || newBo == 5) {
                 if (!this.#isSame(bestOf.getBo(), newBo)){
                     bestOf.setBo(newBo);
@@ -776,7 +847,7 @@ export class ScreenRocker {
     }
 
     #writeData() {
-        if (this.#updateAutoApply && playersReady()) {
+        if (this.#settings.updateAutoApply && playersReady()) {
             updateDiv.click();
             // writeScoreboard();
             // document.getElementById("botBar").style.backgroundColor = "var(--bg3)";   
@@ -813,6 +884,7 @@ export class ScreenRocker {
         
         //Player Characters
         let playerIndex = 0;
+        console.log(this.#roaStateData.Characters);
         for (let i = 0; i < this.#roaStateData.Characters.length; i++) {
             let slot = this.#roaStateData.Characters[i].SlotNumber;
             let char = capitalizeWords(this.#roaStateData.Characters[i].Character);
@@ -827,6 +899,10 @@ export class ScreenRocker {
             }            
         }
 
+        if (!this.#settings.inMatchOverride) {
+            this.#toggleInMatch(this.#roaStateData.TourneySet.InMatch);
+        }
+        
         this.#setBoData(this.#roaStateData.TourneySet.TourneyModeBestOf);
         this.#writeData();
         // screenRockerOBS.dataUpdate(this.#roaStateData);
