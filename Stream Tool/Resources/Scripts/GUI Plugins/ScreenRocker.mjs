@@ -321,9 +321,13 @@ export class ScreenRocker {
         }
 
         if (this.#sceneControl && !this.#sceneData.startScene || !this.#sceneData.inGameScene) {
-            displayNotif('Start Scene and In Game Scene are Required.');
+            displayNotif('Start Scene and In Game Scene are Required when using Scene Control.');
             return;
-            
+        }
+
+        if (!this.#sceneControl && !this.#autoRecording && !this.#autoThumbnail && !this.#autoRename) {
+            displayNotif("Must enable at least one of the following: Scene Control, Auto Recording, Auto create Thumbnail, or Auto File Rename")
+            return;
         }
         if (!this.#settings.updateAutoApply) {
             displayNotif('WARNING: Auto Apply Update is off, you must update the data on the Stream Tool manually to allow it on the Stream');
