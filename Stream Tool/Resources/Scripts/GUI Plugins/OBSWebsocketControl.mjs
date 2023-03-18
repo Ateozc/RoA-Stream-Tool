@@ -9,6 +9,7 @@ const obs = new OBSWebSocket();
 const updateDiv = document.getElementById('updateRegion');
 const connectInformation = await getJson(stPath.text + "/OBSConnection")
 
+
 const settingElectronDiv = document.getElementById("settingsElectron");
 const newToggles = [
     {
