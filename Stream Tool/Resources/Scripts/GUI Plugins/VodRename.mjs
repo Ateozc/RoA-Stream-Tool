@@ -42,7 +42,7 @@ class VodRename {
     #vodRenameBtn = document.getElementById('vodRenameButton');
     #oldCopyMatchBtn = document.getElementById('copyMatch');
     #copyMatchBtn = this.#oldCopyMatchBtn.cloneNode(true);
-    #recordingDirSettings = stPath.text+ "\\RecordingDir.txt";
+    #recordingDirSettings = stPath.text+ "/RecordingDir.txt";
     #lastElement = divs.prevDiv;
     #titleElement = divs.titleDiv;
     
@@ -208,7 +208,7 @@ class VodRename {
         let newFileName = this.getLatestFileName();
 
 
-        if (this.canRename()) {
+        if (!this.canRename()) {
             displayNotif('Failed to Rename and move Vods. Ensure Tournament, Round, Player Information, and Vod Directory are filled in, then hit "Update" and try again.')
             return;
         }
@@ -217,22 +217,23 @@ class VodRename {
         this.#vodRenameBtn.title = 'Processing...';
 
 
-        let tournamentPath = this.#recordingDir + '\\' + tournament;
-        let gamePath = tournamentPath + '\\' + game;
+        let tournamentPath = this.#recordingDir + '/' + tournament;
+        let gamePath = tournamentPath + '/' + game;
 
         let counts = {
             ".png": 0,
             ".flv": 0,
-            ".mp4": 0
+            ".mp4": 0,
+            ".mkv": 0,
         }
         try {
             fs.readdir(this.#recordingDir, (err, files) => {
                 fs.mkdirSync(gamePath, {recursive: true}); //This will create the folders.
                 files.forEach(file=> {
-                    if (file.endsWith('.png') || file.endsWith('.mp4') || file.endsWith('.flv')) {
+                    if (file.endsWith('.png') || file.endsWith('.mp4') || file.endsWith('.flv') || file.endsWith('.mkv')) {
                         let ext = path.parse(file).ext;
-                        let newFile = gamePath + '\\' + newFileName;
-                        let oldPath = this.#recordingDir + "\\" + file;
+                        let newFile = gamePath + '/' + newFileName;
+                        let oldPath = this.#recordingDir + "/" + file;
                         
                         if ( counts[ext] > 0) {
                             newFile += '(' + counts[ext] + ')'
@@ -258,14 +259,5 @@ class VodRename {
     
 }
 
-
-
-// setInterval(init, 1000);
-
-// function init() {
-//     // console.log(inside.electron);
-//     // console.log(__dirname);
-//     // setCurData();
-// }
 
 export const vodRename = new VodRename;
