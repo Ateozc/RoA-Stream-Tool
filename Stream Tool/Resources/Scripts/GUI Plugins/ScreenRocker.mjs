@@ -115,6 +115,14 @@ const newTogglesOBS = [
         className: "settingsButton"
     },
     {
+        id: "screenRockerSceneControl",
+        title: "Enables Screen Rocker to control which scene shows.",
+        innerText: "Scene Control",
+        type: "checkbox",
+        disabled: false,
+        className: "settingsCheck"
+    },
+    {
         id: "screenRockerAutoRecord",
         title: "Enables the Recording to Start/Stop automatically based upon the set start/end. Saved to Vod Directory.",
         innerText: "Auto Recording",
@@ -231,6 +239,7 @@ export class ScreenRocker {
     #screenRockerOBSBtn = document.getElementById('screenRockerOBSToggle');
     #getScenesBtn = document.getElementById('screenRockerGetLatestScenes');
 
+    #screenRockerSceneControlCheck = document.getElementById('screenRockerSceneControl');
     #screenRockerAutoThumbnailCheck = document.getElementById('screenRockerAutoThumbnail');
     #screenRockerAutoRecordCheck = document.getElementById('screenRockerAutoRecord');
     #screenRockerAutoRenameCheck = document.getElementById('screenRockerAutoRename');
@@ -244,6 +253,7 @@ export class ScreenRocker {
     #toggleDivsOBS = obsDivs.toggleDivs;
     #lastOBSElement = obsDivs.prevDiv;
     #autoOBSControl = false;
+    #sceneControl = false;
     #inSet = false;
     #startOfSet = false;
     #prevScene = "";
@@ -287,6 +297,7 @@ export class ScreenRocker {
         this.#screenRockerInGameScene.addEventListener('change', () => this.#setSelectedScenes(true));
         this.#screenRockerEndScene.addEventListener('change', () => this.#setSelectedScenes(true));
 
+        this.#screenRockerSceneControlCheck.addEventListener("click", () => this.toggleSceneControl());
         this.#screenRockerAutoThumbnailCheck.addEventListener("click", () => this.toggleAutoThumbnail());
         this.#screenRockerAutoRecordCheck.addEventListener("click", () => this.toggleAutoRecording());
         this.#screenRockerAutoRenameCheck.addEventListener("click", () => this.toggleAutoRename());
@@ -309,7 +320,7 @@ export class ScreenRocker {
             return;
         }
 
-        if (!this.#sceneData.startScene || !this.#sceneData.inGameScene) {
+        if (this.#sceneControl && !this.#sceneData.startScene || !this.#sceneData.inGameScene) {
             displayNotif('Start Scene and In Game Scene are Required.');
             return;
             
@@ -456,7 +467,10 @@ export class ScreenRocker {
             }
             if (this.#curScene != this.#prevScene || endSceneHit) {
                 if (!endSceneHit) {
-                    await obsControl.changeScene(this.#curScene);
+                    if (this.#sceneControl) {
+                        await obsControl.changeScene(this.#curScene);
+                    }
+                    
                     this.#prevScene = this.#curScene;
                 }
                 
@@ -467,7 +481,10 @@ export class ScreenRocker {
                         if (this.#autoRecording) {
                             await obsControl.stopRecord();
                         }  
-                        await obsControl.changeScene(this.#curScene);
+                        if (this.#sceneControl) {
+                            await obsControl.changeScene(this.#curScene);
+                        }
+                        
                         this.#prevScene = this.#curScene;
                         
                             setTimeout(async () => {
@@ -650,6 +667,11 @@ export class ScreenRocker {
         }
         
         this.#screenRockerAutoRenameCheck.checked = this.#autoRename;
+    }
+
+    toggleSceneControl() {
+        this.#sceneControl = !this.#sceneControl;
+        this.#screenRockerSceneControlCheck.checked = this.#sceneControl;
     }
 
 
