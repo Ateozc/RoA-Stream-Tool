@@ -120,9 +120,9 @@ async function updateData(scInfo) {
 	for (let i = 0; i < maxSides; i++) {
 
 		// change the player background colors
-		if (colorPrev[i] != color[i].name) {
+		if (!colorPrev[i] || colorPrev[i].name != color[i].name || colorPrev[i].hex != color[i].hex) {
 			updateColor(colorImg[i], color[i], gamemode, scoreNums[i]);
-			colorPrev[i] = color[i].name;
+			colorPrev[i] = structuredClone(color[i]);
 		}
 
 	}
@@ -579,6 +579,11 @@ async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
 
 function updateColor(colorEL, pColor, gamemode, scoreNum) {
 	colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/${pColor.name}.png`;
+	if (pColor.filter) {
+		colorEL.style.webkitFilter = pColor.filter;
+	} else {
+		colorEL.style.filter = '';
+	}
 
 	// change the text shadows for the numerical scores
 	scoreNum.style.webkitTextStroke = "1px " + pColor.hex;

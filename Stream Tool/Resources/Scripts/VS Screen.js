@@ -287,7 +287,7 @@ async function updateData(scInfo) {
 
 			//set the colors
 			updateColor(colorBG[i], textBG[i], color[i], i, gamemode);
-			colorPrev[i] = color[i].name;
+			colorPrev[i] = structuredClone(color[i]);
 
 			//initialize the score ticks
 			updateScore(i, score[i], color[i]);
@@ -347,7 +347,7 @@ async function updateData(scInfo) {
 
 			//color change, this is up here before char/skin change so it doesnt change the
 			//trail to the next one if the character has changed, but it will change its color
-			if (colorPrev[i] != color[i].name) {
+			if (!colorPrev[i] || colorPrev[i].name != color[i].name || colorPrev[i].hex != color[i].hex) {
 				updateColor(colorBG[i], textBG[i], color[i], i, gamemode);
 				colorTrail(pTrail[i], player[i]);
 				//if this is doubles, we also need to change the colors for players 3 and 4
@@ -355,7 +355,7 @@ async function updateData(scInfo) {
 					colorTrail(pTrail[i+2], player[i+2]);
 				}
 				updateScore(i, score[i], color[i]);
-				colorPrev[i] = color[i].name;
+				colorPrev[i] = structuredClone(color[i]);
 			}
 
 			//check if the scores changed
@@ -641,11 +641,17 @@ function updateScore(side, pScore, pColor) {
 //color change
 function updateColor(gradEL, textBGEL, color, i, gamemode) {
 
+
 	//change the color gradient image path depending on the color
 	gradEL.src = `Resources/Overlay/VS Screen/Grads/${color.name}.png`;
 
 	//same but with the text background
 	textBGEL.src = `Resources/Overlay/VS Screen/Text BGs/${gamemode}/${color.name}.png`;
+	if (color.filter) {
+		textBGEL.style.webkitFilter = color.filter + '  drop-shadow(0px 0px 5px black)';
+	} else {
+		textBGEL.style.filter = '';
+	}
 	
 	// update the root css color variable
 	const r = document.querySelector(':root');
