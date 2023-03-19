@@ -71,8 +71,8 @@ class AdvancedColors {
     
 
     constructor() {
-        this.#colorInputs[0].addEventListener('input', ()=> this.#updateColor(0));
-        this.#colorInputs[1].addEventListener('input', ()=> this.#updateColor(1));
+        this.#colorInputs[0].addEventListener('change', ()=> this.#updateColor(0));
+        this.#colorInputs[1].addEventListener('change', ()=> this.#updateColor(1));
         this.#colorPickerTeamsCheck.addEventListener('click', ()=> this.#toggleColorPickerForTeams());
         colorContainerL.addEventListener('click', ()=> this.#clickColorInput(0));
         colorContainerR.addEventListener('click', ()=> this.#clickColorInput(1));
