@@ -126,5 +126,6 @@ If you are interested in installing any of the above plugins, please navigate to
 ---
 ## Support Ateozc
 If you want to support me, you can. Here is my kofi: [Ko-fi](https://ko-fi.com/ateozc)
+
 If you need to reach me, contact me on Twitter [@Ateozc](https://twitter.com/Ateozc) or on Discord `Ateozc#0569`!
 
