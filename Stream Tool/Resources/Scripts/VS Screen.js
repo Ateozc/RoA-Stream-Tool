@@ -647,10 +647,15 @@ function updateColor(gradEL, textBGEL, color, i, gamemode) {
 
 	//same but with the text background
 	textBGEL.src = `Resources/Overlay/VS Screen/Text BGs/${gamemode}/${color.name}.png`;
+
 	if (color.filter) {
+		gradEL.src = `Resources/Overlay/VS Screen/Grads/Cpu.png`;
 		textBGEL.style.webkitFilter = color.filter + '  drop-shadow(0px 0px 5px black)';
+		textBGEL.src = `Resources/Overlay/VS Screen/Text BGs/${gamemode}/Cpu.png`;
+		gradEL.style.webkitFilter = color.filter + ' opacity(35%)';
 	} else {
-		textBGEL.style.filter = '';
+		textBGEL.style.webkitFilter = '';
+		gradEL.style.webkitFilter = '';
 	}
 	
 	// update the root css color variable

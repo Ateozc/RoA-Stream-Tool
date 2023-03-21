@@ -1,0 +1,181 @@
+/* 
+For those reading how to use this custom css file, here are some pointers: 
+
+This pulls out all the main items targetted for control of Fonts and Colors, such as Player name, tags, info, round, tournament, etc.
+
+I also pulled out the fonts/colors into variables towards the top. (Everything under Root).
+
+If you want to be more specific, you can just go to each section and change them individually if you prefer, it is documented below what will change.
+
+Not recommended to change the default variables (--default-font, --default-color) as they usually dont change anything, since we are overriding the defaults with all the other variables i created.
+
+If you want to add a new font, simply add it to the Fonts folder and then add another font option below.
+*/
+
+@font-face {
+    font-family: "Deansgate";
+    src: url('../Fonts/DeansgateCondensed-Bold.ttf');
+}
+
+@font-face {
+    font-family: "LemonMilk";
+    src: url('../Fonts/LEMONMILK-Medium.otf');
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('../Fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "CB";
+    src: url('../Fonts/Urban-Nation.ttf');
+}
+
+:root {
+    --font-family-1: "Deansgate";
+    --font-family-2: "LemonMilk";
+    --font-family-3: "Roboto";
+
+    /* Control the player text */
+    --player-text-font-color: white;
+    --player-text-font-family: var(--font-family-2);
+    
+    /* Control the player tag */
+    --player-tag-font-color: lightgray;
+    --player-tag-font-family: var(--font-family-2);
+    
+    /* Control the player information (pronouns, twitch, youtube, twitter) */
+    --player-info-font-color: white;
+    --player-info-font-family: var(--font-family-1);
+    --logos-color: white; 
+
+    /* Control tournament */
+    --tournament-font-color: rgb(65, 65, 65);
+    --tournament-font-family: var(--font-family-1);
+
+    /* Control Round */
+    --round-font-color: black;
+    --round-font-family: var(--font-family-1);
+
+    /* Control Scores */
+    --score-font-color: black;
+    --score-font-family: var(--font-family-2);
+
+    /* Control Casters */
+    --caster-name-font-color: black;
+    --caster-name-font-family: var(--font-family-1);
+    --caster-socials-font-color: rgb(65, 65, 65);;
+    --caster-socials-font-family: var(--font-family-1);
+    --caster-socials-icon-color: rgb(65, 65, 65);;
+
+}
+
+/* this is the original stuff. */
+/* 
+:root {
+    --font-family-1: "Deansgate";
+    --font-family-2: "LemonMilk";
+    --font-family-3: "Roboto";
+
+    --player-text-font-color: white;
+    --player-text-font-family: var(--font-family-2);
+    
+    --player-tag-font-color: lightgray;
+    --player-tag-font-family: var(--font-family-2);
+    
+    --player-info-font-color: white;
+    --player-info-font-family: var(--font-family-1);
+    --logos-color: white; 
+
+    --tournament-font-color: rgb(65, 65, 65);
+    --tournament-font-family: var(--font-family-1);
+
+    --round-font-color: black;
+    --round-font-family: var(--font-family-1);
+
+    --score-font-color: black;
+    --score-font-family: var(--font-family-2);
+
+    --caster-name-font-color: black;
+    --caster-name-font-family: var(--font-family-1);
+    --caster-socials-font-color: rgb(65, 65, 65);
+    --caster-socials-font-family: var(--font-family-1);
+    --caster-socials-icon-color: rgb(65, 65, 65);
+
+} */
+
+/* Player information that shows above their name (Pronouns, twitch, youtube, twitter) */
+.playerInfo {
+    font-family: var(--player-info-font-family);
+    color: var(--player-info-font-color);
+}
+
+/* Icons that show for Twitch, Youtube, and Twitter. */
+.playerInfoIcon {
+    fill: var(--logos-color);
+}
+
+/* This is for the Player name */
+.name {
+    color: var(--player-text-font-color);
+    font-family: var(--player-text-font-family);
+}
+
+/* This is for the player's tag */
+.tag {
+    color: var(--player-tag-font-color);
+    font-family: var(--player-tag-font-family);
+}
+
+/* This is for the Round information font-family. */
+.roundInfo {
+    font-family: var(--round-font-family);
+}
+
+/* This is for the Round information color. */
+#round {
+    color: var(--round-font-color);
+}
+
+/* This is for the team names. (Only in Dubs) */
+.teamName {
+    font-family: var(--player-text-font-family);
+    color: var(--player-text-font-color);
+}
+
+/* This is for the tournament text */
+#tournament {
+    color: var(--tournament-font-color);
+    font-family: var(--tournament-font-family);
+}
+
+/* This is for the Scores when it is set to Best of X */
+.scoreNum {
+    color: var(--score-font-color);
+    font-family: var(--score-font-family);
+}
+
+/* Caster names */
+.caster {
+    color: var(--caster-name-font-color);
+    font-family: var(--caster-name-font-family);
+}
+
+/* Casters Social text (youtube, twitch, twitter) */
+.socialBox {
+    color: var(--caster-socials-font-color);
+    font-family: var(--caster-socials-font-family);
+    
+}
+
+/* Socials Icons */
+.ytIcon {
+    fill: var(--caster-socials-icon-color);
+}
+.twitchIcon {
+    fill: var(--caster-socials-icon-color);
+}
+.twitterIcon {
+    fill: var(--caster-socials-icon-color);
+}

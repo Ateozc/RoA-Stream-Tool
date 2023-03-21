@@ -580,6 +580,7 @@ async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
 function updateColor(colorEL, pColor, gamemode, scoreNum) {
 	colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/${pColor.name}.png`;
 	if (pColor.filter) {
+		colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/Cpu.png`;
 		colorEL.style.webkitFilter = pColor.filter;
 	} else {
 		colorEL.style.filter = '';

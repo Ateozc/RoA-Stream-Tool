@@ -1,0 +1,203 @@
+/* 
+For those reading how to use this custom css file, here are some pointers: 
+
+This pulls out all the main items targetted for control of Fonts and Colors, such as Player name, tags, info, round, tournament, etc.
+
+I also pulled out the fonts/colors into variables towards the top. (Everything under Root).
+
+If you want to be more specific, you can just go to each section and change them individually if you prefer, it is documented below what will change.
+
+Not recommended to change the default variables (--default-font, --default-color) as they usually dont change anything, since we are overriding the defaults with all the other variables i created.
+
+If you want to add a new font, simply add it to the Fonts folder and then add another font option below.
+*/
+
+@font-face {
+    font-family: "Deansgate";
+    src: url('../Fonts/DeansgateCondensed-Bold.ttf');
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url('../Fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: "LemonMilk";
+    src: url('../Fonts/LEMONMILK-Medium.otf');
+}
+
+@font-face {
+    font-family: "CB";
+    src: url('../Fonts/Urban-Nation.ttf');
+}
+
+:root {
+    --font-family-1: "Deansgate";
+    --font-family-2: "LemonMilk";
+    --font-family-3: "Roboto";
+
+    --default-font: var(--font-family-1);
+    --default-color: white;
+
+    --player-text-font-color: white;
+    --player-text-font-family: var(--font-family-3);
+    
+    --player-tag-font-color: lightgray;
+    --player-tag-font-family: var(--font-family-2);
+
+    --player-info-font-color: gray;
+    --player-info-font-family: var(--font-family-3);
+    --logos-color: white; 
+
+    --tournament-font-color: rgb(65, 65, 65);
+    --tournament-font-family: var(--font-family-3); 
+
+    --round-font-color: white;
+    --round-font-family: var(--font-family-3);
+
+    --score-font-color: black;
+    --score-font-family: var(--font-family-3);
+
+    --intro-default-font-color: white;
+    --intro-default-font-family: var(--font-family-1);
+
+    --intro-round-font-color: white;
+    --intro-round-font-family: var(--font-family-1);
+
+    --intro-mid-font-color: white;
+    --intro-mid-font-family: var(--font-family-1);
+
+    --intro-player-font-color: white;
+    --intro-player-font-family: var(--font-family-2);
+
+    --intro-tournament-font-color: white;
+    --intro-tournament-font-family: var(--font-family-2);
+
+}
+
+/* Base settings */
+/* 
+:root {
+    --font-family-1: "Deansgate";
+    --font-family-2: "LemonMilk";
+    --font-family-3: "Roboto";
+
+    --default-font: var(--font-family-1);
+    --default-color: white;
+
+    --player-text-font-color: white;
+    --player-text-font-family: var(--font-family-3);
+    
+    --player-tag-font-color: lightgray;
+    --player-tag-font-family: var(--font-family-2);
+
+    --player-info-font-color: gray;
+    --player-info-font-family: var(--font-family-3);
+    --logos-color: white; 
+
+    --tournament-font-color: rgb(65, 65, 65);
+    --tournament-font-family: var(--font-family-3); 
+
+    --round-font-color: white;
+    --round-font-family: var(--font-family-3);
+
+    --score-font-color: black;
+    --score-font-family: var(--font-family-3);
+
+    --intro-default-font-color: white;
+    --intro-default-font-family: var(--font-family-1);
+
+    --intro-round-font-color: white;
+    --intro-round-font-family: var(--font-family-1);
+
+    --intro-mid-font-color: white;
+    --intro-mid-font-family: var(--font-family-1);
+
+    --intro-player-font-color: white;
+    --intro-player-font-family: var(--font-family-2);
+
+    --intro-tournament-font-color: white;
+    --intro-tournament-font-family: var(--font-family-2);
+
+}
+ */
+
+
+/* General stuff. If something isn't set, this is what it will default to. (Example: everything is set to uppercase, by default) */
+body {
+    text-transform: uppercase;
+    color: var(--default-color);
+    font-family: var(--default-font);
+}
+
+/* Player name that shows up in teh black box. */
+.names {
+    color: var(--player-text-font-color);
+    font-family: var(--player-text-font-family);
+}
+
+/* Player tag that shows up to the left of the player name. It will be smaller by default. */
+.tags {
+    color: var(--player-tag-font-color);
+    font-family: var(--player-tag-font-family);
+}
+
+/* When using Best of X, score will be displayed with a number value. This controls that number. */
+.scoreNum {
+    color: var(--score-font-color);
+    font-family: var(--score-font-family);
+}
+
+/* Player pronouns that show up in a little white box on the top corner of the player scorebar. */
+.topBarProns {
+    color: var(--player-info-font-color);
+    font-family: var(--player-info-font-family);
+}
+
+/* Round info. */
+#round {
+    color: var(--round-font-color);
+    font-family: var(--round-font-family);
+}
+
+/* Default for the Intro sequence. */
+#overlayIntro, #textsIntro{
+    color: var(--intro-default-font-color);
+    font-family: var(--intro-default-font-family);
+}
+
+/* Round information in the Intro */
+#roundIntro {
+    color: var(--intro-round-font-color);
+    font-family: var(--intro-round-font-family);
+}
+
+/* Player vs Player text on the Intro */
+#midTextIntro, .pIntro{
+    color: var(--intro-mid-font-color);
+    font-family: var(--intro-mid-font-family);
+}
+
+/* Just the 'Vs.' text on the Intro(doesn't change the players) */
+#midTextIntro {
+    color: var(--intro-mid-font-color);
+    font-family: var(--intro-mid-font-family);
+}
+
+/* Just the Player names on the Intro */
+.pIntro{
+    color: var(--intro-player-font-color);
+    font-family: var(--intro-player-font-family)
+}
+
+/* Tournament name in the Intro */
+#tNameIntro {
+    color: var(--intro-tournament-font-color);
+    font-family: var(--intro-tournament-font-family);
+}
+
+/* Not too sure what this is for... */
+#superCoolInterrogation {
+    font-family: var(--font-family-3);
+}
