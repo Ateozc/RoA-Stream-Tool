@@ -173,8 +173,8 @@ class AdvancedColors {
     }
 
     #clickColorInput(side) {
+        this.#colorInputs[side].value = currentColors[side].hex;
         if (this.#settings.teamPicker) {
-            this.#colorInputs[side].value = currentColors[side].hex;
             this.#colorInputs[side].click();
         }
     }
