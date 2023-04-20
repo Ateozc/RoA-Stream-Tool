@@ -213,8 +213,8 @@ body {
 }
   
 #charP1, #charP2, #charP3, #charP4 {
-    opacity: .6;
-    filter: blur(1px) contrast(500%) grayscale(1);
+    opacity: .75;
+    filter: blur(1px) contrast(200%);
     mix-blend-mode: screen;
 }
 

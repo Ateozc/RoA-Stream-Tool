@@ -224,6 +224,6 @@ body {
   
 .pCharacter {
     /* opacity: .6; */
-    filter: blur(0px) contrast(500%) grayscale(1);
+    filter: blur(0px) contrast(200%);
     mix-blend-mode: screen;
 }

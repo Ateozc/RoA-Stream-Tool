@@ -1,38 +1,48 @@
 [
-    {
-        "name": "Red",
-        "hex": "#ed1c23"
-    },
-    {
-        "name": "Blue",
-        "hex": "#00b7ef"
-    },
-    {
-        "name": "Pink",
-        "hex": "#ffa3b1"
-    },
-    {
-        "name": "Green",
-        "hex": "#a8e61d"
-    },
-    {
-        "name": "NetGreen",
-        "hex": "#42e564"
-    },
-    {
-        "name": "Purple",
-        "hex": "#846ae9"
-    },
-    {
-        "name": "Magenta",
-        "hex": "#ee1c8f"
-    },
-    {
-        "name": "Yellow",
-        "hex": "#dc8c00"
-    },
-    {
-        "name": "CPU",
-        "hex": "#808080"
-    }
+  {
+    "name": "Red",
+    "hex": "#ed1c23"
+  },
+  {
+    "name": "Blue",
+    "hex": "#00b7ef"
+  },
+  {
+    "name": "Pink",
+    "hex": "#ffa3b1"
+  },
+  {
+    "name": "Green",
+    "hex": "#a8e61d"
+  },
+  {
+    "name": "NetGreen",
+    "hex": "#42e564"
+  },
+  {
+    "name": "Purple",
+    "hex": "#846ae9"
+  },
+  {
+    "name": "Magenta",
+    "hex": "#ee1c8f"
+  },
+  {
+    "name": "Yellow",
+    "hex": "#dc8c00"
+  },
+  {
+    "name": "CPU",
+    "hex": "#808080"
+  },
+  {
+    "name": "CB1",
+    "hex": "#c9c9c9",
+    "filter": "brightness(175%) url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\"><defs><filter id=\"c9c9c9\" color-interpolation-filters=\"sRGB\"><feColorMatrix type=\"matrix\" values=\"0.788235294117647 0 0 0 0 0 0.788235294117647 0 0 0 0 0 0.788235294117647 0 0 0 0 0 1 0\"/></filter></defs></svg>#c9c9c9')"
+  },
+  {
+    "name": "CB2",
+    "hex": "#949494",
+    "filter": "brightness(175%) url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\"><defs><filter id=\"949494\" color-interpolation-filters=\"sRGB\"><feColorMatrix type=\"matrix\" values=\"0.5803921568627451 0 0 0 0 0 0.5803921568627451 0 0 0 0 0 0.5803921568627451 0 0 0 0 0 1 0\"/></filter></defs></svg>#949494')"
+  }
 ]

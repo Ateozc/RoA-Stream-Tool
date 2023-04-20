@@ -13,3 +13,10 @@ override anything you want here.
     background-image: url('../Overlay/CB Assets/CB-Backgrounds-4.png');
     background-size: contain;
 }
+
+  
+.charImgBox img{
+    opacity: .65;
+    filter: blur(0px) contrast(200%);
+    mix-blend-mode: screen;
+}
