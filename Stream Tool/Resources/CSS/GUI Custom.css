@@ -8,3 +8,8 @@ This file will get loaded after the original one, meaning that you can
 override anything you want here.
 
 */
+
+#overlay {
+    background-image: url('../Overlay/CB Assets/CB-Backgrounds-4.png');
+    background-size: contain;
+}
