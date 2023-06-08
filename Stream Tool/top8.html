@@ -17,7 +17,7 @@
         <div style="position:absolute; z-index: -1000;">
             <video ng-if="prev.top8Settings.useP1Background" autoplay loop class="absol bgVid" ng-src="{{prev.players[0].backgroundWebm}}" id="vidBGP1"></video>
             <video ng-if="displayCustomVideoBackground()" autoplay loop class="absol bgVid" ng-src="{{prev.top8Settings.customBackground}}" id="vidBGP1"></video>
-            <img ng-if="displayCustomImageBackground()" ng-src="{{prev.top8Settings.customBackground}}"/>
+            <img ng-if="displayCustomImageBackground()" ng-src="{{prev.top8Settings.customBackground}}" style="max-width: 100%; max-height: 100%;"/>
         </div>
         <div ng-show="prev.top8Settings.useTopText" class="topText">
             <span>{{prev.top8Settings.topText}}</span>

@@ -303,7 +303,7 @@
   "useCustomRound": false,
   "useCustomColors": false,
   "useTeamNames": false,
-  "showOnDeck": true,
+  "showOnDeck": false,
   "game": {
     "name": "Guilty Gear Xrd Rev 2",
     "abbr": "GGXR2"
@@ -335,15 +335,15 @@
   },
   "top8Settings": {
     "useTopText": true,
-    "topText": "Ignition 281 - 5 Entrants - August 24th, 2022 - Every Wednesday",
+    "topText": "Combo Breaker - 37 Entrants - May 27th, 2023",
     "useBottomText": true,
-    "bottomTextBracket": "start.gg/ignition-281",
+    "bottomTextBracket": "https://tinyurl.com/RivalsCB2023",
     "bottomTextYoutube": "youtube.com/ateozc",
     "bottomTextTwitch": "twitch.tv/ateozc",
     "bottomTextTwitter": "@ateozc",
     "top8Ties": true,
     "useP1Background": false,
     "useCustomBackground": true,
-    "customBackground": "Resources\\Games\\Rivals of Aether\\Absa\\Blue.png"
+    "customBackground": "Resources\\Extra\\CB-Backgrounds-2.png"
   }
 }
