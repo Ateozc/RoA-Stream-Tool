@@ -1,28 +1,12 @@
 {
   "player": [
     {
-      "name": "",
+      "name": "DoubleW",
       "twitter": "",
-      "pronouns": "",
-      "tag": "",
+      "pronouns": "He/Him",
+      "tag": "He/Him",
       "characters": [
-        "Axl",
-        "Hodan",
-        "Absa",
-        "Chun Li",
-        "Alex",
-        "Dudley",
-        "Bridget",
-        "Axl Low",
-        "Baiken",
-        "Anji",
-        "Akuma",
-        "Steve",
-        "Kazuya",
-        "Sylvanos",
-        "Forsburn",
-        "Answer",
-        "Random"
+        "Ranno"
       ]
     },
     {
@@ -109,5 +93,5 @@
     "Red Team",
     "Blue Team"
   ],
-  "game": "Guilty Gear Xrd Rev 2"
+  "game": "Rivals of Aether"
 }

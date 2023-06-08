@@ -1,6 +1,6 @@
 {
-  "guiWidth": 776,
-  "guiHeight": 400,
+  "guiWidth": 638,
+  "guiHeight": 460,
   "allowIntro": true,
   "workshop": false,
   "forceMM": true,
@@ -14,8 +14,8 @@
   "maxPlayers": 4,
   "showOnDeck": false,
   "game": {
-    "name": "Guilty Gear Xrd Rev 2",
-    "abbr": "GGXR2"
+    "name": "Rivals of Aether",
+    "abbr": "RoA"
   },
   "useCustomColors": false,
   "useTeamNames": false,
@@ -30,7 +30,7 @@
     "setTeamColor": true,
     "showInfo": false
   },
-  "seasonalSkin": "Christmas",
+  "seasonalSkin": "Summer",
   "obsSettings": {
     "useObsAutomation": false,
     "autoChangeScenes": "manualFromOBS",

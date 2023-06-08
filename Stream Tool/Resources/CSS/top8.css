@@ -18,6 +18,16 @@
     src: url('../Fonts/Urban-Nation.ttf');
 }
 
+@font-face {
+  font-family: "CB2";
+  src: url('../Fonts/adrip1.ttf');
+}
+
+@font-face {
+  font-family: "CB3";
+  src: url('../Fonts/Urban Heroes.ttf');
+}
+
 body {
     font-family: "LemonMilk";
 }
@@ -46,7 +56,7 @@ body {
 .playerContainer {
     /* height: 8%; */
     width: 18%;
-    border: groove;
+    /* border: groove; */
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -55,8 +65,8 @@ body {
     position: relative;
     display: inline-flex;
     transform: translate(140px, 61.25px);
-    overflow: hidden;
-    background-color: hsla(0, 0%, 0%, 0.25);
+    /* overflow: hidden; */
+    /* background-color: hsla(0, 0%, 0%, 0.25); */
 }
 
 .playerContainer.p1 {
@@ -88,27 +98,27 @@ body {
 
 .playerContainer.p5 {
     /* width: 15%; */
-    width: 286.5px;
+    /* width: 286.5px; */
     height:218px;
-    transform: translate(626px, 58.75px);
+    transform: translate(600px, 170px);
 }
 .playerContainer.p6 {
     /* width: 15%; */
-    width: 286.5px;
+    /* width: 286.5px; */
     height:218px;
-    transform: translate(626px, 58.75px);
+    transform: translate(550px, 170px);
 }
 .playerContainer.p7 {
     /* width: 15%; */
-    width: 286.5px;
+    /* width: 286.5px; */
     height:218px;
-    transform: translate(626px, 58.75px);
+    transform: translate(500px, 170px);
 }
 .playerContainer.p8 {
     /* width: 15%; */
-    width: 286.5px;
+    /* width: 286.5px; */
     height:218px;
-    transform: translate(626px, 58.75px);
+    transform: translate(450px, 170px);
 }
 
 .playerContainer > img {
@@ -144,8 +154,8 @@ img.charImgRandom {
     position: absolute;
     z-index: 1;
     left: 0px;
-    font-weight: 900;
-    font-family: "Deansgate";
+    font-weight: 2500;
+    font-family: "CB3";
     -webkit-text-stroke-width: 5px;
     -webkit-text-stroke-color: black;
     top: -22px;
@@ -225,36 +235,70 @@ img.charImgRandom {
 }
 
 .playerInfo {
-    
+    font-family: "CB2";
+    text-shadow: 10px 0px black;
     position: absolute;
     z-index: 1;
     font-size: 23px;
-    bottom: 0px;
+    bottom: -125px;
     width: 100%;
     text-align: center;
     color: white;
-    background: black;
+    /* background: black; */
 }
 
 .playerInfo.p1 {
-    font-size: 38px;
+    font-size: 150px;
     
 }
 
 .playerInfo.p2 {
-    font-size: 30px;
+    font-size: 100px;
 }
 
 .playerInfo.p3 {
-    font-size: 30px;
+    font-size: 100px;
 }
 .playerInfo.p4 {
-    font-size: 30px;
+    font-size: 100px;
 }
+.playerInfo.p5 {
+  font-size: 70px;
+}
+
+.playerInfo.p6 {
+  font-size: 70px;
+}
+
+.playerInfo.p7 {
+  font-size: 70px;
+}
+
+.playerInfo.p8 {
+  font-size: 70px;
+}
+
 
 .playerTag {
     font-size: calc(100% - 50%);
 }
+
+
+#charP1, #charP2, #charP3, #charP4, #charP5, #charP6, #charP7, #charP8 {
+  opacity: .75;
+  filter: blur(1px) contrast(200%);
+  mix-blend-mode: screen;
+}
+
+#trailP1, #trailP2, #trailP3, #trailP4, #trailP5, #trailP6, #trailP7, #trailP8 {
+  opacity: .1;
+  /* filter: blur(1px) contrast(1000%) grayscale(1);
+  mix-blend-mode: screen;
+  width: 100%; */
+}
+
+
+
 
 /* Animations! */
 
