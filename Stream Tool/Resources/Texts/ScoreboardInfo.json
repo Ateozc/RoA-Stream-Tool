@@ -1,19 +1,19 @@
 {
   "player": [
     {
-      "name": "DoubleW",
-      "twitter": "",
+      "name": "3XD",
+      "twitter": "@3_X_D",
       "pronouns": "He/Him",
-      "tag": "He/Him",
-      "character": "Ranno",
-      "characterIndex": 14,
-      "skin": "Default",
-      "skinIndex": 0,
-      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Rivals of Aether/Ranno/Default.png",
-      "defaultSkinPath": "Resources/Games/Rivals of Aether/Ranno/Default.png",
-      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Ranno/Default.png",
-      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Ranno/Default.png",
-      "backgroundWebm": "Resources/Games/Rivals of Aether/Ranno/BG.webm",
+      "tag": "",
+      "character": "Zetterburn",
+      "characterIndex": 18,
+      "skin": "Red",
+      "skinIndex": 2,
+      "guiSkinPath": "X:\\OBS\\RoA-Stream-Tool\\Stream Tool\\Resources/Games/Rivals of Aether/Zetterburn/Red.png",
+      "defaultSkinPath": "Resources/Games/Rivals of Aether/Zetterburn/Red.png",
+      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Zetterburn/Red.png",
+      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Zetterburn/Red.png",
+      "backgroundWebm": "Resources/Games/Rivals of Aether/Zetterburn/BG.webm",
       "info": {
         "skinList": [
           {
@@ -42,8 +42,8 @@
             "index": 4
           },
           {
-            "label": "Pink",
-            "fileName": "Pink",
+            "label": "Purple",
+            "fileName": "Purple",
             "index": 5
           },
           {
@@ -62,13 +62,13 @@
             "index": 9
           },
           {
-            "label": "Pool Party",
-            "fileName": "Pool Party",
+            "label": "Champion",
+            "fileName": "Champion",
             "index": 11
           },
           {
-            "label": "Champion",
-            "fileName": "Champion",
+            "label": "Excaliburn",
+            "fileName": "Excaliburn",
             "index": 12
           },
           {
@@ -82,8 +82,8 @@
             "index": 14
           },
           {
-            "label": "Tuxedo",
-            "fileName": "Tuxedo",
+            "label": "Shine",
+            "fileName": "Shine",
             "index": 15
           },
           {
@@ -92,14 +92,19 @@
             "index": 16
           },
           {
-            "label": "Infamous",
-            "fileName": "Infamous",
+            "label": "LoA",
+            "fileName": "LoA",
             "index": 17
           },
           {
             "label": "Ranked",
             "fileName": "Ranked",
             "index": 18
+          },
+          {
+            "label": "Steampunk",
+            "fileName": "Steampunk",
+            "index": 19
           },
           {
             "label": "HD",
@@ -123,98 +128,104 @@
           "Red",
           "Green",
           "Grey",
-          "Pink",
+          "Purple",
           "Halloween",
           "Christmas",
           "Valentines",
           "Summer",
           "Default Custom 1",
           "Default Custom 2",
-          "Pool Party",
           "Champion",
+          "Excaliburn",
           "Abyss",
           "Early Access",
-          "Tuxedo",
+          "Shine",
           "Golden",
-          "Infamous",
+          "LoA",
           "Ranked",
+          "Steampunk",
           "HD",
           "LoA HD",
           "LoA 1 HD"
         ],
         "scoreboard": {
           "neutral": {
-            "x": 25,
-            "y": 115,
-            "scale": 3.5
+            "x": -90,
+            "y": 25,
+            "scale": 4.2
           },
-          "Tuxedo": {
-            "x": 35,
-            "y": 115,
-            "scale": 3.5
-          },
-          "LoA 1 HD": {
-            "x": 12,
-            "y": 160,
-            "scale": 4
+          "LoA": {
+            "x": -70,
+            "y": 35,
+            "scale": 4.5
           },
           "LoA HD": {
+            "x": 10,
+            "y": 147,
+            "scale": 5.8
+          },
+          "LoA 1 HD": {
             "x": 25,
-            "y": 195,
-            "scale": 4.9
+            "y": 140,
+            "scale": 6
           },
           "HD": {
-            "x": 9,
-            "y": 120,
-            "scale": 4.5
+            "x": -102,
+            "y": 35,
+            "scale": 4.7
           }
         },
         "vsScreen": {
           "neutral": {
-            "x": -490,
-            "y": 225,
-            "scale": 1.2
+            "x": -675,
+            "y": 0,
+            "scale": 1.25
+          },
+          "LoA": {
+            "x": -660,
+            "y": 70,
+            "scale": 1.35
           },
           "LoA HD": {
-            "x": -475,
-            "y": 290,
-            "scale": 1.3
-          },
-          "LoA 1 HD": {
-            "x": -510,
-            "y": 220,
+            "x": -500,
+            "y": 150,
             "scale": 1.2
           },
-          "Tuxedo": {
-            "x": -450,
-            "y": 225,
+          "LoA 1 HD": {
+            "x": -495,
+            "y": 125,
             "scale": 1.2
           },
           "HD": {
-            "x": -490,
-            "y": 200,
-            "scale": 1.27
+            "x": -700,
+            "y": -20,
+            "scale": 1.25
           }
         },
         "gui": {
           "neutral": {
-            "x": 8,
-            "y": 70,
-            "scale": 5
-          },
-          "LoA HD": {
-            "x": 20,
-            "y": 98,
-            "scale": 6
-          },
-          "LoA 1 HD": {
-            "x": 12,
-            "y": 93,
+            "x": -45,
+            "y": 16,
             "scale": 5.5
           },
-          "HD": {
+          "LoA": {
+            "x": -30,
+            "y": 20,
+            "scale": 6
+          },
+          "LoA HD": {
             "x": 10,
-            "y": 64,
+            "y": 67,
+            "scale": 6.5
+          },
+          "LoA 1 HD": {
+            "x": 10,
+            "y": 58,
+            "scale": 6.5
+          },
+          "HD": {
+            "x": -42,
+            "y": 16,
             "scale": 5.5
           }
         }
@@ -223,8 +234,8 @@
         "name": "Red",
         "hex": "#ed1c23"
       },
-      "vsScreenSkin": "Default",
-      "scoreboardSkin": "Default",
+      "vsScreenSkin": "Red",
+      "scoreboardSkin": "Red",
       "team": 0
     },
     {
@@ -534,7 +545,7 @@
       "name": "Doots",
       "twitter": "",
       "pronouns": "He/Him",
-      "tag": "Light",
+      "tag": "",
       "character": "Orcane",
       "characterIndex": 11,
       "skin": "Red",
@@ -1317,9 +1328,9 @@
     },
     {
       "name": "Wisp",
-      "twitter": "",
+      "twitter": "@Wisssssp",
       "pronouns": "He/Him",
-      "tag": "SQUAK!",
+      "tag": "SQUAWK!",
       "character": "Clairen",
       "characterIndex": 2,
       "skin": "Hero",
@@ -1705,15 +1716,15 @@
       "name": "DoubleW",
       "twitter": "",
       "pronouns": "He/Him",
-      "tag": "",
+      "tag": "He/Him",
       "character": "Ranno",
       "characterIndex": 14,
-      "skin": "Green",
-      "skinIndex": 3,
+      "skin": "Default",
+      "skinIndex": 0,
       "placement": 7,
-      "defaultSkinPath": "Resources/Games/Rivals of Aether/Ranno/Green.png",
-      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Ranno/Green.png",
-      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Ranno/Green.png",
+      "defaultSkinPath": "Resources/Games/Rivals of Aether/Ranno/Default.png",
+      "vsScreenSkinPath": "Resources/Games/Rivals of Aether/Ranno/Default.png",
+      "scoreboardSkinPath": "Resources/Games/Rivals of Aether/Ranno/Default.png",
       "backgroundWebm": "Resources/Games/Rivals of Aether/Ranno/BG.webm",
       "info": {
         "skinList": [
@@ -1921,8 +1932,8 @@
         }
       },
       "teamColor": "",
-      "vsScreenSkin": "Green",
-      "scoreboardSkin": "Green",
+      "vsScreenSkin": "Default",
+      "scoreboardSkin": "Default",
       "team": 0
     }
   ],
