@@ -1,3 +1,10 @@
 [
-  "Example.mjs"
+  "AdvancedColors.mjs",
+  "EasyGUISection.mjs",
+  "Example.mjs",
+  "NameThatColor.mjs",
+  "obs-websocket-js.mjs",
+  "OBSWebsocketControl.mjs",
+  "ScreenRocker.mjs",
+  "VodRename.mjs"
 ]

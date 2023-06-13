@@ -213,7 +213,11 @@ class VodRename {
             return;
         }
 
-        this.#vodRenameBtn.removeEventListener("click", () => this.renameAndMoveFiles());
+        if (this.#vodRenameBtn.title == 'Processing...') {
+            displayNotif('Please wait for the rename to finish processing.')
+            return;
+        }
+
         this.#vodRenameBtn.title = 'Processing...';
 
 
@@ -250,7 +254,6 @@ class VodRename {
             console.log(e);
         }
 
-        this.#vodRenameBtn.addEventListener("click", () => this.renameAndMoveFiles());
         this.#vodRenameBtn.title = 'Rename Vod Files';
         displayNotif('Files have been Renamed and moved');
     }

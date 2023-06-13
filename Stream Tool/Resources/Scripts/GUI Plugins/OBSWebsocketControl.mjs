@@ -209,6 +209,22 @@ class OBSControl {
         
     }
 
+    async checkIfRecording() {
+        if (!this.connected()) {
+            return;
+        }
+
+        try {
+            let response = await obs.call('GetRecordStatus');
+            this.#recording = response.outputActive;
+            this.#changeRecordingBtnText();
+        } catch (err) {
+            if (this.#wasConnectionLost(err) && this.connected()) {
+                await this.startRecord();
+            }
+        }
+    }
+
     async toggleRecording() {
         if (!this.connected()) {
             return;
@@ -230,7 +246,11 @@ class OBSControl {
         if (!this.connected()) {
             return;
         }
+        await this.checkIfRecording();
 
+        if (this.#recording) {
+            return;
+        }
         try {
             await obs.call('StartRecord');
             this.#recording = true;
@@ -244,13 +264,20 @@ class OBSControl {
     }
 
     async stopRecord() {
+        
         if (!this.connected()) {
             return;
         }
-        
+
+        await this.checkIfRecording();
+
+        if (!this.#recording) {
+            return;
+        }
         try {
-            this.#recording = false;
+            
             await obs.call('StopRecord');
+            this.#recording = false;
             this.#changeRecordingBtnText();
         } catch (err) {
             if (this.#wasConnectionLost(err) && this.connected()) {

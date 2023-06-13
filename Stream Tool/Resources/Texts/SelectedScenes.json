@@ -1,1 +1,6 @@
-{}
+{
+  "startScene": "Vs Screen (Set Start)",
+  "transitionScene": "Vs Screen (Between Games)",
+  "inGameScene": "Main Screen with overlay",
+  "endScene": "Intermission"
+}

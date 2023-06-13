@@ -87,7 +87,7 @@ const newToggles = [
     },
     {
         id: "screenRockerAutoApplyToggle",
-        title: "When enabled, all changes immediately get applied to stream. If disabled, you will need to press 'Update' to apply changes.",
+        title: "When enabled, all changes from the Screen Rocker immediately get applied to stream. If disabled, you will need to press 'Update' to apply changes. Update must be pressed for anything that is being handled manually.",
         innerText: "Auto Apply Update",
         type: "checkbox",
         disabled: false,
@@ -289,7 +289,12 @@ export class ScreenRocker {
         //OBS Items
         this.#screenRockerOBSBtn.addEventListener("click", () => this.toggleAutoOBSControl());
         this.#getScenesBtn.addEventListener("click", () => this.#setupSelectBoxes());
+
+        // updateDiv.removeEventListener("click", writeScoreboard);
+        updateDiv.addEventListener("click", ()=> this.getSetData());
         
+        
+                
         //Scene Selections
 
         this.#screenRockerStartSceneSelect.addEventListener('change', () => this.#setSelectedScenes(true));
@@ -403,6 +408,7 @@ export class ScreenRocker {
 
         this.#screenRockerInMatchCheck.checked = this.#settings.inMatch;
         this.#saveSettings();
+        this.getSetData();
     }
 
     #toggleDisableSceneSelects() {
@@ -874,8 +880,8 @@ export class ScreenRocker {
 
     #writeData() {
         if (this.#settings.updateAutoApply && playersReady()) {
-            updateDiv.click();
-            // writeScoreboard();
+            // updateDiv.click();
+            writeScoreboard();
             // document.getElementById("botBar").style.backgroundColor = "var(--bg3)";   
         }
     }
@@ -910,7 +916,6 @@ export class ScreenRocker {
         
         //Player Characters
         let playerIndex = 0;
-        console.log(this.#roaStateData.Characters);
         for (let i = 0; i < this.#roaStateData.Characters.length; i++) {
             let slot = this.#roaStateData.Characters[i].SlotNumber;
             let char = capitalizeWords(this.#roaStateData.Characters[i].Character);
