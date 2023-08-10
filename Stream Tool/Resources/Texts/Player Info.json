@@ -41,15 +41,15 @@
   },
   {
     "name": "Test",
-    "pronouns": "",
     "tag": "One",
+    "pronouns": "",
     "twitter": "",
     "twitch": "",
     "yt": "",
     "characters": [
       {
         "character": "Absa",
-        "skin": "Default"
+        "skin": "Blue"
       },
       {
         "character": "Clairen",

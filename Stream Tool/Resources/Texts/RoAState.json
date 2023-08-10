@@ -14,7 +14,7 @@
       "SlotNumber": 2,
       "SlotState": "HMN",
       "Stocks": 0,
-      "Damage": 0,
+      "Damage": 68,
       "GameCount": 3
     },
     {
@@ -30,12 +30,12 @@
       "SlotNumber": 4,
       "SlotState": "OFF",
       "Stocks": 0,
-      "Damage": 0,
+      "Damage": 5,
       "GameCount": 0
     }
   ],
   "TourneySet": {
-    "InMatch": true,
+    "InMatch": false,
     "TourneyModeBestOf": 5,
     "Stocks": 3,
     "Time": 8

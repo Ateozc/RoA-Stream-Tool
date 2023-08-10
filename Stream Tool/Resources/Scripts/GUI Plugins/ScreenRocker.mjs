@@ -731,11 +731,11 @@ export class ScreenRocker {
     }
 
     async #setCharAndSkinData(playerIndex, char) {
-        if(this.#settings.updateChar) { // update characters
+        if(this.#settings.updateChar && !this.inMatch()) { // update characters
             let playerPresetSkin = {};
             playerPresetSkin = this.#getSkinPreset(players[playerIndex].getName(), char);
-
-            if (players[playerIndex].char != char || players[playerIndex].skin.name != playerPresetSkin.name || players[playerIndex].skinHex != playerPresetSkin.hex) {
+            
+            if (players[playerIndex].char != char || players[playerIndex].skin.name != playerPresetSkin.name || (playerPresetSkin.hex != '' && players[playerIndex].skinHex != playerPresetSkin.hex)) {
                 this.#diffFound = true;
                 await players[playerIndex].charChange(char, true);
                 if (playerPresetSkin.customImg) {
@@ -759,6 +759,7 @@ export class ScreenRocker {
             for (let i = 0; i < this.#playerPresets.length; i++) {
                 let player = this.#playerPresets[i];
                 if (player.name == name) {
+                    console.log(player.characters);
                     for (let j = 0; j < player.characters.length; j++) {
                         if (char == player.characters[j].character) {
     
