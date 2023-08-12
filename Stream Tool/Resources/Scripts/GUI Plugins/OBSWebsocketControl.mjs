@@ -320,7 +320,7 @@ class OBSControl {
                 "imageFilePath": savePath,
                 "imageWidth": 1920,
                 "imageHeight": 1080,
-                "imageCompressionQuality": 100
+                "imageCompressionQuality": 15
             });
         } catch (err) {
             this.#wasConnectionLost(err);
