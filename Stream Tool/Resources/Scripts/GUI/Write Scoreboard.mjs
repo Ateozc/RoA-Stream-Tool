@@ -71,6 +71,7 @@ export async function writeScoreboard() {
         round: round.getText(),
         tournamentName: tournament.getText(),
         caster: [],
+        socialNames: ["twitch", "yt", "twitter", "masto", "cohost"],
         allowIntro: settings.isIntroChecked(),
         // this is just for remote updating
         altSkin: settings.isAltArtChecked(),
@@ -92,9 +93,7 @@ export async function writeScoreboard() {
             pronouns: players[i].pronouns,
             tag: players[i].tag,
             name: players[i].getName(),
-            twitter: players[i].twitter,
-            twitch: players[i].twitch,
-            yt: players[i].yt,
+            socials: players[i].getSocials(),
             sc : {
                 charImg: players[i].scBrowserSrc || players[i].scSrc,
                 charPos: players[i].getScCharPos(),
@@ -133,9 +132,9 @@ export async function writeScoreboard() {
     for (let i = 0; i < casters.length; i++) {
         scoreboardJson.caster.push({
             name: casters[i].getName(),
-            twitter: casters[i].getTwitter(),
-            twitch: casters[i].getTwitch(),
-            yt: casters[i].getYt(),
+            pronouns : casters[i].getPronouns(),
+            tag : casters[i].getTag(),
+            socials : casters[i].getSocials()
         })
     }
 
@@ -148,7 +147,9 @@ export async function writeScoreboard() {
         ipc.sendRemoteGameData();
 
         //simple .txt files
-        saveSimpleTexts();
+        if (settings.isSimpleTextsChecked()) {
+            saveSimpleTexts();
+        }
 
     } else { // remote update stuff
 

@@ -57,9 +57,9 @@ class CommFinder extends Finder {
                     // data to be accessed when clicked
                     const cData = {
                         name : preset.name,
-                        twitter : preset.twitter,
-                        twitch : preset.twitch,
-                        yt : preset.yt
+                        pronouns : preset.pronouns,
+                        tag : preset.tag,
+                        socials : preset.socials
                     }
 
                     // when the div is clicked, update caster
@@ -92,9 +92,9 @@ class CommFinder extends Finder {
         current.focus = -1;
 
         caster.setName(cData.name);
-        caster.setTwitter(cData.twitter);
-        caster.setTwitch(cData.twitch);
-        caster.setYt(cData.yt);
+        caster.setPronouns(cData.pronouns);
+        caster.setTag(cData.tag);
+        caster.setSocials(cData.socials);
 
         this.hide();
 

@@ -1,5 +1,6 @@
-import { PlayerBracket } from "./Player Bracket.mjs";
-import { PlayerGame } from "./Player Game.mjs";
+/* import { PlayerBracket } from "./Player Bracket.mjs";
+import { PlayerGame } from "./Player Game.mjs"; */
+// TODO this breaks everything for some reason ??
 
 /** @type {PlayerGame[]} */
 export const players = [];
@@ -36,9 +37,7 @@ export function clearPlayers() {
         // clear player info
         players[i].pronouns = "";
         players[i].setTag("");
-        players[i].twitter = "";
-        players[i].twitch = "";
-        players[i].yt = "";
+        players[i].socials = {};
 
         //reset characters to random
         players[i].charChange("Random");

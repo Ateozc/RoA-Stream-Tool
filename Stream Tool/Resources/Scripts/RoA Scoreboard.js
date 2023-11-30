@@ -1,19 +1,21 @@
-'use strict';
+import { scoreboardIntro } from "./Scoreboard/Intro.mjs";
+import { round } from "./Scoreboard/Round.mjs";
+import { fadeInTimeSc, fadeOutTimeSc, introDelaySc } from "./Scoreboard/ScGlobals.mjs";
+import { fadeIn, fadeInMove } from "./Utils/Fade In.mjs";
+import { fadeOut } from "./Utils/Fade Out.mjs";
+import { current } from "./Utils/Globals.mjs";
+import { resizeText } from "./Utils/Resize Text.mjs";
+import { updateText } from "./Utils/Update Text.mjs";
+import { initWebsocket } from "./Utils/WebSocket.mjs";
 
-//animation stuff
-const fadeInTime = .3; //(seconds)
-const fadeOutTime = .2;
-let introDelay = .5; //all animations will get this delay when the html loads (use this so it times with your transition)
 
 //max text sizes (used when resizing back)
-const introSize = "85px";
-const nameSize = "24px";
-const tagSize = "17px";
-const nameSizeDubs = "22px";
-const tagSizeDubs = "15px";
-const teamSize = "22px";
-let numSize = "36px"
-const roundSize = "19px";
+const nameSize = 24;
+const tagSize = 17;
+const nameSizeDubs = 22;
+const tagSizeDubs = 15;
+const teamSize = 22;
+let numSize = 36;
 
 //to avoid the code constantly running the same method over and over
 const pCharPrev = [], scorePrev = [], colorPrev = [], wlPrev = [], topBarMoved = [];
@@ -23,8 +25,6 @@ let bestOfPrev, gamemodePrev;
 let maxPlayers = 2;
 const maxSides = 2;
 
-// this will connect us to the GUI
-let webSocket;
 
 let startup = true;
 
@@ -39,7 +39,6 @@ const scoreImg = document.getElementsByClassName("scoreImgs");
 const scoreNums = document.getElementsByClassName("scoreNum");
 const scoreAnim = document.getElementsByClassName("scoreVid");
 const tLogoImg = document.getElementsByClassName("tLogos");
-const textRound = document.getElementById('round');
 const borderImg = document.getElementsByClassName('border');
 
 // we want the correct order, we cant use getClassName here
@@ -56,51 +55,26 @@ pushArrayInOrder(pProns, "Pronouns");
 pushArrayInOrder(charImg, "Character");
 
 
-// first we will start by connecting with the GUI with a websocket
-startWebsocket();
-function startWebsocket() {
+// start the connection to the GUI so everything gets
+// updated once the GUI sends back some data
+initWebsocket("gameData", (data) => updateData(data));
 
-	// change this to the IP of where the GUI is being used for remote control
-	const webSocket = new WebSocket("ws://localhost:8080?id=gameData");
-	webSocket.onopen = () => { // if it connects successfully
-		// everything will update everytime we get data from the server (the GUI)
-		webSocket.onmessage = function (event) {
-			updateData(JSON.parse(event.data));
-		}
-		// hide error message in case it was up
-		document.getElementById('connErrorDiv').style.display = 'none';
-	}
 
-	// if the connection closes, wait for it to reopen
-	webSocket.onclose = () => {errorWebsocket()}
+/**
+ * Updates all displayed data
+ * @param {Object} data - All data related to the VS Screen
+ */
+async function updateData(data) {
 
-}
-function errorWebsocket() {
+	const player = data.player;
+	const teamName = data.teamName;
 
-	// show error message
-	document.getElementById('connErrorDiv').style.display = 'flex';
-	// delete current webSocket
-	webSocket = null;
-	// we will attempt to reconect every 5 seconds
-	setTimeout(() => {
-		startWebsocket();
-	}, 5000);
+	const color = data.color;
+	const score = data.score;
+	const wl = data.wl;
 
-}
-
-async function updateData(scInfo) {
-
-	const player = scInfo.player;
-	const teamName = scInfo.teamName;
-
-	const color = scInfo.color;
-	const score = scInfo.score;
-	const wl = scInfo.wl;
-
-	const bestOf = scInfo.bestOf;
-	const gamemode = scInfo.gamemode;
-
-	const round = scInfo.round;
+	const bestOf = data.bestOf;
+	const gamemode = data.gamemode;
 
 
 	// first of all, things that will always happen on each cycle
@@ -120,9 +94,9 @@ async function updateData(scInfo) {
 	for (let i = 0; i < maxSides; i++) {
 
 		// change the player background colors
-		if (!colorPrev[i] || colorPrev[i].name != color[i].name || colorPrev[i].hex != color[i].hex) {
+		if (colorPrev[i] != color[i].name) {
 			updateColor(colorImg[i], color[i], gamemode, scoreNums[i]);
-			colorPrev[i] = structuredClone(color[i]);
+			colorPrev[i] = color[i].name;
 		}
 
 	}
@@ -131,85 +105,17 @@ async function updateData(scInfo) {
 	// now, things that will happen only once, when the html loads
 	if (startup) {
 
-		//of course, we have to start with the cool intro stuff
-		if (scInfo.allowIntro) {
+		// of course, we have to start with the cool intro stuff
+		if (data.allowIntro) {
 
-			//lets see that intro
-			document.getElementById('overlayIntro').style.opacity = 1;
+			// play that intro
+			scoreboardIntro.play(data);
 
-			//this vid is just the bars moving (todo: maybe do it through javascript?)
-			const introVid = document.getElementById('introVid');
-			introVid.src = 'Resources/Overlay/Scoreboard/Intro.webm';
-			introVid.play();
+			// increase the delay so everything animates after the intro
+			current.delay = introDelaySc + 2;
 
-			if (score[0] + score[1] == 0) { //if this is the first game, introduce players
-
-				for (let i = 0; i < maxSides; i++) {
-					const pIntroEL = document.getElementById('p'+(i+1)+'Intro');
-
-					//update players intro text
-					if (gamemode == 1) { //if singles, show player 1 and 2 names
-						pIntroEL.textContent = player[i].name;
-					} else { //if doubles
-						if (teamName[i] == color[i].name + " Team") { //if theres no team name, show player names
-							pIntroEL.textContent = player[i].name + " & " + player[i+2].name;
-						} else { //else, show the team name
-							pIntroEL.textContent = teamName[i];
-						}
-					}
-
-					pIntroEL.style.fontSize = introSize; //resize the font to its max size
-					resizeText(pIntroEL); //resize the text if its too large
-
-					//change the color of the player text shadows
-					pIntroEL.style.textShadow = '0px 0px 20px ' + color[i].hex;
-					
-				};
-
-				//player name fade in
-				fadeInMove(document.getElementById("p1Intro"), introDelay, null, true);
-				fadeInMove(document.getElementById("p2Intro"), introDelay, null, false);
-
-
-			} else { //if its not the first game, show game count
-				const midTextEL = document.getElementById('midTextIntro');
-				if ((score[0] + score[1]) != 4) { //if its not the last game of a bo5
-
-					//just show the game count in the intro
-					midTextEL.textContent = "Game " + (score[0] + score[1] + 1);
-
-				} else { //if game 5
-
-					if ((round.toUpperCase() == "TRUE FINALS")) { //if true finals
-
-						midTextEL.textContent = "True Final Game"; //i mean shit gets serious here
-						
-					} else {
-
-						midTextEL.textContent = "Final Game";
-						
-						//if GF, we dont know if its the last game or not, right?
-						if (round.toLocaleUpperCase() == "GRAND FINALS" && !(wl[0] == "L" && wl[1] == "L")) {
-							fadeIn(document.getElementById("superCoolInterrogation"), introDelay+.5, 1.5);
-						}
-
-					}
-				}
-			}
-
-			document.getElementById('roundIntro').textContent = round;
-			document.getElementById('tNameIntro').textContent = scInfo.tournamentName;
-			
-			//round, tournament and VS/GameX text fade in
-			document.querySelectorAll(".textIntro").forEach(el => {
-				fadeIn(el, introDelay-.2, fadeInTime);
-			});
-
-			//aaaaand fade out everything
-			fadeOut(document.getElementById("overlayIntro"), fadeInTime+.2, introDelay+1.8)
-
-			//lets delay everything that comes after this so it shows after the intro
-			introDelay = 2.5;
+		} else {
+			current.delay = introDelaySc;
 		}
 
 
@@ -230,9 +136,9 @@ async function updateData(scInfo) {
 			updatePlayerName(i, player[i].name, player[i].tag, gamemode);
 			if (gamemode == 1) { //if this is singles, fade the names in with a sick motion
 				const side = (i % 2 == 0) ? true : false; //to know direction
-				fadeInMove(pWrapper[i], introDelay, null, side); // fade it in with some movement
+				fadeInMove(pWrapper[i], null, side, current.delay); // fade it in with some movement
 			} else { //if doubles, just fade them in
-				fadeIn(pWrapper[i], introDelay+.15)
+				fadeIn(pWrapper[i], fadeInTimeSc, current.delay+.15)
 			}
 
 			// show player pronouns if any
@@ -251,7 +157,7 @@ async function updateData(scInfo) {
 		// now we use that array from earlier to animate all characters at the same time
 		Promise.all(charsLoaded).then( (value) => { // when all images are loaded
 			for (let i = 0; i < value.length; i++) { // for every character loaded
-				fadeInMove(value[i], introDelay+.2, true); // fade it in
+				fadeInMove(value[i], true, false, current.delay+.2); // fade it in
 			}
 		})
 
@@ -264,11 +170,12 @@ async function updateData(scInfo) {
 			//set the team names if not singles
 			if (gamemode != 1) {
 				updateText(teamNames[i], teamName[i], teamSize);
-				fadeInMove(teamNames[i], introDelay, null, side);
+				resizeText(teamNames[i]);
+				fadeInMove(teamNames[i], null, side, current.delay);
 			}
 
 			// fade in move the scoreboards
-			fadeInMove(scoreboard[i].parentElement, introDelay-.1, null, side);
+			fadeInMove(scoreboard[i].parentElement, null, side, current.delay-.1);
 			
 			//if its grands, we need to show the [W] and/or the [L] on the players
 			updateWL(wl[i], i);
@@ -289,17 +196,16 @@ async function updateData(scInfo) {
 			}
 
 			// fade in the top bar
-			fadeInTopBar(topBars[i], introDelay+.6);
+			fadeInTopBar(topBars[i], current.delay+.6);
 			
 		}
 
 		//update the round text	and fade it in
-		updateText(textRound, round, roundSize);
-		if (round) { // but only if theres any text to display
-			fadeIn(textRound.parentElement, introDelay);
-		}
+		round.update(data.round);
 
 		startup = false; //next time we run this function, it will skip all we just did
+		current.startup = false;
+
 	}
 
 	// now things that will happen on all the other cycles
@@ -335,12 +241,12 @@ async function updateData(scInfo) {
 						//now that nobody is seeing it, quick, change the text's content!
 						updatePlayerName(i, player[i].name, player[i].tag, gamemode);
 						//fade the name back in with a sick movement
-						fadeInMove(pWrapper[i], 0, null, side);
+						fadeInMove(pWrapper[i], null, side);
 					});
 				} else { //if not singles, dont move the texts
-					fadeOut(pWrapper[i]).then( () => {
+					fadeOut(pWrapper[i], fadeOutTimeSc).then( () => {
 						updatePlayerName(i, player[i].name, player[i].tag, gamemode);
-						fadeIn(pWrapper[i]);
+						fadeIn(pWrapper[i], fadeInTimeSc);
 					}); 
 				}
 				
@@ -372,7 +278,7 @@ async function updateData(scInfo) {
 		Promise.all(animsEnded).then( () => { // need to sync somehow
 			Promise.all(charsLoaded).then( (value) => { // when all images are loaded
 				for (let i = 0; i < value.length; i++) { // for every character loaded
-					fadeInMove(value[i], .1, true); // fade it in
+					fadeInMove(value[i], true, false, .1); // fade it in
 				}
 			})
 		})
@@ -388,7 +294,8 @@ async function updateData(scInfo) {
 				if (teamNames[i].textContent != teamName[i]) {
 					fadeOutMove(teamNames[i], null, side).then( () => {
 						updateText(teamNames[i], teamName[i], teamSize);
-						fadeInMove(teamNames[i], 0, null, side);
+						resizeText(teamNames[i]);
+						fadeInMove(teamNames[i], null, side);
 					});
 				}
 			}
@@ -423,16 +330,16 @@ async function updateData(scInfo) {
 			//check if we have a logo we can place on the overlay
 			if (gamemode == 1) { //if this is singles, check the player tag
 				if (pTag[i].textContent != player[i].tag) {
-					fadeOut(tLogoImg[i]).then( () => {
+					fadeOut(tLogoImg[i], fadeOutTimeSc).then( () => {
 						updateLogo(tLogoImg[i], player[i].tag);
-						fadeIn(tLogoImg[i]);
+						fadeIn(tLogoImg[i], fadeInTimeSc);
 					});
 				}
 			} else { //if doubles, check the team name
 				if (teamNames[i].textContent != teamName[i]) {
-					fadeOut(tLogoImg[i]).then( () => {
+					fadeOut(tLogoImg[i], fadeOutTimeSc).then( () => {
 						updateLogo(tLogoImg[i], teamName[i]);
-						fadeIn(tLogoImg[i]);
+						fadeIn(tLogoImg[i], fadeInTimeSc);
 					});
 				}
 			}
@@ -441,18 +348,7 @@ async function updateData(scInfo) {
 		}
 		
 		//and finally, update the round text
-		if (textRound.textContent != round){
-			fadeOut(textRound).then( () => {
-				updateText(textRound, round, roundSize);
-				fadeIn(textRound);
-			});
-			// if theres no text, hide everything
-			if (round && textRound.parentElement.style.opacity == 0) {
-				fadeIn(textRound.parentElement, fadeOutTime);
-			} else if (!round) {
-				fadeOut(textRound.parentElement);
-			}
-		}
+		round.update(data.round);
 
 	}
 }
@@ -477,8 +373,8 @@ function changeGM(gm) {
 			pWrapper[i].classList.remove("wrappersSingles");
 			pWrapper[i].classList.add("wrappersDubs");
 			//update the text size and resize it if it overflows
-			pName[i].style.fontSize = nameSizeDubs;
-			pTag[i].style.fontSize = tagSizeDubs;
+			pName[i].style.fontSize = nameSizeDubs + "px";
+			pTag[i].style.fontSize = tagSizeDubs + "px";
 			resizeText(pWrapper[i]);
 		}
 		pWrapper[0].style.left = "257px";
@@ -503,7 +399,7 @@ function changeGM(gm) {
 		scoreNums[1].style.left = "225px";
 		scoreNums[0].style.top = "23px";
 		scoreNums[1].style.top = "23px";
-		numSize = "30px";
+		numSize = 30;
 
 		//show all hidden elements
 		const dubELs = document.getElementsByClassName("dubEL");
@@ -523,8 +419,8 @@ function changeGM(gm) {
 		for (let i = 0; i < 2; i++) {
 			pWrapper[i].classList.remove("wrappersDubs");
 			pWrapper[i].classList.add("wrappersSingles");
-			pName[i].style.fontSize = nameSize;
-			pTag[i].style.fontSize = tagSize;
+			pName[i].style.fontSize = nameSize + "px";
+			pTag[i].style.fontSize = tagSize + "px";
 			resizeText(pWrapper[i]);
 		}
 		pWrapper[0].style.left = "38px";
@@ -546,7 +442,7 @@ function changeGM(gm) {
 		scoreNums[1].style.left = "-12px";
 		scoreNums[0].style.top = "27px";
 		scoreNums[1].style.top = "27px";
-		numSize = "36px";
+		numSize = 36;
 
 		const dubELs = document.getElementsByClassName("dubEL");
 		for (let i = 0; i < dubELs.length; i++) {
@@ -579,12 +475,6 @@ async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
 
 function updateColor(colorEL, pColor, gamemode, scoreNum) {
 	colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/${pColor.name}.png`;
-	if (pColor.filter) {
-		colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/Cpu.png`;
-		colorEL.style.webkitFilter = pColor.filter;
-	} else {
-		colorEL.style.filter = '';
-	}
 
 	// change the text shadows for the numerical scores
 	scoreNum.style.webkitTextStroke = "1px " + pColor.hex;
@@ -619,22 +509,15 @@ function updateLogo(logoEL, nameLogo) {
 
 function updatePlayerName(pNum, name, tag, gamemode) {
 	if (gamemode == 2) {
-		pName[pNum].style.fontSize = nameSizeDubs; //set original text size
-		pTag[pNum].style.fontSize = tagSizeDubs;
+		pName[pNum].style.fontSize = nameSizeDubs + "px"; //set original text size
+		pTag[pNum].style.fontSize = tagSizeDubs + "px";
 	} else {
-		pName[pNum].style.fontSize = nameSize;
-		pTag[pNum].style.fontSize = tagSize;
+		pName[pNum].style.fontSize = nameSize + "px";
+		pTag[pNum].style.fontSize = tagSize + "px";
 	}
 	pName[pNum].textContent = name; //change the actual text
 	pTag[pNum].textContent = tag;
 	resizeText(pWrapper[pNum]); //resize if it overflows
-}
-
-//generic text changer
-function updateText(textEL, textToType, maxSize) {
-	textEL.style.fontSize = maxSize; //set original text size
-	textEL.textContent = textToType; //change the actual text
-	resizeText(textEL); //resize it if it overflows
 }
 
 function updateWL(pWL, pNum) {
@@ -664,63 +547,32 @@ function displayTopBarElement(el) {
 }
 
 
-//fade out
-async function fadeOut(itemID, dur = fadeOutTime, delay = 0) {
-	// actual animation
-	itemID.style.animation = `fadeOut ${dur}s ${delay}s both`;
-	// this function will return a promise when the animation ends
-	await new Promise(resolve => setTimeout(resolve, dur * 1000)); // translate to miliseconds
-}
-
 //fade out but with movement
 async function fadeOutMove(itemID, chara, side) {
 
 	if (chara) {
 		// we need to target a different element since chromium
 		// does not support idependent transforms on css yet
-		itemID.parentElement.style.animation = `charaMoveOut ${fadeOutTime}s both
-			,fadeOut ${fadeOutTime}s both`
+		itemID.parentElement.style.animation = `charaMoveOut ${fadeOutTimeSc}s both
+			,fadeOut ${fadeOutTimeSc}s both`
 		;
 	} else {
 		if (side) {
-			itemID.style.animation = `moveOutLeft ${fadeOutTime}s both
-				,fadeOut ${fadeOutTime}s both`
+			itemID.style.animation = `moveOutLeft ${fadeOutTimeSc}s both
+				,fadeOut ${fadeOutTimeSc}s both`
 			;
 		} else {
-			itemID.style.animation = `moveOutRight ${fadeOutTime}s both
-				,fadeOut ${fadeOutTime}s both`
+			itemID.style.animation = `moveOutRight ${fadeOutTimeSc}s both
+				,fadeOut ${fadeOutTimeSc}s both`
 			;
 		}
 		
 	}
 	
-	await new Promise(resolve => setTimeout(resolve, fadeOutTime * 1000));
+	await new Promise(resolve => setTimeout(resolve, fadeOutTimeSc * 1000));
 
 }
 
-//fade in
-function fadeIn(itemID, delay = 0, dur = fadeInTime) {
-	itemID.style.animation = `fadeIn ${dur}s ${delay}s both`;
-}
-
-//fade in but with movement
-function fadeInMove(itemID, delay = 0, chara, side) {
-	if (chara) {
-		itemID.parentElement.style.animation = `charaMoveIn ${fadeOutTime}s ${delay}s both
-			, fadeIn ${fadeOutTime}s ${delay}s both`
-		;
-	} else {
-		if (side) {
-			itemID.style.animation = `moveInLeft ${fadeInTime}s ${delay}s both
-				, fadeIn ${fadeInTime}s ${delay}s both`
-			;
-		} else {
-			itemID.style.animation = `moveInRight ${fadeInTime}s ${delay}s both
-				, fadeIn ${fadeInTime}s ${delay}s both`
-			;
-		}
-	}
-}
 
 //movement for the [W]/[L] images
 async function fadeOutTopBar(el) {
@@ -731,25 +583,6 @@ function fadeInTopBar(el, delay = 0) {
 	el.style.animation = `wlMoveIn .4s ${delay}s both`;
 }
 
-
-//text resize, keeps making the text smaller until it fits
-function resizeText(textEL) {
-	const childrens = textEL.children;
-	while (textEL.scrollWidth > textEL.offsetWidth) {
-		if (childrens.length > 0) { //for tag+player texts
-			Array.from(childrens).forEach((child) => {
-				child.style.fontSize = getFontSize(child);
-			});
-		} else {
-			textEL.style.fontSize = getFontSize(textEL);
-		}
-	}
-}
-
-//returns a smaller fontSize for the given element
-function getFontSize(textElement) {
-	return (parseFloat(textElement.style.fontSize.slice(0, -2)) * .90) + 'px';
-}
 
 // time to change that image!
 async function updateChar(charSrc, charPos, pNum) {

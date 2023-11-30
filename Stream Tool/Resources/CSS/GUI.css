@@ -175,7 +175,7 @@ button:hover {
   display: flex;
 }
 
-.pInfoButt {
+.pInfoButt, .cInfoButt, .cDeleteButt {
   width: 30px;
   background-color: var(--bg4);
   border-radius: 3px;
@@ -187,10 +187,10 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
-.pInfoButt:hover {
+.pInfoButt:hover, .cInfoButt:hover, .cDeleteButt:hover {
   border-color: var(--selected);
 }
-.pInfoButt:focus {
+.pInfoButt:focus, .cInfoButt:focus, .cDeleteButt:focus {
   border-color: var(--focused);
 }
 .pInfoButtIcon {
@@ -686,88 +686,65 @@ button:hover {
 
 /* caster region */
 #casterInfo {
-  height: 60px;
-  padding: 10px;
-  padding: 8px 10px 12px 10px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#casterDiv {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .casterIcon {
   height: 20px;
   width: 20px;
-  margin-left: -5px;
-  margin-top: 5px;
-  margin-right: 3px;
   fill: var(--iconFill);
   display: inline-block;
   flex-shrink: 0;
-}
-
-.twitterIcon {
-  margin-right: 3px;
-  margin-left: 5px;
-}
-.twitchIcon {
-  margin-right: 4px;
-  margin-left: 5px;
-}
-.ytIcon {
-  margin-right: 4px;
-  margin-left: 5px;
-}
-
-#caster1 {
-  padding-bottom: 4px;
 }
 
 .caster {
   display: flex;
 }
 
-.casterGroup {
-  display: flex;
-}
-.casterNameG {
-  width: 28%;
-}
-.casterSocialG {
-  width: 24%;
-}
 
 .cName {
-  width: 100%;
+  width: 100px;
+  border-radius: 0;
 }
 
-.casterInput {
-  width: 100%;
-  margin-left: 1px;
+.cDeleteButt {
+  width: 25px;
+  border-radius: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
-.saveCasterButt {
+
+#addCasterButt {
   display: flex;
-  justify-content: center;
   align-items: center;
   border: 1px solid var(--focused);
   border-radius: 3px;
-  margin-left: 6px;
   transition: border-color 100ms, opacity 100ms;
   background-color: var(--bg4);
-
+  padding: 1px 2px 1px 5px;
+  height: 30px;
 }
-.saveCasterButt:hover {
+#addCasterButt:hover {
   border-color: var(--selected);
-  cursor: pointer;
 }
-.saveCasterButt:active {
+#addCasterButt:active {
   background-color: var(--bg2);
 }
-.saveCasterButt:disabled {
+#addCasterButt:disabled {
   pointer-events: none;
-  opacity: .4;
-}
-
-.saveCasterIcon {
-  width: 22px;
-  height: 22px;
+  opacity: .5;
 }
 
 #casterFinder {
@@ -783,7 +760,7 @@ button:hover {
   height: auto;
 }
 .cFinderPosition {
-  width: 100%;
+  width: 100px;
 }
 
 
@@ -1054,20 +1031,28 @@ button:hover {
 
 /* player info menu that appears on top of viewport */
 #pInfoDiv {
-  width: 100%;
+  display: flex;
   height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  opacity: 0;
+  transform: scale(1.15);
+  pointer-events: none;
+  transition: opacity 150ms, transform 150ms;
+  z-index: 100;
+}
+#pInfoCenter {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
   background-color: var(--bg4);
-  z-index: 100;
   flex-direction: column;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(1.15);
-  transition: opacity 150ms, transform 150ms;
-  position: absolute;
-  top: 0px;
+  overflow: auto;
 }
 
 .pInfoTitle {
@@ -1088,6 +1073,7 @@ button:hover {
 .pInfoRow {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 
 .pInfoEl {
@@ -1102,12 +1088,15 @@ button:hover {
   width: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .pInfoIcon {
   width: 20px;
   height: 20px;
   fill: var(--iconFill);
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .pInfoInput {
   width: 100px;
@@ -1127,6 +1116,13 @@ button:hover {
 }
 .pInfoBotButt:hover {
   border-color: var(--selected);
+}
+
+
+.pInfoSep {
+  height: 1px;
+  width: 100%;
+  background-color: var(--focused);
 }
 
 
@@ -1242,4 +1238,9 @@ button:hover {
     flex-direction: column;
   }
 
+}
+
+
+#caster1, #caster2 {
+  display: none;
 }

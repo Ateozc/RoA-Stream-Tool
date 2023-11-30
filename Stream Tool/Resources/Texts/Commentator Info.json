@@ -1,8 +1,26 @@
 [
   {
     "name": "Readek",
-    "twitter": "readeku",
-    "twitch": "Readek",
-    "yt": "Readek"
+    "tag": "",
+    "pronouns": "",
+    "socials": {
+      "twitter": "",
+      "twitch": "Readek",
+      "yt": "Readek",
+      "masto": "Readek@mstdn.social",
+      "cohost": "Readek"
+    }
+  },
+  {
+    "name": "Test",
+    "tag": "Tag",
+    "pronouns": "Pronouns",
+    "socials": {
+      "twitter": "Twitter",
+      "twitch": "Twitch",
+      "yt": "Youtube",
+      "masto": "Mastodon",
+      "cohost": "Cohost"
+    }
   }
 ]

@@ -3,9 +3,11 @@
     "name": "Ateozc",
     "tag": "",
     "pronouns": "He/Him",
-    "twitter": "Ateozc",
-    "twitch": "Ateozc",
-    "yt": "Ateozc",
+    "socials": {
+      "twitter": "Ateozc",
+      "twitch": "Ateozc",
+      "yt": "Ateozc"
+    },
     "characters": [
       {
         "character": "Absa",
@@ -17,19 +19,23 @@
     "name": "Readek",
     "tag": "",
     "pronouns": "",
-    "twitter": "readeku",
-    "twitch": "Readek",
-    "yt": "Readek",
+    "socials": {
+      "twitter": "",
+      "twitch": "Readek",
+      "yt": "Readek",
+      "masto": "Readek@mstdn.social",
+      "cohost": "Readek"
+    },
     "characters": [
-      {
-        "character": "Guadua",
-        "skin": "Red"
-      },
       {
         "character": "Maypul",
         "skin": "Default",
         "hex": "445C-46F5-F5F5-6E23-2342-1515-345B-3065",
         "customImg": true
+      },
+      {
+        "character": "Guadua",
+        "skin": "Red"
       },
       {
         "character": "Ori and Sein",
@@ -41,15 +47,13 @@
   },
   {
     "name": "Test",
-    "tag": "One",
     "pronouns": "",
-    "twitter": "",
-    "twitch": "",
-    "yt": "",
+    "tag": "One",
+    "socials": {},
     "characters": [
       {
         "character": "Absa",
-        "skin": "Blue"
+        "skin": "Default"
       },
       {
         "character": "Clairen",

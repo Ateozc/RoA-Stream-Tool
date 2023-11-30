@@ -1,33 +1,31 @@
-import { saveJson } from "../File System.mjs";
 import { commFinder } from "../Finder/Comm Finder.mjs";
-import { inside, stPath } from "../Globals.mjs";
-import { displayNotif } from "../Notifications.mjs";
+import { inside } from "../Globals.mjs";
+import { profileInfo } from "../Profile Info.mjs";
+import { deletCaster } from "./Casters.mjs";
 
 export class Caster {
 
+    #id = 0;
+    #el;
+
+    profileType = "commentator";
+
+    tag = "";
+    pronouns = "";
+    socials = {};
+
     #nameEl;
-    #twitterEl;
-    #twitchEl;
-    #ytEl;
-    #saveEl;
 
-    constructor(el) {
+    constructor(id) {
 
-        this.#nameEl = el.getElementsByClassName(`cName`)[0];
-        this.#twitterEl = el.getElementsByClassName(`cTwitter`)[0];
-        this.#twitchEl = el.getElementsByClassName(`cTwitch`)[0];
-        this.#ytEl = el.getElementsByClassName(`cYt`)[0];
-        this.#saveEl = el.getElementsByClassName(`saveCasterButt`)[0];
+        this.#id = id;
+
+        this.#el = this.#createElements();
+
+        this.#nameEl = this.#el.getElementsByClassName(`cName`)[0];
 
         // every time we type on name
         this.#nameEl.addEventListener("input", () => {
-
-            // check to disable or enable save button
-            if (this.getName()) {
-                this.#saveEl.disabled = false;
-            } else {
-                this.#saveEl.disabled = true;
-            }
 
             // check if theres an existing caster preset
             commFinder.fillFinderPresets(this);
@@ -49,77 +47,75 @@ export class Caster {
             }
         });
 
-        // every time we click on the save button
-        this.#saveEl.addEventListener("click", () => {this.#savePreset()});
+        // open player info menu if clicking on the icon
+        this.#el.getElementsByClassName("pInfoButt")[0].addEventListener("click", () => {
+            profileInfo.show(this);
+        });
+
+        // remove this commentator when clicking on the button
+        this.#el.getElementsByClassName(`cDeleteButt`)[0].addEventListener("click", () => {
+            this.delet();
+        });
 
     }
 
+    
+    getId() {
+        return this.#id;
+    }
     getName() {
         return this.#nameEl.value;
     }
-    getTwitter() {
-        if (this.#twitterEl.value == "") {
-            return "-";
-        } else {
-            return this.#twitterEl.value;
-        }
-    }
-    getTwitch() {
-        if (this.#twitchEl.value == "") {
-            return "-";
-        } else {
-            return this.#twitchEl.value;
-        }
-    }
-    getYt() {
-        if (this.#ytEl.value == "") {
-            return "-";
-        } else {
-            return this.#ytEl.value;
-        }
-    }
     setName(text) {
-        this.#nameEl.value = this.#checkText(text);
+        this.#nameEl.value = text;
     }
-    setTwitter(text) {
-        this.#twitterEl.value = this.#checkText(text);
+    getPronouns() {
+        return this.pronouns;
     }
-    setTwitch(text) {
-        this.#twitchEl.value = this.#checkText(text);
+    setPronouns(text) {
+        this.pronouns = text;
     }
-    setYt(text) {
-        this.#ytEl.value = this.#checkText(text);
+    getTag() {
+        return this.tag;
     }
-    /**
-     * Checks if the text is a simple "-" to be able to return nothing
-     * @param {String} text String to check
-     * @returns {String} Final text
-     */
-    #checkText(text) {
-        if (text == "-") {
-            return "";
-        }
-        return text;
+    setTag(text) {
+        this.tag = text;
+    }
+    getSocials() {
+        return this.socials;
+    }
+    setSocials(socials) {
+        this.socials = socials;
     }
 
-    /** Saves a commentator local json as a preset */
-    #savePreset() {
+    delet() {
+        this.#el.remove();
+        deletCaster(this.#id);
+    }
 
-        // save current info to an object
-        const preset = {
-            name: this.getName(),
-            twitter: this.getTwitter(),
-            twitch: this.getTwitch(),
-            yt: this.getYt()
-        };
 
-        // use this object to create a json file
-        saveJson(`/Commentator Info/${this.getName()}`, preset);
+    /** Creates the HTML elements on the GUI */
+    #createElements() {
 
-        displayNotif("Commentator preset has been saved");
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = `
+            <div class="caster">
 
-        // generate a new presets list
-        commFinder.setCasterPresets();
+                <button class="pInfoButt" title="Edit commentator info" tabindex="-1">
+                    <load-svg src="SVGs/Mic.svg" class="casterIcon"></load-svg>
+                </button>
+
+                <div class="finderPosition cFinderPosition">
+                    <input type="text" class="cName textInput mousetrap" placeholder="Caster name" spellcheck="false">
+                </div>
+
+                <button class="cDeleteButt" title="Remove commentator">-</button>
+
+            </div>
+        `
+
+        document.getElementById("casterDiv").appendChild(newDiv);
+        return newDiv;
 
     }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>RoA Game Overlay</title>
-    <script src="Resources/Scripts/RoA Scoreboard.js" defer></script>
+    <script src="Resources/Scripts/RoA Scoreboard.js" type="module"></script>
     <link rel="stylesheet" href="Resources/CSS/RoA Scoreboard.css">
     <link rel="stylesheet" href="Resources/CSS/RoA Scoreboard Custom.css">
 </head>
@@ -126,17 +126,24 @@
         </div>
     </div>
 
-    <div id="overlayRound" class="absol">
-        <img src="Resources/Overlay/Scoreboard/Round BG.png" id="roundBG" alt=""/>
-        <span id="round"></span>
+    <div id="roundDiv">
+        <div id="roundBorder">
+            <div id="roundText"></div>
+        </div>
     </div>
 
     <div id="overlayIntro">
+
         <div id="introBG"></div>
         <div id="introTopBar" class="blackBar"></div>
         <div id="introBotBar" class="blackBar"></div>
 
-        <video id="introVid" width="1920" height="1080"></video>
+        <div id="introWhiteBars">
+            <div id="introWhiteBarsClip">
+                <div id="introWhiteBarTop" class="introWhiteBar"></div>
+                <div id="introWhiteBarBot" class="introWhiteBar"></div>
+            </div>
+        </div>
 
         <div id="playersIntro">
             <span id="p1Intro" class="pIntro"></span>
@@ -152,6 +159,7 @@
         </div>
 
         <span id="superCoolInterrogation">?</span>
+        
     </div>
 
     <div id="connErrorDiv">
