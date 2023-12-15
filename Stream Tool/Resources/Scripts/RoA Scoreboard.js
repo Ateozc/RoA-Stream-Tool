@@ -475,11 +475,27 @@ async function updateScore(pScore, bestOf, pColor, pNum, gamemode, playAnim) {
 
 function updateColor(colorEL, pColor, gamemode, scoreNum) {
 	colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/${pColor.name}.png`;
+	if (pColor.filter) {
+		colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/Cpu.png`;
+		colorEL.style.webkitFilter = pColor.filter;
+	} else {
+		colorEL.style.filter = '';
+	}
 
 	// change the text shadows for the numerical scores
 	scoreNum.style.webkitTextStroke = "1px " + pColor.hex;
 	scoreNum.style.textShadow = "0px 0px 2px " + pColor.hex;
 }
+
+/* //Old code
+function updateColor(colorEL, pColor, gamemode, scoreNum) {
+	colorEL.src = `Resources/Overlay/Scoreboard/Colors/${gamemode}/${pColor.name}.png`;
+
+	// change the text shadows for the numerical scores
+	scoreNum.style.webkitTextStroke = "1px " + pColor.hex;
+	scoreNum.style.textShadow = "0px 0px 2px " + pColor.hex;
+}
+*/
 
 function updateBorder(bestOf, gamemode) {
 	for (let i = 0; i < borderImg.length; i++) {

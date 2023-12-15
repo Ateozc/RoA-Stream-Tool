@@ -8,3 +8,10 @@ This file will get loaded after the original one, meaning that you can
 override anything you want here.
 
 */
+
+.pInfoIconContColorSave {
+    width: 30px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+  }

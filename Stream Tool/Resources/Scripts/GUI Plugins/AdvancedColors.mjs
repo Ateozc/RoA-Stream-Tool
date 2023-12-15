@@ -49,7 +49,7 @@ savePresetContainerL.tabIndex = -1;
 savePresetContainerL.style.display = 'none';
 savePresetContainerL.title = "Save color as a preset."
 const savePresetDiv = document.createElement('div');
-savePresetDiv.className = "pInfoIconCont";
+savePresetDiv.className = "pInfoIconContColorSave";
 savePresetDiv.innerHTML = '<load-svg src="SVGs/Save.svg" class="saveCasterIcon"></load-svg>';
 
 savePresetContainerL.appendChild(savePresetDiv);
@@ -240,7 +240,7 @@ class AdvancedColors {
             const existingColor = colorList[i];
 
             if (existingColor.hex == color.hex ) {
-                if (existingColor.name != color.name && existingColor.filter == color.filter) {
+                if (existingColor.name != color.name) {
                     prevName = existingColor.name;
                     colorList[i].name = color.name;
                     updateName = true;
