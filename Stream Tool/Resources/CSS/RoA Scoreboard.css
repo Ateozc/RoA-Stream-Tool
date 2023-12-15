@@ -14,15 +14,21 @@
 }
 
 :root {
-    --scoreboardX: 470px;
-    --scoreboardY: 25px;
+    --scoreboardX: var(--scoreboardXSingles);
+    --scoreboardY: var(--scoreboardYSingles);
+    --scoreboardXSingles: 470px;
+    --scoreboardXDoubles: 15px;
+    --scoreboardYSingles: 25px;
+    --scoreboardYDoubles: 13px;
+    --colorL: #14bb89;
+    --colorR: #14bb89;
   }
 
 body {
     width: 1920px;
     height: 1080px;
     overflow: hidden;
-    background: transparent;
+    background: lightgrey;
     padding: 0px;
     margin: 0px;
     text-transform: uppercase;
@@ -143,6 +149,14 @@ body {
     color: black;
     font-family: "LemonMilk";
 }
+#scoreNumL {
+    -webkit-text-stroke: 1px var(--colorL);
+    text-shadow: 0px 0px 2px var(--colorL);
+}
+#scoreNumR {
+    -webkit-text-stroke: 1px var(--colorR);
+    text-shadow: 0px 0px 2px var(--colorR);
+}
 
 
 .topBarMask {
@@ -151,6 +165,14 @@ body {
     width: 380px;
     height: 25px;
     transform: translateX(-1px);
+}
+.topBarDoubles {
+    width: 285px;
+    transform: translateX(95px);
+    justify-content: center;
+}
+.topBarSinglesNum {
+    transform: translateX(-26px);
 }
 
 .topBarTexts {
@@ -163,6 +185,7 @@ body {
 }
 
 .topBarProns {
+    display: none;
     color: gray;
 }
 
@@ -185,6 +208,7 @@ body {
     transition: width .5s;
     height: 36px;
     min-width: 170px;
+    opacity: 0;
 }
 #roundText {
     font-family: "Roboto";
@@ -259,11 +283,11 @@ body {
 }
 #p1Intro {
     text-align: right;
-    text-shadow: 0px 0px 20px;
+    text-shadow: 0px 0px 20px var(--colorL);
 }
 
 #p2Intro {
-    text-shadow: 0px 0px 20px;
+    text-shadow: 0px 0px 20px var(--colorR);
 }
 
 

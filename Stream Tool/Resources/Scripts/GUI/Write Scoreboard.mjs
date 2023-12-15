@@ -57,7 +57,7 @@ export async function writeScoreboard() {
             teams[0].getName(),
             teams[1].getName()
         ],
-        color: [],
+        color: currentColors,
         score: [
             scores[0].getScore(),
             scores[1].getScore()
@@ -86,7 +86,8 @@ export async function writeScoreboard() {
     };
 
     //add the player's info to the player section of the json
-    for (let i = 0; i < players.length; i++) {
+    const playerNum = gamemode.getGm() == 1 ? 2 : 4; // add only 2 players if singles
+    for (let i = 0; i < playerNum; i++) {
 
         // finally, add it to the main json
         scoreboardJson.player.push({
@@ -122,6 +123,7 @@ export async function writeScoreboard() {
             hex: currentColors[i].hex,
             filter: currentColors[i].filter
         });
+
         // if the team inputs dont have anything, display as [Color Team]
         if (!teams[i].getName()) {
             scoreboardJson.teamName[i] = `${currentColors[i].name} Team`
