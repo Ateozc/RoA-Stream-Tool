@@ -70,7 +70,7 @@ export async function getCharacterList() {
             .map(dirent => dirent.name)
             .filter((name) => {
                 // if the folder name contains '_Workshop' or 'Random', exclude it
-                if (name != "_Workshop" && name != "Random") {
+                if (name != "Rivals Workshop" && name != "Random") {
                     return true;
                 }
             }

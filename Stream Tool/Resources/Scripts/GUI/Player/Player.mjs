@@ -237,22 +237,17 @@ export class Player {
 
     /** Returns a valid src for browser sources */
     async getBrowserSrc(char, skin, extraPath, failPath) {
-
-        let browserCharPath = "Resources/Characters";
-        if (settings.isWsChecked()) {
-            browserCharPath = "Resources/Characters/_Workshop";
-        }
         
         if (await fileExists(`${stPath.char}/${char}/${extraPath}/${skin.name}.png`) && !skin.force) {
-            return browserCharPath + `/${char}/${extraPath}/${skin.name}.png`;
+            return stPath.browserCharPath + `/${char}/${extraPath}/${skin.name}.png`;
         } else if (await fileExists(`${stPath.char}/${char}/${extraPath}/Default.png`)) {
             if (skin.hex) {
                 return null;
             } else {
-                return browserCharPath + `/${char}/${extraPath}/Default.png`;
+                return stPath.browserCharPath + `/${char}/${extraPath}/Default.png`;
             }
         } else {
-            return `Resources/Characters/Random/${failPath}.png`;;
+            return `Resources/Games/Default/Random/${failPath}.png`;
         }
         
     }

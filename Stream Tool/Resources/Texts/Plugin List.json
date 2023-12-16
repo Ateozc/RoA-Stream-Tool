@@ -2,6 +2,7 @@
   "AdvancedColors.mjs",
   "EasyGUISection.mjs",
   "Example.mjs",
+  "GameSelect.mjs",
   "NameThatColor.mjs",
   "obs-websocket-js.mjs",
   "OBSWebsocketControl.mjs",

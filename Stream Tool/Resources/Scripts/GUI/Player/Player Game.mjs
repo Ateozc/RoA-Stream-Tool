@@ -250,12 +250,12 @@ export class PlayerGame extends Player {
 
         // if it doesnt exist, use a default BG
         if (!await fileExists(`${trueBGPath}/${vsBG}`)) {
-            this.vsBgSrc = "Resources/Characters/BG.webm";
+            this.vsBgSrc = "Resources/Games/Default/BG.webm";
         } else {
             if (settings.isWsChecked()) {
-                this.vsBgSrc = `Resources/Characters/_Workshop/${vsBG}`;
+                this.vsBgSrc = `Resources/Games/Default/Rivals Workshop/${vsBG}`;
             } else {
-                this.vsBgSrc = `Resources/Characters/${vsBG}`;
+                this.vsBgSrc = `Resources/Games/Default/${vsBG}`;
             }
         }
 

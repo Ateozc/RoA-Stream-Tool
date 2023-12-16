@@ -1,0 +1,179 @@
+{
+    "skinList": [
+        {
+            "name": "Default"
+        },
+        {
+            "name": "Cyan",
+            "hex": "73B9-BAA6-B7FE-F5FF-FFA2"
+        },
+        {
+            "name": "Yellow",
+            "hex": "F9FF-B2FF-9BAB-5F27-2015"
+        },
+        {
+            "name": "Green",
+            "hex": "4F71-56A6-F7B4-CCCD-400C"
+        },
+        {
+            "name": "Brown",
+            "hex": "554D-4CEE-D0B6-AF89-6B33"
+        },
+        {
+            "name": "Pink",
+            "hex": "FCFA-FCFF-9EEE-4B35-529F"
+        },
+        {
+            "name": "Halloween",
+            "hex": "3EB6-5A9F-ADB1-3635-350C"
+        },
+        {
+            "name": "Christmas",
+            "hex": "FDEB-E86D-C253-DE48-4819"
+        },
+        {
+            "name": "Valentines",
+            "hex": "FFEC-F7E3-4B4B-E661-A95E"
+        },
+        {
+            "name": "Summer",
+            "hex": "59CC-E9FF-F68C-FFA6-2809"
+        },
+        {
+            "name": "Default Custom 1",
+            "hex": "2930-3464-8B8C-7E39-3919"
+        },
+        {
+            "name": "Default Custom 2",
+            "hex": "8355-84EF-EFEF-5947-5DF0"
+        },
+        {
+            "name": "Champion",
+            "hex": "D0DF-DE5A-5A5A-FFFF-FFA6",
+            "alpha": [0.8, 1, 1],
+            "force": true
+        },
+        {
+            "name": "Golden",
+            "hex": "FDFB-F4FF-DC1E-4344-5791",
+            "golden": true
+        },
+        {
+            "name": "Abyss",
+            "hex": "A6AC-D674-5E87-5654-929E"
+        },
+        {
+            "name": "Early Access",
+            "hex": "D3E2-9A53-7A3E-2343-31FF",
+            "ea": true,
+            "force": true
+        },
+        {
+            "name": "Panda",
+            "hex": "FBFA-FC7F-EF67-4344-57E6",
+            "force": true
+        },
+        {
+            "name": "Genesis",
+            "hex": "4644-44E0-0B00-F6EF-EFD8"
+        },
+        {
+            "name": "Pool Party",
+            "hex": "DAA4-F5A6-B7FE-4344-5785",
+            "force": true
+        },
+        {
+            "name": "Ranked",
+            "hex": "FFCC-00E4-E4F0-FF87-0068"
+        },
+        {
+            "name": "HD"
+        },
+        {
+            "name": "LoA HD"
+        }
+    ],
+    "colorData" : {
+        "Default" : {
+            "ogColor" : [
+                251, 250, 252, 1,
+                180, 230, 230, 1,
+                67, 68, 87, 1
+            ],
+            "colorRange" : [
+                15, 41, 70, 1,
+                54, 15, 50, 1,
+                4, 10, 50, 1
+            ]
+        },
+        "HD Recolor" : {
+            "ogColor" : [
+                218, 235, 194, 1,
+                128, 212, 135, 1,
+                86, 94, 41, 1
+            ],
+            "colorRange" : [
+                8, 100, 100, 1,
+                15, 70, 70, 1,
+                5, 10, 50, 1
+            ]
+        }
+    },
+    "scoreboard": {
+        "neutral": {
+            "x": -60,
+            "y": 70,
+            "scale": 3
+        },
+        "LoA HD": {
+            "x": 25,
+            "y": 180,
+            "scale": 5
+        },
+        "HD": {
+            "x": -81,
+            "y": 92,
+            "scale": 3.6
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -722,
+            "y": 170,
+            "scale": 0.95
+        },
+        "LoA HD": {
+            "x": -510,
+            "y": 310,
+            "scale": 1.4
+        },
+        "Panda": {
+            "x": -722,
+            "y": 150,
+            "scale": 0.95,
+            "comment": "same as neutral, just here so trail shows up"
+        },
+        "HD": {
+            "x": -722,
+            "y": 150,
+            "scale": 0.95
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": -40,
+            "y": 44,
+            "scale": 3.5
+        },
+        "LoA HD": {
+            "x": 15,
+            "y": 83,
+            "scale": 6
+        },
+        "HD": {
+            "x": -32,
+            "y": 37,
+            "scale": 3
+        }
+    }
+}

@@ -7,12 +7,14 @@ export const inside = {
 };
 
 /** Paths used for all of the Stream Tool */
-const realPath = inside.electron ? __dirname : ""; // local file path if in executable
+export const realPath = inside.electron ? __dirname : ""; // local file path if in executable
 export const stPath = {
+    gamesDir: realPath + '/Games',
+    browserCharPath: 'Resources/Games/Rivals of Aether/',
     char : "",
-    charRandom : realPath + '/Characters/Random',
-    charBase : realPath + '/Characters',
-    charWork : realPath + '/Characters/_Workshop',
+    charRandom : realPath + '/Games/Rivals of Aether/Random',
+    charBase : realPath + '/Games/Rivals of Aether',
+    charWork : realPath + '/Games/Rivals Workshop',
     overlay: realPath + '/Overlay',
     text : realPath + '/Texts',
     scripts: realPath + '/Scripts'

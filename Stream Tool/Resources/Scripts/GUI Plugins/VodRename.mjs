@@ -37,6 +37,7 @@ const newToggles = [
 const divs = genGuiSection('Vod Rename', settingElectronDiv, false, newToggles);
 
 class VodRename {
+    #gameName = '';
     #vodDirInput = document.getElementById('vodRenameDir');
     #recordingDir = "";
     #vodRenameBtn = document.getElementById('vodRenameButton');
@@ -64,6 +65,10 @@ class VodRename {
         this.#copyMatchBtn.addEventListener("click", () => {this.copyMatchInfo();});
         this.#getDirSettings();
         
+    }
+
+    updateGameName(game) {
+        this.#gameName = game;
     }
 
     getLastGUIElement() {
@@ -142,7 +147,11 @@ class VodRename {
         this.#matchInfo.tournament = tournament.getText();
         this.#matchInfo.teams[0] = teams[0].getName();
         this.#matchInfo.teams[1] = teams[1].getName();
-        this.#matchInfo.game = (settings.isWsChecked() ? 'Rivals Workshop' : 'Rivals of Aether');
+        if (this.#gameName) {
+            this.#matchInfo.game = this.#gameName
+        } else {
+            this.#matchInfo.game = (settings.isWsChecked() ? 'Rivals Workshop' : 'Rivals of Aether');
+        }
         this.#matchString = this.#genString(this.#matchInfo);
     }
 
