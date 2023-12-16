@@ -247,7 +247,11 @@ export class Player {
                 return stPath.browserCharPath + `/${char}/${extraPath}/Default.png`;
             }
         } else {
-            return `Resources/Games/Default/Random/${failPath}.png`;
+            if (await fileExists(`${stPath.char}/Random/${failPath}.png`)) { //Use the random for the game if we can
+                return `${stPath.browserCharPath}/Random/${failPath}.png`
+            } else {
+                return `${stPath.browserDefaultPath}/Random/${failPath}.png`;
+            }
         }
         
     }

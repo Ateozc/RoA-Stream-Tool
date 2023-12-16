@@ -117,7 +117,8 @@ export class PlayerGame extends Player {
         // change the background character image (if first 2 players)
         if (this.pNum-1 < 2) {
             if (this.char == "Random" && this.pNum == 1) {
-                updateBgCharImg(this.pNum-1, `${stPath.charRandom}/P2.png`);
+                let p1RandomSrc = this.scSrc.replace('P1', 'P2');
+                updateBgCharImg(this.pNum-1, p1RandomSrc);
             } else {
                 updateBgCharImg(this.pNum-1, this.scSrc);
             }
@@ -234,7 +235,7 @@ export class PlayerGame extends Player {
         if (this.vsSkin.name.includes("LoA") && !settings.isNoLoAChecked()) {
             // show LoA background if the skin is LoA
             vsBG = 'BG LoA.webm';
-            trueBGPath = stPath.charBase;;
+            trueBGPath = stPath.charBase;
         } else if (this.vsSkin.name == "Ragnir") {
             // Ragnir shows the default stage in the actual game
             vsBG = 'BG.webm';
@@ -250,13 +251,13 @@ export class PlayerGame extends Player {
 
         // if it doesnt exist, use a default BG
         if (!await fileExists(`${trueBGPath}/${vsBG}`)) {
-            this.vsBgSrc = "Resources/Games/Default/BG.webm";
-        } else {
-            if (settings.isWsChecked()) {
-                this.vsBgSrc = `Resources/Games/Default/Rivals Workshop/${vsBG}`;
+            if (await fileExists(`${stPath.char}/BG.webm`)) {//Use default for the game if available.
+                this.vsBgSrc = stPath.browserCharPath + "/BG.webm"; 
             } else {
-                this.vsBgSrc = `Resources/Games/Default/${vsBG}`;
+                this.vsBgSrc = stPath.browserDefaultPath + "/BG.webm";
             }
+        } else {
+            this.vsBgSrc = stPath.browserCharPath + '/'+ vsBG;
         }
 
     }

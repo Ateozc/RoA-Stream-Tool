@@ -59,7 +59,12 @@ export async function getRecolorImage(shader, char, skin, colorData, imgType, fa
 
 
     } else {
-        return `${stPath.charRandom}/${failPath}.png`;
+        if (await fileExists(`${stPath.char}/Random/${failPath}.png`)) { //Use the random for the game if we can
+            return `${stPath.gamePath}/Random/${failPath}.png`
+        } else {
+            return `${stPath.gamePathDefault}/Random/${failPath}.png`;
+        }
+        
     }
 
 }

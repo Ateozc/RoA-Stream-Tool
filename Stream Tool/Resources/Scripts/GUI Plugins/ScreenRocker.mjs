@@ -759,7 +759,6 @@ export class ScreenRocker {
             for (let i = 0; i < this.#playerPresets.length; i++) {
                 let player = this.#playerPresets[i];
                 if (player.name == name) {
-                    console.log(player.characters);
                     for (let j = 0; j < player.characters.length; j++) {
                         if (char == player.characters[j].character) {
     

@@ -108,7 +108,6 @@ class GameSelect {
     }
 
     setGamesList() {
-        console.log('hit setGamesList');
         this.#gameSelectorInput.innerHTML = '';
         for (let i = 0; i < this.#gamesList.length; i++) {
             const option = document.createElement('option');
@@ -127,6 +126,7 @@ class GameSelect {
 
     async setGame() {
         vodRename.updateGameName(this.#gameSelectorInput.value);
+        stPath.gamePath = 'Games\\'  + this.#gameSelectorInput.value;
         stPath.char = realPath + '\\Games\\' + this.#gameSelectorInput.value;
         stPath.browserCharPath = 'Resources\\Games\\' + this.#gameSelectorInput.value;
         
