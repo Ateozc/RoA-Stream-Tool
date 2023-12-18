@@ -30,7 +30,7 @@ class GameSelect {
     #gameSelectorInput = document.getElementById('gameSelector');
     #gamesList = [];
     #sectionsList = [];
-    
+
     #toggleList = [
         {
             id: 'workshopToggle',
@@ -170,7 +170,6 @@ class GameSelect {
     }
 
     showHideInputAndLabel(inputId, show) {
-        console.log(inputId + ' show: ' + show);
         const inputEl = document.getElementById(inputId);
         const labelEl = document.querySelectorAll('label[for="' + inputId + '"]');
         
