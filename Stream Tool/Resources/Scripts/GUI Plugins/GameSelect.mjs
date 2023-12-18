@@ -9,15 +9,6 @@ import { vodRename } from "./VodRename.mjs"
 
 const updateDiv = document.getElementById('updateRegion');
 
-
-/* Divs for other things like Workshop and LoA */
-const wsToggleInput = document.getElementById('workshopToggle');
-wsToggleInput.style = 'display: none';
-
-const wsToggleLabel = document.querySelectorAll('label[for="workshopToggle"]');
-wsToggleLabel[0].style = 'display: none';
-
-
 // const settingElectronDiv = document.getElementById("settingsElectron");
 const scoreBoardDiv = document.getElementsByClassName("settingsTitle")[0];
 
@@ -38,6 +29,26 @@ class GameSelect {
     #altArtCheck = document.getElementById("forceAlt");
     #gameSelectorInput = document.getElementById('gameSelector');
     #gamesList = [];
+    #sectionsList = [];
+    
+    #toggleList = [
+        {
+            id: 'workshopToggle',
+            games: ['']
+        },
+        {
+            id: 'forceAlt',
+            games: ['Rivals Workshop']
+        },
+        {
+            id: 'forceHD',
+            games: ['Rivals of Aether']
+        },
+        {
+            id: 'noLoAHD',
+            games: ['Rivals of Aether']
+        }
+    ]
 
 
     constructor() {
@@ -45,6 +56,7 @@ class GameSelect {
         this.setGamesList();
 
         this.#gameSelectorInput.addEventListener("change", () => this.setGame());
+        this.showHideSettings();
 
 
     }
@@ -129,10 +141,21 @@ class GameSelect {
         stPath.char = realPath + '\\Games\\' + this.#gameSelectorInput.value;
         current.game = this.#gameSelectorInput.value;
         current.gameAbbr = this.getGameAbbr(current.game);
-        
 
-        let ws = (this.#gameSelectorInput.value == 'Rivals Workshop');
+        await this.showHideSettings();
 
+        await charFinder.loadCharacters();
+
+        for (let i = 0; i < players.length; i++) {
+            await players[i].charChange("Random");
+        }
+    }
+
+    async showHideSettings() {
+
+        let ws = (current.game == 'Rivals Workshop');
+
+        const wsToggleInput = document.getElementById('workshopToggle');
         wsToggleInput.checked = ws;
 
         this.#altArtCheck.disabled = !ws;
@@ -141,11 +164,24 @@ class GameSelect {
             await settings.save("forceAlt", false);
         }
 
-        await charFinder.loadCharacters();
-
-        for (let i = 0; i < players.length; i++) {
-            await players[i].charChange("Random");
+        for (let i = 0; i < this.#toggleList.length; i++) {
+            this.showHideInputAndLabel(this.#toggleList[i].id, (this.#toggleList[i].games.indexOf(current.game) != -1));
         }
+    }
+
+    showHideInputAndLabel(inputId, show) {
+        console.log(inputId + ' show: ' + show);
+        const inputEl = document.getElementById(inputId);
+        const labelEl = document.querySelectorAll('label[for="' + inputId + '"]');
+        
+        if (show) {
+            inputEl.style = '';
+            labelEl[0].style = '';
+        } else {
+            inputEl.style = 'display: none';
+            labelEl[0].style = 'display: none';
+        }
+        
     }
 
 }
