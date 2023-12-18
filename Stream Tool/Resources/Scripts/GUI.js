@@ -10,7 +10,7 @@ import { addCaster } from './GUI/Caster/Casters.mjs';
 import { writeScoreboard } from './GUI/Write Scoreboard.mjs';
 import { loadKeybinds } from './GUI/Keybinds.mjs';
 import { updateBracket } from './GUI/Bracket.mjs';
-import { inside, stPath } from './GUI/Globals.mjs';
+import { inside, stPath, current } from './GUI/Globals.mjs';
 import { Score } from './GUI/Score/Score.mjs';
 import { getPluginList } from './GUI/File System.mjs';
 import { initColors } from './GUI/Colors.mjs';
@@ -38,7 +38,7 @@ async function init() {
     
     // we need to set the current char path
     await settings.load();
-    stPath.char = settings.isWsChecked() ? stPath.charWork : stPath.charBase;
+    stPath.char = `${stPath.gamesDir}/${current.game}`;
 
     // colors need to be up and running before players
     await initColors();

@@ -1,4 +1,4 @@
-import { stPath } from './Globals.mjs';
+import { stPath , current } from './Globals.mjs';
 import { fileExists } from './File System.mjs';
 import { Player } from './Player/Player.mjs';
 import { RoaRecolor } from './RoA WebGL Shader.mjs';
@@ -60,9 +60,9 @@ export async function getRecolorImage(shader, char, skin, colorData, imgType, fa
 
     } else {
         if (await fileExists(`${stPath.char}/Random/${failPath}.png`)) { //Use the random for the game if we can
-            return `${stPath.gamePath}/Random/${failPath}.png`
+            return `Games/${current.game}/Random/${failPath}.png`
         } else {
-            return `${stPath.gamePathDefault}/Random/${failPath}.png`;
+            return `Games/Default/Random/${failPath}.png`;
         }
         
     }

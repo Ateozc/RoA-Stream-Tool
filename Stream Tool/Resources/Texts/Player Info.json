@@ -6,12 +6,30 @@
     "socials": {
       "twitter": "Ateozc",
       "twitch": "Ateozc",
-      "yt": "Ateozc"
+      "yt": "Ateozc",
+      "masto": "",
+      "cohost": ""
     },
     "characters": [
       {
+        "character": "Sandbert",
+        "skin": "Default",
+        "game": "Rivals Workshop"
+      },
+      {
+        "character": "Fleet",
+        "skin": "Default",
+        "game": "Rivals 2"
+      },
+      {
+        "character": "Olympia",
+        "skin": "White",
+        "game": "Rivals of Aether"
+      },
+      {
         "character": "Absa",
-        "skin": "Grey"
+        "skin": "Grey",
+        "game": "Rivals of Aether"
       }
     ]
   },

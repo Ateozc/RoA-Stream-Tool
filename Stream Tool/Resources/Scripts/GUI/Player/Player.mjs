@@ -3,7 +3,7 @@ import { charFinder } from "../Finder/Char Finder.mjs";
 import { playerFinder } from "../Finder/Player Finder.mjs";
 import { skinFinder } from "../Finder/Skin Finder.mjs";
 import { getRecolorImage } from "../GetImage.mjs";
-import { inside, stPath } from "../Globals.mjs";
+import { inside, stPath, current } from "../Globals.mjs";
 import { RoaRecolor } from "../RoA WebGL Shader.mjs";
 import { settings } from "../Settings.mjs";
 import { readyToUpdate } from "../Write Scoreboard.mjs";
@@ -239,18 +239,18 @@ export class Player {
     async getBrowserSrc(char, skin, extraPath, failPath) {
         
         if (await fileExists(`${stPath.char}/${char}/${extraPath}/${skin.name}.png`) && !skin.force) {
-            return stPath.browserCharPath + `/${char}/${extraPath}/${skin.name}.png`;
+            return `Resources/Games/${current.game}/${char}/${extraPath}/${skin.name}.png`;
         } else if (await fileExists(`${stPath.char}/${char}/${extraPath}/Default.png`)) {
             if (skin.hex) {
                 return null;
             } else {
-                return stPath.browserCharPath + `/${char}/${extraPath}/Default.png`;
+                return `Resources/Games/${current.game}/${char}/${extraPath}/Default.png`;
             }
         } else {
             if (await fileExists(`${stPath.char}/Random/${failPath}.png`)) { //Use the random for the game if we can
-                return `${stPath.browserCharPath}/Random/${failPath}.png`
+                return `Resources/Games/${current.game}/Random/${failPath}.png`
             } else {
-                return `${stPath.browserDefaultPath}/Random/${failPath}.png`;
+                return `Resources/Games/Default/Random/${failPath}.png`;
             }
         }
         

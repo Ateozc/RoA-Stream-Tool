@@ -1,7 +1,7 @@
 import { getJson, saveJson } from "./File System.mjs";
 import { viewport } from "./Viewport.mjs";
 import { displayNotif } from "./Notifications.mjs";
-import { stPath } from "./Globals.mjs";
+import { current, stPath } from "./Globals.mjs";
 import { playerFinder } from "./Finder/Player Finder.mjs";
 import { commFinder } from "./Finder/Comm Finder.mjs";
 
@@ -135,7 +135,8 @@ class ProfileInfo {
 
             preset.characters = [{
                 character: this.#curProfile.char,
-                skin: this.#curProfile.skin.name
+                skin: this.#curProfile.skin.name,
+                game: current.game
             }];
             if (this.#curProfile.customImg) {
                 preset.characters[0].hex = this.#curProfile.skin.hex;

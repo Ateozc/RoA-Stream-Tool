@@ -10,10 +10,6 @@ export const inside = {
 export const realPath = inside.electron ? __dirname : ""; // local file path if in executable
 export const stPath = {
     gamesDir: realPath + '/Games',
-    gamePath: 'Games/Default',
-    gamePathDefault: 'Games/Default',
-    browserDefaultPath: 'Resources/Games/Default', //Use this if game files cant be found (random/webm files)
-    browserCharPath: 'Resources/Games/Rivals of Aether',
     char : "",
     defaultCharRandom: realPath + '/Games/Rivals of Aether/Random',
     charRandom : realPath + '/Games/Default/Random',
@@ -26,5 +22,7 @@ export const stPath = {
 
 /** Current values for stuff */
 export const current = {
-    focus : -1
+    focus : -1,
+    game: 'Rivals of Aether',
+    gameAbbr: 'RoA'
 }

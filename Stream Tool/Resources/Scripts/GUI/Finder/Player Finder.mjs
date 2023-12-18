@@ -72,7 +72,7 @@ class PlayerFinder extends Finder {
                 for (let i = 0; i < preset.characters.length; i++) {
                     
                     // only do all of this if the char is present on the current list
-                    if (charFinder.isCharOnList(preset.characters[i].character)) {
+                    if (charFinder.isCharOnList(preset.characters[i].character) && preset.characters[i].game == current.game) {
 
                         presetOnList = true;
                         

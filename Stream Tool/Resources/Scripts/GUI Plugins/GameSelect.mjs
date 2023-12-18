@@ -126,9 +126,9 @@ class GameSelect {
 
     async setGame() {
         vodRename.updateGameName(this.#gameSelectorInput.value);
-        stPath.gamePath = 'Games\\'  + this.#gameSelectorInput.value;
         stPath.char = realPath + '\\Games\\' + this.#gameSelectorInput.value;
-        stPath.browserCharPath = 'Resources\\Games\\' + this.#gameSelectorInput.value;
+        current.game = this.#gameSelectorInput.value;
+        current.gameAbbr = this.getGameAbbr(current.game);
         
 
         let ws = (this.#gameSelectorInput.value == 'Rivals Workshop');

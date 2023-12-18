@@ -5,7 +5,7 @@ import { updateBgCharImg } from "./BG Char Image.mjs";
 import { currentColors } from "../Colors.mjs";
 import { settings } from "../Settings.mjs";
 import { profileInfo } from "../Profile Info.mjs";
-import { stPath } from "../Globals.mjs";
+import { stPath, current } from "../Globals.mjs";
 import { gamemode } from "../Gamemode Change.mjs";
 
 export class PlayerGame extends Player {
@@ -252,12 +252,12 @@ export class PlayerGame extends Player {
         // if it doesnt exist, use a default BG
         if (!await fileExists(`${trueBGPath}/${vsBG}`)) {
             if (await fileExists(`${stPath.char}/BG.webm`)) {//Use default for the game if available.
-                this.vsBgSrc = stPath.browserCharPath + "/BG.webm"; 
+                this.vsBgSrc = `Resources/Games/${current.game}/BG.webm`; 
             } else {
-                this.vsBgSrc = stPath.browserDefaultPath + "/BG.webm";
+                this.vsBgSrc = `Resources/Games/Default/BG.webm`; ;
             }
         } else {
-            this.vsBgSrc = stPath.browserCharPath + '/'+ vsBG;
+            this.vsBgSrc = `Resources/Games/${current.game}/${vsBG}`;
         }
 
     }
