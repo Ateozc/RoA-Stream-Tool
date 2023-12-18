@@ -40,8 +40,6 @@ export class PlayerName {
     }
     #setName(name) {
 
-        this.#name = name;
-
         // set the displayed text
         this.#nameEl.innerHTML = name;
 
@@ -58,8 +56,6 @@ export class PlayerName {
         return this.#tag;
     }
     #setTag(tag) {
-
-        this.#tag = tag;
 
         // set the displayed text
         this.#tagEl.innerHTML = tag;
@@ -80,6 +76,10 @@ export class PlayerName {
      */
     async update(name, tag) {
 
+        // update internal variables
+        this.#name = name;
+        this.#tag = tag;
+
         let delayTime = current.delay;
 
         // if not loading up
@@ -93,7 +93,6 @@ export class PlayerName {
             } else {
                 await fadeOutMove(this.#wrapperEl, null, this.#side);
             }
-            
 
         }
 
@@ -163,7 +162,11 @@ export class PlayerName {
 
     /** Displays the text wrapper, fading it in */
     show() {
-        fadeIn(this.#wrapperEl, fadeInTimeSc, current.delay + .3);
+        if (gamemode.getGm() == 2) {
+            fadeIn(this.#wrapperEl, fadeInTimeSc, current.delay)
+        } else {
+            fadeInMove(this.#wrapperEl, null, this.#side, current.delay);
+        }
         this.#wrapperEl.style.display = "block";
     }
 

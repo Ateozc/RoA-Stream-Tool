@@ -13,19 +13,25 @@ export class TeamName {
     #side;
 
     #nameEl;
+    #nameBg;
 
     /**
      * Manages the team's name
      * @param {HTMLElement} nameEl - Team text element
      * @param {String} side - L for left, R for right
      */
-    constructor(nameEl, side) {
+    constructor(nameEl, nameBg, side) {
 
         this.#nameEl = nameEl;
+        this.#nameBg = nameBg;
 
         // to know animation direction
         this.#side = side == "L" ? true : false;
 
+    }
+
+    getName() {
+        return this.#name;
     }
 
     /**
@@ -58,6 +64,14 @@ export class TeamName {
 
     }
 
+    /**
+     * Updates the name background depending on the gamemode
+     * @param {Number} gamemode - Gamemode to change to
+     */
+    changeGm(gamemode) {
+        this.#nameBg.src = `Resources/Overlay/Scoreboard/Name BG ${gamemode}.png`;
+    }
+
     /** Hides the text element */
     hide() {
         this.#nameEl.style.display = "none";
@@ -65,8 +79,8 @@ export class TeamName {
 
     /** Displays the text wrapper, fading it in */
     show() {
-        fadeIn(this.#nameEl, fadeInTimeVs, introDelayVs + .2);
-        this.#nameEl.style.display = "flex";
+        fadeInMove(this.#nameEl, null, this.#side, current.delay);
+        this.#nameEl.style.display = "block";
     }
 
 }
