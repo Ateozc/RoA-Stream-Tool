@@ -1,4 +1,5 @@
 import { current } from "./Utils/Globals.mjs";
+import { initOnBrowserActive, isBrowserActive } from "./Utils/On Transition Event.mjs";
 import { initWebsocket } from "./Utils/WebSocket.mjs";
 import { bestOf } from "./VS Screen/BestOf.mjs";
 import { casters } from "./VS Screen/Caster/Casters.mjs";
@@ -36,8 +37,6 @@ function updateData(data) {
 		// initialize the caster class
 		casters.initCasters(data.socialNames);
 
-		firstUpdate = false;
-
 	}
 
 	// if this isnt a singles match, rearrange stuff
@@ -63,32 +62,46 @@ function updateData(data) {
 		current.startup = false;
 	}
 
-}
-
-// this will trigger every time the browser goes out of view (or back to view)
-// on OBS, this triggers when swapping in and out of the scene
-// on Chromium (OBS browsers run on it), hide() won't be done until
-// the user tabs back, displaying everything for around 1 frame
-document.addEventListener("visibilitychange", () => {
-
-	if (document.hidden) { // if lights go out
-
-		current.startup = true;
-
-		// hide some stuff so we save on some resources
-		players.hide();
-		teams.hide();
-	
-	} else { // when the user comes back
-	
-		setTimeout(() => { // i absolutely hate Chromium
-			// display and animate hidden stuff
-			players.show();
-			teams.show();
-		}, 0);
-		
-		current.startup = false;
-	
+	// this is to prevent things not animating when browser loaded while not active
+	if (firstUpdate) {
+		if (!isBrowserActive()) {
+			hideElements();
+		}
+		firstUpdate = false;
 	}
 
-});
+}
+
+// listen to obs transition / tab active states
+initOnBrowserActive(() => hideElements(), () => showElements());
+
+// now, this is a workaround to force CSS reflow, and we need any existing element
+const randomEl = document.getElementById("round"); // can be anything
+
+/** Hides elements that are animated when browser becomes active */
+function hideElements() {
+	
+	current.startup = true;
+
+	// hide some stuff so we save on some resources
+	players.hide();
+	teams.hide();
+
+	// trigger CSS reflow
+	randomEl.offsetWidth;
+
+}
+
+/** Shows elements to be animated when browser becomes active */
+function showElements() {
+
+	// on Chromium (OBS browsers run on it), hide() won't be done until
+	// the user tabs back, displaying everything for around 1 frame
+	
+	// display and animate hidden stuff
+	players.show();
+	teams.show();
+	
+	current.startup = false;
+
+}
