@@ -551,11 +551,21 @@ class StartGG {
 	
 			let json = await this.generalApiCall(query, variables);
 			this.#currentSetInfo = {};
-
-			this.#currentSetInfo = json.data.event.sets.nodes[0];
 			this.#currentSetInfo.useDetailedReportType = true;
 			this.#currentSetInfo.setDataSimple = {};
 			this.#currentSetInfo.setDataDetailed = {};
+
+			clearTeams();
+			clearPlayers();
+			clearScores();
+			this.resetPreviousScore();
+
+			if (json.data.event.sets.nodes.length > 0) {
+				this.#currentSetInfo = json.data.event.sets.nodes[0];
+			} else {
+				displayNotif('No active sets for selected player.');
+				return;
+			}
 			
 			await this.setPlayersInTool();
 
@@ -565,12 +575,6 @@ class StartGG {
 	}
 
 	async setPlayersInTool () {
-		// clear();
-		clearTeams();
-		clearPlayers();
-		clearScores();
-		this.resetPreviousScore();
-
 		/* TODO 
 
 		Edit the playerInfo.json to include the playerId value (this will be used in future situations.)
@@ -595,14 +599,6 @@ class StartGG {
 		if (this.#startGGPopulateRoundNameCheck.checked) {
 			round.setText(this.getCorrectedRoundName(this.#currentSetInfo.fullRoundText));
 		}
-
-		// if (this.#startGGPopulateTournamentNameCheck.checked) {
-		// 	tournament.setText(this.#tournamentName);
-		// }
-
-		// if (this.#startGGSetGameCheck.checked) {
-		// 	await gameSelector.setGame(this.#gameForEvent.name);
-		// }
 
 		displayNotif('Successfully populated match information.')
 	}
