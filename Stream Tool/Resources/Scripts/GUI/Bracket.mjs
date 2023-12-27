@@ -9,7 +9,7 @@ const bRoundSelect = document.getElementById('bracketRoundSelect');
 const bEncountersDiv = document.getElementById('bracketEncounters');
 
 // just the initial state of the bracket
-const blankPlayerData = {
+let blankPlayerData = {
     name: "-",
     tag: "",
     character: "None",
@@ -17,7 +17,7 @@ const blankPlayerData = {
     iconSrc: "",
     score: "-"
 }
-let bracketData = {
+export let bracketData = {
     "WinnersSemis": [blankPlayerData, blankPlayerData, blankPlayerData, blankPlayerData],
     "WinnersFinals": [blankPlayerData, blankPlayerData],
     "GrandFinals" : [blankPlayerData, blankPlayerData],

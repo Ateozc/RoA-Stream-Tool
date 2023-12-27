@@ -14,4 +14,20 @@ override anything you want here.
     /* display: flex; */
     justify-content: center;
     align-items: center;
-  }
+}
+
+.settingsBox {
+  display: flex;
+}
+
+.settingsBoxBlockOverride {
+  display:block;
+}
+
+.hidden {
+  display: none;
+}
+
+.easyGuiHide {
+  display: none;
+}

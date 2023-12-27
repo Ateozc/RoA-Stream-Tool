@@ -20,7 +20,16 @@ const newToggles = [{
     disabled: false,
     className: "textInput",
     options: []
-}]
+},
+{
+	id: "gameSelectUseAbbr",
+	title: "If checked, the names displayed will be the abbreviations.",
+	innerText: "Use Abbreviations",
+	type: "checkbox",
+	disabled: false,
+	className: "settingsCheck"
+}
+]
 
 
 const divs = genGuiSection('Game Select', scoreBoardDiv, false, newToggles);
@@ -28,6 +37,7 @@ const divs = genGuiSection('Game Select', scoreBoardDiv, false, newToggles);
 class GameSelect {
     #altArtCheck = document.getElementById("forceAlt");
     #gameSelectorInput = document.getElementById('gameSelector');
+    #abbrCheck = document.getElementById('gameSelectUseAbbr');
     #gamesList = [];
     #sectionsList = [];
 
@@ -55,7 +65,8 @@ class GameSelect {
         this.#gamesList = this.getGameList();
         this.setGamesList();
 
-        this.#gameSelectorInput.addEventListener("change", () => this.setGame());
+        this.#gameSelectorInput.addEventListener("change", () => this.setGame(this.#gameSelectorInput.value));
+        this.#abbrCheck.addEventListener('click', () => this.setGamesList());
         this.showHideSettings();
 
 
@@ -63,7 +74,6 @@ class GameSelect {
 
     getGameList() {
         if (inside.electron) {
-
             const fs = require('fs');
             const gamesListNames = fs.readdirSync(stPath.gamesDir, {
                 withFileTypes: true
@@ -88,18 +98,13 @@ class GameSelect {
                 gamesList.push(game);
             }
 
-
             // save the data for the remote gui
             saveJson(`/Games List`, gamesList);
 
             return gamesList;
-
         } else {
-
             return getJson(`${stPath.text}/Games List`);
-
         }
-
     }
 
     getGameAbbr(game) {
@@ -119,28 +124,57 @@ class GameSelect {
         return abbr;
     }
 
-    setGamesList() {
-        this.#gameSelectorInput.innerHTML = '';
-        for (let i = 0; i < this.#gamesList.length; i++) {
-            const option = document.createElement('option');
-            const game = this.#gamesList[i];
-            option.value = game.name;
-            option.innerHTML = game.name;
-
-            if (game.name == 'Rivals of Aether') {
-                option.selected = true;
-            }
-
-            option.style.backgroundColor = "var(--bg5)";
-            this.#gameSelectorInput.appendChild(option);
+    getGameListItem(game) {
+        if (!game) {
+            return false;
         }
+
+        for (let i = 0; i < this.#gamesList.length; i++) {
+            if (this.#gamesList[i].name == game) {
+                return this.#gamesList[i];
+            }
+        }
+
+        return false;
     }
 
-    async setGame() {
-        vodRename.updateGameName(this.#gameSelectorInput.value);
-        stPath.char = realPath + '\\Games\\' + this.#gameSelectorInput.value;
-        current.game = this.#gameSelectorInput.value;
-        current.gameAbbr = this.getGameAbbr(current.game);
+    setGamesList() {
+        if (this.#gamesList.length > 0) {
+            let curSelection = this.#gameSelectorInput.value;
+            this.#gameSelectorInput.innerHTML = '';
+            for (let i = 0; i < this.#gamesList.length; i++) {
+                const option = document.createElement('option');
+                const game = this.#gamesList[i];
+                option.value = game.name;
+                if (this.#abbrCheck.checked) {
+                    option.innerHTML = game.abbr;
+                } else {
+                    option.innerHTML = game.name;
+                }
+                
+                if (curSelection == game.name) {
+                    option.selected = true;
+                } else if (curSelection == '' && game.name == 'Rivals of Aether') {
+                    option.selected = true;
+                }  
+                
+                option.style.backgroundColor = "var(--bg5)";
+                this.#gameSelectorInput.appendChild(option);
+            }
+        }
+        
+    }
+
+    async setGame(game) {
+        const gameListItem = this.getGameListItem(game);
+        if (gameListItem == false) {
+            return;
+        }
+        this.#gameSelectorInput.value = game;
+        vodRename.updateGameName(gameListItem.name);
+        stPath.char = realPath + '\\Games\\' + gameListItem.name;
+        current.game = gameListItem.name;
+        current.gameAbbr = gameListItem.abbr;
 
         await this.showHideSettings();
 
@@ -179,9 +213,7 @@ class GameSelect {
         } else {
             inputEl.style = 'display: none';
             labelEl[0].style = 'display: none';
-        }
-        
+        }  
     }
-
 }
 export const gameSelector = new GameSelect;

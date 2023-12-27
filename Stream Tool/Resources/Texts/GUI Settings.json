@@ -1,5 +1,5 @@
 {
-  "guiWidth": 640,
+  "guiWidth": 636,
   "guiHeight": 377,
   "allowIntro": false,
   "workshop": false,
@@ -7,7 +7,7 @@
   "forceHD": false,
   "noLoAHD": false,
   "forceWL": false,
-  "customRound": false,
+  "customRound": true,
   "invertScore": false,
   "scoreAutoUpdate": false,
   "simpleTexts": false,

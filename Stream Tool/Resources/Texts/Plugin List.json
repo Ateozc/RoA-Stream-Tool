@@ -7,5 +7,6 @@
   "obs-websocket-js.mjs",
   "OBSWebsocketControl.mjs",
   "ScreenRocker.mjs",
+  "startGGIntegration.mjs",
   "VodRename.mjs"
 ]

@@ -28,6 +28,12 @@ export function genGuiSection(title, otherElement, placeAfter, newToggles) {
         let toggle = newToggles[t];
         let toggleDiv = document.createElement("div");
         toggleDiv.className = "settingBox";
+        toggleDiv.id = toggle.id + "Div";
+
+        if (toggle.settingsBoxOverride) {
+            toggleDiv.classList.add(toggle.settingsBoxOverride);
+        }
+
 
         let inputLabel = document.createElement("label");
         inputLabel.htmlFor = toggle.id;
@@ -71,25 +77,31 @@ export function genGuiSection(title, otherElement, placeAfter, newToggles) {
 }
 
 export function showHideAllElements(elements) {
+
     for (let i = 0; i < elements.length; i++) {
-        if (elements[i].style.display == 'none' && !elements[i].disabled) {
-            elements[i].style.display = 'flex';
-            
+        if (elements[i].classList.contains('easyGuiHide') ) {
+            if (!elements[i].disabled) {
+                elements[i].classList.remove('easyGuiHide');
+            } 
         } else {
-            elements[i].style.display = 'none';
+            elements[i].classList.add('easyGuiHide');
         }
     }
 }
 
 export function showAllElements(elements) {
     for (let i = 0; i < elements.length; i++) {
-        elements[i].style.display = 'flex';
+        if (elements[i].classList.contains('easyGuiHide')) {
+            elements[i].classList.remove('easyGuiHide');
+        }
     }
 }
 
 export function hideAllElements(elements) {
     for (let i = 0; i < elements.length; i++) {
-        elements[i].style.display = 'none';
+        if (!elements[i].classList.contains('easyGuiHide')) {
+            elements[i].classList.add('easyGuiHide');
+        }
     }
 }
 
