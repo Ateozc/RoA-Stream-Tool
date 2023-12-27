@@ -16,8 +16,14 @@ override anything you want here.
     align-items: center;
 }
 
-.settingsBox {
+.settingBox {
   display: flex;
+  outline: none;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
 }
 
 .settingsBoxBlockOverride {

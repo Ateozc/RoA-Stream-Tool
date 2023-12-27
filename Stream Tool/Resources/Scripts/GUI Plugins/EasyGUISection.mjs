@@ -13,8 +13,10 @@ export function genGuiSection(title, otherElement, placeAfter, newToggles) {
         titleDiv = document.createElement("div");
         titleDiv.className = "settingsTitle";
         titleDiv.innerHTML = title;
+        titleDiv.id = title.replaceAll(' ', '') + 'TitleDiv';
         if (placeAfter) {
-            origDiv.after(titleDiv);
+            let lastDiv = getLastElemForTitleDiv(origDiv.nextElementSibling);
+            lastDiv.after(titleDiv);
         } else {
             origDiv.before(titleDiv);
         }
@@ -72,6 +74,16 @@ export function genGuiSection(title, otherElement, placeAfter, newToggles) {
         titleDiv: titleDiv,
         toggleDivs: toggleDivs,
         prevDiv: prevDiv
+    }
+
+}
+
+function getLastElemForTitleDiv(curDiv) {
+    
+    if (curDiv.classList.contains('settingBox')) {
+        return getLastElemForTitleDiv(curDiv.nextElementSibling)
+    } else {
+        return curDiv.previousElementSibling;
     }
 
 }

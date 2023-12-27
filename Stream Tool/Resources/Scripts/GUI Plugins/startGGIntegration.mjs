@@ -36,6 +36,7 @@ const connectInformation = await getJson(stPath.text + "/startGGAuth");
 
 const settingElectronDiv = document.getElementById("settingsElectron");
 const scoreBoardDiv = document.getElementsByClassName("settingsTitle")[0];
+const gameSelectDiv = document.getElementById('GameSelectTitleDiv')
 
 const newToggles = [{
     id: "startGGEventId",
@@ -146,7 +147,7 @@ const newToggles = [{
 ]
 
 
-const divs = genGuiSection('StartGG', scoreBoardDiv, false, newToggles);
+const divs = genGuiSection('StartGG', gameSelectDiv, true, newToggles);
 
 class StartGG {
     #eventIdInput = document.getElementById('startGGEventId');
@@ -166,6 +167,7 @@ class StartGG {
 	#startGGPopulateTournamentNameBtn = document.getElementById('startGGPopulateTournamentName');
 	#startGGSetGameBtn = document.getElementById('startGGSetGame');
 
+	#lastElement = divs.prevDiv;
 
     #players = [];
 	#playerPresets = [];
