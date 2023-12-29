@@ -33,11 +33,16 @@ async function updateData(data) {
 			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ data.gameAbbr +'Y)');
 			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ data.gameAbbr +'X)');
 			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ data.gameAbbr +'Y)');
+
+			root.style.setProperty("--scoreboardScale", 'var(--scoreboard'+ data.gameAbbr +'Scale)');
+			root.style.setProperty("--roundInfoScale", 'var(--scoreboard'+ data.gameAbbr +'Scale)');
 		} else {
 			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ defaultValue +'X)');
 			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ defaultValue +'Y)');
 			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ defaultValue +'X)');
 			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ defaultValue +'Y)');
+			root.style.setProperty("--scoreboardScale", 'var(--scoreboard'+ defaultValue +'Scale)');
+			root.style.setProperty("--roundInfoScale", 'var(--scoreboard'+ defaultValue +'Scale)');
 		}
 		
 	}

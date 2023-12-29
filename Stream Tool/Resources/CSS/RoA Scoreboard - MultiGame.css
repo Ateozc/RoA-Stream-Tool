@@ -6,16 +6,22 @@
     --scoreboardRoAY: 25px;
     --roundInfoRoAX: 0px;
     --roundInfoRoAY: 900px;
+    --scoreboardRoAScale: 1;
+    --roundInfoRoAScale: 1;
 
     --scoreboardRoAWSX: 470px;
     --scoreboardRoAWSY: 25px;
     --roundInfoRoAWSX: 0px;
     --roundInfoRoAWSY: 900px;
+    --scoreboardRoAWSScale: 1;
+    --roundInfoRoAWSScale: 1;
 
     --scoreboardR2X: 470px;
     --scoreboardR2Y: 25px;
     --roundInfoR2X: 0px;
     --roundInfoR2Y: 900px;
+    --scoreboardR2Scale: 1;
+    --roundInfoR2Scale: 1;
 
 
     /* SSBU */
@@ -33,18 +39,25 @@
     --scoreboardSSBUY: 25px;
     --roundInfoSSBUX: 800px;
     --roundInfoSSBUY: 100px;
+    --scoreboardSSBUScale: 1;
+    --roundInfoSSBUScale: 1;
     
     /* Third Strike */
     --scoreboardSF3SX:530px;
     --scoreboardSF3SY:0px;
     --roundInfoSF3SX: 0px;
     --roundInfoSF3SY: 190px;
+    --scoreboardSF3SScale: 0.85;
+    --roundInfoSF3SScale: 1;
+
     /* GGS */
     /* 340 if 1scale 620 at .85*/
     --scoreboardGGSX: 340px; 
     --scoreboardGGSY: 0px;
     --roundInfoGGSX: 0px;
     --roundInfoGGSY: 1000px;
+    --scoreboardGGSScale: 1;/* scale(0.85); Test around with this scale*/
+    --roundInfoGGSScale: 1;
 
     /* GGxrdRev2 */
     /* 340 if 1scale 620 at .85*/
@@ -52,6 +65,8 @@
     --scoreboardGGXR2Y: 0px;
     --roundInfoGGXR2X: 0px;
     --roundInfoGGXR2Y: 1000px;
+    --scoreboardGGXR2Scale: 0.75;
+    --roundInfoGGXR2Scale: 1;
 
      /* Tekken 7 */
     /* 340 if 1scale 620 at .85*/
@@ -59,6 +74,8 @@
     --scoreboardT7Y: 0px;
     --roundInfoT7X: 0px;
     --roundInfoT7Y: 15px;
+    --scoreboardT7Scale: 0.85;
+    --roundInfoT7Scale: 1;
 
     /* BBCF */
     /* 340 if 1scale 620 at .85*/
@@ -66,6 +83,8 @@
     --scoreboardBBCFY: 0px;
     --roundInfoBBCFX: 0px;
     --roundInfoBBCFY: 1000px;
+    --scoreboardBBCFScale: 1; /* scale(0.9); */
+    --roundInfoBBCFScale: 1;
 
 
 
@@ -73,6 +92,8 @@
     --scoreboardY: var(--scoreboardRoAY);
     --roundInfoX: var(--roundInfoRoAX);
     --roundInfoY: var(--roundInfoRoAY);
+    --scoreboardScale: var(--scoreboardRoAScale);
+    --roundInfoScale: var(--roundInfoRoAScale); /* Currently unused, but feel free to use this.*/
 }
 
 
@@ -80,134 +101,17 @@
     top: var(--scoreboardY);
 }
 
-.scoreboard.SSBU {
-    top: var(--scoreboardSSBUY);
-}
 
-.scoreboard.SF3S {
-    top: var(--scoreboardSF3SY);
-}
-
-.scoreboard.GGS {
-    top: var(--scoreboardGGSY);
-}
-
-.scoreboard.GGXR2 {
-    top: var(--scoreboardGGXR2Y);
-}
-
-.scoreboard.BBCF {
-    top: var(--scoreboardBBCFY);
-}
-
-.scoreboard.T7 {
-    top: var(--scoreboardT7Y);
-}
-
-
-
-#scoreboardL {
+#scoreboardL { /* we only modify scale of Left scoreboard and Right scoreboard, not parent.*/
     left: var(--scoreboardX);
-}
-
-#scoreboardL.SSBU {
-    left: var(--scoreboardSSBUX);
-}
-
-#scoreboardL.SF3S {
-    left: var(--scoreboardSF3SX);
-    transform: scale(0.85);
-}
-
-#scoreboardL.GGS {
-    left: var(--scoreboardGGSX);
-    /* transform: scale(0.85); */
-}
-
-#scoreboardL.GGXR2 {
-    left: var(--scoreboardGGXR2X);
-    transform: scale(0.75);
-}
-
-
-#scoreboardL.BBCF {
-    left: var(--scoreboardBBCFX);
-    /* transform: scale(0.9); */
-}
-
-#scoreboardL.T7 {
-    left: var(--scoreboardT7X);
-    transform: scale(0.85);
-}
-
-
+    transform: scale(calc(var(--scoreboardScale) * 1), var(--scoreboardScale))}
 
 #scoreboardR {
     right: var(--scoreboardX);
-    transform: scaleX(-1);
+    /* transform: scaleX(-1); */
+    transform: scale(calc(var(--scoreboardScale) * -1), var(--scoreboardScale))
 }
-
-#scoreboardR.SSBU {
-    right: var(--scoreboardSSBUX);
-    transform: scaleX(-1);
-}
-
-#scoreboardR.SF3S {
-    right: var(--scoreboardSF3SX);
-    transform: scale(-0.85, 0.85)
-}
-
-#scoreboardR.GGS {
-    right: var(--scoreboardGGSX);
-    /* transform: scale(-0.85, 0.85) */
-}
-
-#scoreboardR.GGXR2 {
-    right: var(--scoreboardGGXR2X);
-    transform: scale(-0.75, 0.75)
-}
-
-#scoreboardR.BBCF {
-    right: var(--scoreboardBBCFX);
-    /* transform: scale(-0.9, 0.9) */
-}
-
-#scoreboardR.T7 {
-    right: var(--scoreboardT7X);
-    transform: scale(-0.85, 0.85)
-}
-
 #overlayRound {
     top: var(--roundInfoY);
     left: var(--roundInfoX);
-}
-
-#overlayRound.SSBU {
-    top: var(--roundInfoSSBUY);
-    left: var(--roundInfoSSBUX);
-}
-
-#overlayRound.SF3S {
-    top: var(--roundInfoSF3SY);
-    left: var(--roundInfoSF3SX);
-}
-
-#overlayRound.GGS {
-    top: var(--roundInfoGGSY);
-    left: var(--roundInfoGGSX);
-}
-
-#overlayRound.GGXR2 {
-    top: var(--roundInfoGGXR2Y);
-    left: var(--roundInfoGGXR2X);
-}
-
-#overlayRound.BBCF {
-    top: var(--roundInfoBBCFY);
-    left: var(--roundInfoBBCFX);
-}
-
-#overlayRound.T7 {
-    top: var(--roundInfoT7Y);
-    left: var(--roundInfoT7X);
 }
