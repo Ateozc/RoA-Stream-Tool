@@ -23,6 +23,25 @@ initWebsocket("gameData", (data) => updateData(data));
  */
 async function updateData(data) {
 
+	if (data.gameAbbr) {
+		let defaultValue = 'RoA';
+		let style = getComputedStyle(document.body);
+		let root = document.documentElement;
+
+		if (style.getPropertyValue('--scoreboard'+ data.gameAbbr +'X')) { //seems to exist, use it.
+			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ data.gameAbbr +'X)');
+			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ data.gameAbbr +'Y)');
+			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ data.gameAbbr +'X)');
+			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ data.gameAbbr +'Y)');
+		} else {
+			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ defaultValue +'X)');
+			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ defaultValue +'Y)');
+			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ defaultValue +'X)');
+			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ defaultValue +'Y)');
+		}
+		
+	}
+
 	// update intro data just in case we end up playing it
 	scoreboardIntro.updateData(data);
 

@@ -1,4 +1,5 @@
 import { showCustomSkin } from "../Custom Skin.mjs";
+import { current } from "../Globals.mjs";
 import { FinderSelect } from "./Finder Select.mjs";
 
 class SkinFinder extends FinderSelect {
@@ -23,15 +24,18 @@ class SkinFinder extends FinderSelect {
         }
 
         // add a final entry to set a custom skin for the player
-        const newDiv = document.createElement('div');
-        newDiv.className = "finderEntry";
-        newDiv.addEventListener("click", () => {showCustomSkin(player)});
-        const spanName = document.createElement('span');
-        spanName.innerHTML = "Custom Skin";
-        spanName.className = "pfName";
-        spanName.style.color = "lightsalmon";
-        newDiv.appendChild(spanName);
-        skinFinder.addEntry(newDiv);
+        if (current.game == 'Rivals of Aether' || current.game == 'Rivals Workshop') {
+            const newDiv = document.createElement('div');
+            newDiv.className = "finderEntry";
+            newDiv.addEventListener("click", () => {showCustomSkin(player)});
+            const spanName = document.createElement('span');
+            spanName.innerHTML = "Custom Skin";
+            spanName.className = "pfName";
+            spanName.style.color = "lightsalmon";
+            newDiv.appendChild(spanName);
+            skinFinder.addEntry(newDiv);
+        }
+        
 
         // load them skin images
         player.loadSkinImages();

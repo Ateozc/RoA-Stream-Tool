@@ -198,6 +198,9 @@ class GameSelect {
             await settings.save("forceAlt", false);
         }
 
+        // save current checkbox value to the settings file
+        await settings.save("workshop", wsToggleInput.checked);
+
         for (let i = 0; i < this.#toggleList.length; i++) {
             this.showHideInputAndLabel(this.#toggleList[i].id, (this.#toggleList[i].games.indexOf(current.game) != -1));
         }

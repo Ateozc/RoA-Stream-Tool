@@ -232,26 +232,32 @@ export class PlayerGame extends Player {
         let vsBG = `${this.char}/BG.webm`;
         let trueBGPath = stPath.char;
 
-        if (this.vsSkin.name.includes("LoA") && !settings.isNoLoAChecked()) {
+        if (this.vsSkin.webm) {
+            vsBG = `${this.char}/${this.vsSkin.webm}.webm`;
+        } else if (this.vsSkin.useDefaultBg) {
+            vsBG = 'BG.webm';
+            trueBGPath = stPath.charBase;
+        }
+
+        if (this.vsSkin.loa && !settings.isNoLoAChecked()) {
             // show LoA background if the skin is LoA
             vsBG = 'BG LoA.webm';
             trueBGPath = stPath.charBase;
-        } else if (this.vsSkin.name == "Ragnir") {
-            // Ragnir shows the default stage in the actual game
-            vsBG = 'BG.webm';
-            trueBGPath = stPath.charBase;
-        } else if (this.char == "Shovel Knight" && this.vsSkin.name == "Golden") {
-             // why not
-            vsBG = `${this.char}/BG Golden.webm`;
         } else if (this.charInfo.vsScreen) { // safety check
             if (this.charInfo.vsScreen.background) { // if the character has a specific BG
-                vsBG = `${this.charInfo.vsScreen.background}/BG.webm`;
+                if (this.vsSkin.webm) {
+                    vsBG = `${this.charInfo.vsScreen.background}/${this.vsSkin.webm}.webm`;
+                } else {
+                    vsBG = `${this.charInfo.vsScreen.background}/BG.webm`;
+                }
             }
         }
 
         // if it doesnt exist, use a default BG
         if (!await fileExists(`${trueBGPath}/${vsBG}`)) {
-            if (await fileExists(`${stPath.char}/BG.webm`)) {//Use default for the game if available.
+            if (await fileExists(`${stPath.char}/${this.vsSkin.webm}.webm`)){
+                this.vsBgSrc = `Resources/Games/${current.game}/${this.vsSkin.webm}.webm`; 
+            } else if (await fileExists(`${stPath.char}/BG.webm`)) {//Use default for the game if available.
                 this.vsBgSrc = `Resources/Games/${current.game}/BG.webm`; 
             } else {
                 this.vsBgSrc = `Resources/Games/Default/BG.webm`; ;
@@ -259,7 +265,6 @@ export class PlayerGame extends Player {
         } else {
             this.vsBgSrc = `Resources/Games/${current.game}/${vsBG}`;
         }
-
     }
 
     /** Generates a new trail image for this player */

@@ -1,5 +1,13 @@
 [
   {
+    "name": "BlazBlue Central Fiction",
+    "abbr": "BBCF"
+  },
+  {
+    "name": "Guilty Gear Strive",
+    "abbr": "GGS"
+  },
+  {
     "name": "Rivals 2",
     "abbr": "R2"
   },
@@ -10,5 +18,17 @@
   {
     "name": "Rivals Workshop",
     "abbr": "RoAWS"
+  },
+  {
+    "name": "Street Fighter 3rd Strike",
+    "abbr": "SF3S"
+  },
+  {
+    "name": "Super Smash Bros Ultimate",
+    "abbr": "SSBU"
+  },
+  {
+    "name": "Tekken 7",
+    "abbr": "T7"
   }
 ]

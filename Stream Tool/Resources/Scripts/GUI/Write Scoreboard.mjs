@@ -9,7 +9,7 @@ import { settings } from './Settings.mjs';
 import { teams } from './Team/Teams.mjs';
 import { tournament } from './Tournament.mjs';
 import { wl } from './WinnersLosers.mjs';
-import { inside } from './Globals.mjs';
+import { current, inside } from './Globals.mjs';
 import { saveSimpleTexts } from './File System.mjs';
 
 const updateDiv = document.getElementById('updateRegion');
@@ -82,6 +82,8 @@ export async function writeScoreboard() {
         forceWL: settings.isForceWLChecked(),
         roundIndex: round.getIndex(),
         roundNumber: round.getNumber(),
+        game: current.game,
+        gameAbbr: current.gameAbbr,
         id : "gameData"
     };
 

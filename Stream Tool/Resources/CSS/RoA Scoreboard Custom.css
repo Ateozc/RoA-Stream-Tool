@@ -11,7 +11,7 @@ Not recommended to change the default variables (--default-font, --default-color
 
 If you want to add a new font, simply add it to the Fonts folder and then add another font option below.
 */
-
+@import url(RoA\ Scoreboard\ -\ MultiGame.css);
 @font-face {
     font-family: "Deansgate";
     src: url('../Fonts/DeansgateCondensed-Bold.ttf');

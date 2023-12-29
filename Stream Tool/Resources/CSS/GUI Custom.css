@@ -9,6 +9,8 @@ override anything you want here.
 
 */
 
+@import url(GUI\ Plugins.css);
+
 .pInfoIconContColorSave {
     width: 30px;
     /* display: flex; */
@@ -16,24 +18,3 @@ override anything you want here.
     align-items: center;
 }
 
-.settingBox {
-  display: flex;
-  outline: none;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: center;
-}
-
-.settingsBoxBlockOverride {
-  display:block;
-}
-
-.hidden {
-  display: none;
-}
-
-.easyGuiHide {
-  display: none;
-}

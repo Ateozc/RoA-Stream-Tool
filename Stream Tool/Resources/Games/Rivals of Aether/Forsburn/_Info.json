@@ -80,7 +80,8 @@
         {
             "name": "LoA",
             "hex": "9889-8480-601C-FFE9-00FF-7F00-AA00-0024-2224-D0C4-AB11",
-            "force": true
+            "force": true,
+            "loa": true
         },
         {
             "name": "Ranked",
@@ -96,7 +97,8 @@
             "name": "HD"
         },
         {
-            "name": "LoA HD"
+            "name": "LoA HD",
+            "loa": true
         }
     ],
     "colorData" : {

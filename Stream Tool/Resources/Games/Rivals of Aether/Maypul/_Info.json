@@ -76,7 +76,8 @@
         {
             "name": "Ragnir",
             "hex": "E94E-48D1-A376-4E45-5059-4140-FBF2-3608",
-            "force": true
+            "force": true,
+            "useDefaultBg": true
         },
         {
             "name": "Golden",
@@ -102,7 +103,8 @@
             "name": "HD"
         },
         {
-            "name": "LoA HD"
+            "name": "LoA HD",
+            "loa": true
         }
     ],
     "colorData" : {

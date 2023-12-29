@@ -74,7 +74,8 @@
         {
             "name": "LoA",
             "hex": "7879-A1E7-79B9-82AD-B196-7870-D6D7-F4B5",
-            "force": true
+            "force": true,
+            "loa": true
         },
         {
             "name": "Golden",
@@ -98,7 +99,8 @@
             "name": "HD"
         },
         {
-            "name": "LoA HD"
+            "name": "LoA HD",
+            "loa": true
         }
     ],
     "colorData" : {

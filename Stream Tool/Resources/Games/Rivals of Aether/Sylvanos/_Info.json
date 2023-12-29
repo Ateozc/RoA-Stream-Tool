@@ -89,7 +89,8 @@
             "name": "HD"
         },
         {
-            "name": "LoA HD"
+            "name": "LoA HD",
+            "loa": true
         }
     ],
     "colorData" : {
