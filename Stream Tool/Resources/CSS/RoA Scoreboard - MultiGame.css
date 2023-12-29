@@ -14,15 +14,15 @@
     --scoreboardRoAWSX: 470px;
     --scoreboardRoAWSY: 25px;
     --roundInfoRoAWSX: 0px;
-    --roundInfoRoAWSY: 892px;
+    --roundInfoRoAWSY: 60px;
     --scoreboardRoAWSScale: 1;
     --roundInfoRoAWSScale: 1;
 
-    --scoreboardR2X: 470px;
-    --scoreboardR2Y: 25px;
+    --scoreboardR2X: 370px;
+    --scoreboardR2Y: 40px;
     --roundInfoR2X: 0px;
-    --roundInfoR2Y: 892px;
-    --scoreboardR2Scale: 1;
+    --roundInfoR2Y: 60px;
+    --scoreboardR2Scale: 1.25;
     --roundInfoR2Scale: 1;
 
 
