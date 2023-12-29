@@ -7,7 +7,7 @@
   "forceHD": false,
   "noLoAHD": false,
   "forceWL": false,
-  "customRound": true,
+  "customRound": false,
   "invertScore": false,
   "scoreAutoUpdate": false,
   "simpleTexts": false,
@@ -15,5 +15,6 @@
   "resizable": true,
   "zoom": 100,
   "remoteUpdatePort": 1111,
-  "webSocketPort": 8080
+  "webSocketPort": 8080,
+  "showPortraits": false
 }

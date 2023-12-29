@@ -72,6 +72,7 @@ export async function writeScoreboard() {
         tournamentName: tournament.getText(),
         caster: [],
         socialNames: ["twitch", "yt", "twitter", "bsky", "masto", "cohost"],
+        showPortraits: settings.isPortraitsChecked(),
         allowIntro: settings.isIntroChecked(),
         // this is just for remote updating
         altSkin: settings.isAltArtChecked(),

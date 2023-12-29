@@ -1,25 +1,27 @@
 
 :root {
 
+    --clipPortraits: ''; /*polygon(-5% 0%, 71% 5%, 75% 28%, -8% 100%); clips singles portraits*/
+
     /* Default for Rivals/Ws */
     --scoreboardRoAX: 470px;
     --scoreboardRoAY: 25px;
     --roundInfoRoAX: 0px;
-    --roundInfoRoAY: 900px;
+    --roundInfoRoAY: 892px;
     --scoreboardRoAScale: 1;
     --roundInfoRoAScale: 1;
 
     --scoreboardRoAWSX: 470px;
     --scoreboardRoAWSY: 25px;
     --roundInfoRoAWSX: 0px;
-    --roundInfoRoAWSY: 900px;
+    --roundInfoRoAWSY: 892px;
     --scoreboardRoAWSScale: 1;
     --roundInfoRoAWSScale: 1;
 
     --scoreboardR2X: 470px;
     --scoreboardR2Y: 25px;
     --roundInfoR2X: 0px;
-    --roundInfoR2Y: 900px;
+    --roundInfoR2Y: 892px;
     --scoreboardR2Scale: 1;
     --roundInfoR2Scale: 1;
 
@@ -38,7 +40,7 @@
     --scoreboardSSBUX: 470px;
     --scoreboardSSBUY: 25px;
     --roundInfoSSBUX: 800px;
-    --roundInfoSSBUY: 100px;
+    --roundInfoSSBUY: 92px;
     --scoreboardSSBUScale: 1;
     --roundInfoSSBUScale: 1;
     
@@ -46,7 +48,7 @@
     --scoreboardSF3SX:530px;
     --scoreboardSF3SY:0px;
     --roundInfoSF3SX: 0px;
-    --roundInfoSF3SY: 190px;
+    --roundInfoSF3SY: 182px;
     --scoreboardSF3SScale: 0.85;
     --roundInfoSF3SScale: 1;
 
@@ -55,7 +57,7 @@
     --scoreboardGGSX: 340px; 
     --scoreboardGGSY: 0px;
     --roundInfoGGSX: 0px;
-    --roundInfoGGSY: 1000px;
+    --roundInfoGGSY: 992px;
     --scoreboardGGSScale: 1;/* scale(0.85); Test around with this scale*/
     --roundInfoGGSScale: 1;
 
@@ -64,7 +66,7 @@
     --scoreboardGGXR2X: 495px; 
     --scoreboardGGXR2Y: 0px;
     --roundInfoGGXR2X: 0px;
-    --roundInfoGGXR2Y: 1000px;
+    --roundInfoGGXR2Y: 992px;
     --scoreboardGGXR2Scale: 0.75;
     --roundInfoGGXR2Scale: 1;
 
@@ -73,7 +75,7 @@
     --scoreboardT7X: 450px; 
     --scoreboardT7Y: 0px;
     --roundInfoT7X: 0px;
-    --roundInfoT7Y: 15px;
+    --roundInfoT7Y: 7px;
     --scoreboardT7Scale: 0.85;
     --roundInfoT7Scale: 1;
 
@@ -82,12 +84,12 @@
     --scoreboardBBCFX: 425px; 
     --scoreboardBBCFY: 0px;
     --roundInfoBBCFX: 0px;
-    --roundInfoBBCFY: 1000px;
+    --roundInfoBBCFY: 992px;
     --scoreboardBBCFScale: 1; /* scale(0.9); */
     --roundInfoBBCFScale: 1;
 
 
-
+    /* DO NOT TOUCH */
     --scoreboardX: var(--scoreboardRoAX);
     --scoreboardY: var(--scoreboardRoAY);
     --roundInfoX: var(--roundInfoRoAX);
@@ -96,22 +98,23 @@
     --roundInfoScale: var(--roundInfoRoAScale); /* Currently unused, but feel free to use this.*/
 }
 
-
 .scoreboard {
     top: var(--scoreboardY);
 }
 
-
 #scoreboardL { /* we only modify scale of Left scoreboard and Right scoreboard, not parent.*/
     left: var(--scoreboardX);
-    transform: scale(calc(var(--scoreboardScale) * 1), var(--scoreboardScale))}
+    transform: scale(calc(var(--scoreboardScale) * 1), var(--scoreboardScale));
+    clip-path: var(--clipPortraits);
+}
 
 #scoreboardR {
     right: var(--scoreboardX);
     /* transform: scaleX(-1); */
-    transform: scale(calc(var(--scoreboardScale) * -1), var(--scoreboardScale))
+    transform: scale(calc(var(--scoreboardScale) * -1), var(--scoreboardScale));
+    clip-path: var(--clipPortraits);
 }
-#overlayRound {
-    top: var(--roundInfoY);
-    left: var(--roundInfoX);
+
+#roundDiv {
+    transform: translate(var(--roundInfoX), var(--roundInfoY));
 }

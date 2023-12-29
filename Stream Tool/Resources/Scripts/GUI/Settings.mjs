@@ -12,6 +12,7 @@ import { teams } from "./Team/Teams.mjs";
 
 class GuiSettings {
 
+    #portraitsCheck = document.getElementById("showPortraits");
     #introCheck = document.getElementById("allowIntro");
     #altArtCheck = document.getElementById("forceAlt");
 
@@ -36,6 +37,9 @@ class GuiSettings {
     constructor() {
 
         // scoreboard listeners
+        this.#portraitsCheck.addEventListener("click", () => {
+            this.save("showPortraits", this.isPortraitsChecked())
+        });
         this.#introCheck.addEventListener("click", () => {
             this.save("allowIntro", this.isIntroChecked())
         });
@@ -97,6 +101,7 @@ class GuiSettings {
         const guiSettings = await getJson(`${stPath.text}/GUI Settings`);
 
         // and update it all!
+        this.#portraitsCheck.checked = guiSettings.showPortraits;
         this.#introCheck.checked = guiSettings.allowIntro;
         this.#altArtCheck.checked = guiSettings.forceAlt;
 
@@ -143,9 +148,14 @@ class GuiSettings {
 
     }
 
+    isPortraitsChecked() {
+        return this.#portraitsCheck.checked;
+    }
+
     setIntro(value) {
         this.#introCheck.checked = value;
     }
+    
     isIntroChecked() {
         return this.#introCheck.checked;
     }

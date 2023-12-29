@@ -23,11 +23,11 @@ initWebsocket("gameData", (data) => updateData(data));
  */
 async function updateData(data) {
 
-	if (data.gameAbbr) {
-		let defaultValue = 'RoA';
-		let style = getComputedStyle(document.body);
-		let root = document.documentElement;
+	let defaultValue = 'RoA';
+	let style = getComputedStyle(document.body);
+	let root = document.documentElement;
 
+	if (data.gameAbbr) {
 		if (style.getPropertyValue('--scoreboard'+ data.gameAbbr +'X')) { //seems to exist, use it.
 			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ data.gameAbbr +'X)');
 			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ data.gameAbbr +'Y)');
@@ -43,8 +43,7 @@ async function updateData(data) {
 			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ defaultValue +'Y)');
 			root.style.setProperty("--scoreboardScale", 'var(--scoreboard'+ defaultValue +'Scale)');
 			root.style.setProperty("--roundInfoScale", 'var(--scoreboard'+ defaultValue +'Scale)');
-		}
-		
+		}	
 	}
 
 	// update intro data just in case we end up playing it
@@ -88,6 +87,12 @@ async function updateData(data) {
 	// many modules need to know if we are loading the view up or not
 	if (current.startup) {
 		current.startup = false;
+	}
+
+	if (gamemode.getGm() == 1 && !data.showPortraits) {
+		root.style.setProperty("--clipPortraits", "polygon(-5% 0%, 71% 5%, 75% 28%, -8% 100%)");
+	} else {
+		root.style.setProperty("--clipPortraits", "");
 	}
 
 	// this is to prevent things not animating when browser loaded while not active
