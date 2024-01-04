@@ -137,6 +137,14 @@ const newToggles = [{
     className: "settingsButton"
 },
 {
+    id: "startGGAutoUpdateSetData",
+    title: "When enabled, all score changes are applied to StartGG set if applicable. If disabled, you will need to press 'Update StartGG Set' button to apply changes.",
+    innerText: "Auto Report on Score change",
+    type: "checkbox",
+    disabled: false,
+    className: "settingsCheck"
+},
+{
     id: "startGGUpdateSetData",
     title: "Reports the set information based upon the current match information.",
     innerText: "Update StartGG Set",
@@ -162,6 +170,7 @@ class StartGG {
 	
 
 	#startGGGetSetDataBtn = document.getElementById('startGGGetSetData');
+	#startGGAutoUpdateSetDataCheck = document.getElementById('startGGAutoUpdateSetData');
 	#startGGUpdateSetDataBtn = document.getElementById('startGGUpdateSetData');
 	#startGGGetTop8Btn = document.getElementById('startGGGetTop8');
 	#startGGPopulateTournamentNameBtn = document.getElementById('startGGPopulateTournamentName');
@@ -183,6 +192,8 @@ class StartGG {
 
 	#characterList = [];
 
+	#reportSetProcessing = false;
+
 	#top8RoundNamesMatrix = [ //these are top 6, to find top 8 we have to get the farthest in losers round.
 		{'ggName':'Grand Final Reset', 'stName': 'True Finals'},
 		{'ggName':'Grand Final', 'stName': 'Grand Finals'},
@@ -196,21 +207,22 @@ class StartGG {
     constructor() {
 		this.setPlayerPresets();
         this.#participantsBtn.addEventListener("click", () => this.getEntrantsForEvent(this.#eventIdInput.value));
-        this.#startGGGetSetDataBtn.addEventListener("click", () => this.getPlayerSetInfo(this.#startGGPlayerSelect.value,this.#eventId));
+        this.#startGGGetSetDataBtn.addEventListener("click", () =>  this.getPlayerSetInfo(this.#startGGPlayerSelect.value,this.#eventId));
+		// this.#startGGAutoUpdateSetDataCheck.addEventListener("click", () => this.toggleAutoReporting());
 		this.#startGGUpdateSetDataBtn.addEventListener("click", () => this.reportSet());
 		this.#startGGGetTop8Btn.addEventListener("click", () => this.getTop8(this.#eventId, this.#top8PhaseId));
-
 
 		this.#startGGPopulateRoundNameCheck.addEventListener('click', () => this.populateRoundClicked());
 		this.#useCustomRoundCheck.addEventListener('click', () => this.customRoundClicked());
 		this.#startGGPopulateTournamentNameBtn.addEventListener('click', () => this.setTournamentName());
 		this.#startGGSetGameBtn.addEventListener('click', ()=> this.setGame());
 
-		updateDiv.addEventListener('click', ()=> this.updateSetInfo() );
-		this.showElems(false);
+		updateDiv.addEventListener('click', ()=> (this.isAutoReportSetEnabled()) ? this.updateAndReport() : this.updateSetInfo() );
+		this.toggleElems(false);
+
     }
 
-	showElems (showElems) {
+	toggleElems (showElems) {
 		for (let i = 2; i < divs.toggleDivs.length; i++) { //skip first 2, as those are fine.
 			if (divs.toggleDivs[i].classList.contains('hidden') ) {
 				if (showElems) {
@@ -222,6 +234,12 @@ class StartGG {
 				}
 				
 			}
+		}
+	}
+
+	async updateAndReport() {
+		if(await this.updateSetInfo()) {
+			await this.reportSet();
 		}
 	}
 
@@ -237,6 +255,10 @@ class StartGG {
      * NOTE: Round Robin may cause issues
      */
 
+	isAutoReportSetEnabled() {
+		return this.#startGGAutoUpdateSetDataCheck.checked;
+	}
+	
 	customRoundClicked() {
 		if (!this.#useCustomRoundCheck.checked) {
 			this.#startGGPopulateRoundNameCheck.checked = false
@@ -552,23 +574,32 @@ class StartGG {
 			}
 	
 			let json = await this.generalApiCall(query, variables);
-			this.#currentSetInfo = {};
-			this.#currentSetInfo.useDetailedReportType = true;
-			this.#currentSetInfo.setDataSimple = {};
-			this.#currentSetInfo.setDataDetailed = {};
 
 			clearTeams();
 			clearPlayers();
 			clearScores();
 			this.resetPreviousScore();
 
-			if (json.data.event.sets.nodes.length > 0) {
+			this.#currentSetInfo = {};
+			this.#currentSetInfo.useDetailedReportType = true;
+			this.#currentSetInfo.setDataSimple = {};
+			this.#currentSetInfo.setDataDetailed = {};
+
+
+			if (json.data.event.sets.nodes.length == 1) {
+				if (json.data.event.sets.nodes[0].state != 2) { //State of 2 means in progress. We only want this cuz a player should only be in one active set per event at a time.
+					displayNotif('No active sets for selected player. StartGG may be a little slow...');
+					return;
+				}
 				this.#currentSetInfo = json.data.event.sets.nodes[0];
+				this.#currentSetInfo.useDetailedReportType = true;
+				this.#currentSetInfo.setDataSimple = {};
+				this.#currentSetInfo.setDataDetailed = {};
 			} else {
-				displayNotif('No active sets for selected player.');
+				displayNotif('No active sets for selected player. StartGG may be a little slow...');
 				return;
 			}
-			
+
 			await this.setPlayersInTool();
 
 		} catch (e) {
@@ -798,13 +829,22 @@ class StartGG {
 
 		const curScores = [scores[0].getScore(), scores[1].getScore()];
 
+		let setWinner = this.getSetWinner(curScores);
+
+
 		this.#currentSetInfo.setDataSimple = { //NOTE: Simple sucks. It doesn't let us choose set count, just the winner.
 			setId: this.#currentSetInfo.id,
-			winnerId: this.getSetWinner(curScores)
+			winnerId: setWinner
 		};
 
+		this.#currentSetInfo.setDataDetailed.setId = this.#currentSetInfo.id;
+		this.#currentSetInfo.setDataDetailed.winnerId = setWinner;
+		if (!this.#currentSetInfo.setDataDetailed.gameData) {
+			this.#currentSetInfo.setDataDetailed.gameData = [];
+		}
+
 		if (!this.#currentSetInfo.useDetailedReportType ) {
-			return;
+			return (this.#currentSetInfo.winnerId);
 		}
 		
 		let gameInfo = {};
@@ -814,7 +854,12 @@ class StartGG {
 		if (this.#previousScores[0] != curScores[0] || this.#previousScores[1] != curScores[1]) { //Score has updated.
 			gameNum = curScores[0] + curScores[1];
 			gameStats = this.getGameStats(this.#previousScores, curScores);
-			if (!gameStats) {
+			if (gameStats) {
+				/**
+				 * TODO: FIx the game stats not properly being set. Gotta find a solution to this.
+				 * 
+				 * 
+				 */
 				gameInfo = {
 					"winnerId": gameStats.winnerId,
 					"gameNum": gameNum,
@@ -838,7 +883,10 @@ class StartGG {
 				//value increase by more than 1, which messes up our data.
 				//use simple score reporting
 				this.#currentSetInfo.useDetailedReportType = false;
+				return;
 			}
+		} else {
+			return;
 		}
 
 		this.#previousScores = JSON.parse(JSON.stringify(curScores));
@@ -847,18 +895,11 @@ class StartGG {
 			return;
 		}
 
-		if (!this.#currentSetInfo.setDataDetailed.gameData) {
-			this.#currentSetInfo.setDataDetailed.gameData = [];
-		}
-
-		this.#currentSetInfo.setDataDetailed.setId = this.#currentSetInfo.id;
-		this.#currentSetInfo.setDataDetailed.winnerId = this.getSetWinner(curScores);
 		this.#currentSetInfo.setDataDetailed.gameData[gameNum-1] = gameInfo;
+		return true;
 	}
 
-	async reportSet() {
-		//1045037 //this is the event we are testing with
-
+	async reportSet() {		
 		if (!this.#currentSetInfo.id) {
 			displayNotif('Need to pull Match Info from StartGG first.');
 			return;
@@ -876,12 +917,16 @@ class StartGG {
 
 		if (this.#currentSetInfo.useDetailedReportType) {
 			variables = this.#currentSetInfo.setDataDetailed;
+			if (variables.gameData.length <=0 ) {
+				return; //No games have been played yet.
+			}
 		} else {
 			variables = this.#currentSetInfo.setDataSimple;
 			if (!variables.winnerId) {
 				return; //No winner yet. Fine on multiple game sets.
 			}
 		}
+		
 
 		if (!variables.setId) {
 			displayNotif('Must have set data to report');
@@ -911,7 +956,7 @@ class StartGG {
 	async getEntrantsForEvent(eventId) {
 		if (!eventId) {
 			displayNotif('Must provide a valid event (either eventID or URL).');
-			this.showElems(false);
+			this.toggleElems(false);
 			return;
 		}
 
@@ -988,7 +1033,7 @@ class StartGG {
 			if (data.data.event == null) {
 				this.#eventIdInput.value = '';
 				displayNotif('Invalid Event ID');
-				this.showElems(false);
+				this.toggleElems(false);
 			} else {
 				this.#gameForEvent = data.data.event.videogame;
 				this.#eventId = data.data.event.id;
@@ -1035,7 +1080,7 @@ class StartGG {
 
 				
 				displayNotif('Event found');
-				this.showElems(true);
+				this.toggleElems(true);
 
 				await this.getVideogameInfo(this.#gameForEvent.id);
 			}

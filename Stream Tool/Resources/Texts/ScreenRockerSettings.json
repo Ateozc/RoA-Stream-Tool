@@ -1,9 +1,9 @@
 {
-  "enabled": false,
+  "enabled": true,
   "inMatchOverride": false,
   "inMatch": false,
   "updateChar": true,
-  "updateSkin": true,
+  "updateSkin": false,
   "updateColor": true,
   "updateScore": false,
   "updateBestOf": true,

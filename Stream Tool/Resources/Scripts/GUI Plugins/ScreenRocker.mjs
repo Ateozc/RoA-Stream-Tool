@@ -11,6 +11,7 @@ import { genGuiSection } from "./EasyGUISection.mjs";
 import { obsControl } from "./OBSWebsocketControl.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { vodRename } from "./VodRename.mjs";
+import { startGG } from "./startGGIntegration.mjs";
 
 const fs = require('fs');
 const stateFile = stPath.text + "/RoAState"
@@ -878,9 +879,16 @@ export class ScreenRocker {
         }
     }
 
-    #writeData() {
+    async #writeData() {
         if (this.#settings.updateAutoApply && playersReady()) {
             // updateDiv.click();
+            try {
+                if (await startGG.updateSetInfo() && startGG.isAutoReportSetEnabled()) {
+                    await startGG.reportSet();
+                }
+            } catch (e) {
+
+            }
             writeScoreboard();
             // document.getElementById("botBar").style.backgroundColor = "var(--bg3)";   
         }
