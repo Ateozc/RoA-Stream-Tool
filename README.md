@@ -110,6 +110,8 @@ Individual Items
 - Vod Rename support
 - OBS Control support
 
+As of 1/1/2023, I will be just having my entire project as a single zip. If you want individual plugins to add to Readeks build (to minimize what you are doing) let me know. Right now, its all built together a bit to allow better capabilities.
+
 I do plan to add more in the future. Each item I add will either be bundled together or separate pieces. Ill list whether or not a few items are a bundle or not. The way this will work is with each release I will do the following:
 - 1 zip that contains just Readeks version
 - 1 zip that contains all my plugins.
