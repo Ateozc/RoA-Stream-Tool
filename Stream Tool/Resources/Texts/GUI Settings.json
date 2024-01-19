@@ -1,6 +1,6 @@
 {
   "guiWidth": 636,
-  "guiHeight": 377,
+  "guiHeight": 376,
   "allowIntro": false,
   "workshop": false,
   "forceAlt": false,
@@ -16,5 +16,5 @@
   "zoom": 100,
   "remoteUpdatePort": 1111,
   "webSocketPort": 8080,
-  "showPortraits": true
+  "showPortraits": false
 }

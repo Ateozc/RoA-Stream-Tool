@@ -34,6 +34,26 @@
     ]
   },
   {
+    "name": "AteozcTestUser3",
+    "tag": "",
+    "pronouns": "",
+    "socials": {
+      "twitter": "",
+      "twitch": "",
+      "yt": "",
+      "bsky": "",
+      "masto": "",
+      "cohost": ""
+    },
+    "characters": [
+      {
+        "character": "Clairen",
+        "skin": "Summer",
+        "game": "Rivals of Aether"
+      }
+    ]
+  },
+  {
     "name": "Readek",
     "tag": "",
     "pronouns": "",

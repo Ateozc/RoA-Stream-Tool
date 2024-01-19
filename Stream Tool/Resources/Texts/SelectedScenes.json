@@ -1,6 +1,6 @@
 {
   "startScene": "Vs Screen",
-  "transitionScene": "Vs Screen",
+  "transitionScene": "Vs Screen - Transition",
   "inGameScene": "Scoreboard",
   "endScene": "Bracket"
 }

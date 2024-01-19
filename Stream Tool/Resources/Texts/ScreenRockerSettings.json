@@ -1,11 +1,14 @@
 {
-  "enabled": true,
+  "trackingEnabled": false,
+  "trackBestOfChange": true,
+  "trackInMatchChange": true,
   "inMatchOverride": false,
-  "inMatch": false,
-  "updateChar": true,
-  "updateSkin": false,
-  "updateColor": true,
-  "updateScore": false,
-  "updateBestOf": true,
-  "updateAutoApply": true
+  "trackCharChange": true,
+  "usePlayerSkinFromProfile": true,
+  "trackTeamColorChange": true,
+  "trackPercentChanges": true,
+  "trackScoreChange": true,
+  "autoApplyChanges": true,
+  "showDebugInfo": false,
+  "inMatch": true
 }

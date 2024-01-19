@@ -58,6 +58,9 @@ const newToggles = [
 const divs = genGuiSection('OBS Control', settingElectronDiv, false, newToggles);
 
 class OBSControl {
+
+    #autoConnect = true;
+
     #reconnectAttemptsMax = 10;
     #reconnectAttempts = 0;
     #connected = false;
@@ -83,7 +86,10 @@ class OBSControl {
         this.#toggleOBSConnectionFields();
     }
 
-    connected() {
+    async connected() {
+        if (this.#autoConnect && !this.#connected) { //attempt to autoConnect
+            await this.connect();
+        }
         return this.#connected;
     }
 
@@ -191,7 +197,7 @@ class OBSControl {
     }
 
     async changeScene(newScene, previewChange) {
-        if (!this.connected() && newScene) {
+        if (!await this.connected() && newScene) {
             return;
         }
 
@@ -210,7 +216,7 @@ class OBSControl {
     }
 
     async checkIfRecording() {
-        if (!this.connected()) {
+        if (!await this.connected()) {
             return;
         }
 
@@ -226,7 +232,7 @@ class OBSControl {
     }
 
     async toggleRecording() {
-        if (!this.connected()) {
+        if (!await this.connected()) {
             return;
         }
 
@@ -243,7 +249,7 @@ class OBSControl {
     }
 
     async startRecord() {
-        if (!this.connected()) {
+        if (!await this.connected()) {
             return;
         }
         await this.checkIfRecording();
@@ -264,8 +270,7 @@ class OBSControl {
     }
 
     async stopRecord() {
-        
-        if (!this.connected()) {
+        if (!await this.connected()) {
             return;
         }
 
@@ -309,7 +314,7 @@ class OBSControl {
     }
     
     async screenShot(sourceName, savePath) {
-        if (!this.connected() || !sourceName || savePath) {
+        if (!await this.connected() || !sourceName || savePath) {
             return;
         }
 
@@ -328,7 +333,7 @@ class OBSControl {
     }
 
     async vsScreenScreenshot(savePath) {
-        if (!this.connected() || !savePath) {
+        if (!await this.connected() || !savePath) {
             return;
         }
 
@@ -349,7 +354,7 @@ class OBSControl {
     }
 
     async #getScenes() {
-        if (!this.connected()) {
+        if (!await this.connected()) {
             return;
         }
         try {
