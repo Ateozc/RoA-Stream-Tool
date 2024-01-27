@@ -6,6 +6,7 @@
   "NameThatColor.mjs",
   "obs-websocket-js.mjs",
   "OBSWebsocketControl.mjs",
+  "RoaReplayMover.mjs",
   "ScreenRocker.mjs",
   "startGGIntegration.mjs",
   "VodRename.mjs"

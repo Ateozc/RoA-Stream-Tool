@@ -206,16 +206,21 @@ class VodRename {
         navigator.clipboard.writeText(this.getLatestFileName());
     }
 
+    getSavePath() {
+        let tournament = this.#matchInfo.tournament;
+        let game = this.#matchInfo.game;
+        let tournamentPath = this.#recordingDir + '/' + tournament;
+        let gamePath = tournamentPath + '/' + game;
+
+        return gamePath;
+    }
+
     getLatestFileName() {
         return this.#matchString;
     }
 
     renameAndMoveFiles() {
-
-        let tournament = this.#matchInfo.tournament;
-        let game = this.#matchInfo.game;
         let newFileName = this.getLatestFileName();
-
 
         if (!this.canRename()) {
             displayNotif('Failed to Rename and move Vods. Ensure Tournament, Round, Player Information, and Vod Directory are filled in, then hit "Update" and try again.')
@@ -229,9 +234,7 @@ class VodRename {
 
         this.#vodRenameBtn.title = 'Processing...';
 
-
-        let tournamentPath = this.#recordingDir + '/' + tournament;
-        let gamePath = tournamentPath + '/' + game;
+        let gamePath = this.getSavePath();
 
         let counts = {
             ".png": 0,

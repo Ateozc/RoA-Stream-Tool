@@ -55,6 +55,10 @@ export function genGuiSection(title, otherElement, placeAfter, newToggles) {
             toggleInput.placeholder = toggle.innerText;
             toggleDiv.title = toggle.title;
             toggleDiv.appendChild(toggleInput);
+        } else if (toggle.type == 'number') {
+            toggleDiv.title = toggle.title;
+            toggleDiv.appendChild(inputLabel);
+            toggleDiv.appendChild(toggleInput);
         } else if (toggle.type == 'div') {
             toggleDiv.appendChild(toggleInput);
         } else {

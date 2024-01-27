@@ -37,3 +37,8 @@ override anything you want here.
 .easyGuiHide {
   display: none;
 }
+
+.numberInput {
+  width: 46px;
+  margin-right: 26px;
+}
