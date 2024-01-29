@@ -67,8 +67,6 @@ class EasyGuiSection {
     }
 
     genGuiSection(title, section, newToggles, placement, roaSpecific) {
-        console.log(this.#sections);
-
         let containerDiv = document.createElement("div");
         containerDiv.id='SettingsContainerDiv';
         containerDiv.className = 'settingsContainer';
