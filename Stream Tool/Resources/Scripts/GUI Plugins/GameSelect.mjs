@@ -171,7 +171,7 @@ class GameSelect {
         }
         this.#gameSelectorInput.value = game;
         vodRename.updateGameName(gameListItem.name);
-        stPath.char = realPath + '\\Games\\' + gameListItem.name;
+        stPath.char = realPath + '/Games/' + gameListItem.name;
         current.game = gameListItem.name;
         current.gameAbbr = gameListItem.abbr;
 
