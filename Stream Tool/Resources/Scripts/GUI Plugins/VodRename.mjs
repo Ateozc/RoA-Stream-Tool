@@ -7,7 +7,7 @@ import { tournament } from '../GUI/Tournament.mjs';
 import { gamemode } from '../GUI/Gamemode Change.mjs';
 import { settings } from '../GUI/Settings.mjs';
 import { displayNotif } from '../GUI/Notifications.mjs';
-import { genGuiSection } from './EasyGUISection.mjs';
+import { guiSection } from "./EasyGUISection.mjs";
 
 const fs = require('fs');
 const path = require ('path');
@@ -34,7 +34,7 @@ const newToggles = [
     }
 ]
 
-const divs = genGuiSection('Vod Rename', settingElectronDiv, false, newToggles);
+const divs = guiSection.genGuiSection('Vod Rename', 'guiSettings', newToggles, 1, false);
 
 class VodRename {
     #gameName = '';

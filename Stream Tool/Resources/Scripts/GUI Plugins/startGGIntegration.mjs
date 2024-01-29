@@ -20,9 +20,7 @@ import { displayNotif } from "../GUI/Notifications.mjs";
 import { players, clearPlayers, bracketPlayers } from "../GUI/Player/Players.mjs";
 import { clearScores, scores } from "../GUI/Score/Scores.mjs";
 import { clearTeams } from "../GUI/Team/Teams.mjs";
-import { settings } from "../GUI/Settings.mjs";
-import { genGuiSection } from "./EasyGUISection.mjs";
-import { vodRename } from "./VodRename.mjs"
+import { guiSection } from "./EasyGUISection.mjs";
 import { tournament } from "../GUI/Tournament.mjs";
 import { round } from "../GUI/Round.mjs";
 import { gameSelector } from "./GameSelect.mjs";
@@ -33,10 +31,6 @@ import { bestOf } from "../GUI/BestOf.mjs";
 const updateDiv = document.getElementById('updateRegion');
 
 const connectInformation = await getJson(stPath.text + "/startGGAuth");
-
-const settingElectronDiv = document.getElementById("settingsElectron");
-const scoreBoardDiv = document.getElementsByClassName("settingsTitle")[0];
-const gameSelectDiv = document.getElementById('GameSelectTitleDiv')
 
 const newToggles = [{
     id: "startGGEventId",
@@ -154,8 +148,7 @@ const newToggles = [{
 }
 ]
 
-
-const divs = genGuiSection('StartGG', gameSelectDiv, true, newToggles);
+const divs = guiSection.genGuiSection('StartGG', 'top', newToggles, 1, false);
 
 class StartGG {
     #eventIdInput = document.getElementById('startGGEventId');

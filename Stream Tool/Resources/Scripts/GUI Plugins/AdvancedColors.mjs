@@ -3,7 +3,7 @@ import { getJson, saveJson } from "../GUI/File System.mjs";
 import { stPath } from "../GUI/Globals.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { settings } from "../GUI/Settings.mjs";
-import { genGuiSection } from "./EasyGUISection.mjs";
+import { guiSection } from "./EasyGUISection.mjs";
 import { ntc } from "./NameThatColor.mjs";
 
 const colorList = await getJson(stPath.text + "/Color Slots");
@@ -92,7 +92,7 @@ const newToggles = [
     }
 ]
 
-const divs = genGuiSection('Advanced Color Settings', guiSettingsDiv, true, newToggles);
+const divs = guiSection.genGuiSection('Advanced Color Settings', 'vsScreen', newToggles, 0, false);
 
 class AdvancedColors {
     #toggleDivsOBS = divs.toggleDivs;

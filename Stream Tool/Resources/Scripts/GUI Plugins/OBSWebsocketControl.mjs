@@ -1,7 +1,7 @@
 import { getJson } from "../GUI/File System.mjs";
 import { current, stPath } from "../GUI/Globals.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
-import { genGuiSection } from "./EasyGUISection.mjs";
+import { guiSection } from "./EasyGUISection.mjs";
 import { OBSWebSocket } from "./obs-websocket-js.mjs";
 
 const obs = new OBSWebSocket();
@@ -54,8 +54,8 @@ const newToggles = [
     }
 ]
 
+const divs = guiSection.genGuiSection('OBS Control', 'guiSettings', newToggles, 0, false);
 
-const divs = genGuiSection('OBS Control', settingElectronDiv, false, newToggles);
 
 class OBSControl {
 

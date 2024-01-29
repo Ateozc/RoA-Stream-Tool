@@ -7,7 +7,7 @@ import { tournament } from '../GUI/Tournament.mjs';
 import { gamemode } from '../GUI/Gamemode Change.mjs';
 import { settings } from '../GUI/Settings.mjs';
 import { displayNotif } from '../GUI/Notifications.mjs';
-import { genGuiSection } from './EasyGUISection.mjs';
+import { guiSection } from "./EasyGUISection.mjs";
 import { vodRename } from './VodRename.mjs';
 import { bestOf } from '../GUI/BestOf.mjs';
 
@@ -78,7 +78,8 @@ const newToggles = [
     },
 ]
 
-const divs = genGuiSection('RoA Replay Mover', settingElectronDiv, false, newToggles);
+const divs = guiSection.genGuiSection('RoA Replay Mover', 'guiSettings', newToggles, 2, true);
+
 
 class RoaReplayMover {
     #roaReplayDirInput = document.getElementById('roaReplayDir');

@@ -42,3 +42,9 @@ override anything you want here.
   width: 46px;
   margin-right: 26px;
 }
+
+
+.settingsContainer {
+  border-top: solid 3px var(--bg4);
+  margin-top: 10px;
+}

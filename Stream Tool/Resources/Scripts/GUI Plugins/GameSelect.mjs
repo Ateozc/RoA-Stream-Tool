@@ -4,7 +4,7 @@ import { inside, current, stPath, realPath } from "../GUI/Globals.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { players } from "../GUI/Player/Players.mjs";
 import { settings } from "../GUI/Settings.mjs";
-import { genGuiSection } from "./EasyGUISection.mjs";
+import { guiSection } from "./EasyGUISection.mjs";
 import { vodRename } from "./VodRename.mjs"
 
 const updateDiv = document.getElementById('updateRegion');
@@ -31,8 +31,7 @@ const newToggles = [{
 }
 ]
 
-
-const divs = genGuiSection('Game Select', scoreBoardDiv, false, newToggles);
+const divs = guiSection.genGuiSection('Game Select', 'top', newToggles, 0, false);
 
 class GameSelect {
     #altArtCheck = document.getElementById("forceAlt");
@@ -175,6 +174,8 @@ class GameSelect {
         stPath.char = realPath + '\\Games\\' + gameListItem.name;
         current.game = gameListItem.name;
         current.gameAbbr = gameListItem.abbr;
+
+        guiSection.showHideRivalsSections((current.game == 'Rivals of Aether' || current.game == 'Rivals Workshop'));
 
         await this.showHideSettings();
 

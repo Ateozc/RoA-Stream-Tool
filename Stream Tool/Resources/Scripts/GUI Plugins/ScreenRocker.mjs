@@ -7,7 +7,7 @@ import { scores } from "../GUI/Score/Scores.mjs";
 import { currentColors, updateColor } from "../GUI/Colors.mjs";
 import { writeScoreboard } from "../GUI/Write Scoreboard.mjs";
 import { customChange, setCurrentPlayer } from "../GUI/Custom Skin.mjs";
-import { genGuiSection } from "./EasyGUISection.mjs";
+import { guiSection } from "./EasyGUISection.mjs";
 import { obsControl } from "./OBSWebsocketControl.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { vodRename } from "./VodRename.mjs";
@@ -112,7 +112,8 @@ const newToggles = [
     }
 ]
 
-const divs = genGuiSection('Screen Rocker', settingElectronDiv, false, newToggles);
+const divs = guiSection.genGuiSection('Screen Rocker', 'guiSettings', newToggles, 3, true);
+
 
 const newTogglesOBS = [
     {
@@ -217,7 +218,7 @@ const newTogglesOBS = [
     }
 ]
 
-const obsDivs = genGuiSection('Screen Rocker OBS', divs.prevDiv, true, newTogglesOBS);
+const obsDivs = guiSection.genGuiSection('Screen Rocker OBS', 'guiSettings', newTogglesOBS, 4, true);
 
 
 export class ScreenRocker {
