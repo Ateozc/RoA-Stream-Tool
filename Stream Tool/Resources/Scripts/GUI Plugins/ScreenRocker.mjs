@@ -12,6 +12,7 @@ import { obsControl } from "./OBSWebsocketControl.mjs";
 import { displayNotif } from "../GUI/Notifications.mjs";
 import { vodRename } from "./VodRename.mjs";
 import { startGG } from "./startGGIntegration.mjs";
+import { roaReplayMover } from "./RoaReplayMover.mjs";
 
 const fs = require('fs');
 const stateFile = stPath.text + "/RoAState"
@@ -654,6 +655,7 @@ export class ScreenRocker {
                 if (await startGG.updateSetInfo() && startGG.isAutoReportSetEnabled()) {
                     await startGG.reportSet();
                 }
+                roaReplayMover.autoMoveFiles();
             } catch (e) {
 
             }

@@ -101,7 +101,7 @@ class RoaReplayMover {
     constructor () {
         this.#roaReplayCountInput.value = 0;
         this.#roaReplayDirInput.addEventListener("change", () => this.#updateReplayDir());
-        updateDiv.addEventListener("click", () => {this.#autoMoveFiles()});
+        updateDiv.addEventListener("click", () => {this.autoMoveFiles()});
         this.#roaReplayMoveBtn.addEventListener("click", () => this.renameAndMoveFiles());
         this.#roaReplayCountOverrideCheck.addEventListener("click", () => this.#toggleCountOverride());
         this.#getDirSettings();
@@ -154,7 +154,7 @@ class RoaReplayMover {
         });
     }
 
-    #autoMoveFiles() {
+    autoMoveFiles() {
         if (this.#roaReplayAutomaticCheck.checked && this.#isSetOver()) {
             this.renameAndMoveFiles()
         }
