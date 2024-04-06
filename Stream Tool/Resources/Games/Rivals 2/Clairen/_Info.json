@@ -1,0 +1,85 @@
+{
+    "skinList": [
+        {
+            "name": "Presskit"
+        },
+        {
+            "name": "HD"
+        },
+        {
+            "name": "LoA HD",
+            "loa": true
+        },
+        {
+            "name": "LoA 1 HD",
+            "loa": true
+        }
+
+    ],
+    "scoreboard": {
+        "Presskit": {
+            "x": 42,
+            "y": 98,
+            "scale": 4
+        },
+        "LoA 1 HD": {
+            "x": 23,
+            "y": 140,
+            "scale": 4.8
+        },
+        "LoA HD": {
+            "x": 15,
+            "y": 145,
+            "scale": 4.8
+        },
+        "HD": {
+            "x": -107,
+            "y": 86,
+            "scale": 4.7
+        }
+    },
+    "vsScreen": {
+        "Presskit": {
+            "x": -500,
+            "y": 40,
+            "scale": 1.07
+        },
+        "LoA HD": {
+            "x": -510,
+            "y": 310,
+            "scale": 1.4
+        },
+        "LoA 1 HD": {
+            "x": -475,
+            "y": 275,
+            "scale": 1.4
+        },
+        "HD": {
+            "x": -837,
+            "y": 143,
+            "scale": 1.5
+        }
+    },
+    "gui": {
+        "Presskit": {
+            "x": 20,
+            "y": 50,
+            "scale": 5.5
+        },
+        "LoA HD": {
+            "x": 15,
+            "y": 70,
+            "scale": 5.8
+        },
+        "LoA 1 HD": {
+            "x": 20,
+            "y": 63,
+            "scale": 5.5
+        },
+        "HD": {
+            "x": -60,
+            "y": 50,
+            "scale": 7
+        }
+    }
+}

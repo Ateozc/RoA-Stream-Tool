@@ -1,26 +1,44 @@
 {
     "skinList": [
         {
-            "name": "Default"
+            "name": "Presskit"
+        },
+        {
+            "name": "HD"
         }
     ],
     "scoreboard": {
-        "neutral": {
-            "x": -90,
-            "y": 25,
-            "scale": 4.2
+        "Presskit": {
+            "x": -51,
+            "y": 49,
+            "scale": 4.7
+        },
+        "HD": {
+            "x": -102,
+            "y": 35,
+            "scale": 4.7
         }
     },
     "vsScreen": {
-        "neutral": {
-            "x": -675,
-            "y": 0,
+        "Presskit": {
+            "x": -577,
+            "y": -14,
+            "scale": 1.05
+        },
+        "HD": {
+            "x": -700,
+            "y": -20,
             "scale": 1.25
         }
     },
     "gui": {
-        "neutral": {
-            "x": -45,
+        "Presskit": {
+            "x": -20,
+            "y": 30,
+            "scale": 6
+        },
+        "HD": {
+            "x": -42,
             "y": 16,
             "scale": 5.5
         }

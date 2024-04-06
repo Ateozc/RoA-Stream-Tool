@@ -1,10 +1,10 @@
 {
-  "guiWidth": 634,
-  "guiHeight": 376,
+  "guiWidth": 767,
+  "guiHeight": 665,
   "allowIntro": false,
   "workshop": false,
   "forceAlt": false,
-  "forceHD": false,
+  "forceHD": true,
   "noLoAHD": false,
   "forceWL": false,
   "customRound": false,
@@ -16,5 +16,5 @@
   "zoom": 100,
   "remoteUpdatePort": 1111,
   "webSocketPort": 8080,
-  "showPortraits": false
+  "showPortraits": true
 }

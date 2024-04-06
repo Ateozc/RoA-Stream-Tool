@@ -51,7 +51,7 @@ class GameSelect {
         },
         {
             id: 'forceHD',
-            games: ['Rivals of Aether']
+            games: ['Rivals of Aether', 'Rivals 2']
         },
         {
             id: 'noLoAHD',

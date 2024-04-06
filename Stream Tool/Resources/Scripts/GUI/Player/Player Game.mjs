@@ -280,22 +280,20 @@ export class PlayerGame extends Player {
     getScCharPos() {
         const scCharPos = [];
         const charPos = this.charInfo;
-        if (charPos.scoreboard.neutral) {
-            if (charPos.scoreboard[this.skin.name]) {
+        if (charPos.scoreboard[this.skin.name]) {
                 // if the skin has a specific position
                 scCharPos[0] = charPos.scoreboard[this.skin.name].x;
                 scCharPos[1] = charPos.scoreboard[this.skin.name].y;
                 scCharPos[2] = charPos.scoreboard[this.skin.name].scale;
-            } else if (settings.isAltArtChecked() && charPos.scoreboard.alt) {
+        } else if (settings.isAltArtChecked() && charPos.scoreboard.alt) {
                 // for workshop alternative art
                 scCharPos[0] = charPos.scoreboard.alt.x;
                 scCharPos[1] = charPos.scoreboard.alt.y;
                 scCharPos[2] = charPos.scoreboard.alt.scale;
-            } else { // if none of the above, use a default position
+        } else if (charPos.scoreboard.neutral) { // if none of the above, use a default position
                 scCharPos[0] = charPos.scoreboard.neutral.x;
                 scCharPos[1] = charPos.scoreboard.neutral.y;
                 scCharPos[2] = charPos.scoreboard.neutral.scale;
-            }
         } else { // if there are no character positions, set positions for "Random"
             if (this.pNum % 2 == 0) {
                 scCharPos[0] = 30;

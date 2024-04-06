@@ -5,21 +5,22 @@
     "pronouns": "He/Him",
     "socials": {
       "twitter": "Ateozc",
-      "twitch": "Ateozc",
+      "twitch": "Atozc",
       "yt": "Ateozc",
+      "bsky": "Ateozc",
       "masto": "",
       "cohost": ""
     },
     "characters": [
       {
+        "character": "Fleet",
+        "skin": "Presskit",
+        "game": "Rivals 2"
+      },
+      {
         "character": "Sandbert",
         "skin": "Default",
         "game": "Rivals Workshop"
-      },
-      {
-        "character": "Fleet",
-        "skin": "Default",
-        "game": "Rivals 2"
       },
       {
         "character": "Olympia",
