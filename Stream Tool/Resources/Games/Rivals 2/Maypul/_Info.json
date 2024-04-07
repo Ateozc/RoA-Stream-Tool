@@ -12,25 +12,40 @@
         }
     ],
     "scoreboard": {
+        "neutral": {
+            "x": -41,
+            "y": 29,
+            "scale": 4
+        },
         "Presskit": {
             "x": 88,
             "y": 76,
             "scale": 5
         },
-        "LoA HD": {
-            "x": 50,
-            "y": 140,
-            "scale": 4.8
-        },
         "HD": {
             "x": -70,
             "y": 40,
             "scale": 4
+        },
+        "LoA HD": {
+            "x": 50,
+            "y": 140,
+            "scale": 4.8
         }
     },
     "vsScreen": {
+        "neutral": {
+            "x": -500,
+            "y": 50,
+            "scale": 1.12
+        },
         "Presskit": {
             "x": -500,
+            "y": 50,
+            "scale": 1.12
+        },
+        "HD": {
+            "x": -690,
             "y": 50,
             "scale": 1.12
         },
@@ -38,28 +53,28 @@
             "x": -400,
             "y": 250,
             "scale": 1.3
-        },
-        "HD": {
-            "x": -690,
-            "y": 50,
-            "scale": 1.12
         }
     },
     "gui": {
+        "neutral": {
+            "x": -30,
+            "y": 15,
+            "scale": 6
+        },
         "Presskit": {
             "x": 40,
             "y": 42,
             "scale": 7
         },
-        "LoA HD": {
-            "x": 25,
-            "y": 52,
-            "scale": 4.5
-        },
         "HD": {
             "x": -37,
             "y": 18,
             "scale": 4
+        },
+        "LoA HD": {
+            "x": 25,
+            "y": 52,
+            "scale": 4.5
         }
     }
 }

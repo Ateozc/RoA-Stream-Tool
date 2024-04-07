@@ -8,6 +8,11 @@
         }
     ],
     "scoreboard": {
+        "neutral": {
+            "x": -39,
+            "y": 64,
+            "scale": 4
+        },
         "Presskit": {
             "x": 24,
             "y": 126,
@@ -20,6 +25,11 @@
         }
     },
     "vsScreen": {
+        "neutral": {
+            "x": -515,
+            "y": 0,
+            "scale": 1
+        },
         "Presskit": {
             "x": -515,
             "y": 0,
@@ -32,6 +42,11 @@
         }
     },
     "gui": {
+        "neutral": {
+            "x": -10,
+            "y": 33,
+            "scale": 5
+        },
         "Presskit": {
             "x": 0,
             "y": 70,
