@@ -32,9 +32,20 @@ If you want to add a new font, simply add it to the Fonts folder and then add an
     src: url('../Fonts/Urban-Nation.ttf');
 }
 
+@font-face {
+    font-family: "CB2";
+    src: url('../Fonts/adrip1.ttf');
+}
+
+@font-face {
+    font-family: "CB3";
+    src: url('../Fonts/Urban Heroes.ttf');
+}
+
+
 :root {
-    --font-family-1: "Deansgate";
-    --font-family-2: "LemonMilk";
+    --font-family-1: "CB3";
+    --font-family-2: "CB3";
     --font-family-3: "Roboto";
 
     /* Control the player text */
@@ -178,4 +189,38 @@ If you want to add a new font, simply add it to the Fonts folder and then add an
 }
 .twitterIcon {
     fill: var(--caster-socials-icon-color);
+}
+
+
+body {
+    background-image: url('../Overlay/CB Assets/CB-Backgrounds-2.png');
+    background-size: contain;
+}
+
+#bgVids {
+    opacity: .15;
+}
+
+
+
+.chara {
+    background: repeating-radial-gradient(
+      circle at center,
+      hsl(0 0% 15%),
+      hsl(16.1 5% 55.5%)
+    );
+    background-size: 5px;
+}
+  
+#charP1, #charP2, #charP3, #charP4 {
+    opacity: .75;
+    filter: blur(1px) contrast(200%);
+    mix-blend-mode: screen;
+}
+
+#trailP1, #trailP2, #trailP3, #trailP4 {
+    opacity: .1;
+    /* filter: blur(1px) contrast(1000%) grayscale(1);
+    mix-blend-mode: screen;
+    width: 100%; */
 }

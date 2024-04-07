@@ -4,13 +4,18 @@
   "pronouns": "He/Him",
   "socials": {
     "twitter": "Ateozc",
-    "twitch": "Atozc",
+    "twitch": "Ateozc",
     "yt": "Ateozc",
     "bsky": "Ateozc",
     "masto": "",
     "cohost": ""
   },
   "characters": [
+    {
+      "character": "Absa",
+      "skin": "Grey",
+      "game": "Rivals of Aether"
+    },
     {
       "character": "Fleet",
       "skin": "Presskit",
@@ -24,11 +29,6 @@
     {
       "character": "Olympia",
       "skin": "White",
-      "game": "Rivals of Aether"
-    },
-    {
-      "character": "Absa",
-      "skin": "Grey",
       "game": "Rivals of Aether"
     }
   ]

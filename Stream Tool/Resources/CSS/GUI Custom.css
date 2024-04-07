@@ -11,10 +11,23 @@ override anything you want here.
 
 @import url(GUI\ Plugins.css);
 
+#overlay {
+    background-image: url('../Overlay/CB Assets/CB-Backgrounds-4.png');
+    background-size: contain;
+}
+
+.charImgBox img{
+    opacity: .65;
+    filter: blur(0px) contrast(200%);
+    mix-blend-mode: screen;
+}
+
 .pInfoIconContColorSave {
     width: 30px;
     /* display: flex; */
     justify-content: center;
     align-items: center;
 }
+
+
 

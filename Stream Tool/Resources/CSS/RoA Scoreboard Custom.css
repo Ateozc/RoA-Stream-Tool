@@ -32,10 +32,20 @@ If you want to add a new font, simply add it to the Fonts folder and then add an
     src: url('../Fonts/Urban-Nation.ttf');
 }
 
+@font-face {
+    font-family: "CB2";
+    src: url('../Fonts/adrip1.ttf');
+}
+
+@font-face {
+    font-family: "CB3";
+    src: url('../Fonts/Urban Heroes.ttf');
+}
+
 :root {
-    --font-family-1: "Deansgate";
-    --font-family-2: "LemonMilk";
-    --font-family-3: "Roboto";
+    --font-family-1: "CB3";
+    --font-family-2: "CB3";
+    --font-family-3: "CB3";
 
     --default-font: var(--font-family-1);
     --default-color: white;
@@ -75,6 +85,7 @@ If you want to add a new font, simply add it to the Fonts folder and then add an
     --intro-tournament-font-family: var(--font-family-2);
 
 }
+
 
 /* Base settings */
 /* 
@@ -200,4 +211,19 @@ body {
 /* Not too sure what this is for... */
 #superCoolInterrogation {
     font-family: var(--font-family-3);
+}
+
+#p1CharaMask, #p2CharaMask, #p3CharaMask, #p4CharaMask  {
+    background: repeating-radial-gradient(
+      circle at center,
+      hsl(0 0% 15%),
+      hsl(16.1 5% 55.5%)
+    );
+    background-size: 5px;
+}
+  
+.pCharacter {
+    /* opacity: .6; */
+    filter: blur(0px) contrast(200%);
+    mix-blend-mode: screen;
 }
