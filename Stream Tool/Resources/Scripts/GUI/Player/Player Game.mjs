@@ -168,13 +168,13 @@ export class PlayerGame extends Player {
         if (settings.isHDChecked()) {
 
             const promises = [];
-            const skinName = this.skin.name.includes("LoA") && !settings.isNoLoAChecked() ? "LoA HD" : "HD";
+            const skinName = this.skin.loa && !settings.isNoLoAChecked() ? "LoA HD" : "HD";
 
             // for HD images that have recolors
             let hdSkin = {};
             hdSkin.name = skinName;
             // only do this if not default skin (unless its a cutsom color)
-            if ((this.skin.name != "Default" || this.skin.customImg) && this.skin.hex && !this.skin.name.includes("LoA") &&
+            if ((this.skin.name != "Default" || this.skin.customImg) && this.skin.hex && !this.skin.loa &&
                 await fileExists(`${stPath.char}/${this.char}/Skins/HD Recolor.png`)) {
 
                 hdSkin = structuredClone(this.skin);
