@@ -1,6 +1,42 @@
 {
     "skinList": [
         {
+            "name": "Default"
+        },
+        {
+            "name": "Default-Blue"
+        },
+        {
+            "name": "Default-Red"
+        },
+        {
+            "name": "Default-Green"
+        },
+        {
+            "name": "Retro"
+        },
+        {
+            "name": "Retro-Blue"
+        },
+        {
+            "name": "Retro-Red"
+        },
+        {
+            "name": "Retro-Green"
+        },
+        {
+            "name": "Bandit"
+        },
+        {
+            "name": "Bandit-Blue"
+        },
+        {
+            "name": "Bandit-Red"
+        },
+        {
+            "name": "Bandit-Green"
+        },
+        {
             "name": "Presskit"
         },
         {
@@ -35,9 +71,9 @@
     },
     "vsScreen": {
         "neutral": {
-            "x": -500,
-            "y": 50,
-            "scale": 1.12
+            "x": -664,
+            "y": 99,
+            "scale": 1.35
         },
         "Presskit": {
             "x": -500,

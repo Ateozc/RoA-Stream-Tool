@@ -1,7 +1,40 @@
 {
     "skinList": [
         {
-            "name": "Presskit"
+            "name": "Default"
+        },
+        {
+            "name": "Default-Blue"
+        },
+        {
+            "name": "Default-Red"
+        },
+        {
+            "name": "Default-Green"
+        },
+        {
+            "name": "Retro"
+        },
+        {
+            "name": "Retro-Blue"
+        },
+        {
+            "name": "Retro-Red"
+        },
+        {
+            "name": "Retro-Green"
+        },
+        {
+            "name": "Ranger"
+        },
+        {
+            "name": "Ranger-Blue"
+        },
+        {
+            "name": "Ranger-Red"
+        },
+        {
+            "name": "Ranger-Green"
         },
         {
             "name": "HD"
@@ -45,9 +78,9 @@
     },
     "vsScreen": {
         "neutral": {
-            "x": -500,
-            "y": 40,
-            "scale": 1.07
+            "x": -645,
+            "y": 108,
+            "scale": 1.31
         },
         "Presskit": {
             "x": -500,

@@ -1,6 +1,54 @@
 {
     "skinList": [
         {
+            "name": "Default"
+        },
+        {
+            "name": "Default-Blue"
+        },
+        {
+            "name": "Default-Red"
+        },
+        {
+            "name": "Default-Green"
+        },
+        {
+            "name": "Retro"
+        },
+        {
+            "name": "Retro-Blue"
+        },
+        {
+            "name": "Retro-Red"
+        },
+        {
+            "name": "Retro-Green"
+        },
+        {
+            "name": "EarlyBird"
+        },
+        {
+            "name": "EarlyBird-Blue"
+        },
+        {
+            "name": "EarlyBird-Red"
+        },
+        {
+            "name": "EarlyBird-Green"
+        },
+        {
+            "name": "Mecha"
+        },
+        {
+            "name": "Mecha-Blue"
+        },
+        {
+            "name": "Mecha-Red"
+        },
+        {
+            "name": "Mecha-Green"
+        },
+        {
             "name": "Presskit"
         },
         {
@@ -44,9 +92,9 @@
     },
     "vsScreen": {
         "neutral": {
-            "x": -527,
-            "y": 58,
-            "scale": 1
+            "x": -600,
+            "y": 148,
+            "scale": 1.25
         },
         "Presskit": {
             "x": -527,

@@ -1,6 +1,66 @@
 {
     "skinList": [
         {
+            "name": "Default"
+        },
+        {
+            "name": "Default-Blue"
+        },
+        {
+            "name": "Default-Red"
+        },
+        {
+            "name": "Default-Green"
+        },
+        {
+            "name": "Retro"
+        },
+        {
+            "name": "Retro-Blue"
+        },
+        {
+            "name": "Retro-Red"
+        },
+        {
+            "name": "Retro-Green"
+        },
+        {
+            "name": "Scarab"
+        },
+        {
+            "name": "Scarab-Blue"
+        },
+        {
+            "name": "Scarab-Red"
+        },
+        {
+            "name": "Scarab-Green"
+        },
+        {
+            "name": "Prehistoric"
+        },
+        {
+            "name": "Prehistoric-Blue"
+        },
+        {
+            "name": "Prehistoric-Red"
+        },
+        {
+            "name": "Prehistoric-Green"
+        },
+        {
+            "name": "Soccer"
+        },
+        {
+            "name": "Soccer-Blue"
+        },
+        {
+            "name": "Soccer-Red"
+        },
+        {
+            "name": "Soccer-Green"
+        },
+        {
             "name": "Presskit"
         },
         {
@@ -44,9 +104,9 @@
     },
     "vsScreen": {
         "neutral": {
-            "x": -550,
-            "y": -40,
-            "scale": 1.2
+            "x": -667,
+            "y": 111,
+            "scale": 1.26
         },
         "Presskit": {
             "x": -550,
