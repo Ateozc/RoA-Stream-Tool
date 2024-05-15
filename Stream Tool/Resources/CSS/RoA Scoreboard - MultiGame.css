@@ -3,27 +3,50 @@
 
     --clipPortraits: ''; /*polygon(-5% 0%, 71% 5%, 75% 28%, -8% 100%); clips singles portraits*/
 
-    /* Default for Rivals/Ws */
+    /* If you want a special layout for dubs, make sure to mimic how it looks for Rivals of Aether.
+    Anything that does not have dubs and you change the gamemode to dubs for will default to Rivals of Aether settings */
+    /* Default for Rivals of Aether - RoA */
+    /* Singles */
     --scoreboardRoAX: 470px;
     --scoreboardRoAY: 25px;
     --roundInfoRoAX: 0px;
     --roundInfoRoAY: 892px;
     --scoreboardRoAScale: 1;
     --roundInfoRoAScale: 1;
+    /* Doubles */
+    --scoreboardRoAXDoubles: 15px;
+    --scoreboardRoAYDoubles: 15px;
+    --roundInfoRoAXDoubles: 0px;
+    --roundInfoRoAYDoubles: 892px;
+    --scoreboardRoAScaleDoubles: 1;
+    --roundInfoRoAScaleDoubles: 1;
 
+    /* Rivals Workshop - RoAWS*/
     --scoreboardRoAWSX: 470px;
     --scoreboardRoAWSY: 25px;
     --roundInfoRoAWSX: 0px;
-    --roundInfoRoAWSY: 60px;
+    --roundInfoRoAWSY: 892px;
     --scoreboardRoAWSScale: 1;
     --roundInfoRoAWSScale: 1;
+    /* Rivals Workshop Doubles */
+    --scoreboardRoAWSXDoubles: 470px;
+    --scoreboardRoAWSYDoubles: 25px;
 
+    /* Rivals 2 - R2*/
     --scoreboardR2X: 370px;
     --scoreboardR2Y: 40px;
     --roundInfoR2X: 0px;
     --roundInfoR2Y: -5px;
     --scoreboardR2Scale: 1.25;
     --roundInfoR2Scale: 1;
+
+    /* Rivals 2 Doubles */
+    --scoreboardR2XDoubles: 70px;
+    --scoreboardR2YDoubles: 45px;
+    --roundInfoR2XDoubles: 0px;
+    --roundInfoR2YDoubles: -5px;
+    --scoreboardR2ScaleDoubles: 1.25;
+    --roundInfoR2ScaleDoubles: 1;
 
 
     /* SSBU */

@@ -23,28 +23,7 @@ initWebsocket("gameData", (data) => updateData(data));
  */
 async function updateData(data) {
 
-	let defaultValue = 'RoA';
-	let style = getComputedStyle(document.body);
-	let root = document.documentElement;
 
-	if (data.gameAbbr) {
-		if (style.getPropertyValue('--scoreboard'+ data.gameAbbr +'X')) { //seems to exist, use it.
-			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ data.gameAbbr +'X)');
-			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ data.gameAbbr +'Y)');
-			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ data.gameAbbr +'X)');
-			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ data.gameAbbr +'Y)');
-
-			root.style.setProperty("--scoreboardScale", 'var(--scoreboard'+ data.gameAbbr +'Scale)');
-			root.style.setProperty("--roundInfoScale", 'var(--scoreboard'+ data.gameAbbr +'Scale)');
-		} else {
-			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ defaultValue +'X)');
-			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ defaultValue +'Y)');
-			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ defaultValue +'X)');
-			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ defaultValue +'Y)');
-			root.style.setProperty("--scoreboardScale", 'var(--scoreboard'+ defaultValue +'Scale)');
-			root.style.setProperty("--roundInfoScale", 'var(--scoreboard'+ defaultValue +'Scale)');
-		}	
-	}
 
 	// update intro data just in case we end up playing it
 	scoreboardIntro.updateData(data);
@@ -58,6 +37,49 @@ async function updateData(data) {
 
 	// if this isnt a singles match, rearrange stuff
 	gamemode.update(data.gamemode);
+
+	let defaultValue = 'RoA';
+	let style = getComputedStyle(document.body);
+	let root = document.documentElement;
+
+	if (data.gameAbbr) {
+		var doublesText = (data.gamemode == 2) ? 'Doubles' : '';
+
+		console.log(doublesText);
+		console.log('--scoreboard'+ data.gameAbbr +'X'+ doublesText +')');
+		
+		//Scoreboard X/Y
+		if (style.getPropertyValue('--scoreboard'+ data.gameAbbr +'X'+ doublesText) && style.getPropertyValue('--scoreboard'+ data.gameAbbr +'Y'+ doublesText)) { //seems to exist, use it.
+			console.log('game css exists');
+			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ data.gameAbbr +'X'+ doublesText +')');
+			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ data.gameAbbr +'Y'+ doublesText +')');
+		} else {
+			console.log('using default instead of '  + data.gameAbbr);
+			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ defaultValue +'X'+ doublesText +')');
+			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ defaultValue +'Y'+ doublesText +')');
+		}
+		//Round Info X/Y
+		if (style.getPropertyValue('--roundInfo'+ data.gameAbbr +'X'+ doublesText) && style.getPropertyValue('--roundInfo'+ data.gameAbbr +'Y'+ doublesText)) { //seems to exist, use it.
+			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ data.gameAbbr +'X'+ doublesText +')');
+			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ data.gameAbbr +'Y'+ doublesText +')');
+		} else {
+			root.style.setProperty("--roundInfoX", 'var(--roundInfo'+ defaultValue +'X'+ doublesText +')');
+			root.style.setProperty("--roundInfoY", 'var(--roundInfo'+ defaultValue +'Y'+ doublesText +')');
+		}
+		//Scoreboard Scale
+		if (style.getPropertyValue('--scoreboard'+ data.gameAbbr +'Scale'+ doublesText)) { //seems to exist, use it.
+			root.style.setProperty("--scoreboardScale", 'var(--scoreboard'+ data.gameAbbr +'Scale'+ doublesText +')');
+		} else {
+			root.style.setProperty("--scoreboardScale", 'var(--scoreboard'+ defaultValue +'Scale'+ doublesText +')');
+		}
+		//Round info Scale
+		if (style.getPropertyValue('--roundInfoScale'+ data.gameAbbr +'Scale'+ doublesText)) { //seems to exist, use it.
+			root.style.setProperty("--roundInfoScale", 'var(--roundInfo'+ data.gameAbbr +'Scale'+ doublesText +')');
+		} else {
+			root.style.setProperty("--roundInfoScale", 'var(--roundInfo'+ defaultValue +'Scale'+ doublesText +')');
+		}	
+
+	}
 
 	// some score stuff will change depending on Best Of
 	bestOf.update(data.bestOf);
@@ -75,6 +97,9 @@ async function updateData(data) {
 	if (current.startup) {
 		current.startup = false;
 	}
+
+
+
 
 	if (gamemode.getGm() == 1 && !data.showPortraits) {
 		root.style.setProperty("--clipPortraits", "polygon(-5% 0%, 71% 5%, 75% 28%, -8% 100%)");
