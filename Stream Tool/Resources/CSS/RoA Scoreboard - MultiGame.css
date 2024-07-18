@@ -139,5 +139,5 @@
 }
 
 #roundDiv {
-    transform: translate(var(--roundInfoX), var(--roundInfoY));
+    transform: scale(var(--roundInfoScale), var(--roundInfoScale)) translate(var(--roundInfoX), var(--roundInfoY));
 }
