@@ -58,6 +58,7 @@ class Gamemode {
                 players[i].nameInp.style.maxWidth = "94px";
                 players[i].charSel.style.maxWidth = "73px";
                 players[i].skinSel.style.maxWidth = "72px";
+                players[i].skinColorSel.style.maxWidth = "72px";
 
             }
 
@@ -97,6 +98,7 @@ class Gamemode {
                 players[i].nameInp.style.maxWidth = "210px";
                 players[i].charSel.style.maxWidth = "141px";
                 players[i].skinSel.style.maxWidth = "141px";
+                players[i].skinColorSel.style.maxWidth = "141px";
                 
             }
 

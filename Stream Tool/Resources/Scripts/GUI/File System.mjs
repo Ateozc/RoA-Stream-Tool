@@ -92,6 +92,60 @@ export async function getCharacterList() {
 
 }
 
+export async function getSkinColorList(char, skin) {
+
+    if (char == '' || char == 'Random' || char == 'None' || !skin) {
+        return [];
+    }
+
+    if (inside.electron) {
+        try {
+            var filepath = `${stPath.char}/${char}/Skins/${skin}`;
+            const fs = require('fs');
+            const skinColorList = fs.readdirSync(filepath, { withFileTypes: true })
+                .map(dirent => dirent.name.split('.png')[0])
+                .filter((name) => {
+                    // if the folder name contains '_Workshop' or 'Random', exclude it
+                    if (name != "Rivals Workshop" && name != "Random") {
+                        return true;
+                    }
+                }
+            )
+
+            var standardList = ['Default', 'Blue', 'Red', 'Green']; // Rivals 2. Maybe adjust this for other games in the future? IDK.
+            var finalList = [];
+            for (let i = 0; i < standardList.length; i++) {
+                if (skinColorList.indexOf(standardList[i]) != -1) {
+                    finalList.push(standardList[i]);
+                } 
+            }
+            for (let i = 0; i < skinColorList.length; i++) {
+                if (finalList.indexOf(skinColorList[i]) == -1) {
+                    finalList.push(skinColorList[i]);
+                }
+            }
+
+            //C:\Users\Timmy\Documents\GitHub\RoA-Stream-Tool\Stream Tool\Resources\Games\Rivals 2\Kragg\Skins\Default
+            //
+            // save the data for the remote gui
+
+
+            
+            saveJson(`/Skin Color List`, finalList);
+            return finalList;
+        } catch (e) {
+            return [];
+        }
+
+
+    } else {
+        
+        return await getJson(`${stPath.text}/Skin Color List`);
+
+    }
+
+}
+
 /**
  * Generates a json with each of the files on a presets folder
  * @returns Array of preset jsons

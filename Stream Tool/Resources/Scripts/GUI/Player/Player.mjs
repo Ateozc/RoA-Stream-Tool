@@ -1,7 +1,8 @@
-import { fileExists, getJson } from "../File System.mjs";
+import { fileExists, getJson, getSkinColorList } from "../File System.mjs";
 import { charFinder } from "../Finder/Char Finder.mjs";
 import { playerFinder } from "../Finder/Player Finder.mjs";
 import { skinFinder } from "../Finder/Skin Finder.mjs";
+import { skinColorFinder } from "../Finder/Skin Color Finder.mjs";
 import { getRecolorImage } from "../GetImage.mjs";
 import { inside, stPath, current } from "../Globals.mjs";
 import { RoaRecolor } from "../RoA WebGL Shader.mjs";
@@ -15,13 +16,17 @@ export class Player {
     tagInp;
     charSel;
     skinSel;
+    skinColorSel;
 
     char = "";
     skin = "";
+    skinColor = "";
+    colorList = [];
     charInfo;
     iconSrc;
 
     skinEntries = [];
+    skinColorEntries = [];
     #skinsLoaded;
 
     #readyToUpdate;
@@ -69,6 +74,12 @@ export class Player {
             skinFinder.focusFilter();
         });
 
+        this.skinColorSel.addEventListener("click", () => {
+            skinColorFinder.open(this.skinColorSel);
+            skinColorFinder.fillSkinColorList(this);
+            skinColorFinder.focusFilter();
+        });
+
     }
 
     /**
@@ -102,6 +113,7 @@ export class Player {
 
         // set the skin variable from the skin list
         this.skin = this.charInfo.skinList[0];
+        this.skinColor = 'Default';
 
         // if there's only 1 skin, dont bother displaying skin selector
         if (this.charInfo.skinList.length > 1) {
@@ -109,6 +121,8 @@ export class Player {
         } else {
             this.skinSel.style.display = "none";
         }
+
+        
 
         // if we are changing both char and skin, dont show default skin
         if (!notDefault) {
@@ -118,6 +132,10 @@ export class Player {
         // if we get a skin list to choose from, generate them entries
         if (this.charInfo.skinList.length > 1) {
             this.generateSkinEntries();
+        }
+        
+        if (this.skin.name) {
+            await this.generateSkinColorEntries();
         }
 
     }
@@ -129,6 +147,7 @@ export class Player {
             this.shader,
             this.char,
             this.skin,
+            this.skinColor,
             this.charInfo.colorData,
             "Icons",
             "Icon"
@@ -155,6 +174,7 @@ export class Player {
             newDiv.className = "finderEntry";
             newDiv.addEventListener("click", () => {
                 this.skinChange(this.charInfo.skinList[i])
+                this.generateSkinColorEntries(this.char, this.charInfo.skinList[i].name)
             });
             
             // character name
@@ -187,6 +207,61 @@ export class Player {
         return this.skinEntries;
     }
 
+    /** Creates list entries so the Skin Finder can get them when called */
+    async generateSkinColorEntries() {
+
+        const skinColorImgs = [];
+        this.skinColorEntries = [];
+
+        this.colorList = await getSkinColorList(this.char, this.skin.name);
+
+        // for every skin on the skin list, add an entry
+        for (let i = 0; i < this.colorList.length; i++) {
+            
+            // this will be the div to click
+            const newDiv = document.createElement('div');
+            newDiv.className = "finderEntry";
+            newDiv.addEventListener("click", () => {
+                this.skin = this.colorList[i];
+                this.skinChange(this.skin)
+            });
+            
+            // character name
+            const spanName = document.createElement('span');
+            spanName.innerHTML = this.colorList[i];
+            spanName.className = "pfName";
+
+            // add them to the div we created before
+            newDiv.appendChild(spanName);
+
+            // now for the character image, this is the mask/mirror div
+            const charImgBox = document.createElement("div");
+            charImgBox.className = "pfCharImgBox";
+
+            // store for later
+            skinColorImgs.push(charImgBox);
+
+            // add it to the main div
+            newDiv.appendChild(charImgBox);
+
+            // and now add the div to the entry list
+            this.skinColorEntries.push(newDiv);
+        }
+
+        this.skinColorImgs = skinColorImgs;
+
+         // if there's only 1 skin, dont bother displaying skin selector
+         if (this.charInfo.skinList.length > 1 && this.skinColorEntries.length > 0) {
+            this.skinColorSel.style.display = "flex";
+        } else {
+            this.skinColorSel.style.display = "none";
+        }
+
+    }
+    getSkinColorEntries() {
+        return this.skinColorEntries;
+    }
+
     /** Loads skin images next to each skin entry on the skin list */
     async loadSkinImages() {
 
@@ -209,6 +284,7 @@ export class Player {
                         this.shaderFinder,
                         this.char,
                         this.charInfo.skinList[i],
+                        this.skinColor,
                         this.charInfo.colorData,
                         "Skins",
                         "P2"
@@ -231,14 +307,51 @@ export class Player {
                 
             }
 
+            for (let i = 0; i < this.skinColorImgs.length; i++) {
+    
+                // if we changed character in the middle of img loading, discard next ones
+                if (currentChar == this.char) {
+    
+                    // get the final image
+                    const finalImg = new Image();
+                    finalImg.className = "pfCharImg";
+                    finalImg.src = await getRecolorImage(
+                        this.shaderFinder,
+                        this.char,
+                        this.charInfo.skinList[i],
+                        this.skinColor,
+                        this.charInfo.colorData,
+                        "Skins",
+                        "P2"
+                    );
+                    // preload it so the gui doesnt implode when loading 30 images at once
+                    finalImg.decode().then(() => {
+                        // we have to position it
+                        skinColorFinder.positionCharImg(
+                            this.skin.name,
+                            finalImg,
+                            {gui: this.charInfo.gui},
+                            this.skinColor[i]
+                        );
+                        // attach it
+                        this.skinColorImgs[i].appendChild(finalImg);
+                    })
+    
+                } else {
+                    break;
+                }
+                
+            }
+
         }
 
     }
 
     /** Returns a valid src for browser sources */
-    async getBrowserSrc(char, skin, extraPath, failPath) {
-        
-        if (await fileExists(`${stPath.char}/${char}/${extraPath}/${skin.name}.png`) && !skin.force) {
+    async getBrowserSrc(char, skin, skinColor, extraPath, failPath) {
+        if (await fileExists(`${stPath.char}/${char}/${extraPath}/${skin.name}/${skinColor}.png`) && !skin.force) {
+            return `Resources/Games/${current.game}/${char}/${extraPath}/${skin.name}/${skinColor}.png`;
+        } else if (await fileExists(`${stPath.char}/${char}/${extraPath}/${skin.name}.png`) && !skin.force) {
             return `Resources/Games/${current.game}/${char}/${extraPath}/${skin.name}.png`;
         } else if (await fileExists(`${stPath.char}/${char}/${extraPath}/Default.png`)) {
             if (skin.hex) {

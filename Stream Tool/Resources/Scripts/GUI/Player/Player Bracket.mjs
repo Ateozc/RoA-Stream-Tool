@@ -77,6 +77,18 @@ export class PlayerBracket extends Player {
         this.skinSel = skinSelectorDiv;
         cFinderPositionSkinDiv.appendChild(skinSelectorDiv);
 
+        // for the skin color list
+        const cFinderPositionSkinColorDiv = document.createElement('div');
+        cFinderPositionSkinColorDiv.className = "finderPosition";
+        charDiv.appendChild(cFinderPositionSkinColorDiv);
+
+        // actual skin button
+        const skinColorSelectorDiv = document.createElement('div');
+        skinColorSelectorDiv.className = "selector skinColorSelector bSkinColorSelector";
+        skinColorSelectorDiv.setAttribute("tabindex", "-1");
+        this.skinColorSel = skinColorSelectorDiv;
+        cFinderPositionSkinColorDiv.appendChild(skinColorSelectorDiv);
+
         return charDiv;
 
     }

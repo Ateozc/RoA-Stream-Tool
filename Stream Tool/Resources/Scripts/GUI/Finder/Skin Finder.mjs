@@ -13,7 +13,6 @@ class SkinFinder extends FinderSelect {
      * @param {Player} player - Player that clicked on the skin selector
      */
     fillSkinList(player) {
-
         // clear the list
         this._clearList();
 
@@ -39,7 +38,6 @@ class SkinFinder extends FinderSelect {
 
         // load them skin images
         player.loadSkinImages();
-
     }
 
 }

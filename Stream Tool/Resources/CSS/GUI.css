@@ -422,7 +422,7 @@ button:hover {
   position: relative;
 }
 
-#characterFinder, #skinFinder {
+#characterFinder, #skinFinder, #skinColorFinder {
   width: 200px;
 }
 
@@ -448,6 +448,25 @@ button:hover {
   width: 50px;
 }
 .bSkinSelector:hover {
+  width: 51px;
+  margin-left: -1px;
+  border-left: 1px solid var(--selected);
+}
+
+.skinColorSelector {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left: 0px solid var(--selected);;
+}
+.skinColorSelector:hover {
+  margin-left: -1px;
+  border-left: 1px solid var(--selected);
+}
+
+.bSkinColorSelector {
+  width: 50px;
+}
+.bSkinColorSelector:hover {
   width: 51px;
   margin-left: -1px;
   border-left: 1px solid var(--selected);

@@ -1,5 +1,5 @@
 import { Player } from "./Player.mjs";
-import { fileExists } from "../File System.mjs";
+import { fileExists , getSkinColorList } from "../File System.mjs";
 import { getRecolorImage, getTrailImage } from "../GetImage.mjs";
 import { updateBgCharImg } from "./BG Char Image.mjs";
 import { currentColors } from "../Colors.mjs";
@@ -32,6 +32,7 @@ export class PlayerGame extends Player {
         this.nameInp = pInfoEl.getElementsByClassName("nameInput")[0];
         this.charSel = cInfoEl.getElementsByClassName("charSelector")[0];
         this.skinSel = cInfoEl.getElementsByClassName("skinSelector")[0];
+        this.skinColorSel = cInfoEl.getElementsByClassName("skinColorSelector")[0];
 
         this.setFinderListeners();
 
@@ -99,6 +100,8 @@ export class PlayerGame extends Player {
             this.skinSel.innerHTML = skin.name;
         }
 
+        this.skinColorSel.innerHTML = this.skinColor
+
         // store custom skin data
         this.skinHex = skin.hex;
         this.customImg = skin.customImg;
@@ -126,6 +129,11 @@ export class PlayerGame extends Player {
         // notify the user that we done here
         this.setReady(true);
 
+        if (this.char != 'Random' && current.game == 'Rivals 2') {
+            getSkinColorList(this.char, skin.name);
+        }
+        
+
     }
 
     /** Sets the Scoreboard image depening on recolors */
@@ -146,12 +154,13 @@ export class PlayerGame extends Player {
             this.shader,
             this.char,
             this.skin,
+            this.skinColor,
             this.charInfo.colorData,
             folder,
             this.randomImg
         ));
         promises.push(this.getBrowserSrc(
-            this.char, this.skin, folder, this.randomImg
+            this.char, this.skin, this.skinColor, folder, this.randomImg
         ));
 
         // when those finish loading, set the image values
@@ -184,9 +193,9 @@ export class PlayerGame extends Player {
             }
 
             promises.push(getRecolorImage(
-                this.shader, this.char, hdSkin, this.charInfo.colorData, "Skins", this.randomImg));
+                this.shader, this.char, hdSkin, this.skinColor, this.charInfo.colorData, "Skins", this.randomImg));
             promises.push(this.getBrowserSrc(
-                this.char, hdSkin, "Skins/", this.randomImg));
+                this.char, hdSkin, this.skinColor, "Skins/", this.randomImg));
             
             this.vsSkin = {name: skinName};
             
@@ -203,12 +212,13 @@ export class PlayerGame extends Player {
                     this.shader,
                     this.char,
                     this.skin,
+                    this.skinColor,
                     this.charInfo.colorData,
                     "Skins",
                     this.randomImg
                 ));
                 promises.push(this.getBrowserSrc(
-                    this.char, this.skin, "Skins", this.randomImg
+                    this.char, this.skin, this.skinColor, "Skins", this.randomImg
                 ));
 
                 // when those finish loading, set the image values

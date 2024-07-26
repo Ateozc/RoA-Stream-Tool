@@ -46,6 +46,7 @@ class CharFinder extends FinderSelect {
                 false,
                 this.#charList[i],
                 skin,
+                'Default',
                 colorData,
                 "Icons",
                 "Icon"

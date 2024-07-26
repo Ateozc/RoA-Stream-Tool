@@ -4,6 +4,7 @@ import { charFinder } from './Finder/Char Finder.mjs';
 import { commFinder } from './Finder/Comm Finder.mjs';
 import { playerFinder } from './Finder/Player Finder.mjs';
 import { skinFinder } from './Finder/Skin Finder.mjs';
+import { skinColorFinder } from './Finder/Skin Color Finder.mjs';
 import { current, inside } from './Globals.mjs';
 import { profileInfo } from './Profile Info.mjs';
 import { playersReady } from './Player/Players.mjs';
@@ -25,7 +26,9 @@ export function loadKeybinds() {
                 charFinder.getFinderEntries()[current.focus].click();
             } else if (skinFinder.isVisible()) {
                 skinFinder.getFinderEntries()[current.focus].click();
-            } else if (commFinder.isVisible()) {
+            } else if (skinColorFinder.isVisible()) {
+                skinColorFinder.getFinderEntries()[current.focus].click();
+            }else if (commFinder.isVisible()) {
                 commFinder.getFinderEntries()[current.focus].click();
             }
         } else if (profileInfo.isVisible()) { // if player info menu is up
@@ -51,7 +54,7 @@ export function loadKeybinds() {
     Mousetrap.bind('esc', () => {
         if (inside.settings || inside.bracket) {
             viewport.toCenter();
-        } else if (charFinder.isVisible() || skinFinder.isVisible()
+        } else if (charFinder.isVisible() || skinFinder.isVisible() || skinColorFinder.isVisible()
         || commFinder.isVisible() || playerFinder.isVisible()) {
             document.activeElement.blur();
         } else if (profileInfo.isVisible()) { // if player info menu is up
@@ -79,6 +82,8 @@ export function loadKeybinds() {
             charFinder.addActive(true);
         } else if (skinFinder.isVisible()) {
             skinFinder.addActive(true);
+        } else if (skinColorFinder.isVisible()) {
+            skinColorFinder.addActive(true);
         } else if (commFinder.isVisible()) {
             commFinder.addActive(true);
         }
@@ -90,6 +95,8 @@ export function loadKeybinds() {
             charFinder.addActive(false);
         } else if (skinFinder.isVisible()) {
             skinFinder.addActive(false);
+        } else if (skinColorFinder.isVisible()) {
+            skinColorFinder.addActive(false);
         } else if (commFinder.isVisible()) {
             commFinder.addActive(false);
         }

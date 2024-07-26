@@ -27,9 +27,14 @@ const anonShader = new RoaRecolor;
  * @param {String} failPath - To determine which image to use in case of fail
  * @returns {String} - Image src
 */
-export async function getRecolorImage(shader, char, skin, colorData, imgType, failPath) {
+export async function getRecolorImage(shader, char, skin, skinColor, colorData, imgType, failPath) {
+    
+    /* Check for Nested Skin */
+    if (!skin.force && await fileExists(`${stPath.char}/${char}/${imgType}/${skin.name}/${skinColor}.png`)) {
+        // if the image exists and we are not forcing a recolor, send an unmodified image
+        return `${stPath.char}/${char}/${imgType}/${skin.name}/${skinColor}.png`;
 
-    if (!skin.force && await fileExists(`${stPath.char}/${char}/${imgType}/${skin.name}.png`)) {
+    } else if (!skin.force && await fileExists(`${stPath.char}/${char}/${imgType}/${skin.name}.png`)) {
 
         // if the image exists and we are not forcing a recolor, send an unmodified image
         return `${stPath.char}/${char}/${imgType}/${skin.name}.png`;

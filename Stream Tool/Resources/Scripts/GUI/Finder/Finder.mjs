@@ -106,12 +106,16 @@ export class Finder {
      * @param {HTMLElement} charEL - Element to be positioned
      * @param {Object} pos - Character position data
      */
-    positionCharImg(skin, charEL, pos) {
+    positionCharImg(skin, charEL, pos, skinColor) {
         //               x, y, scale
         const charPos = [0, 0, 1];
         //now, check if the character and skin exist in the database down there
         if (pos) {
-            if (pos.gui[skin]) { //if the skin has a specific position
+            if (pos.gui[skin + skinColor]) { //if the skin has a specific position
+                charPos[0] = pos.gui[skin].x;
+                charPos[1] = pos.gui[skin].y;
+                charPos[2] = pos.gui[skin].scale;
+            } else if (pos.gui[skin]) { //if the skin has a specific position
                 charPos[0] = pos.gui[skin].x;
                 charPos[1] = pos.gui[skin].y;
                 charPos[2] = pos.gui[skin].scale;

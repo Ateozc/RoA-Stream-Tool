@@ -262,6 +262,7 @@ class PlayerFinder extends Finder {
                 null,
                 skinImgs[i].char,
                 skin,
+                'Default',
                 finalColorData,
                 "Skins",
                 "P2"
