@@ -101,8 +101,12 @@ async function updateData(data) {
 
 
 
-	if (gamemode.getGm() == 1 && !data.showPortraits) {
-		root.style.setProperty("--clipPortraits", "polygon(-5% 0%, 71% 5%, 75% 28%, -8% 100%)");
+	if (!data.showPortraits) {
+		if (gamemode.getGm() == 1) { //singles
+			root.style.setProperty("--clipPortraits", "polygon(-5% 0%, 71% 5%, 75% 28%, -8% 100%)");
+		} else { //dubs
+			root.style.setProperty("--clipPortraits", "polygon(13% -27%, 77% 6%, 82% 42%, 23% 37%)");
+		}
 	} else {
 		root.style.setProperty("--clipPortraits", "");
 	}
