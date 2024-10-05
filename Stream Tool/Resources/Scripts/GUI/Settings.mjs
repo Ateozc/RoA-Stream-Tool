@@ -2,7 +2,7 @@ import { viewport } from "./Viewport.mjs";
 import { charFinder } from "./Finder/Char Finder.mjs";
 import { players } from "./Player/Players.mjs";
 import { wl } from "./WinnersLosers.mjs";
-import { inside, stPath } from "./Globals.mjs";
+import { current, inside, stPath } from "./Globals.mjs";
 import { getJson, saveJson } from "./File System.mjs";
 import { gamemode } from "./Gamemode Change.mjs";
 import { tournament } from "./Tournament.mjs";
@@ -116,6 +116,8 @@ class GuiSettings {
         this.#scoreAutoCheck.checked = guiSettings.scoreAutoUpdate;
         this.#invertScoreCheck.checked = guiSettings.invertScore;
         this.#simpleTextsCheck.checked = guiSettings.simpleTexts;
+
+        if (guiSettings.gameName) current.prevGame = guiSettings.gameName;
 
         if (inside.electron) {
             this.#alwaysOnTopCheck.checked = guiSettings.alwaysOnTop;

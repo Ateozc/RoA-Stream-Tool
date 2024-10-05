@@ -1,0 +1,108 @@
+{
+    "skinList": [
+        {
+            "name": "Default"
+        },
+        {
+            "name": "Retro"
+        },
+        {
+            "name": "Tuxedo"
+        },
+        {
+            "name": "Presskit"
+        },
+        {
+            "name": "HD"
+        },
+        {
+            "name": "LoA HD",
+            "loa": true
+        },
+        {
+            "name": "LoA 1 HD",
+            "loa": true
+        }
+    ],
+    "scoreboard": {
+        "neutral": {
+            "x": 41,
+            "y": 107,
+            "scale": 4
+        },
+        "Presskit": {
+            "x": 52,
+            "y": 100,
+            "scale": 7
+        },
+        "HD": {
+            "x": 9,
+            "y": 120,
+            "scale": 4.5
+        },
+        "LoA 1 HD": {
+            "x": 12,
+            "y": 160,
+            "scale": 4
+        },
+        "LoA HD": {
+            "x": 25,
+            "y": 195,
+            "scale": 4.9
+        }
+    },
+    "vsScreen": {
+        "neutral": {
+            "x": -494,
+            "y": 212,
+            "scale": 1.25
+        },
+        "Presskit": {
+            "x": -490,
+            "y": 0,
+            "scale": 1.5
+        },
+        "HD": {
+            "x": -490,
+            "y": 200,
+            "scale": 1.27
+        },
+        "LoA HD": {
+            "x": -475,
+            "y": 290,
+            "scale": 1.3
+        },
+        "LoA 1 HD": {
+            "x": -510,
+            "y": 220,
+            "scale": 1.2
+        }
+    },
+    "gui": {
+        "neutral": {
+            "x": 0,
+            "y": 80,
+            "scale": 7
+        },
+        "Presskit": {
+            "x": 15,
+            "y": 55,
+            "scale": 9
+        },
+        "HD": {
+            "x": 10,
+            "y": 60,
+            "scale": 5
+        },
+        "LoA HD": {
+            "x": 20,
+            "y": 98,
+            "scale": 6
+        },
+        "LoA 1 HD": {
+            "x": 12,
+            "y": 89,
+            "scale": 5.5
+        }
+    }
+}

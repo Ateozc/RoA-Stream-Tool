@@ -401,7 +401,7 @@ button:hover {
   z-index: 3;
   max-height: 165px;
 }
-.charSelector:focus-within .finder, .skinSelector:focus-within .finder {
+.charSelector:focus-within .finder, .skinSelector:focus-within .finder, .skinColorSelector:focus-within .finder {
   display: block;
 }
 .listSearch {

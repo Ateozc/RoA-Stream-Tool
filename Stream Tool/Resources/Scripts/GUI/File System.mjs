@@ -125,6 +125,7 @@ export async function getSkinColorList(char, skin) {
                 }
             }
 
+            
             //C:\Users\Timmy\Documents\GitHub\RoA-Stream-Tool\Stream Tool\Resources\Games\Rivals 2\Kragg\Skins\Default
             //
             // save the data for the remote gui

@@ -139,6 +139,7 @@ class ProfileInfo {
             preset.characters = [{
                 character: this.#curProfile.char,
                 skin: this.#curProfile.skin.name,
+                skinColor: this.#curProfile.skinColor,
                 game: current.game
             }];
             if (this.#curProfile.customImg) {

@@ -28,6 +28,7 @@ export class Player {
     skinEntries = [];
     skinColorEntries = [];
     #skinsLoaded;
+    #skinsColorsLoaded;
 
     #readyToUpdate;
 
@@ -72,6 +73,7 @@ export class Player {
             skinFinder.open(this.skinSel);
             skinFinder.fillSkinList(this);
             skinFinder.focusFilter();
+            
         });
 
         this.skinColorSel.addEventListener("click", () => {
@@ -92,6 +94,7 @@ export class Player {
         // notify the user that we are not ready to update
         this.setReady(false);
         this.#skinsLoaded = false;
+        this.#skinsColorsLoaded = false;
 
         this.char = character;
 
@@ -173,8 +176,9 @@ export class Player {
             const newDiv = document.createElement('div');
             newDiv.className = "finderEntry";
             newDiv.addEventListener("click", () => {
+                this.skinColor = "Default";
                 this.skinChange(this.charInfo.skinList[i])
-                this.generateSkinColorEntries(this.char, this.charInfo.skinList[i].name)
+                this.generateSkinColorEntries(this.char, this.charInfo.skinList[i].name);
             });
             
             // character name
@@ -213,22 +217,24 @@ export class Player {
         const skinColorImgs = [];
         this.skinColorEntries = [];
 
-        this.colorList = await getSkinColorList(this.char, this.skin.name);
+        this.skinColorList = await getSkinColorList(this.char, this.skin.name);
+
 
         // for every skin on the skin list, add an entry
-        for (let i = 0; i < this.colorList.length; i++) {
+        for (let i = 0; i < this.skinColorList.length; i++) {
             
             // this will be the div to click
             const newDiv = document.createElement('div');
             newDiv.className = "finderEntry";
             newDiv.addEventListener("click", () => {
-                this.skin = this.colorList[i];
+                this.skinColor = this.skinColorList[i];
                 this.skinChange(this.skin)
+                
             });
             
             // character name
             const spanName = document.createElement('span');
-            spanName.innerHTML = this.colorList[i];
+            spanName.innerHTML = this.skinColorList[i];
             spanName.className = "pfName";
 
             // add them to the div we created before
@@ -265,8 +271,9 @@ export class Player {
     /** Loads skin images next to each skin entry on the skin list */
     async loadSkinImages() {
 
-        if (!this.#skinsLoaded) { // only first time skin finder is opened
-            
+        this.#skinsColorsLoaded = false;
+
+        if (!this.#skinsLoaded) { // only first time skin finder is opened            
             this.#skinsLoaded = true;
 
             const currentChar = this.char;
@@ -306,20 +313,28 @@ export class Player {
                 }
                 
             }
+        }
+    }
 
-            for (let i = 0; i < this.skinColorImgs.length; i++) {
-    
+    async loadSkinColorImages() {
+        if (!this.#skinsColorsLoaded) { // only first time skin finder is opened
+            
+            this.#skinsColorsLoaded = true;
+
+            const currentChar = this.char;
+            for (let i = 0; i < this.skinColorImgs.length; i++) {              
+        
                 // if we changed character in the middle of img loading, discard next ones
                 if (currentChar == this.char) {
-    
+
                     // get the final image
                     const finalImg = new Image();
                     finalImg.className = "pfCharImg";
                     finalImg.src = await getRecolorImage(
                         this.shaderFinder,
                         this.char,
-                        this.charInfo.skinList[i],
-                        this.skinColor,
+                        this.skin,
+                        this.skinColorList[i],
                         this.charInfo.colorData,
                         "Skins",
                         "P2"
@@ -331,20 +346,18 @@ export class Player {
                             this.skin.name,
                             finalImg,
                             {gui: this.charInfo.gui},
-                            this.skinColor[i]
+                            this.skinColorList[i]
                         );
                         // attach it
                         this.skinColorImgs[i].appendChild(finalImg);
                     })
-    
+
                 } else {
                     break;
                 }
                 
             }
-
         }
-
     }
 
     /** Returns a valid src for browser sources */
@@ -377,6 +390,7 @@ export class Player {
     findSkin(name) {
         for (let i = 0; i < this.charInfo.skinList.length; i++) {
             if (this.charInfo.skinList[i].name == name) {
+                
                 return this.charInfo.skinList[i];
             }
         }

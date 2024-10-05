@@ -22,8 +22,9 @@ class SkinColorFinder extends FinderSelect {
             this.addEntry(entries[i]);
         }
 
+        
         // load them skin images
-        player.loadSkinImages();
+        player.loadSkinColorImages();
 
     }
 

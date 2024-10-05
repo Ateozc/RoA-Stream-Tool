@@ -1,6 +1,6 @@
 {
-  "guiWidth": 636,
-  "guiHeight": 576,
+  "guiWidth": 836,
+  "guiHeight": 836,
   "allowIntro": false,
   "workshop": false,
   "forceAlt": false,
@@ -16,5 +16,7 @@
   "zoom": 100,
   "remoteUpdatePort": 1111,
   "webSocketPort": 8080,
-  "showPortraits": false
+  "showPortraits": true,
+  "gameAbbr": "RoAII",
+  "gameName": "Rivals of Aether II"
 }

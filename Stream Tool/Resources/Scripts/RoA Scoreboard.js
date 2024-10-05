@@ -45,16 +45,12 @@ async function updateData(data) {
 	if (data.gameAbbr) {
 		var doublesText = (data.gamemode == 2) ? 'Doubles' : '';
 
-		console.log(doublesText);
-		console.log('--scoreboard'+ data.gameAbbr +'X'+ doublesText +')');
 		
 		//Scoreboard X/Y
 		if (style.getPropertyValue('--scoreboard'+ data.gameAbbr +'X'+ doublesText) && style.getPropertyValue('--scoreboard'+ data.gameAbbr +'Y'+ doublesText)) { //seems to exist, use it.
-			console.log('game css exists');
 			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ data.gameAbbr +'X'+ doublesText +')');
 			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ data.gameAbbr +'Y'+ doublesText +')');
 		} else {
-			console.log('using default instead of '  + data.gameAbbr);
 			root.style.setProperty("--scoreboardX", 'var(--scoreboard'+ defaultValue +'X'+ doublesText +')');
 			root.style.setProperty("--scoreboardY", 'var(--scoreboard'+ defaultValue +'Y'+ doublesText +')');
 		}

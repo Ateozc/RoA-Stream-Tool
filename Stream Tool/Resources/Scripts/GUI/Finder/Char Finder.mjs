@@ -65,7 +65,6 @@ class CharFinder extends FinderSelect {
             this.addEntry(newDiv);
 
         }
-
     }
     getCharList() {
         return this.#charList;

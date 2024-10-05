@@ -106,6 +106,7 @@ class PlayerFinder extends Finder {
                             socials : preset.socials,
                             char : preset.characters[i].character,
                             skin : preset.characters[i].skin,
+                            skinColor: preset.characters[i].skinColor,
                             hex : preset.characters[i].hex,
                             customImg : preset.characters[i].customImg
                         }
@@ -129,6 +130,7 @@ class PlayerFinder extends Finder {
                             charJson : charJson,
                             char : preset.characters[i].character,
                             skin : preset.characters[i].skin,
+                            skinColor : preset.characters[i].skinColor,
                             hex : preset.characters[i].hex,
                             customImg : preset.characters[i].customImg,
                         });
@@ -180,7 +182,8 @@ class PlayerFinder extends Finder {
                         pronouns : preset.pronouns,
                         socials : preset.socials,
                         char : "Random",
-                        skin : {name: "Default"}
+                        skin : {name: "Default"},
+                        skinColor : "Default"
                     }
                     newDiv.appendChild(spanTag);
                     newDiv.appendChild(spanName);
@@ -226,6 +229,7 @@ class PlayerFinder extends Finder {
             }
 
             let skin;
+            let skinColor;
             if (skinImgs[i].charJson) { // if a character is found
                 for (let j = 0; j < skinImgs[i].charJson.skinList.length; j++) {
 
@@ -234,6 +238,8 @@ class PlayerFinder extends Finder {
 
                         // clone to not modify original
                         skin = structuredClone(skinImgs[i].charJson.skinList[j]);
+
+                        skinColor = skinImgs[i].skinColor;
 
                         // if we got a custom skin
                         if (skinImgs[i].customImg) {
@@ -262,7 +268,7 @@ class PlayerFinder extends Finder {
                 null,
                 skinImgs[i].char,
                 skin,
-                'Default',
+                skinColor,
                 finalColorData,
                 "Skins",
                 "P2"
@@ -298,7 +304,9 @@ class PlayerFinder extends Finder {
             setCurrentPlayer(player);
             customChange(pData.hex, pData.skin);
         } else { // search for all skins for name matches
-            player.skinChange(player.findSkin(pData.skin));
+            await player.skinChange(player.findSkin(pData.skin), pData.skinColor);           
+            await player.generateSkinColorEntries();
+            await player.skinChange(player.findSkin(pData.skin), pData.skinColor);
         }
 
         // and hide the finder of course

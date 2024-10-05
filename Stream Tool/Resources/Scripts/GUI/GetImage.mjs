@@ -83,18 +83,21 @@ export async function getRecolorImage(shader, char, skin, skinColor, colorData, 
  * @param {String} color - Desired out color
  * @returns {String} - Image src
  */
-export async function getTrailImage(shader, char, skin, color) {
+export async function getTrailImage(shader, char, skin, skinColor, color) {
 
     // we add "FFFFFF" to the color to avoid shader issues when using only 1 color
     color += "FFFFFF";
 
     let filePath;
 
-    if (await fileExists(`${stPath.char}/${char}/Skins/${skin}.png`)) {
+    if (await fileExists(`${stPath.char}/${char}/Skins/${skin}/${skinColor}.png`)) {
 
         // if the requested skin exists as a separate image
-        filePath = `${stPath.char}/${char}/Skins/${skin}.png`;
+        filePath = `${stPath.char}/${char}/Skins/${skin}/${skinColor}.png`;
 
+    } else if (await fileExists(`${stPath.char}/${char}/Skins/${skin}.png`)) {
+        // if the requested skin exists as a separate image
+        filePath = `${stPath.char}/${char}/Skins/${skin}.png`;
     } else if (await fileExists(`${stPath.char}/${char}/Skins/Default.png`)) {
 
         // else, use the default skin image

@@ -24,5 +24,6 @@ export const stPath = {
 export const current = {
     focus : -1,
     game: 'Rivals of Aether',
-    gameAbbr: 'RoA'
+    gameAbbr: 'RoA',
+    prevGame: 'Rivals of Aether'
 }

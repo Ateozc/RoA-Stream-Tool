@@ -12,6 +12,18 @@
   },
   "characters": [
     {
+      "character": "Kragg",
+      "skin": "Prehistoric",
+      "skinColor": "Red",
+      "game": "Rivals of Aether II"
+    },
+    {
+      "character": "Clairen",
+      "skin": "Retro",
+      "skinColor": "Black",
+      "game": "Rivals of Aether II"
+    },
+    {
       "character": "Fleet",
       "skin": "Presskit",
       "game": "Rivals 2"

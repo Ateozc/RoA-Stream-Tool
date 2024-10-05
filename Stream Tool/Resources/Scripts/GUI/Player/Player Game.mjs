@@ -83,7 +83,7 @@ export class PlayerGame extends Player {
      * Updates the skin for this player
      * @param {Object} skin - Skin data
      */
-    async skinChange(skin) {
+    async skinChange(skin, skinColor) {
 
         this.setReady(false);
 
@@ -98,6 +98,10 @@ export class PlayerGame extends Player {
             this.skinSel.innerHTML = "Custom " + skin.name;
         } else {
             this.skinSel.innerHTML = skin.name;
+        }
+
+        if (this.skinColor == 'Default') {
+            this.skinColor = (skinColor) ? skinColor : 'Default';
         }
 
         this.skinColorSel.innerHTML = this.skinColor
@@ -129,10 +133,9 @@ export class PlayerGame extends Player {
         // notify the user that we done here
         this.setReady(true);
 
-        if (this.char != 'Random' && current.game == 'Rivals 2') {
-            getSkinColorList(this.char, skin.name);
+        if (this.char != 'Random' && current.game == 'Rivals of Aether II') {
+            await getSkinColorList(this.char, skin.name);
         }
-        
 
     }
 
@@ -249,6 +252,8 @@ export class PlayerGame extends Player {
             trueBGPath = stPath.charBase;
         }
 
+        console.log(this.vsSkin);
+
         if (this.vsSkin.loa && !settings.isNoLoAChecked()) {
             // show LoA background if the skin is LoA
             vsBG = 'BG LoA.webm';
@@ -280,7 +285,7 @@ export class PlayerGame extends Player {
     /** Generates a new trail image for this player */
     async setTrailImage() {
         const color = currentColors[(this.pNum-1)%2].hex.substring(1);
-        this.trailSrc = await getTrailImage(this.shader, this.char, this.vsSkin.name, color);
+        this.trailSrc = await getTrailImage(this.shader, this.char, this.vsSkin.name, this.skinColor, color);
     }
 
     /**

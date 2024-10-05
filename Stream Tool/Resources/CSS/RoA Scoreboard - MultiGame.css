@@ -32,21 +32,21 @@
     --scoreboardRoAWSXDoubles: 470px;
     --scoreboardRoAWSYDoubles: 25px;
 
-    /* Rivals 2 - R2*/
-    --scoreboardR2X: 370px;
-    --scoreboardR2Y: 40px;
-    --roundInfoR2X: 0px;
-    --roundInfoR2Y: -5px;
-    --scoreboardR2Scale: 1.25;
-    --roundInfoR2Scale: 1;
+    /* Rivals of Aether II - RoAII*/
+    --scoreboardRoAIIX: 370px;
+    --scoreboardRoAIIY: 40px;
+    --roundInfoRoAIIX: 0px;
+    --roundInfoRoAIIY: -5px;
+    --scoreboardRoAIIScale: 1.25;
+    --roundInfoRoAIIScale: 1;
 
-    /* Rivals 2 Doubles */
-    --scoreboardR2XDoubles: 70px;
-    --scoreboardR2YDoubles: 45px;
-    --roundInfoR2XDoubles: 0px;
-    --roundInfoR2YDoubles: -5px;
-    --scoreboardR2ScaleDoubles: 1.25;
-    --roundInfoR2ScaleDoubles: 1;
+    /* Rivals of Aether II Doubles */
+    --scoreboardRoAIIXDoubles: 70px;
+    --scoreboardRoAIIYDoubles: 45px;
+    --roundInfoRoAIIXDoubles: 0px;
+    --roundInfoRoAIIYDoubles: -5px;
+    --scoreboardRoAIIScaleDoubles: 1.25;
+    --roundInfoRoAIIScaleDoubles: 1;
 
 
     /* SSBU */

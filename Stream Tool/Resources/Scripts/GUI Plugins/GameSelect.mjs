@@ -51,7 +51,7 @@ class GameSelect {
         },
         {
             id: 'forceHD',
-            games: ['Rivals of Aether', 'Rivals 2']
+            games: ['Rivals of Aether', 'Rivals of Aether II']
         },
         {
             id: 'noLoAHD',
@@ -68,8 +68,10 @@ class GameSelect {
         this.#abbrCheck.addEventListener('click', () => this.setGamesList());
         this.showHideSettings();
 
-
+        this.setGame(current.prevGame);
     }
+
+    
 
     getGameList() {
         if (inside.electron) {
@@ -161,7 +163,6 @@ class GameSelect {
                 this.#gameSelectorInput.appendChild(option);
             }
         }
-        
     }
 
     async setGame(game) {
@@ -184,6 +185,9 @@ class GameSelect {
         for (let i = 0; i < players.length; i++) {
             await players[i].charChange("Random");
         }
+
+        await settings.save("gameName", gameListItem.name);
+        await settings.save("gameAbbr", gameListItem.abbr);
     }
 
     async showHideSettings() {

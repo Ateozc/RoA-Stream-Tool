@@ -38,6 +38,7 @@ class SkinFinder extends FinderSelect {
 
         // load them skin images
         player.loadSkinImages();
+        
     }
 
 }
