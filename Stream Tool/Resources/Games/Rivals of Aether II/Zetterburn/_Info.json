@@ -4,11 +4,23 @@
             "name": "Default"
         },
         {
+            "name": "Abyss"
+        },
+        {
             "name": "Retro"
         },
         {
             "name": "Lovers",
             "loa": true
+        },
+        {
+            "name": "Panther"
+        },
+        {
+            "name": "Tiger"
+        },
+        {
+            "name": "Vampire"
         },
         {
             "name": "Presskit"

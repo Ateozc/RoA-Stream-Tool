@@ -4,10 +4,22 @@
             "name": "Default"
         },
         {
+            "name": "Abyss"
+        },
+        {
+            "name": "Civet"
+        },
+        {
             "name": "Retro"
         },
         {
             "name": "Bandit"
+        },
+        {
+            "name": "Skunk"
+        },
+        {
+            "name": "WinterStoat"
         },
         {
             "name": "Presskit"

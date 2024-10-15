@@ -4,6 +4,12 @@
             "name": "Default"
         },
         {
+            "name": "Abyss"
+        },
+        {
+            "name": "BlueJay"
+        },
+        {
             "name": "Retro"
         },
         {
@@ -11,6 +17,9 @@
         },
         {
             "name": "Mecha"
+        },
+        {
+            "name": "Parrot"
         },
         {
             "name": "Presskit"
