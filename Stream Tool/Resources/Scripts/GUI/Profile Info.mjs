@@ -150,10 +150,11 @@ class ProfileInfo {
             // if a player preset for this player exists, add already existing characters
             const existingPreset = await getJson(`${stPath.text}/Player Info/${this.#nameInp.value}`)
             if (existingPreset) {
-                
                 // add existing characters to the new json, but not if the character is the same
                 for (let i = 0; i < existingPreset.characters.length; i++) {
-                    if (existingPreset.characters[i].character != this.#curProfile.char) {
+                    if (existingPreset.characters[i].character == this.#curProfile.char && existingPreset.characters[i].game == current.game) {
+                        //if its the same, do nothing
+                    } else {
                         preset.characters.push(existingPreset.characters[i]);
                     }
                 }

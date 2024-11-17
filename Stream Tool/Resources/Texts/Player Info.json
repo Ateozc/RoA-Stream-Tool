@@ -13,36 +13,39 @@
     },
     "characters": [
       {
-        "character": "Kragg",
-        "skin": "Prehistoric",
-        "skinColor": "Red",
-        "game": "Rivals of Aether II"
-      },
-      {
         "character": "Clairen",
         "skin": "Retro",
         "skinColor": "Black",
         "game": "Rivals of Aether II"
       },
       {
-        "character": "Fleet",
-        "skin": "Presskit",
-        "game": "Rivals 2"
-      },
-      {
-        "character": "Sandbert",
-        "skin": "Default",
-        "game": "Rivals Workshop"
-      },
-      {
         "character": "Olympia",
         "skin": "White",
+        "skinColor": "Default",
         "game": "Rivals of Aether"
       },
       {
         "character": "Absa",
         "skin": "Grey",
+        "skinColor": "Default",
         "game": "Rivals of Aether"
+      },
+      {
+        "character": "Clairen",
+        "skin": "White",
+        "skinColor": "Default",
+        "game": "Rivals of Aether"
+      },
+      {
+        "character": "Kragg",
+        "skin": "Prehistoric",
+        "skinColor": "Red",
+        "game": "Rivals of Aether II"
+      },
+      {
+        "character": "Sandbert",
+        "skin": "Default",
+        "game": "Rivals Workshop"
       }
     ]
   },

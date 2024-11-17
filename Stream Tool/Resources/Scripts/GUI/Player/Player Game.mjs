@@ -252,8 +252,6 @@ export class PlayerGame extends Player {
             trueBGPath = stPath.charBase;
         }
 
-        console.log(this.vsSkin);
-
         if (this.vsSkin.loa && !settings.isNoLoAChecked()) {
             // show LoA background if the skin is LoA
             vsBG = 'BG LoA.webm';
