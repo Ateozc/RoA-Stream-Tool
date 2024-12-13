@@ -155,7 +155,7 @@ export class Player {
             "Icons",
             "Icon"
         ));
-        promises.push(this.getBrowserSrc(this.char, this.skin, "Icons", "Icon"));
+        promises.push(this.getBrowserSrc(this.char, this.skin, "Icons", "Icons"));
         await Promise.all(promises).then( (value) => {
             this.iconSrc = value[0];
             this.iconBrowserSrc = value[1];

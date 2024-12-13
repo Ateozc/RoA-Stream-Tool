@@ -33,12 +33,14 @@ export async function swapPlayers() {
         const tempP2Char = players[i+1].char;
         const tempP1Skin = players[i].skin;
         const tempP2Skin = players[i+1].skin;
+        const tempP1SkinColor = players[i].skinColor
+        const tempP2SkinColor = players[i+1].skinColor
 
         // update the stuff
         await players[i].charChange(tempP2Char, true);
         await players[i+1].charChange(tempP1Char, true);
-        players[i].skinChange(tempP2Skin);
-        players[i+1].skinChange(tempP1Skin);
+        players[i].skinChange(tempP2Skin, tempP2SkinColor);
+        players[i+1].skinChange(tempP1Skin, tempP1SkinColor);
 
     }    
 

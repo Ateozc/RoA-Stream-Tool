@@ -106,6 +106,7 @@ async function createEncounters(sameRound) {
         await bracketPlayers[i].charChange(bracketData[bRoundSelect.value][i].character);
         bracketPlayers[i].skinChange(bracketData[bRoundSelect.value][i].skin);
         bracketPlayers[i].setFinderListeners();
+        console.log(bracketData);
 
         if (i%2 == 0) {
 
@@ -147,6 +148,7 @@ async function createEncounters(sameRound) {
 async function copyFromGameToBracket() {
     
     const num = Number(this.getAttribute("num"));
+    console.log(bracketPlayers);
 
     for (let i = 0; i < 2; i++) {
         bracketPlayers[num+i].setName(players[i].getName());
